@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 GGPLOT | R Course</title>
+  <meta name="description" content="Chapter 6 GGPLOT | R Course" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 GGPLOT | R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 GGPLOT | R Course" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-07-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dpyr-library.html"/>
+<link rel="next" href="bioconductor.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R - Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#r---basic-concepts-and-applications"><i class="fa fa-check"></i><b>1.1</b> R - Basic Concepts and applications</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.2</b> Why R?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-studio"><i class="fa fa-check"></i><b>1.3</b> R studio</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#rstudio---look-and-feel"><i class="fa fa-check"></i><b>1.3.1</b> RStudio - Look and Feel</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#basic-mathematics-like-operators"><i class="fa fa-check"></i><b>1.4</b> Basic Mathematics like operators</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.4.1</b> Basics</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#bodmas-rule"><i class="fa fa-check"></i><b>1.4.2</b> BODMAS rule</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#r-markdown"><i class="fa fa-check"></i><b>1.5</b> R Markdown</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#installation-of-packages"><i class="fa fa-check"></i><b>1.6</b> Installation of packages</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#assignment"><i class="fa fa-check"></i><b>1.7</b> Assignment</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#code-challenge"><i class="fa fa-check"></i><b>1.8</b> CODE CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-types-and-data-structures.html"><a href="data-types-and-data-structures.html"><i class="fa fa-check"></i><b>2</b> Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-types-and-data-structures.html"><a href="data-types-and-data-structures.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data types</a></li>
+<li class="chapter" data-level="2.2" data-path="data-types-and-data-structures.html"><a href="data-types-and-data-structures.html#data-structures"><i class="fa fa-check"></i><b>2.2</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-types-and-data-structures.html"><a href="data-types-and-data-structures.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-types-and-data-structures.html"><a href="data-types-and-data-structures.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-types-and-data-structures.html"><a href="data-types-and-data-structures.html#data-frame"><i class="fa fa-check"></i><b>2.2.3</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-types-and-data-structures.html"><a href="data-types-and-data-structures.html#code-challenge-1"><i class="fa fa-check"></i><b>2.3</b> CODE CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>3</b> Loops</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="loops.html"><a href="loops.html#for-loops"><i class="fa fa-check"></i><b>3.1</b> For loops</a></li>
+<li class="chapter" data-level="3.2" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>3.2</b> While loop</a></li>
+<li class="chapter" data-level="3.3" data-path="loops.html"><a href="loops.html#code-challenge-2"><i class="fa fa-check"></i><b>3.3</b> CODE CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-files.html"><a href="working-with-files.html"><i class="fa fa-check"></i><b>4</b> Working with files</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="working-with-files.html"><a href="working-with-files.html#xlsx-xls-files"><i class="fa fa-check"></i><b>4.1</b> .XLSX, XLS files</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="working-with-files.html"><a href="working-with-files.html#reading-a-file-to-a-dataframe"><i class="fa fa-check"></i><b>4.1.1</b> Reading a file to a dataframe</a></li>
+<li class="chapter" data-level="4.1.2" data-path="working-with-files.html"><a href="working-with-files.html#write-a-new-table-to-a-file-locally"><i class="fa fa-check"></i><b>4.1.2</b> Write a new table to a file locally</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="working-with-files.html"><a href="working-with-files.html#csv-files"><i class="fa fa-check"></i><b>4.2</b> .CSV files</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="working-with-files.html"><a href="working-with-files.html#titanic-dataset"><i class="fa fa-check"></i><b>4.2.1</b> Titanic dataset</a></li>
+<li class="chapter" data-level="4.2.2" data-path="working-with-files.html"><a href="working-with-files.html#ibm-employee-attrition-data"><i class="fa fa-check"></i><b>4.2.2</b> IBM Employee Attrition data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="working-with-files.html"><a href="working-with-files.html#code-challenge-3"><i class="fa fa-check"></i><b>4.3</b> CODE CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dpyr-library.html"><a href="dpyr-library.html"><i class="fa fa-check"></i><b>5</b> Dpyr library</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dpyr-library.html"><a href="dpyr-library.html#dplyr-verbs"><i class="fa fa-check"></i><b>5.1</b> Dplyr Verbs</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="dpyr-library.html"><a href="dpyr-library.html#select"><i class="fa fa-check"></i><b>5.1.1</b> select</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dpyr-library.html"><a href="dpyr-library.html#filter"><i class="fa fa-check"></i><b>5.1.2</b> filter</a></li>
+<li class="chapter" data-level="5.1.3" data-path="dpyr-library.html"><a href="dpyr-library.html#arrange"><i class="fa fa-check"></i><b>5.1.3</b> arrange</a></li>
+<li class="chapter" data-level="5.1.4" data-path="dpyr-library.html"><a href="dpyr-library.html#mutate"><i class="fa fa-check"></i><b>5.1.4</b> mutate</a></li>
+<li class="chapter" data-level="5.1.5" data-path="dpyr-library.html"><a href="dpyr-library.html#group_by"><i class="fa fa-check"></i><b>5.1.5</b> group_by</a></li>
+<li class="chapter" data-level="5.1.6" data-path="dpyr-library.html"><a href="dpyr-library.html#summarise"><i class="fa fa-check"></i><b>5.1.6</b> Summarise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dpyr-library.html"><a href="dpyr-library.html#chaining"><i class="fa fa-check"></i><b>5.2</b> Chaining</a></li>
+<li class="chapter" data-level="5.3" data-path="dpyr-library.html"><a href="dpyr-library.html#application-of-dplyr-on-microbiology"><i class="fa fa-check"></i><b>5.3</b> Application of Dplyr on Microbiology</a></li>
+<li class="chapter" data-level="5.4" data-path="dpyr-library.html"><a href="dpyr-library.html#code-challenge-4"><i class="fa fa-check"></i><b>5.4</b> CODE CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>6</b> GGPLOT</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ggplot.html"><a href="ggplot.html#five-key-steps-to-ggplot"><i class="fa fa-check"></i><b>6.1</b> Five key steps to ggplot</a></li>
+<li class="chapter" data-level="6.2" data-path="ggplot.html"><a href="ggplot.html#prepare-the-data-for-plotting---data-assessment"><i class="fa fa-check"></i><b>6.2</b> Prepare the data for plotting - Data Assessment</a></li>
+<li class="chapter" data-level="6.3" data-path="ggplot.html"><a href="ggplot.html#plotting"><i class="fa fa-check"></i><b>6.3</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="ggplot.html"><a href="ggplot.html#base-set-up"><i class="fa fa-check"></i><b>6.3.1</b> Base set up</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="ggplot.html"><a href="ggplot.html#working-with-inbuilt-iris-data"><i class="fa fa-check"></i><b>6.4</b> Working with inbuilt iris data</a></li>
+<li class="chapter" data-level="6.5" data-path="ggplot.html"><a href="ggplot.html#code-challenge-5"><i class="fa fa-check"></i><b>6.5</b> CODE CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bioconductor.html"><a href="bioconductor.html"><i class="fa fa-check"></i><b>7</b> Bioconductor</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="bioconductor.html"><a href="bioconductor.html#installing-biocmanager-package"><i class="fa fa-check"></i><b>7.1</b> Installing BiocManager Package</a></li>
+<li class="chapter" data-level="7.2" data-path="bioconductor.html"><a href="bioconductor.html#searching-and-analyzing-the-strings"><i class="fa fa-check"></i><b>7.2</b> Searching and Analyzing the strings</a></li>
+<li class="chapter" data-level="7.3" data-path="bioconductor.html"><a href="bioconductor.html#using-seqinr"><i class="fa fa-check"></i><b>7.3</b> Using seqinr</a></li>
+<li class="chapter" data-level="7.4" data-path="bioconductor.html"><a href="bioconductor.html#using-short-read"><i class="fa fa-check"></i><b>7.4</b> Using Short Read</a></li>
+<li class="chapter" data-level="7.5" data-path="bioconductor.html"><a href="bioconductor.html#genomic-ranges"><i class="fa fa-check"></i><b>7.5</b> Genomic Ranges</a></li>
+<li class="chapter" data-level="7.6" data-path="bioconductor.html"><a href="bioconductor.html#using-deseq-package"><i class="fa fa-check"></i><b>7.6</b> Using `DESeq package</a></li>
+<li class="chapter" data-level="7.7" data-path="bioconductor.html"><a href="bioconductor.html#network-analysis-of-genomic-data"><i class="fa fa-check"></i><b>7.7</b> Network Analysis of Genomic Data</a></li>
+<li class="chapter" data-level="7.8" data-path="bioconductor.html"><a href="bioconductor.html#code-challenge-6"><i class="fa fa-check"></i><b>7.8</b> CODE CHALLENGE</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ggplot" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> GGPLOT<a href="ggplot.html#ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><code>ggplot2</code> is a powerful data visualization package in R that allows you to create a wide variety of graphs and plots. It is based on the grammar of graphics, a structured approach to constructing plots that emphasizes the mapping of data to visual attributes.</p>
+<div id="five-key-steps-to-ggplot" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Five key steps to ggplot<a href="ggplot.html#five-key-steps-to-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+There are 5 key steps in plotting in ggplot;
+<p>
+<p>1.<strong>The Setup</strong> - Read the data set, define x and y axis</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p><strong>The Labels</strong> - Title, X and Y axis labels</p></li>
+<li><p><strong>The Theme</strong> - Default, Black and White, colored etc.</p></li>
+<li><p><strong>The Facets</strong> - Individual Graphs for each group in data with exactly same range</p></li>
+<li><p><strong>The Layers or geoms</strong> - The actual plot type - e.g Bar plot, Box plot, Violin plot etc.</p></li>
+</ol>
+</p>
+<p>To install <code>ggplot</code>, run the below command in the console.</p>
+<pre><code>install.packages(&quot;ggplot2&quot;)</code></pre>
+</div>
+<div id="prepare-the-data-for-plotting---data-assessment" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Prepare the data for plotting - Data Assessment<a href="ggplot.html#prepare-the-data-for-plotting---data-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Invoke the libraries</p>
+<pre><code>library(ggplot2)
+library(data.table)</code></pre>
+<p>Read the data using the fread function</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="ggplot.html#cb458-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb458-2"><a href="ggplot.html#cb458-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;data.table&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     between, first, last</code></pre>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="ggplot.html#cb461-1" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<p>View the first five records of the data</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="ggplot.html#cb462-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb462-2"><a href="ggplot.html#cb462-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb462-3"><a href="ggplot.html#cb462-3" tabindex="-1"></a></span>
+<span id="cb462-4"><a href="ggplot.html#cb462-4" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb462-5"><a href="ggplot.html#cb462-5" tabindex="-1"></a></span>
+<span id="cb462-6"><a href="ggplot.html#cb462-6" tabindex="-1"></a><span class="co"># View the first few records</span></span>
+<span id="cb462-7"><a href="ggplot.html#cb462-7" tabindex="-1"></a><span class="fu">head</span>(methylated_c)</span></code></pre></div>
+<pre><code>##    Chromosome Context   Count Count_in_millions
+##        &lt;char&gt;  &lt;char&gt;   &lt;int&gt;             &lt;num&gt;
+## 1:       Chr1      CG 1394740          1.394740
+## 2:       Chr2      CG  915144          0.915144
+## 3:       Chr3      CG 1118062          1.118062
+## 4:       Chr4      CG  879170          0.879170
+## 5:       Chr5      CG 1260598          1.260598
+## 6:       Chr1     CHG 1543980          1.543980</code></pre>
+<p>Look at the nature of the data</p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="ggplot.html#cb464-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb464-2"><a href="ggplot.html#cb464-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb464-3"><a href="ggplot.html#cb464-3" tabindex="-1"></a></span>
+<span id="cb464-4"><a href="ggplot.html#cb464-4" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb464-5"><a href="ggplot.html#cb464-5" tabindex="-1"></a></span>
+<span id="cb464-6"><a href="ggplot.html#cb464-6" tabindex="-1"></a><span class="fu">str</span>(methylated_c)</span></code></pre></div>
+<pre><code>## Classes &#39;data.table&#39; and &#39;data.frame&#39;:   15 obs. of  4 variables:
+##  $ Chromosome       : chr  &quot;Chr1&quot; &quot;Chr2&quot; &quot;Chr3&quot; &quot;Chr4&quot; ...
+##  $ Context          : chr  &quot;CG&quot; &quot;CG&quot; &quot;CG&quot; &quot;CG&quot; ...
+##  $ Count            : int  1394740 915144 1118062 879170 1260598 1543980 988829 1225767 957674 1377407 ...
+##  $ Count_in_millions: num  1.395 0.915 1.118 0.879 1.261 ...
+##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
+<p>In the data set, there are numeric variables a well as character columns. There are 15 records in the data set</p>
+<p>Calculate the summary statistics</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="ggplot.html#cb466-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb466-2"><a href="ggplot.html#cb466-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb466-3"><a href="ggplot.html#cb466-3" tabindex="-1"></a></span>
+<span id="cb466-4"><a href="ggplot.html#cb466-4" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb466-5"><a href="ggplot.html#cb466-5" tabindex="-1"></a></span>
+<span id="cb466-6"><a href="ggplot.html#cb466-6" tabindex="-1"></a><span class="fu">summary</span>(methylated_c)</span></code></pre></div>
+<pre><code>##   Chromosome          Context              Count         Count_in_millions
+##  Length:15          Length:15          Min.   : 879170   Min.   :0.8792   
+##  Class :character   Class :character   1st Qu.:1053446   1st Qu.:1.0534   
+##  Mode  :character   Mode  :character   Median :1377407   Median :1.3774   
+##                                        Mean   :2857317   Mean   :2.8573   
+##                                        3rd Qu.:5025181   3rd Qu.:5.0252   
+##                                        Max.   :7917805   Max.   :7.9178</code></pre>
+<p>Do the data have null values?</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="ggplot.html#cb468-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb468-2"><a href="ggplot.html#cb468-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb468-3"><a href="ggplot.html#cb468-3" tabindex="-1"></a></span>
+<span id="cb468-4"><a href="ggplot.html#cb468-4" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb468-5"><a href="ggplot.html#cb468-5" tabindex="-1"></a></span>
+<span id="cb468-6"><a href="ggplot.html#cb468-6" tabindex="-1"></a><span class="co"># Count the null values in the data </span></span>
+<span id="cb468-7"><a href="ggplot.html#cb468-7" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(methylated_c))</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>This data does not have any null values.</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="ggplot.html#cb470-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb470-2"><a href="ggplot.html#cb470-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb470-3"><a href="ggplot.html#cb470-3" tabindex="-1"></a></span>
+<span id="cb470-4"><a href="ggplot.html#cb470-4" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb470-5"><a href="ggplot.html#cb470-5" tabindex="-1"></a></span>
+<span id="cb470-6"><a href="ggplot.html#cb470-6" tabindex="-1"></a><span class="co"># what type is the data?</span></span>
+<span id="cb470-7"><a href="ggplot.html#cb470-7" tabindex="-1"></a><span class="fu">class</span>(methylated_c)</span></code></pre></div>
+<pre><code>## [1] &quot;data.table&quot; &quot;data.frame&quot;</code></pre>
+</div>
+<div id="plotting" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Plotting<a href="ggplot.html#plotting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="base-set-up" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Base set up<a href="ggplot.html#base-set-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before plotting the data, you need to;</p>
+<ul>
+<li><p>Define the graph skeleton. This is just an empty <code>ggplot()</code> function without additional arguments</p></li>
+<li><p>Define the aesthetics. It defines how data should be mapped to visual properties like position, color, shape, and size</p></li>
+<li><p>Define the labels. The labels make the visualizations informative and easy to understand for the user.</p></li>
+</ul>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="ggplot.html#cb472-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb472-2"><a href="ggplot.html#cb472-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb472-3"><a href="ggplot.html#cb472-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb472-4"><a href="ggplot.html#cb472-4" tabindex="-1"></a></span>
+<span id="cb472-5"><a href="ggplot.html#cb472-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb472-6"><a href="ggplot.html#cb472-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb472-7"><a href="ggplot.html#cb472-7" tabindex="-1"></a></span>
+<span id="cb472-8"><a href="ggplot.html#cb472-8" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(methylated_c, </span>
+<span id="cb472-9"><a href="ggplot.html#cb472-9" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>Chromosome, <span class="at">y=</span>Count_in_millions))<span class="sc">+</span> <span class="co">#graph aesthetics</span></span>
+<span id="cb472-10"><a href="ggplot.html#cb472-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chromosomes&quot;</span>, <span class="at">y=</span><span class="st">&quot;Cytosine count in millions&quot;</span>, <span class="at">title=</span><span class="st">&quot;C distribution in A thaliana&quot;</span>) <span class="co">#graph labels</span></span>
+<span id="cb472-11"><a href="ggplot.html#cb472-11" tabindex="-1"></a></span>
+<span id="cb472-12"><a href="ggplot.html#cb472-12" tabindex="-1"></a><span class="fu">print</span>(graph)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<ul>
+<li><p>Define the type of graph - geoms. For this case, the graph is a bar graph. <code>geoms()</code> stands for ‘geometric objects’. In <code>ggplot</code>, there are different types of <code>geoms</code> to define which graph is to be plotted. Some of the examples include;</p></li>
+<li><p><code>geom_point()</code> for scatter plot</p></li>
+<li><p><code>geom_line()</code> for a line chart</p></li>
+<li><p><code>geom_density()</code> for a density plots</p></li>
+<li><p><code>geom_histogram()</code> for histograms</p></li>
+<li><p><code>geom_boxplot()</code> for box plots</p></li>
+<li><p><code>geom_col()</code> for bar chart</p></li>
+<li><p><code>geom_tile()</code> for heat maps</p></li>
+</ul>
+<p>In this course we shall explore a few of them but the concepts applies to all of them. Now lets make our plot a bar chart. <code>geom()</code> function will be added to a variable <code>graph</code> defined above to plot a bar chart.</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="ggplot.html#cb473-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb473-2"><a href="ggplot.html#cb473-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb473-3"><a href="ggplot.html#cb473-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb473-4"><a href="ggplot.html#cb473-4" tabindex="-1"></a></span>
+<span id="cb473-5"><a href="ggplot.html#cb473-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb473-6"><a href="ggplot.html#cb473-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb473-7"><a href="ggplot.html#cb473-7" tabindex="-1"></a></span>
+<span id="cb473-8"><a href="ggplot.html#cb473-8" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(methylated_c, </span>
+<span id="cb473-9"><a href="ggplot.html#cb473-9" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>Chromosome, <span class="at">y=</span>Count_in_millions))<span class="sc">+</span> <span class="co">#graph aesthetics</span></span>
+<span id="cb473-10"><a href="ggplot.html#cb473-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chromosomes&quot;</span>, <span class="at">y=</span><span class="st">&quot;Cytosine count in millions&quot;</span>, <span class="at">title=</span><span class="st">&quot;C distribution in A thaliana&quot;</span>) <span class="co">#graph labels</span></span>
+<span id="cb473-11"><a href="ggplot.html#cb473-11" tabindex="-1"></a></span>
+<span id="cb473-12"><a href="ggplot.html#cb473-12" tabindex="-1"></a>graph1 <span class="ot">=</span> graph <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="co">#plot a bar chart</span></span>
+<span id="cb473-13"><a href="ggplot.html#cb473-13" tabindex="-1"></a><span class="fu">print</span>(graph1)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
+<p>If you can remember our data, <code>methylated_c</code> has a column/variable “Context”. In this step, the variable “Context” will be introduced to make a stacked bar chart, therefore, the C distribution in Chromosomes based on “Context” will be plotted to add some depth to the data.</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="ggplot.html#cb474-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb474-2"><a href="ggplot.html#cb474-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb474-3"><a href="ggplot.html#cb474-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb474-4"><a href="ggplot.html#cb474-4" tabindex="-1"></a></span>
+<span id="cb474-5"><a href="ggplot.html#cb474-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb474-6"><a href="ggplot.html#cb474-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb474-7"><a href="ggplot.html#cb474-7" tabindex="-1"></a></span>
+<span id="cb474-8"><a href="ggplot.html#cb474-8" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(methylated_c, </span>
+<span id="cb474-9"><a href="ggplot.html#cb474-9" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>Chromosome, <span class="at">y=</span>Count_in_millions))<span class="sc">+</span> <span class="co">#graph aesthetics</span></span>
+<span id="cb474-10"><a href="ggplot.html#cb474-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chromosomes&quot;</span>, <span class="at">y=</span><span class="st">&quot;Cytosine count in millions&quot;</span>, <span class="at">title=</span><span class="st">&quot;C distribution in A thaliana&quot;</span>) <span class="co">#graph labels</span></span>
+<span id="cb474-11"><a href="ggplot.html#cb474-11" tabindex="-1"></a></span>
+<span id="cb474-12"><a href="ggplot.html#cb474-12" tabindex="-1"></a>graph1 <span class="ot">=</span> graph <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="co">#plot a bar chart</span></span>
+<span id="cb474-13"><a href="ggplot.html#cb474-13" tabindex="-1"></a></span>
+<span id="cb474-14"><a href="ggplot.html#cb474-14" tabindex="-1"></a>graph2<span class="ot">=</span>graph1<span class="sc">+</span><span class="fu">aes</span>(<span class="at">fill=</span>Context)</span>
+<span id="cb474-15"><a href="ggplot.html#cb474-15" tabindex="-1"></a><span class="fu">print</span>(graph2)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p>To make it a grouped bar chart, a <code>position</code> argument is introduced.</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="ggplot.html#cb475-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb475-2"><a href="ggplot.html#cb475-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb475-3"><a href="ggplot.html#cb475-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb475-4"><a href="ggplot.html#cb475-4" tabindex="-1"></a></span>
+<span id="cb475-5"><a href="ggplot.html#cb475-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb475-6"><a href="ggplot.html#cb475-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb475-7"><a href="ggplot.html#cb475-7" tabindex="-1"></a></span>
+<span id="cb475-8"><a href="ggplot.html#cb475-8" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(methylated_c, </span>
+<span id="cb475-9"><a href="ggplot.html#cb475-9" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>Chromosome, <span class="at">y=</span>Count_in_millions))<span class="sc">+</span> <span class="co">#graph aesthetics</span></span>
+<span id="cb475-10"><a href="ggplot.html#cb475-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chromosomes&quot;</span>, <span class="at">y=</span><span class="st">&quot;Cytosine count in millions&quot;</span>, <span class="at">title=</span><span class="st">&quot;C distribution in A thaliana&quot;</span>) <span class="co">#graph labels</span></span>
+<span id="cb475-11"><a href="ggplot.html#cb475-11" tabindex="-1"></a></span>
+<span id="cb475-12"><a href="ggplot.html#cb475-12" tabindex="-1"></a><span class="co"># Make it grouped bar chart</span></span>
+<span id="cb475-13"><a href="ggplot.html#cb475-13" tabindex="-1"></a>graph3<span class="ot">=</span>graph<span class="sc">+</span><span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">fill=</span>Context)</span>
+<span id="cb475-14"><a href="ggplot.html#cb475-14" tabindex="-1"></a><span class="fu">print</span>(graph3)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+<p>Faceted graphs - these are related data plotted separately on the same image/diagram.</p>
+<p>The <code>facet_grid()</code> function is added to the variable <code>graph3</code> to created faceted graphs based on the variable “Context”.</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="ggplot.html#cb476-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb476-2"><a href="ggplot.html#cb476-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb476-3"><a href="ggplot.html#cb476-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb476-4"><a href="ggplot.html#cb476-4" tabindex="-1"></a></span>
+<span id="cb476-5"><a href="ggplot.html#cb476-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb476-6"><a href="ggplot.html#cb476-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb476-7"><a href="ggplot.html#cb476-7" tabindex="-1"></a></span>
+<span id="cb476-8"><a href="ggplot.html#cb476-8" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(methylated_c, </span>
+<span id="cb476-9"><a href="ggplot.html#cb476-9" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>Chromosome, <span class="at">y=</span>Count_in_millions))<span class="sc">+</span> <span class="co">#graph aesthetics</span></span>
+<span id="cb476-10"><a href="ggplot.html#cb476-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chromosomes&quot;</span>, <span class="at">y=</span><span class="st">&quot;Cytosine count in millions&quot;</span>, <span class="at">title=</span><span class="st">&quot;C distribution in A thaliana&quot;</span>) <span class="co">#graph labels</span></span>
+<span id="cb476-11"><a href="ggplot.html#cb476-11" tabindex="-1"></a></span>
+<span id="cb476-12"><a href="ggplot.html#cb476-12" tabindex="-1"></a><span class="co"># Make it grouped bar chart</span></span>
+<span id="cb476-13"><a href="ggplot.html#cb476-13" tabindex="-1"></a>graph3<span class="ot">=</span>graph<span class="sc">+</span><span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">fill=</span>Context)</span>
+<span id="cb476-14"><a href="ggplot.html#cb476-14" tabindex="-1"></a></span>
+<span id="cb476-15"><a href="ggplot.html#cb476-15" tabindex="-1"></a>graph4<span class="ot">=</span>graph3<span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>Context)</span>
+<span id="cb476-16"><a href="ggplot.html#cb476-16" tabindex="-1"></a><span class="fu">print</span>(graph4)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p>GGPlot randomly select colors to paint the graph but the biologist/statistician can use predefined colors as below.</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="ggplot.html#cb477-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb477-2"><a href="ggplot.html#cb477-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb477-3"><a href="ggplot.html#cb477-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb477-4"><a href="ggplot.html#cb477-4" tabindex="-1"></a></span>
+<span id="cb477-5"><a href="ggplot.html#cb477-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb477-6"><a href="ggplot.html#cb477-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb477-7"><a href="ggplot.html#cb477-7" tabindex="-1"></a></span>
+<span id="cb477-8"><a href="ggplot.html#cb477-8" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(methylated_c, </span>
+<span id="cb477-9"><a href="ggplot.html#cb477-9" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>Chromosome, <span class="at">y=</span>Count_in_millions))<span class="sc">+</span> <span class="co">#graph aesthetics</span></span>
+<span id="cb477-10"><a href="ggplot.html#cb477-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chromosomes&quot;</span>, <span class="at">y=</span><span class="st">&quot;Cytosine count in millions&quot;</span>, <span class="at">title=</span><span class="st">&quot;C distribution in A thaliana&quot;</span>) <span class="co">#graph labels</span></span>
+<span id="cb477-11"><a href="ggplot.html#cb477-11" tabindex="-1"></a></span>
+<span id="cb477-12"><a href="ggplot.html#cb477-12" tabindex="-1"></a><span class="co"># Make it grouped bar chart</span></span>
+<span id="cb477-13"><a href="ggplot.html#cb477-13" tabindex="-1"></a>graph3<span class="ot">=</span>graph<span class="sc">+</span><span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">fill=</span>Context)</span>
+<span id="cb477-14"><a href="ggplot.html#cb477-14" tabindex="-1"></a></span>
+<span id="cb477-15"><a href="ggplot.html#cb477-15" tabindex="-1"></a>graph4<span class="ot">=</span>graph3<span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>Context)</span>
+<span id="cb477-16"><a href="ggplot.html#cb477-16" tabindex="-1"></a></span>
+<span id="cb477-17"><a href="ggplot.html#cb477-17" tabindex="-1"></a>graph5<span class="ot">=</span>graph4<span class="sc">+</span><span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;brown&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span>
+<span id="cb477-18"><a href="ggplot.html#cb477-18" tabindex="-1"></a><span class="fu">print</span>(graph5)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<ul>
+<li>The background color can be modified to ones aesthetic taste. The <code>theme()</code> function along with relevant arguments to make the background color of your choice, in this its light blue.</li>
+</ul>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="ggplot.html#cb478-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb478-2"><a href="ggplot.html#cb478-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb478-3"><a href="ggplot.html#cb478-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb478-4"><a href="ggplot.html#cb478-4" tabindex="-1"></a></span>
+<span id="cb478-5"><a href="ggplot.html#cb478-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb478-6"><a href="ggplot.html#cb478-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb478-7"><a href="ggplot.html#cb478-7" tabindex="-1"></a></span>
+<span id="cb478-8"><a href="ggplot.html#cb478-8" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(methylated_c, </span>
+<span id="cb478-9"><a href="ggplot.html#cb478-9" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span>Chromosome, <span class="at">y=</span>Count_in_millions))<span class="sc">+</span> <span class="co">#graph aesthetics</span></span>
+<span id="cb478-10"><a href="ggplot.html#cb478-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chromosomes&quot;</span>, <span class="at">y=</span><span class="st">&quot;Cytosine count in millions&quot;</span>, <span class="at">title=</span><span class="st">&quot;C distribution in A thaliana&quot;</span>) <span class="co">#graph labels</span></span>
+<span id="cb478-11"><a href="ggplot.html#cb478-11" tabindex="-1"></a></span>
+<span id="cb478-12"><a href="ggplot.html#cb478-12" tabindex="-1"></a><span class="co"># Make it grouped bar chart</span></span>
+<span id="cb478-13"><a href="ggplot.html#cb478-13" tabindex="-1"></a>graph3<span class="ot">=</span>graph<span class="sc">+</span><span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">fill=</span>Context)</span>
+<span id="cb478-14"><a href="ggplot.html#cb478-14" tabindex="-1"></a></span>
+<span id="cb478-15"><a href="ggplot.html#cb478-15" tabindex="-1"></a>graph4<span class="ot">=</span>graph3<span class="sc">+</span><span class="fu">facet_grid</span>(<span class="sc">~</span>Context)</span>
+<span id="cb478-16"><a href="ggplot.html#cb478-16" tabindex="-1"></a></span>
+<span id="cb478-17"><a href="ggplot.html#cb478-17" tabindex="-1"></a>graph5<span class="ot">=</span>graph4<span class="sc">+</span><span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;brown&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span>
+<span id="cb478-18"><a href="ggplot.html#cb478-18" tabindex="-1"></a></span>
+<span id="cb478-19"><a href="ggplot.html#cb478-19" tabindex="-1"></a>graph5<span class="sc">+</span><span class="fu">theme_bw</span>(<span class="at">base_size=</span><span class="dv">9</span>)<span class="sc">+</span><span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
+<p>All of the above steps can be combined to come up with a decent graph from ggplot library.</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="ggplot.html#cb479-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb479-2"><a href="ggplot.html#cb479-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb479-3"><a href="ggplot.html#cb479-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb479-4"><a href="ggplot.html#cb479-4" tabindex="-1"></a></span>
+<span id="cb479-5"><a href="ggplot.html#cb479-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb479-6"><a href="ggplot.html#cb479-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb479-7"><a href="ggplot.html#cb479-7" tabindex="-1"></a></span>
+<span id="cb479-8"><a href="ggplot.html#cb479-8" tabindex="-1"></a>my_title <span class="ot">=</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Cystosine distribution in &quot;</span>, <span class="fu">italic</span>(<span class="st">&quot;Arabidopis thaliana&quot;</span>)))<span class="co">#Define the title </span></span>
+<span id="cb479-9"><a href="ggplot.html#cb479-9" tabindex="-1"></a></span>
+<span id="cb479-10"><a href="ggplot.html#cb479-10" tabindex="-1"></a>graph_final <span class="ot">=</span> <span class="fu">ggplot</span>(methylated_c, <span class="fu">aes</span>(<span class="at">x=</span>Chromosome, <span class="at">y=</span>Count_in_millions))<span class="sc">+</span></span>
+<span id="cb479-11"><a href="ggplot.html#cb479-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chromosomes&quot;</span>, <span class="at">title =</span> my_title) <span class="sc">+</span></span>
+<span id="cb479-12"><a href="ggplot.html#cb479-12" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>Context) <span class="sc">+</span></span>
+<span id="cb479-13"><a href="ggplot.html#cb479-13" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span></span>
+<span id="cb479-14"><a href="ggplot.html#cb479-14" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill=</span>Context)<span class="sc">+</span><span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;brown&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))<span class="sc">+</span></span>
+<span id="cb479-15"><a href="ggplot.html#cb479-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">9</span>)<span class="sc">+</span><span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>))</span>
+<span id="cb479-16"><a href="ggplot.html#cb479-16" tabindex="-1"></a></span>
+<span id="cb479-17"><a href="ggplot.html#cb479-17" tabindex="-1"></a><span class="fu">print</span>(graph_final)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-232-1.png" width="672" />
+The <code>expression</code> is used to combine name italics and normal fonts - this helps biologists include botanical names in charts</p>
+<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p>restaurant tips dataset - <a href="https://raw.githubusercontent.com/balsaedi/RCourse_1/main/data/tips.csv" class="uri">https://raw.githubusercontent.com/balsaedi/RCourse_1/main/data/tips.csv</a></p>
+<p>In this activity, you are required to use the restaurant tips dataset. The link to the dataset is provided above. Read the csv data to a data frame and plot the following graphs.</p>
+<ol style="list-style-type: lower-alpha">
+<li>A bar chart to compare the average tips from male and female customers</li>
+<li>A histogram to show the distribution of bills</li>
+<li>A scatter plot to show the relationship between bills and tips.</li>
+</ol>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="ggplot.html#cb480-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb480-2"><a href="ggplot.html#cb480-2" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb480-3"><a href="ggplot.html#cb480-3" tabindex="-1"></a></span>
+<span id="cb480-4"><a href="ggplot.html#cb480-4" tabindex="-1"></a><span class="co"># Read the csv data to a data frame and plot the following graphs. </span></span>
+<span id="cb480-5"><a href="ggplot.html#cb480-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb480-6"><a href="ggplot.html#cb480-6" tabindex="-1"></a></span>
+<span id="cb480-7"><a href="ggplot.html#cb480-7" tabindex="-1"></a><span class="do">## a. A bar chart to compare the average tips from male and female customers</span></span>
+<span id="cb480-8"><a href="ggplot.html#cb480-8" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb480-9"><a href="ggplot.html#cb480-9" tabindex="-1"></a></span>
+<span id="cb480-10"><a href="ggplot.html#cb480-10" tabindex="-1"></a><span class="do">## b. A histogram to show the distribution of bills </span></span>
+<span id="cb480-11"><a href="ggplot.html#cb480-11" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb480-12"><a href="ggplot.html#cb480-12" tabindex="-1"></a></span>
+<span id="cb480-13"><a href="ggplot.html#cb480-13" tabindex="-1"></a><span class="do">## c. A scatter plot to show the relationship between bills and tips. </span></span>
+<span id="cb480-14"><a href="ggplot.html#cb480-14" tabindex="-1"></a><span class="co"># CODE HERE</span></span></code></pre></div>
+</div>
+</div>
+<div id="working-with-inbuilt-iris-data" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Working with inbuilt iris data<a href="ggplot.html#working-with-inbuilt-iris-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have worked with iris data set before. In this topic we shall ask some questions and plot them on a box plot to cement our understanding in <code>ggplot</code></p>
+<ul>
+<li><strong>Plot a box plot to compare the sepal length in different iris species</strong></li>
+</ul>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="ggplot.html#cb481-1" tabindex="-1"></a><span class="co"># Load the library </span></span>
+<span id="cb481-2"><a href="ggplot.html#cb481-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb481-3"><a href="ggplot.html#cb481-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb481-4"><a href="ggplot.html#cb481-4" tabindex="-1"></a></span>
+<span id="cb481-5"><a href="ggplot.html#cb481-5" tabindex="-1"></a><span class="co">#Load the data using fread</span></span>
+<span id="cb481-6"><a href="ggplot.html#cb481-6" tabindex="-1"></a>methylated_c <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;data/R_WORKSHOP.csv&quot;</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb481-7"><a href="ggplot.html#cb481-7" tabindex="-1"></a></span>
+<span id="cb481-8"><a href="ggplot.html#cb481-8" tabindex="-1"></a>graph <span class="ot">=</span> <span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Species, <span class="at">y=</span>Sepal.Length))<span class="sc">+</span> <span class="co"># the graph skeleton</span></span>
+<span id="cb481-9"><a href="ggplot.html#cb481-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span><span class="fu">aes</span>(<span class="at">fill=</span>Species) <span class="co"># aesthetics</span></span>
+<span id="cb481-10"><a href="ggplot.html#cb481-10" tabindex="-1"></a></span>
+<span id="cb481-11"><a href="ggplot.html#cb481-11" tabindex="-1"></a><span class="fu">print</span>(graph)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-235-1.png" width="672" />
+Virginica have higher sepal length however some virginica have less sepal length than versicolor</p>
+<p>Violin plot will show a better distribution than box plot</p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="ggplot.html#cb482-1" tabindex="-1"></a>graph <span class="ot">=</span> <span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Species, <span class="at">y=</span>Sepal.Length))<span class="sc">+</span></span>
+<span id="cb482-2"><a href="ggplot.html#cb482-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>()<span class="sc">+</span><span class="fu">aes</span>(<span class="at">fill=</span>Species)</span>
+<span id="cb482-3"><a href="ggplot.html#cb482-3" tabindex="-1"></a></span>
+<span id="cb482-4"><a href="ggplot.html#cb482-4" tabindex="-1"></a><span class="fu">print</span>(graph)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
+<p>Since some data cleaning and manipulation is required before diving deep into visualizations, a package <strong>tidyr</strong> is introduced. It can be installed by invoking the command below to the console.</p>
+<pre><code>install.packages(&quot;tidyr&quot;)</code></pre>
+<p>This package is a part of the tidyverse collection designed to make data cleaning and reshaping easy. It has multiple functions for instance <code>gather()</code>, <code>spread()</code>, <code>pivot_wider()</code>, <code>pivot_longer()</code>, <code>separate()</code>, <code>unite()</code> and <code>fill()</code>. In this section we shall not dive deep to explore tidyr package but we will borrow one of its important functions, <code>gather()</code> to manipulate iris data when plotting. This function, <code>gather()</code> is used to reshape data especially from a long format to a short format.</p>
+<p>Invoke the library</p>
+<pre><code>library(tidyr) # can be used to convert from short format to long format</code></pre>
+<ul>
+<li>Convert to a long format</li>
+</ul>
+<p><code>gather</code> command is used to convert data into fewer columns. The columns from sepal length to petal width are to be merged to a single column called measurements</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="ggplot.html#cb485-1" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># can be used to convert from short format to long format</span></span>
+<span id="cb485-2"><a href="ggplot.html#cb485-2" tabindex="-1"></a></span>
+<span id="cb485-3"><a href="ggplot.html#cb485-3" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb485-4"><a href="ggplot.html#cb485-4" tabindex="-1"></a><span class="co">#Gather from sepal length to petal width column into type and measurement column </span></span>
+<span id="cb485-5"><a href="ggplot.html#cb485-5" tabindex="-1"></a>iris_long <span class="ot">=</span> <span class="fu">gather</span>(iris, type, measurement, Sepal.Length<span class="sc">:</span>Petal.Width, <span class="at">factor_key =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb485-6"><a href="ggplot.html#cb485-6" tabindex="-1"></a><span class="fu">tail</span>(iris_long)</span></code></pre></div>
+<pre><code>##       Species        type measurement
+## 595 virginica Petal.Width         2.5
+## 596 virginica Petal.Width         2.3
+## 597 virginica Petal.Width         1.9
+## 598 virginica Petal.Width         2.0
+## 599 virginica Petal.Width         2.3
+## 600 virginica Petal.Width         1.8</code></pre>
+<p>Lets plot the data to a box plot</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="ggplot.html#cb487-1" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># can be used to convert from short format to long format</span></span>
+<span id="cb487-2"><a href="ggplot.html#cb487-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb487-3"><a href="ggplot.html#cb487-3" tabindex="-1"></a></span>
+<span id="cb487-4"><a href="ggplot.html#cb487-4" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb487-5"><a href="ggplot.html#cb487-5" tabindex="-1"></a></span>
+<span id="cb487-6"><a href="ggplot.html#cb487-6" tabindex="-1"></a><span class="co">#Gather from sepal length to petal width column into type and measurement column </span></span>
+<span id="cb487-7"><a href="ggplot.html#cb487-7" tabindex="-1"></a>iris_long <span class="ot">=</span> <span class="fu">gather</span>(iris, type, measurement, Sepal.Length<span class="sc">:</span>Petal.Width, <span class="at">factor_key =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb487-8"><a href="ggplot.html#cb487-8" tabindex="-1"></a></span>
+<span id="cb487-9"><a href="ggplot.html#cb487-9" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(iris_long, <span class="fu">aes</span>(<span class="at">x=</span>Species,<span class="at">y=</span>measurement))<span class="sc">+</span></span>
+<span id="cb487-10"><a href="ggplot.html#cb487-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Species&quot;</span>, <span class="at">y=</span><span class="st">&quot;Length in cm&quot;</span>, <span class="at">title =</span> <span class="st">&quot;variation in Petals and Sepals of Iris Species&quot;</span>)<span class="sc">+</span></span>
+<span id="cb487-11"><a href="ggplot.html#cb487-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>))<span class="sc">+</span></span>
+<span id="cb487-12"><a href="ggplot.html#cb487-12" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>type)<span class="sc">+</span></span>
+<span id="cb487-13"><a href="ggplot.html#cb487-13" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill=</span>Species)<span class="sc">+</span></span>
+<span id="cb487-14"><a href="ggplot.html#cb487-14" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb487-15"><a href="ggplot.html#cb487-15" tabindex="-1"></a></span>
+<span id="cb487-16"><a href="ggplot.html#cb487-16" tabindex="-1"></a><span class="fu">print</span>(graph)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
+<p>the same can also be plotted to a violin plot</p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="ggplot.html#cb488-1" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># can be used to convert from short format to long format</span></span>
+<span id="cb488-2"><a href="ggplot.html#cb488-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb488-3"><a href="ggplot.html#cb488-3" tabindex="-1"></a></span>
+<span id="cb488-4"><a href="ggplot.html#cb488-4" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb488-5"><a href="ggplot.html#cb488-5" tabindex="-1"></a></span>
+<span id="cb488-6"><a href="ggplot.html#cb488-6" tabindex="-1"></a><span class="co">#Gather from sepal length to petal width column into type and measurement column </span></span>
+<span id="cb488-7"><a href="ggplot.html#cb488-7" tabindex="-1"></a>iris_long <span class="ot">=</span> <span class="fu">gather</span>(iris, type, measurement, Sepal.Length<span class="sc">:</span>Petal.Width, <span class="at">factor_key =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb488-8"><a href="ggplot.html#cb488-8" tabindex="-1"></a></span>
+<span id="cb488-9"><a href="ggplot.html#cb488-9" tabindex="-1"></a>graph<span class="ot">=</span><span class="fu">ggplot</span>(iris_long, <span class="fu">aes</span>(<span class="at">x=</span>Species,<span class="at">y=</span>measurement))<span class="sc">+</span></span>
+<span id="cb488-10"><a href="ggplot.html#cb488-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Species&quot;</span>, <span class="at">y=</span><span class="st">&quot;Length in cm&quot;</span>, <span class="at">title =</span> <span class="st">&quot;variation in Petals and Sepals of Iris Species&quot;</span>)<span class="sc">+</span></span>
+<span id="cb488-11"><a href="ggplot.html#cb488-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>))<span class="sc">+</span></span>
+<span id="cb488-12"><a href="ggplot.html#cb488-12" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>type)<span class="sc">+</span></span>
+<span id="cb488-13"><a href="ggplot.html#cb488-13" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill=</span>Species)<span class="sc">+</span></span>
+<span id="cb488-14"><a href="ggplot.html#cb488-14" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span>
+<span id="cb488-15"><a href="ggplot.html#cb488-15" tabindex="-1"></a></span>
+<span id="cb488-16"><a href="ggplot.html#cb488-16" tabindex="-1"></a><span class="fu">print</span>(graph)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p>In this activity, you will be required to use the famous R inbuilt data set, <code>mtcars</code>. Load the data set using the command, <code>data(mtcars)</code> and plot atleast two graphs</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="ggplot.html#cb489-1" tabindex="-1"></a><span class="co"># Load the ggplot2 library</span></span>
+<span id="cb489-2"><a href="ggplot.html#cb489-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb489-3"><a href="ggplot.html#cb489-3" tabindex="-1"></a></span>
+<span id="cb489-4"><a href="ggplot.html#cb489-4" tabindex="-1"></a><span class="co"># Load the data </span></span>
+<span id="cb489-5"><a href="ggplot.html#cb489-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb489-6"><a href="ggplot.html#cb489-6" tabindex="-1"></a></span>
+<span id="cb489-7"><a href="ggplot.html#cb489-7" tabindex="-1"></a><span class="co"># Plot Chart 1</span></span>
+<span id="cb489-8"><a href="ggplot.html#cb489-8" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb489-9"><a href="ggplot.html#cb489-9" tabindex="-1"></a></span>
+<span id="cb489-10"><a href="ggplot.html#cb489-10" tabindex="-1"></a><span class="co"># Plot Chart 2</span></span>
+<span id="cb489-11"><a href="ggplot.html#cb489-11" tabindex="-1"></a><span class="co"># CODE HERE </span></span></code></pre></div>
+</div>
+<div id="code-challenge-5" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> CODE CHALLENGE<a href="ggplot.html#code-challenge-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>thyroid disease - <a href="https://www.kaggle.com/datasets/jainaru/thyroid-disease-data/data" class="uri">https://www.kaggle.com/datasets/jainaru/thyroid-disease-data/data</a></p>
+<p>HR analytics dataset - <a href="https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/data" class="uri">https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/data</a></p>
+<ol style="list-style-type: decimal">
+<li><p>You will be required to retrieve the HR analytics employee attrition data set from kaggle. Click <a href="https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/data">here</a> to check out the data set. Read the data into an R data frame and answer the following questions using <code>read.csv</code> and <code>ggplot2</code>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Plot a histogram to show the distribution of age among the employees. Name the chart <code>hist1a</code>.</li>
+<li>Draw a boxplot to show the employees’ hourly rate in the sales department. Are there any outliers? What is the median employees’ hourly rate from the boxplot? Name it <code>box1b</code>.</li>
+<li>How does age relate to monthly income? Are younger employees paid less? Plot a scatter plot to show the relationship between employees monthly income and age. <strong>Note</strong>:<em>Age should be in the x axis</em>. Name it <code>scatter1c</code>.</li>
+<li>How many male and female employees are their in the company? Are female employees more than male employees. Plot a bar chart to show. Name it <code>barchart1d</code>.</li>
+<li>Are male employees retained retained more than the female employees in the company. Filter to retrieve the retained employees(“Attrition=”No”) only. Name it <code>bar1e</code>.</li>
+<li>What is the marital status of the employees in the Sales department? Filter the data to retrieve the sales department then plot the value count of each marital status in the filtered data set on a pie chart. Name it <code>pie1f</code>.</li>
+<li>Finally plot a heatmap to show the correlation of numeric columns. Name the plot <code>heatmap1</code>.</li>
+</ol></li>
+<li><p>You will be required to download the thyroid disease csv file from <a href="https://www.kaggle.com/datasets/jainaru/thyroid-disease-data/data">here</a>. It contains 13 clinicopathologic features aiming to predict recurrence of well differentiated thyroid cancer. The data set was collected in duration of 15 years and each patient was followed for at least 10 years. The data was procured from thyroid disease datasets provided by the UCI Machine Learning Repository. You will load the csv file into R data frame, <code>read.csv</code>, and solve the following questions.</p>
+<ol style="list-style-type: lower-alpha">
+<li>After the initial thyroid cancer treatment, has the disease recurred or not? Compare the two categories of patients (recurred and not recurred) using a bar chart. Name it <code>barchart2a</code>.</li>
+<li>After physical examination of the thyroid gland and the surrounding structures, there were patients who had multinodular goiter, other single nodular gioters while rest of the patients had other complications. What are the composition of the patients? Plot a pie chart to show. Name it <code>pie2b</code>.</li>
+<li>Plot a grouped bar chart to show the average risk and age of thyroid disease between males and female patient. Risk and Age columns against gender. Name it <code>grouped_barchart2c</code>.</li>
+<li>Plot a desnsity plot to show the distribution of age. Which age group is mostly affected by thyroid disease? Name it <code>density_plot2d</code>.</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dpyr-library.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bioconductor.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/06-ggplot-library-advance-R.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/06-ggplot-library-advance-R.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
