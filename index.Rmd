@@ -4,4 +4,59 @@ author: "YOUR NAME HERE"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
-# R Programming
+# Introduction to R and Basic Programming Concepts
+## Overview of R Programming
+
+### Introduction to R
+![](images/R-logo.jpeg)
+
+R is a programming language particularly designed for statistics and data analysis. It was invented the statisticians Robert Gentleman and Ross Ihaka in 1990 and now its the one of the most widely used in data science community. The language is open-source, this has allowed extensive customization and adaptability for research and data analysis. Here are some of the Key features of R;
+
+1. **Statistical Computing**: R has various tools specifically for statistics like time-series, clustering, classification ,and linear and non-linear models. 
+2. **Data Wrangling and Analysis**: R has extensive libraries like `dplyr` and `ggplot` for data manipulation and visualizations respectively. Users are able to clean, transform and present the data inform of charts in a meaningful way for better insights with the help of these libraries.
+3. **Reproducibility**: R language  allows reproducible research such that the code and the results can be stored inform of scripts, markdown, notebooks and bookdown. Work done in R can be easily shared and reviewed enabling easy collaboration and transparency in work. 
+4. **Comprehensive Ecosystem**: R has the CRAN(Comprehensive R Archive Network) that hosts numerous packages for different tasks like machine learning, data visualization, finances, bioinformatics and more. 
+5. **Versatility**: R can be used with other tools like other programming languages, for instance Python, SQL etc. This allows seamless integration in the wide range of data ecosystems. 
+
+### Importance of R in Data Analysis
+This are some of the features that sets R apart in the data community; 
+
+- **Large Community and Support**: There is a large online community for data scientist and other researchers who use R. The community has contributed to the development of various packages , continuous improvements, support and extensive documentation. This has made it possible and easy for new users and experienced users to find solution for the complex tasks. 
+- **Versatility**: Data Analysis in R is applicable in various industries like health, finance, government and academia. This allows it to handle diverse data types and analysis needs. 
+- **Specialization on Statistical Analysis**: Most programming languages were designed to be general purpose but R was designed specifically for statistics. This ensures its users have access to the most relevant and important tools in the data analysis tasks. 
+- **Advanced Visualization**: R has one of the best visualization capabilities like dashboards apps, interactive charts. Also, it can be used to generate the most aesthetically pleasing chart crucial for effective communication and decision making. 
+
+### Application of R in Various Industries
+R is widely applicable in various industries due to its robust statistical capabilities, open source nature and the extensive library how is important in different industries;
+
+- R is the go-to tool in the field of academia and research especially in data analysis, social and environmental science research(psychology, economics and climate change), reproducible research and statistical research. 
+- In the Manufacturing industries, R can be used to optimize operations like supply chain, quality control and cost reduction.
+- The Governments can use R for data driven research like demographics, economic policy analysis, health and social policy.Forecasts can be made using R that will enable the research. 
+- The finance and banking industries use R for complex tasks like algorithmic trading, portfolio optimization, credit scoring and risk management. 
+- R is applicable is essential in the health industry in areas like clinical trials and bioinformatics, tracking the spread of diseases(epidemiology) and help in health policy making. 
+
+R is also applicable in many other industries like marketing, sports and entertainment to name but a few. As industries continue to embrace data-driven strategies, R's role in analytics and decision-making will only continue to grow.
+
+## R studio
+**Rstudio** is an integrated development environment(IDE) for R. 
+
+It includes a console, syntax-highlighting editor that supports direct code execution as well as tools for plotting history, debugging and work space management. 
+
+R studio is an open source software from posit and can be freely be downloaded from https://posit.co/download/rstudio-desktop/. This link has all the installation files for Mac, Linux and Windows. You will download the installation file and install based on your computer operating system. 
+
+### RStudio - Look and Feel
+
+![](images/r-look-and-feel.png)
+
+The image above is for R code in R Studio. Each quadrant has its own function. 
+
+1. **text editor**: serves as the primary interface for writing and editing R scripts, Markdown documents, and other text-based files
+
+2. **stand input/output (console/terminal/jobs)**: It is the bottom left quadrant in R Studio that serves as a command-line interface where you can directly interact with R such as code execution and output display.
+
+3. **all data and its properties quadrants**: It is the top right quadrant in Rstudio that is typically the "Environment" pane, which provides information and tools for managing your R environment such as data importation, display of variables. 
+
+
+4. **plots and file directory structure**: The bottom right quadrant in RStudio typically houses the "Files", "Plots", "Packages", "Help", and "Viewer" tabs. 
+
+## CRAN

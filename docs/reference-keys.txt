@@ -1,1 +1,8 @@
-r-programming
+introduction-to-r-and-basic-programming-concepts
+overview-of-r-programming
+introduction-to-r
+importance-of-r-in-data-analysis
+application-of-r-in-various-industries
+r-studio
+rstudio---look-and-feel
+cran
