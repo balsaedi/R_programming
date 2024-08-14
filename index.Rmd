@@ -60,10 +60,87 @@ R studio is an open source software from posit and can be freely be downloaded f
 The image above is for R code in R Studio. Each quadrant has its own function. 
 
 1. **text editor**: serves as the primary interface for writing and editing R scripts, Markdown documents, and other text-based files
-
 2. **stand input/output (console/terminal/jobs)**: It is the bottom left quadrant in R Studio that serves as a command-line interface where you can directly interact with R such as code execution and output display.
-
 3. **all data and its properties quadrants**: It is the top right quadrant in Rstudio that is typically the "Environment" pane, which provides information and tools for managing your R environment such as data importation, display of variables. 
-
-
 4. **plots and file directory structure**: The bottom right quadrant in RStudio typically houses the "Files", "Plots", "Packages", "Help", and "Viewer" tabs. 
+
+### Basic R Syntax and Commands
+R syntax has specific rules that govern how code is written in R. Understanding these concepts makes a programmer to write clear and error-free code. These are some of the syntax rules that govern how code is written in R. 
+
+1. **Case sensitivity**  
+The R syntax distinguishes between the uppercase letter and the lowercase letter. A variable written in uppercase is different as the variable written in lowercase even the words mean the same. For instance let's take the variable "age" and store it `15`, and another variable "AGE" and store it `27` and see their outputs.
+
+```{r warning=FALSE}
+# Different variables due to case sensitivity
+age <- 15
+AGE <- 27
+
+print(age)  # Outputs: 15
+print(AGE)  # Outputs: 27
+```
+
+You can see that above here the variable `age` and `AGE` are treated as different.
+
+2. **Assignment Operators**  
+R has several different methods to assign a value to a variable. They include;
+
+    i. **Equal Sign('=')**: This assignment operator is always used when assigning the function arguments but can used in general assignments.
+  
+```{r}
+age = 21 #variable `age` is assigned to 21
+```
+    ii. **Left Arrow('<-')**: This is the common type of assignment operator. The direction of the arrow points to the variable 
+
+```{r}
+age <- 10 # variable 'age' assigned to 10
+```
+    iii. **Right Arrow('->')**: This is just like the right arrow operator however the direction of the arrow is reversed. The arrow should still point to the direction of the variable. 
+```{r}
+27 -> age # arrow points to the direction of the variable, age
+```
+
+3. **Use of symbols**  
+The R language has several symbols that have specific meaning important when writing code.
+    
+  i. **The Hash('#')**: Is used for comments. R ignores any text that follows `#` in the same line 
+```{r}
+# This is a comment
+```
+  ii. **Dollar Sign ('$`)**: Used to access elements of a list or column values in a data frame 
+```{r}
+df <- data.frame(a = 1:3, b = 4:6)
+df$a  # Accesses column 'a' in the data frame
+```
+  iii. **Square brackets (`[]`)**: They are used for indexing vectors, lists, matrices and data frames 
+```{r}
+v <- c(10, 20, 30)
+v[3]  # Accesses the third element (20)
+
+```
+  iv. **Curly braces (`{}`)**: Used to group multiple expressions, for instance in loops and conditional statements. In this case we will use a if else conditional statement to show how curly braces are used
+```{r}
+x <- 2
+if (x > 0) {
+  print("Positive number")
+}
+```
+  iv. **Left arrow ('<-') and the right arrow ('->')**: As mentioned earlier, these are assignment operators
+  v. **Brackets '()'**: Used for function calls and grouping expressions 
+```{r}
+sum(1, 2, 3)
+```
+
+There are more symbols used in R especially in mathematical operators and advanced concepts that will be later introduced in the course. 
+
+3. **Reserved Words**  
+R has set of reserved words that have special meaning like identifiers and function names. These words cannot be used as variable names. if, else, repeat, while, function, TRUE, FALSE, NA and NULL are just but a few examples of reserved words. 
+
+4. **Whitespace**  
+R generally ignores whitespace (spaces, tabs, newlines) between elements, except within character strings or where it would change the meaning of the code. Proper use of whitespace improves code readability.
+```{r}
+x <-  5 +  3  # Valid
+y <-5+3       # Also valid, but less readable
+```
+
+## Hands-on Exercise
+

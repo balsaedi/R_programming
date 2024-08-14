@@ -9,3 +9,6 @@ cran
 setting-up-r-environment
 installation-of-r-and-rstudio
 introduction-to-rstudio-interface
+basic-r-syntax-and-commands
+hands-on-exercise
+basic-data-types-and-structures
