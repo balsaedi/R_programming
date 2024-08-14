@@ -3,6 +3,9 @@ overview-of-r-programming
 introduction-to-r
 importance-of-r-in-data-analysis
 application-of-r-in-various-industries
+introduction-to-the-r-ecosystem
 r-studio
-rstudio---look-and-feel
 cran
+setting-up-r-environment
+installation-of-r-and-rstudio
+introduction-to-rstudio-interface

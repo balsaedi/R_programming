@@ -37,14 +37,23 @@ R is widely applicable in various industries due to its robust statistical capab
 
 R is also applicable in many other industries like marketing, sports and entertainment to name but a few. As industries continue to embrace data-driven strategies, R's role in analytics and decision-making will only continue to grow.
 
-## R studio
+## Introduction to the R ecosystem
+### R Studio
 **Rstudio** is an integrated development environment(IDE) for R. 
 
 It includes a console, syntax-highlighting editor that supports direct code execution as well as tools for plotting history, debugging and work space management. 
 
 R studio is an open source software from posit and can be freely be downloaded from https://posit.co/download/rstudio-desktop/. This link has all the installation files for Mac, Linux and Windows. You will download the installation file and install based on your computer operating system. 
 
-### RStudio - Look and Feel
+### CRAN 
+
+## Setting Up R Environment 
+### Installation of R and RStudio
+
+- Step-by-step guide to downloading and installing R and RStudio on participants' computers.
+- Overview of the installation process on different operating systems (Windows, macOS, Linux).
+
+### Introduction to RStudio Interface
 
 ![](images/r-look-and-feel.png)
 
@@ -58,5 +67,3 @@ The image above is for R code in R Studio. Each quadrant has its own function.
 
 
 4. **plots and file directory structure**: The bottom right quadrant in RStudio typically houses the "Files", "Plots", "Packages", "Help", and "Viewer" tabs. 
-
-## CRAN
