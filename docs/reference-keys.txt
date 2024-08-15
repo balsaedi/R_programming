@@ -14,7 +14,7 @@ hands-on-exercise
 basic-data-types-and-structures
 data-importing-and-exporting
 data-manipulation
-basic-data-maniopulation
+basic-data-manipulation
 introduction-to-data-manipulation
 subsetting-and-filtering-data
 data-manipulation-with-dplyr

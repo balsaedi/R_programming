@@ -1,5 +1,5 @@
 # Data Manipulation
-## Basic Data Maniopulation 
+## Basic Data Manipulation 
 Sorting Data:
 
 - Explanation of sorting data in R using order() and sort() functions.
@@ -28,9 +28,31 @@ Some types of analysis require data to be in specific format or structure, for i
 
 5. **Supporting Decision Making**  
 Data Manipulation ensures that the data that is fed into the system is timely, accurate and reliable for informed decision-making models and relevant reports
+<br>
+
+These are the key tasks in the data manipulation;
+
+- **Cleaning**: by removing inaccurate and incomplete data entries.
+- **Filtering** the data by selecting certain rows or columns based on a certain criteria. 
+- **Reshaping**: Changing the structure of the data for instance pivoting.
+- **Merging**: Combine multiple data sets into one. 
+- **Transforming**: Modify existing data by mathematical or logical operations. 
+- **Aggregation**: Summarizing the data by performing operations like sum,average and count. 
 
 ### Subsetting and Filtering Data:
 - Explanation of subsetting data frames using indexing.
 - Demonstration of filtering rows based on specific conditions using logical operators.
+
+**Subsetting** is a data management strategy that involves creating a coherent slice data from different data set for specific use cases. This topic will better be explained practically, therefore we will use the titanic data set. The data set contains information about the passengers on the Titanic, including their age, gender, passenger class, whether they survived and other details. Since the titanic dataset is absent in baseR, the  `titanic` library will be installed by;
+```
+install.packages("titanic")
+```
+
+load the library 
+```{r}
+library("titanic")
+```
+
+The data set will indexed using differnt indexing techniques
 
 ## Data Manipulation with Dplyr
