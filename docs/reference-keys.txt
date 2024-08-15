@@ -12,3 +12,15 @@ introduction-to-rstudio-interface
 basic-r-syntax-and-commands
 hands-on-exercise
 basic-data-types-and-structures
+data-importing-and-exporting
+data-manipulation
+basic-data-maniopulation
+data-manipulation-with-dplyr
+data-visualization
+basic-data-visualization
+advanced-data-visualization
+explanatory-data-analysis
+statistical-analysis
+basic-concepts
+correlation-and-regression-analysis
+advanced-statistical-methods
