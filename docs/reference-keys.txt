@@ -15,6 +15,8 @@ basic-data-types-and-structures
 data-importing-and-exporting
 data-manipulation
 basic-data-maniopulation
+introduction-to-data-manipulation
+subsetting-and-filtering-data
 data-manipulation-with-dplyr
 data-visualization
 basic-data-visualization

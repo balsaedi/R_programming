@@ -165,7 +165,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html"><i class="fa fa-check"></i><b>3</b> Data Importing and Exporting</a></li>
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-maniopulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Maniopulation</a></li>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#basic-data-maniopulation"><i class="fa fa-check"></i><b>4.1</b> Basic Data Maniopulation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-data-manipulation"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to Data Manipulation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation.html"><a href="data-manipulation.html#subsetting-and-filtering-data"><i class="fa fa-check"></i><b>4.1.2</b> Subsetting and Filtering Data:</a></li>
+</ul></li>
 <li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
@@ -203,6 +207,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Data Manipulation<a href="data-manipulation.html#data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="basic-data-maniopulation" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Basic Data Maniopulation<a href="data-manipulation.html#basic-data-maniopulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sorting Data:</p>
+<ul>
+<li>Explanation of sorting data in R using order() and sort() functions.</li>
+<li>Demonstration of sorting data frames by one or more columns.</li>
+</ul>
+<p>Basic Data Cleaning Techniques:</p>
+<ul>
+<li>Overview of common data cleaning tasks (e.g., handling missing data, removing duplicates).</li>
+<li>Demonstration of how to detect and manage missing values using is.na() and na.omit() functions.</li>
+</ul>
+<div id="introduction-to-data-manipulation" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Introduction to Data Manipulation<a href="data-manipulation.html#introduction-to-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Data Manipulation is the adjusting, organizing and transforming of the raw data is not a more useful and suitable format for data analysis. These are some of the reasons that make data manipulation mandatory in the data analysis process;</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Improves the data quality</strong><br />
+Raw data may be incomplete, messy, containing irrelevant information, errors ,or duplicates that need to be cleaned and rectified. This will ensure the data is reliable thereby preventing incorrect conclusions or decisions.</p></li>
+<li><p><strong>Making Data Usable</strong>
+Sometimes data is collected from different sources that is not ready for analysis. Data Manipulation will transform the data into a structured and consistent format for easy analysis.</p></li>
+<li><p><strong>Enhancing Data Exploration</strong><br />
+By cleaning the data, analysts explore the data thereby understanding different concepts of the data.</p></li>
+<li><p><strong>Enabling Complex Analysis</strong><br />
+Some types of analysis require data to be in specific format or structure, for instance the time series analysis require data to be sorted out by date.</p></li>
+<li><p><strong>Supporting Decision Making</strong><br />
+Data Manipulation ensures that the data that is fed into the system is timely, accurate and reliable for informed decision-making models and relevant reports</p></li>
+</ol>
+</div>
+<div id="subsetting-and-filtering-data" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Subsetting and Filtering Data:<a href="data-manipulation.html#subsetting-and-filtering-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Explanation of subsetting data frames using indexing.</li>
+<li>Demonstration of filtering rows based on specific conditions using logical operators.</li>
+</ul>
+</div>
 </div>
 <div id="data-manipulation-with-dplyr" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Data Manipulation with Dplyr<a href="data-manipulation.html#data-manipulation-with-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>

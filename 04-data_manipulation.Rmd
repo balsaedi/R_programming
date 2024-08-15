@@ -1,4 +1,36 @@
 # Data Manipulation
 ## Basic Data Maniopulation 
+Sorting Data:
+
+- Explanation of sorting data in R using order() and sort() functions.
+- Demonstration of sorting data frames by one or more columns.
+
+Basic Data Cleaning Techniques:
+
+- Overview of common data cleaning tasks (e.g., handling missing data, removing duplicates).
+- Demonstration of how to detect and manage missing values using is.na() and na.omit() functions.
+
+
+### Introduction to Data Manipulation
+Data Manipulation is the adjusting, organizing and transforming of the raw data is not a more useful and suitable format for data analysis. These are some of the reasons that make data manipulation mandatory in the data analysis process; 
+
+1. **Improves the data quality**  
+Raw data may be incomplete, messy, containing irrelevant information, errors ,or duplicates that need to be cleaned and rectified. This will ensure the data is reliable thereby preventing incorrect conclusions or decisions. 
+
+2. **Making Data Usable** 
+Sometimes data is collected from different sources that is not ready for analysis. Data Manipulation will transform the data into a structured and consistent format for easy analysis. 
+
+3. **Enhancing Data Exploration**  
+By cleaning the data, analysts explore the data thereby understanding different concepts of the data. 
+
+4. **Enabling Complex Analysis**  
+Some types of analysis require data to be in specific format or structure, for instance the time series analysis require data to be sorted out by date. 
+
+5. **Supporting Decision Making**  
+Data Manipulation ensures that the data that is fed into the system is timely, accurate and reliable for informed decision-making models and relevant reports
+
+### Subsetting and Filtering Data:
+- Explanation of subsetting data frames using indexing.
+- Demonstration of filtering rows based on specific conditions using logical operators.
 
 ## Data Manipulation with Dplyr
