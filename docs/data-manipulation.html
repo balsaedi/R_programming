@@ -245,15 +245,239 @@ Data Manipulation ensures that the data that is fed into the system is timely, a
 </div>
 <div id="subsetting-and-filtering-data" class="section level3 hasAnchor" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Subsetting and Filtering Data:<a href="data-manipulation.html#subsetting-and-filtering-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Explanation of subsetting data frames using indexing.</li>
-<li>Demonstration of filtering rows based on specific conditions using logical operators.</li>
-</ul>
 <p><strong>Subsetting</strong> is a data management strategy that involves creating a coherent slice data from different data set for specific use cases. This topic will better be explained practically, therefore we will use the titanic data set. The data set contains information about the passengers on the Titanic, including their age, gender, passenger class, whether they survived and other details. Since the titanic dataset is absent in baseR, the <code>titanic</code> library will be installed by;</p>
 <pre><code>install.packages(&quot;titanic&quot;)</code></pre>
 <p>load the library</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-manipulation.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;titanic&quot;</span>)</span></code></pre></div>
-<p>The data set will indexed using differnt indexing techniques</p>
+<p>The data set will indexed using different indexing techniques such as indexing of a single element, row and column indexing.</p>
+<p>First we load the data set and view the first few records before indexing</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-manipulation.html#cb22-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;titanic_train&quot;</span>)</span>
+<span id="cb22-2"><a href="data-manipulation.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="data-manipulation.html#cb22-3" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> titanic_train </span>
+<span id="cb22-4"><a href="data-manipulation.html#cb22-4" tabindex="-1"></a><span class="fu">head</span>(titanic) <span class="co"># view the first few rows of the titanic data set</span></span></code></pre></div>
+<pre><code>##   PassengerId Survived Pclass
+## 1           1        0      3
+## 2           2        1      1
+## 3           3        1      3
+## 4           4        1      1
+## 5           5        0      3
+## 6           6        0      3
+##                                                  Name    Sex Age SibSp Parch
+## 1                             Braund, Mr. Owen Harris   male  22     1     0
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 3                              Heikkinen, Miss. Laina female  26     0     0
+## 4        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 5                            Allen, Mr. William Henry   male  35     0     0
+## 6                                    Moran, Mr. James   male  NA     0     0
+##             Ticket    Fare Cabin Embarked
+## 1        A/5 21171  7.2500              S
+## 2         PC 17599 71.2833   C85        C
+## 3 STON/O2. 3101282  7.9250              S
+## 4           113803 53.1000  C123        S
+## 5           373450  8.0500              S
+## 6           330877  8.4583              Q</code></pre>
+<ol style="list-style-type: decimal">
+<li><strong>Extract a row</strong>
+When subsetting to extract data for a single row the square brackets <code>[ ]</code> will be used with the position of the index you want to extract. Lets extract all the information of the 10th passenger.</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-manipulation.html#cb24-1" tabindex="-1"></a>titanic[<span class="dv">10</span>, ] <span class="co"># note the comma after the index 10</span></span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass                                Name    Sex Age
+## 10          10        1      2 Nasser, Mrs. Nicholas (Adele Achem) female  14
+##    SibSp Parch Ticket    Fare Cabin Embarked
+## 10     1     0 237736 30.0708              C</code></pre>
+<p>Also, more indices can be subsetted in the format <code>[i:j, ]</code> where the <code>i</code> is the starting index while <code>j</code> is the ending index respectively. Lets extract the information by subsetting the titanic data from index 7 to 10.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-manipulation.html#cb26-1" tabindex="-1"></a>titanic[<span class="dv">7</span><span class="sc">:</span><span class="dv">10</span>, ]</span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 7            7        0      1
+## 8            8        0      3
+## 9            9        1      3
+## 10          10        1      2
+##                                                 Name    Sex Age SibSp Parch
+## 7                            McCarthy, Mr. Timothy J   male  54     0     0
+## 8                     Palsson, Master. Gosta Leonard   male   2     3     1
+## 9  Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg) female  27     0     2
+## 10               Nasser, Mrs. Nicholas (Adele Achem) female  14     1     0
+##    Ticket    Fare Cabin Embarked
+## 7   17463 51.8625   E46        S
+## 8  349909 21.0750              S
+## 9  347742 11.1333              S
+## 10 237736 30.0708              C</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Extract a column</strong><br />
+When subsetting to extract data for a single column the square brackets <code>[ ]</code> will be used as before, with the position of the index or column name you want to extract. Lets extract all the information of the column <code>Name</code>.</li>
+</ol>
+<pre><code>titanic[, &quot;Name&quot;] # note the comma before &quot;Name&quot;</code></pre>
+<p><img src="images/dataset_images/titanic_names.png" /></p>
+<p>An index of the column can be used in place of the column name. For instance, the column, “PassengerId” is the first column therefore its index will be <code>1</code>. Lets subset the column by calling the index.</p>
+<pre><code>titanic[, 1] # note the comma before the column index</code></pre>
+<p><img src="images/dataset_images/titanic_passengers_id.png" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Extracting a single element</strong><br />
+A single element that has a defined position in a data frame, both the row index and the column name/index are called.</li>
+</ol>
+<pre><code>dataframe[row_index, column index/name]</code></pre>
+<p>Lets extract the age of the Name of the fifth passenger.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-manipulation.html#cb31-1" tabindex="-1"></a>titanic[<span class="dv">5</span>, <span class="st">&quot;Name&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Allen, Mr. William Henry&quot;</code></pre>
+<p>Instead of using the column name. Lets use the column index. In the above context, the column “Name” appears at index(is the fourth column).</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-manipulation.html#cb33-1" tabindex="-1"></a>titanic[<span class="dv">5</span>, <span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Allen, Mr. William Henry&quot;</code></pre>
+<p>Subsetting a data set can be done by <strong>filtering</strong> data based on logical conditions to extract rows that meet certain criteria. They involve comparisons operators such as <code>&gt;, &lt;, ==, !=</code> or logical operators like <code>&amp;</code>(and), <code>|</code>(or), <code>!</code> (not).</p>
+<p>In this titanic data set we:-</p>
+<ol style="list-style-type: decimal">
+<li><strong>Filter based on a single condition</strong>
+Lets find the passengers who survived on the titanic.</li>
+</ol>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-manipulation.html#cb35-1" tabindex="-1"></a>survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Survived <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb35-2"><a href="data-manipulation.html#cb35-2" tabindex="-1"></a><span class="fu">head</span>(survivors) <span class="co"># view the first few rows of survivors</span></span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 2            2        1      1
+## 3            3        1      3
+## 4            4        1      1
+## 9            9        1      3
+## 10          10        1      2
+## 11          11        1      3
+##                                                   Name    Sex Age SibSp Parch
+## 2  Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 3                               Heikkinen, Miss. Laina female  26     0     0
+## 4         Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 9    Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg) female  27     0     2
+## 10                 Nasser, Mrs. Nicholas (Adele Achem) female  14     1     0
+## 11                     Sandstrom, Miss. Marguerite Rut female   4     1     1
+##              Ticket    Fare Cabin Embarked
+## 2          PC 17599 71.2833   C85        C
+## 3  STON/O2. 3101282  7.9250              S
+## 4            113803 53.1000  C123        S
+## 9            347742 11.1333              S
+## 10           237736 30.0708              C
+## 11          PP 9549 16.7000    G6        S</code></pre>
+<p>The above data set consists of titanic passengers who survived.</p>
+<p>Who were the passengers who boarded the first class on the Titan?</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-manipulation.html#cb37-1" tabindex="-1"></a>first_class_passengers <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Pclass <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb37-2"><a href="data-manipulation.html#cb37-2" tabindex="-1"></a><span class="fu">head</span>(first_class_passengers)</span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 2            2        1      1
+## 4            4        1      1
+## 7            7        0      1
+## 12          12        1      1
+## 24          24        1      1
+## 28          28        0      1
+##                                                   Name    Sex Age SibSp Parch
+## 2  Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 4         Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 7                              McCarthy, Mr. Timothy J   male  54     0     0
+## 12                            Bonnell, Miss. Elizabeth female  58     0     0
+## 24                        Sloper, Mr. William Thompson   male  28     0     0
+## 28                      Fortune, Mr. Charles Alexander   male  19     3     2
+##      Ticket     Fare       Cabin Embarked
+## 2  PC 17599  71.2833         C85        C
+## 4    113803  53.1000        C123        S
+## 7     17463  51.8625         E46        S
+## 12   113783  26.5500        C103        S
+## 24   113788  35.5000          A6        S
+## 28    19950 263.0000 C23 C25 C27        S</code></pre>
+<p>The above examples, the extracted data set met a single condition.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Filtering based on Multiple Conditions</strong>
+Data can be subsetted by filtering based on more than one condition. To demonstrate this, lets find the female passengers who survived. Here there are two conditions;-</li>
+</ol>
+<ul>
+<li>the passenger must be a female,</li>
+<li>the passenger must have survived.</li>
+</ul>
+<p>The resultant data set must meet the above conditions</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-manipulation.html#cb39-1" tabindex="-1"></a>female_survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span> <span class="sc">&amp;</span> titanic<span class="sc">$</span>Survived <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb39-2"><a href="data-manipulation.html#cb39-2" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="data-manipulation.html#cb39-3" tabindex="-1"></a><span class="fu">head</span>(female_survivors) <span class="co">#view the first few rows </span></span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 2            2        1      1
+## 3            3        1      3
+## 4            4        1      1
+## 9            9        1      3
+## 10          10        1      2
+## 11          11        1      3
+##                                                   Name    Sex Age SibSp Parch
+## 2  Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 3                               Heikkinen, Miss. Laina female  26     0     0
+## 4         Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 9    Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg) female  27     0     2
+## 10                 Nasser, Mrs. Nicholas (Adele Achem) female  14     1     0
+## 11                     Sandstrom, Miss. Marguerite Rut female   4     1     1
+##              Ticket    Fare Cabin Embarked
+## 2          PC 17599 71.2833   C85        C
+## 3  STON/O2. 3101282  7.9250              S
+## 4            113803 53.1000  C123        S
+## 9            347742 11.1333              S
+## 10           237736 30.0708              C
+## 11          PP 9549 16.7000    G6        S</code></pre>
+<p>Lets also add one more condition, the female survivor must be under 18.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-manipulation.html#cb41-1" tabindex="-1"></a>minor_female_survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span> <span class="sc">&amp;</span> </span>
+<span id="cb41-2"><a href="data-manipulation.html#cb41-2" tabindex="-1"></a>                                    titanic<span class="sc">$</span>Survived <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span></span>
+<span id="cb41-3"><a href="data-manipulation.html#cb41-3" tabindex="-1"></a>                                    titanic<span class="sc">$</span>Age <span class="sc">&lt;</span> <span class="dv">18</span>, ] <span class="co"># comma should be after the conditons</span></span>
+<span id="cb41-4"><a href="data-manipulation.html#cb41-4" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="data-manipulation.html#cb41-5" tabindex="-1"></a><span class="fu">head</span>(minor_female_survivors)</span></code></pre></div>
+<pre><code>##      PassengerId Survived Pclass                                Name    Sex Age
+## 10            10        1      2 Nasser, Mrs. Nicholas (Adele Achem) female  14
+## 11            11        1      3     Sandstrom, Miss. Marguerite Rut female   4
+## NA            NA       NA     NA                                &lt;NA&gt;   &lt;NA&gt;  NA
+## 23            23        1      3         McGowan, Miss. Anna &quot;Annie&quot; female  15
+## NA.1          NA       NA     NA                                &lt;NA&gt;   &lt;NA&gt;  NA
+## NA.2          NA       NA     NA                                &lt;NA&gt;   &lt;NA&gt;  NA
+##      SibSp Parch  Ticket    Fare Cabin Embarked
+## 10       1     0  237736 30.0708              C
+## 11       1     1 PP 9549 16.7000    G6        S
+## NA      NA    NA    &lt;NA&gt;      NA  &lt;NA&gt;     &lt;NA&gt;
+## 23       0     0  330923  8.0292              Q
+## NA.1    NA    NA    &lt;NA&gt;      NA  &lt;NA&gt;     &lt;NA&gt;
+## NA.2    NA    NA    &lt;NA&gt;      NA  &lt;NA&gt;     &lt;NA&gt;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Filtering using Negation</strong><br />
+The <code>!=</code> sign a logical operator that is used to negate a condition. Lets use it to find the passengers who did not survive.</li>
+</ol>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-manipulation.html#cb43-1" tabindex="-1"></a>non_survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Survived <span class="sc">!=</span> <span class="dv">1</span>, ]</span>
+<span id="cb43-2"><a href="data-manipulation.html#cb43-2" tabindex="-1"></a><span class="fu">tail</span>(non_survivors) <span class="co"># view the last few records </span></span></code></pre></div>
+<pre><code>##     PassengerId Survived Pclass                                     Name    Sex
+## 884         884        0      2            Banfield, Mr. Frederick James   male
+## 885         885        0      3                   Sutehall, Mr. Henry Jr   male
+## 886         886        0      3     Rice, Mrs. William (Margaret Norton) female
+## 887         887        0      2                    Montvila, Rev. Juozas   male
+## 889         889        0      3 Johnston, Miss. Catherine Helen &quot;Carrie&quot; female
+## 891         891        0      3                      Dooley, Mr. Patrick   male
+##     Age SibSp Parch           Ticket   Fare Cabin Embarked
+## 884  28     0     0 C.A./SOTON 34068 10.500              S
+## 885  25     0     0  SOTON/OQ 392076  7.050              S
+## 886  39     0     5           382652 29.125              Q
+## 887  27     0     0           211536 13.000              S
+## 889  NA     1     2       W./C. 6607 23.450              S
+## 891  32     0     0           370376  7.750              Q</code></pre>
+<p>Alternatively you can use</p>
+<pre><code>non_survivors &lt;- titanic[!titanic$Survived == 1, ]</code></pre>
+<p>Also, lets find the passengers who were not in the third class</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-manipulation.html#cb46-1" tabindex="-1"></a>not_third_class <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Pclass <span class="sc">!=</span> <span class="dv">3</span>, ]</span>
+<span id="cb46-2"><a href="data-manipulation.html#cb46-2" tabindex="-1"></a><span class="fu">head</span>(not_third_class)</span></code></pre></div>
+<pre><code>##    PassengerId Survived Pclass
+## 2            2        1      1
+## 4            4        1      1
+## 7            7        0      1
+## 10          10        1      2
+## 12          12        1      1
+## 16          16        1      2
+##                                                   Name    Sex Age SibSp Parch
+## 2  Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+## 4         Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0
+## 7                              McCarthy, Mr. Timothy J   male  54     0     0
+## 10                 Nasser, Mrs. Nicholas (Adele Achem) female  14     1     0
+## 12                            Bonnell, Miss. Elizabeth female  58     0     0
+## 16                    Hewlett, Mrs. (Mary D Kingcome)  female  55     0     0
+##      Ticket    Fare Cabin Embarked
+## 2  PC 17599 71.2833   C85        C
+## 4    113803 53.1000  C123        S
+## 7     17463 51.8625   E46        S
+## 10   237736 30.0708              C
+## 12   113783 26.5500  C103        S
+## 16   248706 16.0000              S</code></pre>
+<p>Alternatively</p>
+<pre><code>not_third_class &lt;- titanic[!titanic$Pclass == 3, ]</code></pre>
 </div>
 </div>
 <div id="data-manipulation-with-dplyr" class="section level2 hasAnchor" number="4.2">

@@ -40,8 +40,6 @@ These are the key tasks in the data manipulation;
 - **Aggregation**: Summarizing the data by performing operations like sum,average and count. 
 
 ### Subsetting and Filtering Data:
-- Explanation of subsetting data frames using indexing.
-- Demonstration of filtering rows based on specific conditions using logical operators.
 
 **Subsetting** is a data management strategy that involves creating a coherent slice data from different data set for specific use cases. This topic will better be explained practically, therefore we will use the titanic data set. The data set contains information about the passengers on the Titanic, including their age, gender, passenger class, whether they survived and other details. Since the titanic dataset is absent in baseR, the  `titanic` library will be installed by;
 ```
@@ -53,6 +51,115 @@ load the library
 library("titanic")
 ```
 
-The data set will indexed using differnt indexing techniques
+The data set will indexed using different indexing techniques such as indexing of a single element, row and column indexing. 
+
+First we load the data set and view the first few records before indexing
+```{r}
+data("titanic_train")
+
+titanic <- titanic_train 
+head(titanic) # view the first few rows of the titanic data set
+```
+
+1. **Extract a row**
+When subsetting to extract data for a single row the square brackets `[ ]` will be used with the position of the index you want to extract. Lets extract all the information of the 10th passenger.
+```{r}
+titanic[10, ] # note the comma after the index 10
+```
+Also, more indices can be subsetted in the format `[i:j, ]` where the `i` is the starting index while `j` is the ending index respectively. Lets extract the information by subsetting the titanic data from index 7 to 10. 
+```{r}
+titanic[7:10, ]
+```
+2. **Extract a column**  
+When subsetting to extract data for a single column the square brackets `[ ]` will be used as before, with the position of the index or column name you want to extract. Lets extract all the information of the column `Name`.
+```
+titanic[, "Name"] # note the comma before "Name"
+```
+![](images/dataset_images/titanic_names.png)
+
+An index of the column can be used in place of the column name. For instance, the column, "PassengerId" is the first column therefore its index will be `1`. Lets subset the column by calling the index.
+```
+titanic[, 1] # note the comma before the column index
+```
+![](images/dataset_images/titanic_passengers_id.png)
+
+3. **Extracting a single element**  
+A single element that has a defined position in a data frame, both the row index and the column name/index are called. 
+```
+dataframe[row_index, column index/name]
+```
+
+Lets extract the age of the Name of the fifth passenger. 
+```{r}
+titanic[5, "Name"]
+```
+
+Instead of using the column name. Lets use the column index. In the above context, the column "Name" appears at index(is the fourth column). 
+```{r}
+titanic[5, 4]
+```
+
+
+Subsetting a data set can be done by **filtering** data based on logical conditions to extract rows that meet certain criteria. They involve comparisons operators such as `>, <, ==, !=` or logical operators like `&`(and), `|`(or), `!` (not). 
+
+In this titanic data set we:-
+
+1. **Filter based on a single condition**
+Lets find the passengers who survived on the titanic.
+```{r}
+survivors <- titanic[titanic$Survived == 1, ]
+head(survivors) # view the first few rows of survivors
+```
+The above data set consists of titanic passengers who survived.
+
+Who were the passengers who boarded the first class on the Titan?
+```{r}
+first_class_passengers <- titanic[titanic$Pclass == 1, ]
+head(first_class_passengers)
+```
+The above examples, the extracted data set met a single condition. 
+
+2. **Filtering based on Multiple Conditions**
+Data can be subsetted by filtering based on more than one condition. To demonstrate this, lets find the female passengers who survived. Here there are two conditions;-
+
+- the passenger must be a female,
+- the passenger must have survived. 
+
+The resultant data set must meet the above conditions
+```{r}
+female_survivors <- titanic[titanic$Sex == "female" & titanic$Survived == 1, ]
+
+head(female_survivors) #view the first few rows 
+```
+Lets also add one more condition, the female survivor must be under 18. 
+```{r}
+minor_female_survivors <- titanic[titanic$Sex == "female" & 
+                                    titanic$Survived == 1 &
+                                    titanic$Age < 18, ] # comma should be after the conditons
+
+head(minor_female_survivors)
+```
+
+3. **Filtering using Negation**  
+The `!=` sign a logical operator that is used to negate a condition. Lets use it to find the passengers who did not survive. 
+```{r}
+non_survivors <- titanic[titanic$Survived != 1, ]
+tail(non_survivors) # view the last few records 
+```
+Alternatively you can use 
+```
+non_survivors <- titanic[!titanic$Survived == 1, ]
+```
+
+Also, lets find the passengers who were not in the third class 
+```{r}
+not_third_class <- titanic[titanic$Pclass != 3, ]
+head(not_third_class)
+```
+
+Alternatively
+```
+not_third_class <- titanic[!titanic$Pclass == 3, ]
+```
 
 ## Data Manipulation with Dplyr
