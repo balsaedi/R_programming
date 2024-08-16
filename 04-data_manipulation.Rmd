@@ -163,3 +163,23 @@ not_third_class <- titanic[!titanic$Pclass == 3, ]
 ```
 
 ## Data Manipulation with Dplyr
+### Introduction to Dplyr package 
+Dplyr is a package designed for data manipulation equipped with a set of intuitive functions to perform tasks like filtering rows, selecting columns, rearranging data and summarizing information. The package is part of a larger library, `tidyverse`. The **tidyverse** package is a package designed for data science that share an underlying design philosophy, grammar and data structures. The packages within the tidyverse are widely used for data manipulation, exploration, and visualization in R. Here are some of the core packages in tidyverse; 
+
+- `ggplot2`
+- `dplyr`
+- `tidyr`
+- `readr`
+- `purrr`
+- `tibble`
+
+The tidyverse package is installed by 
+```
+install.packages("tidyverse")
+```
+
+To invoke the package into the system, the below command is invoked
+```{r}
+library(tidyverse)
+```
+In this course, we will discuss on `dplyr`. 
