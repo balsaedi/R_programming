@@ -168,11 +168,90 @@ Sorting is the ordering of elements in a data set (vectors, lists, matrix and da
 1. `sort()`  
 
 - Lets create a vector v with five elements
-- Sort the elements in an ascending order
+- Sort the elements in a descending order
 
 ```{r}
 v = c(43, 82, 11, 73, 34) # Create a vector
+v1 = sort(v, decreasing = TRUE) #sort the elements in a descending order
+v1
 ```
+
+- to order the same vector in an ascending order the `decreasing` argument is set to `FALSE`. 
+```{r}
+v = c(43, 82, 11, 73, 34) # Create a vector
+v2 = sort(v, decreasing = FALSE) #sort the elements in an ascending order
+v2
+```
+
+- Also character vectors can be sorted in alphabetical order for instance lets sort the the names, `"Alice", "Charlie", "Bob"` in the alphabetical order. 
+```{r}
+names <- c("Alice", "Charlie", "Bob")
+sorted_names <- sort(names)
+sorted_names
+```
+
+- Alternatively, the names can be ordered in the reverse alphabetical order when the `decreasing` argument is set to `TRUE`.
+```{r}
+names <- c("Alice", "Charlie", "Bob", "Zach")
+names_1 <- sort(names, decreasing = TRUE) # order in reverse alphabetical order
+names_1
+```
+
+2. `order()`  
+
+This function returns the indices that would sort the vectors. For instance lets sort the vector `v = c(43, 82, 11, 73, 34)` in an ascending order(from smallest to the largest). The smallest number in this case is 11, therefore, the `order()` function will return 1 while 82 is the largest(5th smallest) number in this case, it will be returned as 5.  
+
+```{r}
+v = c(43, 82, 11, 73, 34)
+order(v, decreasing = FALSE)
+```
+
+<<<<**Add two more examples**>>>>
+
+3. `rank()`
+
+Returns of the rank of the element in a vector, list. The smallest element is ranked as 1(in this case its 11) while largest element is ranked last(82 is ranked 5 here)
+
+```{r}
+v = c(43, 82, 11, 73, 34)
+rank(v, ties.method = "average", na.last = TRUE)
+```
+
+4. `rev()`
+
+This function simply reverse the order of elements. The first element in a vector will be last while the last one will be first. 
+
+```{r}
+v = c(43, 82, 11, 73, 34)
+rev(v)
+```
+
+5. **Sorting Data Frames**
+
+A data frame can be sorted in descending/ascending order of a certain column. For instance, we will sort the titanic data set in the order of age in ascending order.
+
+```{r}
+titanic_by_age <- titanic[order(titanic$Age), ]
+head(titanic_by_age)
+```
+
+Sorting the titanic data by age in descending order, `-` will be added infront of argument `titanic$Age` to be `-titanic$Age`
+
+```{r}
+titanic_by_age <- titanic[order(-titanic$Age), ] # note the - sign
+head(titanic_by_age)
+```
+
+Also, dataframes can be sorted based by multiple columns. Lets sort the titanic data set by Passenger class (`Pclass`) in ascending order and by age in descending order at once.
+
+```{r}
+# Pclass in ascending order, Age in descending order
+titanic_sorted_by_class_and_age <- titanic[order(titanic$Pclass, -titanic$Age), ]
+
+head(titanic_sorted_by_class_and_age)
+```
+
+### Basic Data Cleaning
 
 ### Hands-on Exercises
 
