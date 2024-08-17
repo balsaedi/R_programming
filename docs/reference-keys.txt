@@ -17,8 +17,11 @@ data-manipulation
 basic-data-manipulation
 introduction-to-data-manipulation
 subsetting-and-filtering-data
+sorting-data
+hands-on-exercises
 data-manipulation-with-dplyr
 introduction-to-dplyr-package
+hands-on-exercises-1
 data-visualization
 basic-data-visualization
 advanced-data-visualization
