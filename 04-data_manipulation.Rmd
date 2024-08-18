@@ -252,6 +252,32 @@ head(titanic_sorted_by_class_and_age)
 ```
 
 ### Basic Data Cleaning
+**Data Cleaning** is the process of fixing, removing incorrect, incomplete or otherwise problematic data from a data set. This is a crucial step in data analysis as it leads to more reliable analyses and insights. 
+
+Here some data cleaning techniques used; 
+
+1. **Handling Missing Data**  
+The null values are identified by `is.na()` function. If there exists null values, they are removed by `na.omit()` function. The null values can also be replaced by appropriate substitutes  such as the mean, median, zero value or a placeholder, this is referred to as imputation.  
+Lets create a vector `myvector` will null values, identify the null values, remove/impute them. 
+```{r}
+# Create a vector that has missing values
+my_vector <- c(12, 43, NA, 32, 65, 11, NA, NA, 34, 98, 57) # NA is the missing value
+
+# Identify existence of the null values
+is.na(my_vector)
+
+# Count the null values 
+sum(is.na(my_vector))
+
+# remove null values 
+clean_vector <- na.omit(my_vector)
+clean_vector
+
+# impute missing values
+my_vector[is.na(my_vector)] <- mean(my_vector, na.rm = TRUE)
+my_vector
+```
+
 
 ### Hands-on Exercises
 
