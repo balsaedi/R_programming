@@ -27,6 +27,11 @@ data-visualization
 basic-data-visualization
 advanced-data-visualization
 explanatory-data-analysis
+introduction-to-eda
+eda-in-practice
+choosing-a-data-set
+conducting-eda
+present-findings
 statistical-analysis
 basic-concepts
 correlation-and-regression-analysis
