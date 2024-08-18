@@ -1,1 +1,2 @@
 # Explanatory Data Analysis
+**Exploratory Data Analysis (EDA)** is a critical process in the data analysis workflow. It involves examining and visualizing a dataset to uncover patterns, spot anomalies, test hypotheses, and check assumptions using summary statistics and graphical representations. EDA provides a solid understanding of the data and lays the foundation for more advanced statistical analyses or machine learning models.

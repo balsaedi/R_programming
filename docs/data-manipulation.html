@@ -630,6 +630,88 @@ Lets create a vector <code>myvector</code> will null values, identify the null v
 <span id="cb75-2"><a href="data-manipulation.html#cb75-2" tabindex="-1"></a>my_vector[<span class="fu">is.na</span>(my_vector)] <span class="ot">&lt;-</span> <span class="fu">mean</span>(my_vector, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb75-3"><a href="data-manipulation.html#cb75-3" tabindex="-1"></a>my_vector</span></code></pre></div>
 <pre><code>##  [1] 12 43 44 32 65 11 44 44 34 98 57</code></pre>
+<p>&lt;- <strong>Add more ways to remove null values</strong> -&gt; <a href="https://sparkbyexamples.com/r-programming/remove-na-from-vector-in-r/#" class="uri">https://sparkbyexamples.com/r-programming/remove-na-from-vector-in-r/#</a>:~:text=In%20R%2C%20NA%20denotes%20’Missing,NA%20values%20from%20a%20vector.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Removing Duplicates</strong>
+In a raw data set there may exist some duplicated entries/records/rows that will give false results in data analysis thereby leading to poor insights and decision-making. The duplicates are identified by <code>duplicated()</code> function. If there exists any duplicates, they are removed by subsetting or calling <code>unique()</code> function.</li>
+</ol>
+<p>Lets create a data frame with duplicate values and remove them</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="data-manipulation.html#cb77-1" tabindex="-1"></a><span class="co"># Creating a simple data frame</span></span>
+<span id="cb77-2"><a href="data-manipulation.html#cb77-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb77-3"><a href="data-manipulation.html#cb77-3" tabindex="-1"></a>  <span class="at">Position =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">3</span>),  <span class="co"># Notice the duplicate position</span></span>
+<span id="cb77-4"><a href="data-manipulation.html#cb77-4" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Eva&quot;</span>, <span class="st">&quot;Charlie&quot;</span>),</span>
+<span id="cb77-5"><a href="data-manipulation.html#cb77-5" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="cn">NA</span>, <span class="dv">40</span>, <span class="dv">29</span>, <span class="cn">NA</span>),  <span class="co"># NA represents null values</span></span>
+<span id="cb77-6"><a href="data-manipulation.html#cb77-6" tabindex="-1"></a>  <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">88</span>, <span class="cn">NA</span>, <span class="dv">92</span>, <span class="dv">88</span>)  <span class="co"># NA represents null values</span></span>
+<span id="cb77-7"><a href="data-manipulation.html#cb77-7" tabindex="-1"></a>) <span class="co"># Position 3 is duplicated</span></span>
+<span id="cb77-8"><a href="data-manipulation.html#cb77-8" tabindex="-1"></a></span>
+<span id="cb77-9"><a href="data-manipulation.html#cb77-9" tabindex="-1"></a><span class="co"># Display the data frame</span></span>
+<span id="cb77-10"><a href="data-manipulation.html#cb77-10" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
+<pre><code>##   Position    Name Age Score
+## 1        1   Alice  25    85
+## 2        2     Bob  30    90
+## 3        3 Charlie  NA    88
+## 4        4   David  40    NA
+## 5        5     Eva  29    92
+## 6        3 Charlie  NA    88</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="data-manipulation.html#cb79-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;CLEAN DATA&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;CLEAN DATA&quot;</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="data-manipulation.html#cb81-1" tabindex="-1"></a><span class="co"># Remove the duplicate row</span></span>
+<span id="cb81-2"><a href="data-manipulation.html#cb81-2" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> <span class="fu">unique</span>(data)</span>
+<span id="cb81-3"><a href="data-manipulation.html#cb81-3" tabindex="-1"></a>clean_data</span></code></pre></div>
+<pre><code>##   Position    Name Age Score
+## 1        1   Alice  25    85
+## 2        2     Bob  30    90
+## 3        3 Charlie  NA    88
+## 4        4   David  40    NA
+## 5        5     Eva  29    92</code></pre>
+<p>Also the duplicated rows can be removed by</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="data-manipulation.html#cb83-1" tabindex="-1"></a>clean_data2 <span class="ot">&lt;-</span> data[<span class="sc">!</span><span class="fu">duplicated</span>(data), ]</span>
+<span id="cb83-2"><a href="data-manipulation.html#cb83-2" tabindex="-1"></a>clean_data2</span></code></pre></div>
+<pre><code>##   Position    Name Age Score
+## 1        1   Alice  25    85
+## 2        2     Bob  30    90
+## 3        3 Charlie  NA    88
+## 4        4   David  40    NA
+## 5        5     Eva  29    92</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Handling Outliers</strong>
+Outliers are extreme values that differ from most other data points in a data set. hey can be detected by identifying the upper bound and lower bound using boxplots. They are removed by;</li>
+</ol>
+<pre><code>clean_data &lt;- raw_data[raw_data$column &lt; upper_bound &amp; raw_data$column &gt; lower_bound, ]</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Standardizing Data</strong><br />
+There are numerous ways that data can be standardized such ensuring a consistent date format across the data set and correcting case.</li>
+</ol>
+<p>Lets create a vector with different date formats and make it consistent</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="data-manipulation.html#cb86-1" tabindex="-1"></a><span class="co"># Creating a vector with different date formats</span></span>
+<span id="cb86-2"><a href="data-manipulation.html#cb86-2" tabindex="-1"></a>date_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2023-08-01&quot;</span>, <span class="st">&quot;01/08/2023&quot;</span>, <span class="st">&quot;August 1, 2023&quot;</span>, <span class="st">&quot;20230801&quot;</span>, <span class="st">&quot;08-01-2023&quot;</span>)</span>
+<span id="cb86-3"><a href="data-manipulation.html#cb86-3" tabindex="-1"></a></span>
+<span id="cb86-4"><a href="data-manipulation.html#cb86-4" tabindex="-1"></a><span class="co"># Converting the date_vector to a consistent format</span></span>
+<span id="cb86-5"><a href="data-manipulation.html#cb86-5" tabindex="-1"></a>clean_date_vector <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(date_vector, <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb86-6"><a href="data-manipulation.html#cb86-6" tabindex="-1"></a></span>
+<span id="cb86-7"><a href="data-manipulation.html#cb86-7" tabindex="-1"></a><span class="co"># Display the clean date vector</span></span>
+<span id="cb86-8"><a href="data-manipulation.html#cb86-8" tabindex="-1"></a><span class="fu">print</span>(clean_date_vector)</span></code></pre></div>
+<pre><code>## [1] &quot;2023-08-01&quot; NA           NA           NA           &quot;8-01-20&quot;</code></pre>
+<p>The <code>lubridate</code> package can do it better</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="data-manipulation.html#cb88-1" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
+<span id="cb88-2"><a href="data-manipulation.html#cb88-2" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="data-manipulation.html#cb91-1" tabindex="-1"></a><span class="co"># Correcting each date format using lubridate functions</span></span>
+<span id="cb91-2"><a href="data-manipulation.html#cb91-2" tabindex="-1"></a>clean_date_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb91-3"><a href="data-manipulation.html#cb91-3" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">1</span>], <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>),       <span class="co"># &quot;2023-08-01&quot;</span></span>
+<span id="cb91-4"><a href="data-manipulation.html#cb91-4" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">2</span>], <span class="at">format=</span><span class="st">&quot;%d/%m/%Y&quot;</span>),       <span class="co"># &quot;01/08/2023&quot;</span></span>
+<span id="cb91-5"><a href="data-manipulation.html#cb91-5" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">3</span>], <span class="at">format=</span><span class="st">&quot;%B %d, %Y&quot;</span>),      <span class="co"># &quot;August 1, 2023&quot;</span></span>
+<span id="cb91-6"><a href="data-manipulation.html#cb91-6" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">4</span>], <span class="at">format=</span><span class="st">&quot;%Y%m%d&quot;</span>),         <span class="co"># &quot;20230801&quot;</span></span>
+<span id="cb91-7"><a href="data-manipulation.html#cb91-7" tabindex="-1"></a>  <span class="fu">as.Date</span>(date_vector[<span class="dv">5</span>], <span class="at">format=</span><span class="st">&quot;%m-%d-%Y&quot;</span>)        <span class="co"># &quot;08-01-2023&quot;</span></span>
+<span id="cb91-8"><a href="data-manipulation.html#cb91-8" tabindex="-1"></a>)</span>
+<span id="cb91-9"><a href="data-manipulation.html#cb91-9" tabindex="-1"></a></span>
+<span id="cb91-10"><a href="data-manipulation.html#cb91-10" tabindex="-1"></a><span class="co"># Display the clean date vector</span></span>
+<span id="cb91-11"><a href="data-manipulation.html#cb91-11" tabindex="-1"></a><span class="fu">print</span>(clean_date_vector)</span></code></pre></div>
+<pre><code>## [1] &quot;2023-08-01&quot; &quot;2023-08-01&quot; NA           &quot;2023-08-01&quot; &quot;2023-08-01&quot;</code></pre>
 </div>
 <div id="hands-on-exercises" class="section level3 hasAnchor" number="4.1.5">
 <h3><span class="header-section-number">4.1.5</span> Hands-on Exercises<a href="data-manipulation.html#hands-on-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -651,13 +733,12 @@ Lets create a vector <code>myvector</code> will null values, identify the null v
 <p>The tidyverse package is installed by</p>
 <pre><code>install.packages(&quot;tidyverse&quot;)</code></pre>
 <p>To invoke the package into the system, the below command is invoked</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="data-manipulation.html#cb78-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-manipulation.html#cb94-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ──────
-## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-## ✔ purrr     1.0.2     
+## ✔ dplyr   1.1.4     ✔ readr   2.1.5
+## ✔ forcats 1.0.0     ✔ stringr 1.5.1
+## ✔ ggplot2 3.5.1     ✔ tibble  3.2.1
+## ✔ purrr   1.0.2     ✔ tidyr   1.3.1
 ## ── Conflicts ───── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -665,7 +746,7 @@ Lets create a vector <code>myvector</code> will null values, identify the null v
 <p>In this course, we will discuss on <code>dplyr</code> since it is an essential tool in data analysis. If you want to use dplyr alone then it can be installed by;</p>
 <pre><code>install.packages(&quot;dplyr&quot;)</code></pre>
 <p>To load the library into the system;</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="data-manipulation.html#cb81-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="data-manipulation.html#cb97-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <p>&lt;<strong>Introduce the dplyr verbs</strong>&gt;</p>
 </div>
 <div id="hands-on-exercises-1" class="section level3 hasAnchor" number="4.2.2">

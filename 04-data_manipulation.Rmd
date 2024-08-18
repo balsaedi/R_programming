@@ -278,6 +278,78 @@ my_vector[is.na(my_vector)] <- mean(my_vector, na.rm = TRUE)
 my_vector
 ```
 
+<- **Add more ways to remove null values** -> https://sparkbyexamples.com/r-programming/remove-na-from-vector-in-r/#:~:text=In%20R%2C%20NA%20denotes%20'Missing,NA%20values%20from%20a%20vector.
+
+2. **Removing Duplicates**
+In a raw data set there may exist some duplicated entries/records/rows that will give false results in data analysis thereby leading to poor insights and decision-making. The duplicates are identified by `duplicated()` function. If there exists any duplicates, they are removed by subsetting or calling  `unique()` function.  
+
+Lets create a data frame with duplicate values and remove them 
+
+```{r}
+# Creating a simple data frame
+data <- data.frame(
+  Position = c(1, 2, 3, 4, 5, 3),  # Notice the duplicate position
+  Name = c("Alice", "Bob", "Charlie", "David", "Eva", "Charlie"),
+  Age = c(25, 30, NA, 40, 29, NA),  # NA represents null values
+  Score = c(85, 90, 88, NA, 92, 88)  # NA represents null values
+) # Position 3 is duplicated
+
+# Display the data frame
+print(data)
+
+print("CLEAN DATA")
+
+# Remove the duplicate row
+clean_data <- unique(data)
+clean_data
+```
+
+Also the duplicated rows can be removed by 
+```{r}
+clean_data2 <- data[!duplicated(data), ]
+clean_data2
+```
+
+3. **Handling Outliers**
+Outliers are extreme values that differ from most other data points in a data set. hey can be detected by identifying the upper bound and lower bound using boxplots. They are removed by;
+```
+clean_data <- raw_data[raw_data$column < upper_bound & raw_data$column > lower_bound, ]
+```
+
+4. **Standardizing Data**  
+There are numerous ways that data can be standardized such ensuring a consistent date format across the data set and correcting case. 
+
+Lets create a vector with different date formats and make it consistent
+```{r}
+# Creating a vector with different date formats
+date_vector <- c("2023-08-01", "01/08/2023", "August 1, 2023", "20230801", "08-01-2023")
+
+# Converting the date_vector to a consistent format
+clean_date_vector <- as.Date(date_vector, format="%Y-%m-%d")
+
+# Display the clean date vector
+print(clean_date_vector)
+```
+
+The `lubridate` package can do it better
+```{r}
+# Load necessary library
+library(lubridate)
+
+# Correcting each date format using lubridate functions
+clean_date_vector <- c(
+  as.Date(date_vector[1], format="%Y-%m-%d"),       # "2023-08-01"
+  as.Date(date_vector[2], format="%d/%m/%Y"),       # "01/08/2023"
+  as.Date(date_vector[3], format="%B %d, %Y"),      # "August 1, 2023"
+  as.Date(date_vector[4], format="%Y%m%d"),         # "20230801"
+  as.Date(date_vector[5], format="%m-%d-%Y")        # "08-01-2023"
+)
+
+# Display the clean date vector
+print(clean_date_vector)
+
+```
+
 
 ### Hands-on Exercises
 
