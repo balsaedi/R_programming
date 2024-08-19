@@ -1,4 +1,7 @@
 # Data Visualization
 ## Basic Data Visualization
+![](images/ggplot.png)
+
+<-**Introduce the ggplot**->
 
 ## Advanced Data Visualization
