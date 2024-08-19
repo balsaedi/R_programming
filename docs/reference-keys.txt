@@ -34,6 +34,14 @@ basic-data-cleaning
 hands-on-exercises
 data-manipulation-with-dplyr
 introduction-to-dplyr-package
+key-functions-in-dplyr
+select
+filter
+arrange
+mutate
+group_by
+summarise
+chaining
 hands-on-exercises-1
 data-visualization
 basic-data-visualization

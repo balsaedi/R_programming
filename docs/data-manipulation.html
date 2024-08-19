@@ -185,7 +185,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation with Dplyr</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-dplyr-package"><i class="fa fa-check"></i><b>4.2.1</b> Introduction to Dplyr package</a></li>
-<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.2.2</b> Hands-on Exercises</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#key-functions-in-dplyr"><i class="fa fa-check"></i><b>4.2.2</b> Key Functions in dplyr</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.7</b> group_by</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.8</b> Summarise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>4.3.1</b> Hands-on Exercises</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
@@ -762,10 +772,463 @@ There are numerous ways that data can be standardized such ensuring a consistent
 <pre><code>install.packages(&quot;dplyr&quot;)</code></pre>
 <p>To load the library into the system;</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="data-manipulation.html#cb334-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
-<p>&lt;<strong>Introduce the dplyr verbs</strong>&gt;</p>
 </div>
-<div id="hands-on-exercises-1" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Hands-on Exercises<a href="data-manipulation.html#hands-on-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="key-functions-in-dplyr" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Key Functions in dplyr<a href="data-manipulation.html#key-functions-in-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are some functions that are use by data scientist when working with <code>dplyr</code>, they are referred to as dplyr verbs. To explain these verbs better, we will use an example data set to explain. A good example is the famous iris data set, it is always used by beginners in data science. The data set contains measurements of various characteristics of iris flowers. These characteristics include sepal length, sepal width, petal length, and petal width. There are three species of iris flowers in the data set: setosa, versicolor, and virginica.
+The data will be invoked to R before assessment and wrangling;</p>
+<p>Lets load the iris data and explore the first few records.</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="data-manipulation.html#cb335-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;iris&quot;</span>)</span>
+<span id="cb335-2"><a href="data-manipulation.html#cb335-2" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+</div>
+<div id="select" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> select<a href="data-manipulation.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This dplyr verb is used when selecting or dropping specific columns. In this lesson we will find the iris column names and select two of them using <code>select</code>.</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="data-manipulation.html#cb337-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb337-2"><a href="data-manipulation.html#cb337-2" tabindex="-1"></a></span>
+<span id="cb337-3"><a href="data-manipulation.html#cb337-3" tabindex="-1"></a><span class="co"># Find the column names </span></span>
+<span id="cb337-4"><a href="data-manipulation.html#cb337-4" tabindex="-1"></a><span class="fu">colnames</span>(iris)</span></code></pre></div>
+<pre><code>## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</code></pre>
+<p>Remember the data frame to work on need to be specified in the arguments such that</p>
+<pre><code>selected_data = select(data_frame, col1, col2, col3)</code></pre>
+<p>Therefore, we will select the columns; Species, Petal length and petal width.</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="data-manipulation.html#cb340-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb340-2"><a href="data-manipulation.html#cb340-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb340-3"><a href="data-manipulation.html#cb340-3" tabindex="-1"></a></span>
+<span id="cb340-4"><a href="data-manipulation.html#cb340-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb340-5"><a href="data-manipulation.html#cb340-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb340-6"><a href="data-manipulation.html#cb340-6" tabindex="-1"></a></span>
+<span id="cb340-7"><a href="data-manipulation.html#cb340-7" tabindex="-1"></a>selected_iris_data <span class="ot">=</span> <span class="fu">select</span>(iris,</span>
+<span id="cb340-8"><a href="data-manipulation.html#cb340-8" tabindex="-1"></a>                       Petal.Length, Petal.Width, Species)</span>
+<span id="cb340-9"><a href="data-manipulation.html#cb340-9" tabindex="-1"></a></span>
+<span id="cb340-10"><a href="data-manipulation.html#cb340-10" tabindex="-1"></a><span class="co"># view the first few rows of the selected data</span></span>
+<span id="cb340-11"><a href="data-manipulation.html#cb340-11" tabindex="-1"></a><span class="fu">head</span>(selected_iris_data)</span></code></pre></div>
+<pre><code>##   Petal.Length Petal.Width Species
+## 1          1.4         0.2  setosa
+## 2          1.4         0.2  setosa
+## 3          1.3         0.2  setosa
+## 4          1.5         0.2  setosa
+## 5          1.4         0.2  setosa
+## 6          1.7         0.4  setosa</code></pre>
+<p>The three selected columns are displayed in the data frame above.</p>
+<p>Specific columns can be dropped by putting <code>-</code> before the column name as</p>
+<pre><code># Drop specified columns 
+remaining_data = select(data_frame, -col1_to_drop, -col2_to_drop)</code></pre>
+<p>In this lesson, we will drop petal length, petal width and Species columns;</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="data-manipulation.html#cb343-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb343-2"><a href="data-manipulation.html#cb343-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb343-3"><a href="data-manipulation.html#cb343-3" tabindex="-1"></a></span>
+<span id="cb343-4"><a href="data-manipulation.html#cb343-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb343-5"><a href="data-manipulation.html#cb343-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb343-6"><a href="data-manipulation.html#cb343-6" tabindex="-1"></a></span>
+<span id="cb343-7"><a href="data-manipulation.html#cb343-7" tabindex="-1"></a><span class="co"># Drop some columns </span></span>
+<span id="cb343-8"><a href="data-manipulation.html#cb343-8" tabindex="-1"></a>remaining_iris_data <span class="ot">=</span> <span class="fu">select</span>(iris,</span>
+<span id="cb343-9"><a href="data-manipulation.html#cb343-9" tabindex="-1"></a>                       <span class="sc">-</span>Petal.Length, <span class="sc">-</span>Petal.Width, <span class="sc">-</span>Species)</span>
+<span id="cb343-10"><a href="data-manipulation.html#cb343-10" tabindex="-1"></a></span>
+<span id="cb343-11"><a href="data-manipulation.html#cb343-11" tabindex="-1"></a><span class="co"># view the first few rows of the selected data</span></span>
+<span id="cb343-12"><a href="data-manipulation.html#cb343-12" tabindex="-1"></a><span class="fu">head</span>(remaining_iris_data)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width
+## 1          5.1         3.5
+## 2          4.9         3.0
+## 3          4.7         3.2
+## 4          4.6         3.1
+## 5          5.0         3.6
+## 6          5.4         3.9</code></pre>
+<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p>You will be required to use the <code>car_sales</code> data set from <a href="https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv" class="uri">https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv</a>. Read the data using <code>read.csv</code> and select the <code>car, price, body, mileage, engV, engType, year, model</code>. Save the data frame from the selected columns as <code>selected_cars_df</code>. Show the first few rows of the <code>selected_cars_df</code>.</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="data-manipulation.html#cb345-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb345-2"><a href="data-manipulation.html#cb345-2" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb345-3"><a href="data-manipulation.html#cb345-3" tabindex="-1"></a></span>
+<span id="cb345-4"><a href="data-manipulation.html#cb345-4" tabindex="-1"></a><span class="co"># Read the data </span></span>
+<span id="cb345-5"><a href="data-manipulation.html#cb345-5" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb345-6"><a href="data-manipulation.html#cb345-6" tabindex="-1"></a></span>
+<span id="cb345-7"><a href="data-manipulation.html#cb345-7" tabindex="-1"></a><span class="co"># select the required columns </span></span>
+<span id="cb345-8"><a href="data-manipulation.html#cb345-8" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb345-9"><a href="data-manipulation.html#cb345-9" tabindex="-1"></a></span>
+<span id="cb345-10"><a href="data-manipulation.html#cb345-10" tabindex="-1"></a><span class="co"># Show the first few rows of the data frame</span></span>
+<span id="cb345-11"><a href="data-manipulation.html#cb345-11" tabindex="-1"></a><span class="co"># CODE HERE</span></span></code></pre></div>
+</div>
+<div id="filter" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> filter<a href="data-manipulation.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Is a verb/function from <code>dplyr</code> used to filter records in a data frame based on a specific condition. It allows the analyst to retrieve the records he/she is interested in and work easier with the subset.
+With <code>filter()</code>, the data frame and the condion are passed as a arguments;</p>
+<pre><code># Filtering rows where a certain column meets a condition
+filtered_data = filter(data_frame, 
+column_name &gt; 5 # This is the condition)</code></pre>
+<p>Lets select the species ‘setosa’ from the iris data set</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="data-manipulation.html#cb347-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb347-2"><a href="data-manipulation.html#cb347-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb347-3"><a href="data-manipulation.html#cb347-3" tabindex="-1"></a></span>
+<span id="cb347-4"><a href="data-manipulation.html#cb347-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb347-5"><a href="data-manipulation.html#cb347-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb347-6"><a href="data-manipulation.html#cb347-6" tabindex="-1"></a></span>
+<span id="cb347-7"><a href="data-manipulation.html#cb347-7" tabindex="-1"></a><span class="co"># Filter to select Setosa </span></span>
+<span id="cb347-8"><a href="data-manipulation.html#cb347-8" tabindex="-1"></a>setosa_iris <span class="ot">=</span> <span class="fu">filter</span>(iris, <span class="co"># the data frame</span></span>
+<span id="cb347-9"><a href="data-manipulation.html#cb347-9" tabindex="-1"></a>                     Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span> <span class="co"># the condition</span></span>
+<span id="cb347-10"><a href="data-manipulation.html#cb347-10" tabindex="-1"></a>                     )</span>
+<span id="cb347-11"><a href="data-manipulation.html#cb347-11" tabindex="-1"></a><span class="co"># First few records of setosa data</span></span>
+<span id="cb347-12"><a href="data-manipulation.html#cb347-12" tabindex="-1"></a><span class="fu">head</span>(setosa_iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Records with sepal width of more than 3.0 can be filtered. Here is how we achieve such a subset</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="data-manipulation.html#cb349-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb349-2"><a href="data-manipulation.html#cb349-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb349-3"><a href="data-manipulation.html#cb349-3" tabindex="-1"></a></span>
+<span id="cb349-4"><a href="data-manipulation.html#cb349-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb349-5"><a href="data-manipulation.html#cb349-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb349-6"><a href="data-manipulation.html#cb349-6" tabindex="-1"></a></span>
+<span id="cb349-7"><a href="data-manipulation.html#cb349-7" tabindex="-1"></a><span class="co"># Filtered to select records with more than 3.0 sepal width</span></span>
+<span id="cb349-8"><a href="data-manipulation.html#cb349-8" tabindex="-1"></a>wide_sepal_iris <span class="ot">=</span> <span class="fu">filter</span>(iris, <span class="co">#the data frame</span></span>
+<span id="cb349-9"><a href="data-manipulation.html#cb349-9" tabindex="-1"></a>                         Sepal.Width<span class="sc">&gt;</span><span class="fl">3.0</span> <span class="co"># the condition</span></span>
+<span id="cb349-10"><a href="data-manipulation.html#cb349-10" tabindex="-1"></a>                         )</span>
+<span id="cb349-11"><a href="data-manipulation.html#cb349-11" tabindex="-1"></a></span>
+<span id="cb349-12"><a href="data-manipulation.html#cb349-12" tabindex="-1"></a><span class="fu">head</span>(wide_sepal_iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.7         3.2          1.3         0.2  setosa
+## 3          4.6         3.1          1.5         0.2  setosa
+## 4          5.0         3.6          1.4         0.2  setosa
+## 5          5.4         3.9          1.7         0.4  setosa
+## 6          4.6         3.4          1.4         0.3  setosa</code></pre>
+<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p>With the <code>car_sales</code> data set that you used above, use <code>filter()</code> function to get the cars that were sold from the year 2008 to present and name them <code>latest_car_sales</code>. Count the number of observations made and show the first few rows.</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="data-manipulation.html#cb351-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb351-2"><a href="data-manipulation.html#cb351-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb351-3"><a href="data-manipulation.html#cb351-3" tabindex="-1"></a></span>
+<span id="cb351-4"><a href="data-manipulation.html#cb351-4" tabindex="-1"></a><span class="co"># Read the data </span></span>
+<span id="cb351-5"><a href="data-manipulation.html#cb351-5" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
+<span id="cb351-6"><a href="data-manipulation.html#cb351-6" tabindex="-1"></a></span>
+<span id="cb351-7"><a href="data-manipulation.html#cb351-7" tabindex="-1"></a><span class="co"># Filter to find cars sold from 2008</span></span>
+<span id="cb351-8"><a href="data-manipulation.html#cb351-8" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb351-9"><a href="data-manipulation.html#cb351-9" tabindex="-1"></a></span>
+<span id="cb351-10"><a href="data-manipulation.html#cb351-10" tabindex="-1"></a><span class="co"># Count the observations made. Use nrows function</span></span>
+<span id="cb351-11"><a href="data-manipulation.html#cb351-11" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb351-12"><a href="data-manipulation.html#cb351-12" tabindex="-1"></a></span>
+<span id="cb351-13"><a href="data-manipulation.html#cb351-13" tabindex="-1"></a><span class="co"># Show the first few rows</span></span>
+<span id="cb351-14"><a href="data-manipulation.html#cb351-14" tabindex="-1"></a><span class="co"># CODE HERE </span></span></code></pre></div>
+</div>
+<div id="arrange" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> arrange<a href="data-manipulation.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is <code>dplyr</code> verb/function used for sorting rows by rearranging in a specific order. here is how to use <code>arrange()</code> function;</p>
+<pre><code>arranged_data = arrange(data_frame, column_name)</code></pre>
+<p>This allows the analyst to arrange the data in a default ascending order. To arrange in a descending order a <code>desc()</code> function is added as;</p>
+<pre><code># Note the additional desc function
+arranged_data = arrange(data_frame, desc(column_name))</code></pre>
+<p>Now lets order the iris data in an ascending order based on Petal length and view the first 6 records with the shortest petal.</p>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="data-manipulation.html#cb354-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb354-2"><a href="data-manipulation.html#cb354-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb354-3"><a href="data-manipulation.html#cb354-3" tabindex="-1"></a></span>
+<span id="cb354-4"><a href="data-manipulation.html#cb354-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb354-5"><a href="data-manipulation.html#cb354-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb354-6"><a href="data-manipulation.html#cb354-6" tabindex="-1"></a></span>
+<span id="cb354-7"><a href="data-manipulation.html#cb354-7" tabindex="-1"></a><span class="co"># Sort the data </span></span>
+<span id="cb354-8"><a href="data-manipulation.html#cb354-8" tabindex="-1"></a>by_petal_length <span class="ot">=</span> <span class="fu">arrange</span>(iris, <span class="co"># data frame </span></span>
+<span id="cb354-9"><a href="data-manipulation.html#cb354-9" tabindex="-1"></a>                          Petal.Length <span class="co"># order by column</span></span>
+<span id="cb354-10"><a href="data-manipulation.html#cb354-10" tabindex="-1"></a>                          )</span>
+<span id="cb354-11"><a href="data-manipulation.html#cb354-11" tabindex="-1"></a></span>
+<span id="cb354-12"><a href="data-manipulation.html#cb354-12" tabindex="-1"></a><span class="co"># View the data </span></span>
+<span id="cb354-13"><a href="data-manipulation.html#cb354-13" tabindex="-1"></a><span class="fu">head</span>(by_petal_length)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          4.6         3.6          1.0         0.2  setosa
+## 2          4.3         3.0          1.1         0.1  setosa
+## 3          5.8         4.0          1.2         0.2  setosa
+## 4          5.0         3.2          1.2         0.2  setosa
+## 5          4.7         3.2          1.3         0.2  setosa
+## 6          5.4         3.9          1.3         0.4  setosa</code></pre>
+<p>Lets repeat the same process but now we order the data in a descending order.</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="data-manipulation.html#cb356-1" tabindex="-1"></a><span class="co"># Sort the data </span></span>
+<span id="cb356-2"><a href="data-manipulation.html#cb356-2" tabindex="-1"></a>by_petal_length <span class="ot">=</span> <span class="fu">arrange</span>(iris, <span class="co"># data frame </span></span>
+<span id="cb356-3"><a href="data-manipulation.html#cb356-3" tabindex="-1"></a>                          <span class="fu">desc</span>(Petal.Length) <span class="co"># order by column</span></span>
+<span id="cb356-4"><a href="data-manipulation.html#cb356-4" tabindex="-1"></a>                          )</span>
+<span id="cb356-5"><a href="data-manipulation.html#cb356-5" tabindex="-1"></a></span>
+<span id="cb356-6"><a href="data-manipulation.html#cb356-6" tabindex="-1"></a><span class="co"># View the data </span></span>
+<span id="cb356-7"><a href="data-manipulation.html#cb356-7" tabindex="-1"></a><span class="fu">head</span>(by_petal_length)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 1          7.7         2.6          6.9         2.3 virginica
+## 2          7.7         3.8          6.7         2.2 virginica
+## 3          7.7         2.8          6.7         2.0 virginica
+## 4          7.6         3.0          6.6         2.1 virginica
+## 5          7.9         3.8          6.4         2.0 virginica
+## 6          7.3         2.9          6.3         1.8 virginica</code></pre>
+<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p>Arrange the columns in the <code>car_sales</code> data set according to <code>mileage</code> in descending order. Show the last few rows</p>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="data-manipulation.html#cb358-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb358-2"><a href="data-manipulation.html#cb358-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb358-3"><a href="data-manipulation.html#cb358-3" tabindex="-1"></a></span>
+<span id="cb358-4"><a href="data-manipulation.html#cb358-4" tabindex="-1"></a><span class="co"># Read the data into a data frame</span></span>
+<span id="cb358-5"><a href="data-manipulation.html#cb358-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb358-6"><a href="data-manipulation.html#cb358-6" tabindex="-1"></a></span>
+<span id="cb358-7"><a href="data-manipulation.html#cb358-7" tabindex="-1"></a><span class="co"># Order according to mileage in descending order</span></span>
+<span id="cb358-8"><a href="data-manipulation.html#cb358-8" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb358-9"><a href="data-manipulation.html#cb358-9" tabindex="-1"></a></span>
+<span id="cb358-10"><a href="data-manipulation.html#cb358-10" tabindex="-1"></a><span class="co"># Show the last few rows of the data set</span></span>
+<span id="cb358-11"><a href="data-manipulation.html#cb358-11" tabindex="-1"></a><span class="co"># CODE HERE</span></span></code></pre></div>
+</div>
+<div id="mutate" class="section level3 hasAnchor" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> mutate<a href="data-manipulation.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>mutate()</code> is a dplyr verb used to modifying the existing variables or creating new variables in a data set.
+In this case we can calculate the log off Sepal length in the iris data</p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="data-manipulation.html#cb359-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb359-2"><a href="data-manipulation.html#cb359-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb359-3"><a href="data-manipulation.html#cb359-3" tabindex="-1"></a></span>
+<span id="cb359-4"><a href="data-manipulation.html#cb359-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb359-5"><a href="data-manipulation.html#cb359-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb359-6"><a href="data-manipulation.html#cb359-6" tabindex="-1"></a></span>
+<span id="cb359-7"><a href="data-manipulation.html#cb359-7" tabindex="-1"></a><span class="co"># modify Sepal.Length</span></span>
+<span id="cb359-8"><a href="data-manipulation.html#cb359-8" tabindex="-1"></a>new_iris <span class="ot">=</span> <span class="fu">mutate</span>(iris, <span class="at">Sepal.Length=</span><span class="fu">log</span>(Sepal.Length))</span>
+<span id="cb359-9"><a href="data-manipulation.html#cb359-9" tabindex="-1"></a></span>
+<span id="cb359-10"><a href="data-manipulation.html#cb359-10" tabindex="-1"></a><span class="fu">head</span>(new_iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1     1.629241         3.5          1.4         0.2  setosa
+## 2     1.589235         3.0          1.4         0.2  setosa
+## 3     1.547563         3.2          1.3         0.2  setosa
+## 4     1.526056         3.1          1.5         0.2  setosa
+## 5     1.609438         3.6          1.4         0.2  setosa
+## 6     1.686399         3.9          1.7         0.4  setosa</code></pre>
+<p>Additionally, we can create an entirely new variable by <code>mutate()</code>. In this case we will find the ratio between petal length and petal width. The new variable will be called “Petal.Length.Width.Ratio”</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="data-manipulation.html#cb361-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb361-2"><a href="data-manipulation.html#cb361-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb361-3"><a href="data-manipulation.html#cb361-3" tabindex="-1"></a></span>
+<span id="cb361-4"><a href="data-manipulation.html#cb361-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb361-5"><a href="data-manipulation.html#cb361-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb361-6"><a href="data-manipulation.html#cb361-6" tabindex="-1"></a></span>
+<span id="cb361-7"><a href="data-manipulation.html#cb361-7" tabindex="-1"></a><span class="co"># Create a new column in the data set </span></span>
+<span id="cb361-8"><a href="data-manipulation.html#cb361-8" tabindex="-1"></a>new_iris <span class="ot">=</span> <span class="fu">mutate</span>(iris,</span>
+<span id="cb361-9"><a href="data-manipulation.html#cb361-9" tabindex="-1"></a>                  <span class="at">Petal.Length.Width.Ratio =</span> Petal.Length<span class="sc">/</span>Petal.Width)</span>
+<span id="cb361-10"><a href="data-manipulation.html#cb361-10" tabindex="-1"></a></span>
+<span id="cb361-11"><a href="data-manipulation.html#cb361-11" tabindex="-1"></a><span class="fu">head</span>(new_iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Petal.Length.Width.Ratio
+## 1                     7.00
+## 2                     7.00
+## 3                     6.50
+## 4                     7.50
+## 5                     7.00
+## 6                     4.25</code></pre>
+<p>The “Petal.Length.Width.Ratio” is found by dividing the Petal.Length and the Petal.Width variables.</p>
+<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p>Using the <code>car_sales</code> data set, create a new column, <code>"distance_covered_km"</code>, calculated from the <code>mileage</code>. Just multiply <code>mileage</code> with <code>1.609</code>. Show the first few rows of the mutated data frame.</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="data-manipulation.html#cb363-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb363-2"><a href="data-manipulation.html#cb363-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb363-3"><a href="data-manipulation.html#cb363-3" tabindex="-1"></a></span>
+<span id="cb363-4"><a href="data-manipulation.html#cb363-4" tabindex="-1"></a><span class="co"># Read the data set </span></span>
+<span id="cb363-5"><a href="data-manipulation.html#cb363-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb363-6"><a href="data-manipulation.html#cb363-6" tabindex="-1"></a></span>
+<span id="cb363-7"><a href="data-manipulation.html#cb363-7" tabindex="-1"></a><span class="co"># Create new column &quot;distance_covered_km</span></span>
+<span id="cb363-8"><a href="data-manipulation.html#cb363-8" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb363-9"><a href="data-manipulation.html#cb363-9" tabindex="-1"></a></span>
+<span id="cb363-10"><a href="data-manipulation.html#cb363-10" tabindex="-1"></a><span class="co"># Show first few rows </span></span>
+<span id="cb363-11"><a href="data-manipulation.html#cb363-11" tabindex="-1"></a><span class="co"># CODE HERE </span></span></code></pre></div>
+</div>
+<div id="group_by" class="section level3 hasAnchor" number="4.2.7">
+<h3><span class="header-section-number">4.2.7</span> group_by<a href="data-manipulation.html#group_by" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>group_by()</code> is a function used to group records in a data frame by one or more variables. It allows the analyst to create a group based on a certain criteria.</p>
+<p>Lets group the iris data based on the Species variable;</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="data-manipulation.html#cb364-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb364-2"><a href="data-manipulation.html#cb364-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb364-3"><a href="data-manipulation.html#cb364-3" tabindex="-1"></a></span>
+<span id="cb364-4"><a href="data-manipulation.html#cb364-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb364-5"><a href="data-manipulation.html#cb364-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb364-6"><a href="data-manipulation.html#cb364-6" tabindex="-1"></a></span>
+<span id="cb364-7"><a href="data-manipulation.html#cb364-7" tabindex="-1"></a><span class="co"># Group the iris based on their Species </span></span>
+<span id="cb364-8"><a href="data-manipulation.html#cb364-8" tabindex="-1"></a>iris_groups <span class="ot">=</span> <span class="fu">group_by</span>(iris, Species)</span>
+<span id="cb364-9"><a href="data-manipulation.html#cb364-9" tabindex="-1"></a><span class="fu">head</span>(iris_groups)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+## # Groups:   Species [1]
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+## 1          5.1         3.5          1.4         0.2 setosa 
+## 2          4.9         3            1.4         0.2 setosa 
+## 3          4.7         3.2          1.3         0.2 setosa 
+## 4          4.6         3.1          1.5         0.2 setosa 
+## 5          5           3.6          1.4         0.2 setosa 
+## 6          5.4         3.9          1.7         0.4 setosa</code></pre>
+<p>This groupings allow the analyst to retrieve insights at more base level and uncover more insights that could not have been possible when analyzing the entire data set</p>
+<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p>Use the <code>car_sales</code> data set provided before to work on this activity. Load the data and group the sales by <code>model</code> to get the sum of every quantitative feature/variable. Name the resultant data frame, <code>car_sales_by_model</code>. Display the resultant data frame.</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="data-manipulation.html#cb366-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb366-2"><a href="data-manipulation.html#cb366-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb366-3"><a href="data-manipulation.html#cb366-3" tabindex="-1"></a></span>
+<span id="cb366-4"><a href="data-manipulation.html#cb366-4" tabindex="-1"></a><span class="co"># Load the car sales data </span></span>
+<span id="cb366-5"><a href="data-manipulation.html#cb366-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb366-6"><a href="data-manipulation.html#cb366-6" tabindex="-1"></a></span>
+<span id="cb366-7"><a href="data-manipulation.html#cb366-7" tabindex="-1"></a><span class="co"># Group the sales by model</span></span>
+<span id="cb366-8"><a href="data-manipulation.html#cb366-8" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb366-9"><a href="data-manipulation.html#cb366-9" tabindex="-1"></a></span>
+<span id="cb366-10"><a href="data-manipulation.html#cb366-10" tabindex="-1"></a><span class="co"># Print out the dataframe </span></span>
+<span id="cb366-11"><a href="data-manipulation.html#cb366-11" tabindex="-1"></a><span class="co"># CODE HERE </span></span></code></pre></div>
+</div>
+<div id="summarise" class="section level3 hasAnchor" number="4.2.8">
+<h3><span class="header-section-number">4.2.8</span> Summarise<a href="data-manipulation.html#summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To calculate summary statistics such as average, median and maximum the <code>summarise()</code> is used. This function collapses mutilple rows into a summary row. For instance calculating the mean Petal width;</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="data-manipulation.html#cb367-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb367-2"><a href="data-manipulation.html#cb367-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb367-3"><a href="data-manipulation.html#cb367-3" tabindex="-1"></a></span>
+<span id="cb367-4"><a href="data-manipulation.html#cb367-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb367-5"><a href="data-manipulation.html#cb367-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb367-6"><a href="data-manipulation.html#cb367-6" tabindex="-1"></a></span>
+<span id="cb367-7"><a href="data-manipulation.html#cb367-7" tabindex="-1"></a><span class="co"># Calculate the mean petal width</span></span>
+<span id="cb367-8"><a href="data-manipulation.html#cb367-8" tabindex="-1"></a><span class="fu">summarise</span>(iris, </span>
+<span id="cb367-9"><a href="data-manipulation.html#cb367-9" tabindex="-1"></a>          <span class="at">mean_petal_width=</span><span class="fu">mean</span>(Petal.Width))</span></code></pre></div>
+<pre><code>##   mean_petal_width
+## 1         1.199333</code></pre>
+<p>To find the mean petal width for each iris species;
+- the iris data will be grouped by species
+- a mean value for each group will be calculated</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="data-manipulation.html#cb369-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
+<span id="cb369-2"><a href="data-manipulation.html#cb369-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb369-3"><a href="data-manipulation.html#cb369-3" tabindex="-1"></a></span>
+<span id="cb369-4"><a href="data-manipulation.html#cb369-4" tabindex="-1"></a><span class="co"># Load the iris data </span></span>
+<span id="cb369-5"><a href="data-manipulation.html#cb369-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb369-6"><a href="data-manipulation.html#cb369-6" tabindex="-1"></a></span>
+<span id="cb369-7"><a href="data-manipulation.html#cb369-7" tabindex="-1"></a><span class="co"># To find the mean petal width for each iris species;</span></span>
+<span id="cb369-8"><a href="data-manipulation.html#cb369-8" tabindex="-1"></a><span class="co"># - the iris data will be grouped by species</span></span>
+<span id="cb369-9"><a href="data-manipulation.html#cb369-9" tabindex="-1"></a><span class="co"># - a mean value for each group will be calculated</span></span>
+<span id="cb369-10"><a href="data-manipulation.html#cb369-10" tabindex="-1"></a>grouped_iris <span class="ot">=</span> <span class="fu">group_by</span>(iris, Species)</span>
+<span id="cb369-11"><a href="data-manipulation.html#cb369-11" tabindex="-1"></a>mean_petal_widths <span class="ot">=</span> <span class="fu">summarise</span>(grouped_iris, <span class="at">mean_value=</span><span class="fu">mean</span>(Petal.Width))</span>
+<span id="cb369-12"><a href="data-manipulation.html#cb369-12" tabindex="-1"></a>mean_petal_widths</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   Species    mean_value
+##   &lt;fct&gt;           &lt;dbl&gt;
+## 1 setosa          0.246
+## 2 versicolor      1.33 
+## 3 virginica       2.03</code></pre>
+<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p>You will be required to use the <code>car_sales</code> data set once again. Calculate the descriptive statistics using <code>summarise()</code> command.</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="data-manipulation.html#cb371-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
+<span id="cb371-2"><a href="data-manipulation.html#cb371-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb371-3"><a href="data-manipulation.html#cb371-3" tabindex="-1"></a></span>
+<span id="cb371-4"><a href="data-manipulation.html#cb371-4" tabindex="-1"></a><span class="co"># Load the car sales data </span></span>
+<span id="cb371-5"><a href="data-manipulation.html#cb371-5" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
+<span id="cb371-6"><a href="data-manipulation.html#cb371-6" tabindex="-1"></a></span>
+<span id="cb371-7"><a href="data-manipulation.html#cb371-7" tabindex="-1"></a><span class="co"># Calculate the summary statistics</span></span>
+<span id="cb371-8"><a href="data-manipulation.html#cb371-8" tabindex="-1"></a><span class="co"># CODE HERE</span></span></code></pre></div>
+</div>
+</div>
+<div id="chaining" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Chaining<a href="data-manipulation.html#chaining" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Chaining is the process of combining several operations together using the <code>%&gt;%</code> or forward pipe operator. The chained workflow succeeds each other until the whole process is done. To understand chaining, the mtcars(Motor Trend cars) data set will be used. Mtcars is also a well-known data set containing several attributes of 32 different cars from 1974. Here’s a brief explanation of the variables in the mtcars data set:</p>
+<ol style="list-style-type: decimal">
+<li><code>mpg</code>: Miles per gallon (fuel efficiency).</li>
+<li><code>cyl</code>: Number of cylinders.</li>
+<li><code>disp</code>: Displacement (cubic inches).</li>
+<li><code>hp</code>: Horsepower.</li>
+<li><code>drat</code>: Rear axle ratio.</li>
+<li><code>wt</code>: Weight (in 1000 lbs).</li>
+<li><code>qsec</code>: Quarter mile time (in seconds).</li>
+<li><code>vs</code>: Engine type (0 = V-shaped, 1 = Straight).</li>
+<li><code>am</code>: Transmission type (0 = Automatic, 1 = Manual).</li>
+<li><code>gear</code>: Number of forward gears.</li>
+<li><code>carb</code>: Number of carburetors.</li>
+</ol>
+<p>Lets start by loading the data into the program and view its first few records;</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="data-manipulation.html#cb372-1" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb372-2"><a href="data-manipulation.html#cb372-2" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>Lets <code>select</code> 6 most important columns in this analysis</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="data-manipulation.html#cb374-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb374-2"><a href="data-manipulation.html#cb374-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb374-3"><a href="data-manipulation.html#cb374-3" tabindex="-1"></a></span>
+<span id="cb374-4"><a href="data-manipulation.html#cb374-4" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb374-5"><a href="data-manipulation.html#cb374-5" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb374-6"><a href="data-manipulation.html#cb374-6" tabindex="-1"></a></span>
+<span id="cb374-7"><a href="data-manipulation.html#cb374-7" tabindex="-1"></a><span class="co"># Lets `select` 6 most important columns in this analysis</span></span>
+<span id="cb374-8"><a href="data-manipulation.html#cb374-8" tabindex="-1"></a>cars1 <span class="ot">=</span> mtcars <span class="sc">%&gt;%</span> <span class="fu">select</span>(mpg, cyl, disp, hp, qsec, am)</span>
+<span id="cb374-9"><a href="data-manipulation.html#cb374-9" tabindex="-1"></a></span>
+<span id="cb374-10"><a href="data-manipulation.html#cb374-10" tabindex="-1"></a><span class="fu">head</span>(cars1)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp  qsec am
+## Mazda RX4         21.0   6  160 110 16.46  1
+## Mazda RX4 Wag     21.0   6  160 110 17.02  1
+## Datsun 710        22.8   4  108  93 18.61  1
+## Hornet 4 Drive    21.4   6  258 110 19.44  0
+## Hornet Sportabout 18.7   8  360 175 17.02  0
+## Valiant           18.1   6  225 105 20.22  0</code></pre>
+<p>Lets now <code>filter</code> to find vehicles with an automatic transmission type. The <code>filter</code> verb will be chained to <code>select</code> verb with <code>%&gt;%</code>.</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="data-manipulation.html#cb376-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb376-2"><a href="data-manipulation.html#cb376-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb376-3"><a href="data-manipulation.html#cb376-3" tabindex="-1"></a></span>
+<span id="cb376-4"><a href="data-manipulation.html#cb376-4" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb376-5"><a href="data-manipulation.html#cb376-5" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb376-6"><a href="data-manipulation.html#cb376-6" tabindex="-1"></a></span>
+<span id="cb376-7"><a href="data-manipulation.html#cb376-7" tabindex="-1"></a><span class="co"># Selct and filter chained together</span></span>
+<span id="cb376-8"><a href="data-manipulation.html#cb376-8" tabindex="-1"></a>cars2 <span class="ot">=</span> mtcars <span class="sc">%&gt;%</span><span class="fu">select</span>(mpg, cyl, disp, hp, qsec, am) <span class="sc">%&gt;%</span></span>
+<span id="cb376-9"><a href="data-manipulation.html#cb376-9" tabindex="-1"></a>  <span class="fu">filter</span>(am<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb376-10"><a href="data-manipulation.html#cb376-10" tabindex="-1"></a><span class="fu">head</span>(cars2)</span></code></pre></div>
+<pre><code>##                    mpg cyl  disp  hp  qsec am
+## Hornet 4 Drive    21.4   6 258.0 110 19.44  0
+## Hornet Sportabout 18.7   8 360.0 175 17.02  0
+## Valiant           18.1   6 225.0 105 20.22  0
+## Duster 360        14.3   8 360.0 245 15.84  0
+## Merc 240D         24.4   4 146.7  62 20.00  0
+## Merc 230          22.8   4 140.8  95 22.90  0</code></pre>
+<p>All these vehicles are of automatic transmission type, lets rank them according to the horsepower in descending order.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="data-manipulation.html#cb378-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb378-2"><a href="data-manipulation.html#cb378-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb378-3"><a href="data-manipulation.html#cb378-3" tabindex="-1"></a></span>
+<span id="cb378-4"><a href="data-manipulation.html#cb378-4" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb378-5"><a href="data-manipulation.html#cb378-5" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb378-6"><a href="data-manipulation.html#cb378-6" tabindex="-1"></a></span>
+<span id="cb378-7"><a href="data-manipulation.html#cb378-7" tabindex="-1"></a><span class="co"># Select, filter and arrange chained together</span></span>
+<span id="cb378-8"><a href="data-manipulation.html#cb378-8" tabindex="-1"></a>cars3<span class="ot">=</span> mtcars <span class="sc">%&gt;%</span><span class="fu">select</span>(mpg, cyl, disp, hp, qsec, am, wt) <span class="sc">%&gt;%</span></span>
+<span id="cb378-9"><a href="data-manipulation.html#cb378-9" tabindex="-1"></a>  <span class="fu">filter</span>(am<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb378-10"><a href="data-manipulation.html#cb378-10" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(hp))</span>
+<span id="cb378-11"><a href="data-manipulation.html#cb378-11" tabindex="-1"></a></span>
+<span id="cb378-12"><a href="data-manipulation.html#cb378-12" tabindex="-1"></a><span class="fu">head</span>(cars3)</span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp  qsec am    wt
+## Duster 360          14.3   8 360.0 245 15.84  0 3.570
+## Camaro Z28          13.3   8 350.0 245 15.41  0 3.840
+## Chrysler Imperial   14.7   8 440.0 230 17.42  0 5.345
+## Lincoln Continental 10.4   8 460.0 215 17.82  0 5.424
+## Cadillac Fleetwood  10.4   8 472.0 205 17.98  0 5.250
+## Merc 450SE          16.4   8 275.8 180 17.40  0 4.070</code></pre>
+<p>A new column of weight in 1000kgs (wt_1000kgs) can be created by diving weight in 1000lbs by 2.20462. <code>mutate</code> verb will be chained also.</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="data-manipulation.html#cb380-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb380-2"><a href="data-manipulation.html#cb380-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb380-3"><a href="data-manipulation.html#cb380-3" tabindex="-1"></a></span>
+<span id="cb380-4"><a href="data-manipulation.html#cb380-4" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb380-5"><a href="data-manipulation.html#cb380-5" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb380-6"><a href="data-manipulation.html#cb380-6" tabindex="-1"></a></span>
+<span id="cb380-7"><a href="data-manipulation.html#cb380-7" tabindex="-1"></a><span class="co"># Multiple chains </span></span>
+<span id="cb380-8"><a href="data-manipulation.html#cb380-8" tabindex="-1"></a>cars4<span class="ot">=</span> mtcars <span class="sc">%&gt;%</span><span class="fu">select</span>(mpg, cyl, disp, hp, qsec, am, wt) <span class="sc">%&gt;%</span></span>
+<span id="cb380-9"><a href="data-manipulation.html#cb380-9" tabindex="-1"></a>  <span class="fu">filter</span>(am<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb380-10"><a href="data-manipulation.html#cb380-10" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(hp)) <span class="sc">%&gt;%</span></span>
+<span id="cb380-11"><a href="data-manipulation.html#cb380-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wt_1000kgs=</span>wt<span class="sc">/</span><span class="fl">2.20462</span>)</span>
+<span id="cb380-12"><a href="data-manipulation.html#cb380-12" tabindex="-1"></a></span>
+<span id="cb380-13"><a href="data-manipulation.html#cb380-13" tabindex="-1"></a><span class="fu">head</span>(cars4)</span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp  qsec am    wt wt_1000kgs
+## Duster 360          14.3   8 360.0 245 15.84  0 3.570   1.619327
+## Camaro Z28          13.3   8 350.0 245 15.41  0 3.840   1.741797
+## Chrysler Imperial   14.7   8 440.0 230 17.42  0 5.345   2.424454
+## Lincoln Continental 10.4   8 460.0 215 17.82  0 5.424   2.460288
+## Cadillac Fleetwood  10.4   8 472.0 205 17.98  0 5.250   2.381363
+## Merc 450SE          16.4   8 275.8 180 17.40  0 4.070   1.846123</code></pre>
+<p>The above process has explained how chained works in <code>dplyr</code>. Many functions/processed can be chained together to manipulate data to the desired output. The next section will apply chaining to biology and be used to answer a few questions that will cement your understanding in R as a biologist.</p>
+<div id="hands-on-exercises-1" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Hands-on Exercises<a href="data-manipulation.html#hands-on-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 </div>
 </div>
