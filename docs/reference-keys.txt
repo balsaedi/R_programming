@@ -57,5 +57,7 @@ present-findings
 statistical-analysis
 basic-statistical-concepts
 introduction-to-descriptive-statistics
+visualization-of-descriptive-statistics
 correlation-and-regression-analysis
+introduction-to-correlation
 advanced-statistical-methods

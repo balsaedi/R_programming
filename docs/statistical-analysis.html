@@ -218,8 +218,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#basic-statistical-concepts"><i class="fa fa-check"></i><b>7.1</b> Basic Statistical Concepts</a>
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Introduction to Descriptive Statistics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#visualization-of-descriptive-statistics"><i class="fa fa-check"></i><b>7.1.2</b> Visualization of Descriptive Statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+</ul></li>
 <li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -279,28 +283,89 @@ mean_age # is 32.14</code></pre>
 <div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="statistical-analysis.html#cb390-1" tabindex="-1"></a><span class="co"># Create vector ages</span></span>
 <span id="cb390-2"><a href="statistical-analysis.html#cb390-2" tabindex="-1"></a>ages <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">58</span>, <span class="dv">27</span>, <span class="dv">33</span>, <span class="dv">31</span>, <span class="dv">27</span>, <span class="dv">37</span>)</span>
 <span id="cb390-3"><a href="statistical-analysis.html#cb390-3" tabindex="-1"></a><span class="co"># Average/mean</span></span>
-<span id="cb390-4"><a href="statistical-analysis.html#cb390-4" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;MEAN&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;MEAN&quot;</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="statistical-analysis.html#cb392-1" tabindex="-1"></a><span class="fu">mean</span>(ages)</span></code></pre></div>
+<span id="cb390-4"><a href="statistical-analysis.html#cb390-4" tabindex="-1"></a><span class="fu">mean</span>(ages)</span></code></pre></div>
 <pre><code>## [1] 32.14286</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="statistical-analysis.html#cb394-1" tabindex="-1"></a><span class="co"># Median</span></span>
-<span id="cb394-2"><a href="statistical-analysis.html#cb394-2" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;MEDIAN&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;MEDIAN&quot;</code></pre>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="statistical-analysis.html#cb396-1" tabindex="-1"></a><span class="fu">median</span>(ages)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="statistical-analysis.html#cb392-1" tabindex="-1"></a><span class="co"># Median</span></span>
+<span id="cb392-2"><a href="statistical-analysis.html#cb392-2" tabindex="-1"></a><span class="fu">median</span>(ages)</span></code></pre></div>
 <pre><code>## [1] 31</code></pre>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="statistical-analysis.html#cb398-1" tabindex="-1"></a><span class="co"># Mode</span></span>
-<span id="cb398-2"><a href="statistical-analysis.html#cb398-2" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;MODE&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;MODE&quot;</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="statistical-analysis.html#cb400-1" tabindex="-1"></a><span class="fu">mode</span>(ages)</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="statistical-analysis.html#cb394-1" tabindex="-1"></a><span class="co"># Mode</span></span>
+<span id="cb394-2"><a href="statistical-analysis.html#cb394-2" tabindex="-1"></a><span class="fu">mode</span>(ages)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 <ul>
 <li><strong>Variance and Standard deviation</strong></li>
 </ul>
+<p>Variance is statistical measure of dispersion that defines how spread the data points are in a data set in relation to the mean of the data set. Standard deviation is the measure of how data is clustered around the mean. It is simply defined to as the square root of variance.</p>
+<p>Variance and standard deviation can be calculated in R environment using <code>var()</code> and <code>sd()</code> functions respectively.</p>
+<p>Lets create a vector of weights of the athletes in kilograms and calculate the variance and standard deviation.</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="statistical-analysis.html#cb396-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
+<span id="cb396-2"><a href="statistical-analysis.html#cb396-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
+<span id="cb396-3"><a href="statistical-analysis.html#cb396-3" tabindex="-1"></a></span>
+<span id="cb396-4"><a href="statistical-analysis.html#cb396-4" tabindex="-1"></a><span class="co"># Calculate variance</span></span>
+<span id="cb396-5"><a href="statistical-analysis.html#cb396-5" tabindex="-1"></a><span class="fu">var</span>(athlete_weights)</span></code></pre></div>
+<pre><code>## [1] 216.7111</code></pre>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="statistical-analysis.html#cb398-1" tabindex="-1"></a><span class="co"># Calculate standard deviation</span></span>
+<span id="cb398-2"><a href="statistical-analysis.html#cb398-2" tabindex="-1"></a><span class="fu">sd</span>(athlete_weights)</span></code></pre></div>
+<pre><code>## [1] 14.72111</code></pre>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<ul>
+<li><strong>Range and Interquartile Range</strong></li>
+</ul>
+<p><strong>Range</strong> is the difference between the maximum and minimum values in the data set. This defines the spread and dispersion of a data set.</p>
+<p>Below is the formula for Range:</p>
+<p><strong>Range</strong> <em>=</em> <strong>Maximum Value</strong> <em>-</em> <strong>Minimum Value</strong></p>
+<p>Lets use the weights vector above to calculate the range;</p>
+<p><code>weights</code> = <code>55, 76, 52, 68, 71, 63, 58, 52, 85, 96</code></p>
+<p><code>maximum_weight</code> = <code>96</code></p>
+<p><code>minimum_weight</code> = <code>52</code></p>
+<p><code>Range = maximum_weight - minimum_weight = 44</code></p>
+<p>Range is essential in data analysis as it gives a quick sense of variability in the data set, however it vulnerable to outliers since it gives importance to the maximum and minimum values even if they are extreme.</p>
+<p><strong>Interquartile Range(IQR)</strong> is the difference between the first quartile (Q1) and third quartile(Q3) value. First Quartile is the median of the lower half of the data while Thrid quartile is the median of the upper of the data set. Therefore</p>
+<p><strong>IQR</strong> <em>=</em> <strong>Q3</strong> <em>-</em> <strong>Q1</strong></p>
+<p>Lets calculate the IQR of the vector weights step by step;-</p>
+<ol style="list-style-type: lower-roman">
+<li>Define the data weights and arrange the data in ascending order.
+<code>weights = 52, 52, 55, 58, 63, 68, 71, 76, 85, 96</code>.</li>
+<li>Determine the first quartile (Q1). Select the lower half(first five values) of the data and find their median which is the first quartile (Q1)</li>
+</ol>
+<p><code>lower_half = 52, 52, 55, 58, 63</code></p>
+<p><code>Q1 = 55</code></p>
+<ol start="3" style="list-style-type: lower-roman">
+<li>Determine the third quartile (Q3). Select the upper half(last five values) and find their median which is the third quartile.</li>
+</ol>
+<p><code>upper_half = 68, 71, 76, 85, 96</code></p>
+<p><code>Q3 = 76</code></p>
+<ol start="4" style="list-style-type: lower-roman">
+<li>Calculate the Interquartile Range (IQR) by finding the difference between Q1 and Q3.</li>
+</ol>
+<p><code>IQR = Q3 - Q1 = 76 - 55 = 21</code></p>
+<p>The IQR for the weights data set is 21.</p>
+<p>Range and IQR can be calculated in R environment using the <code>range()</code> and <code>IQR()</code> function respectively. However function range returns the maximum and the minmum values in the dataset.</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="statistical-analysis.html#cb400-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
+<span id="cb400-2"><a href="statistical-analysis.html#cb400-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
+<span id="cb400-3"><a href="statistical-analysis.html#cb400-3" tabindex="-1"></a>                    </span>
+<span id="cb400-4"><a href="statistical-analysis.html#cb400-4" tabindex="-1"></a><span class="co"># RANGE </span></span>
+<span id="cb400-5"><a href="statistical-analysis.html#cb400-5" tabindex="-1"></a><span class="fu">range</span>(athlete_weights) <span class="co"># returns maximum and minimum values</span></span></code></pre></div>
+<pre><code>## [1] 52 96</code></pre>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="statistical-analysis.html#cb402-1" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(athlete_weights)) <span class="co"># calculate the range value</span></span></code></pre></div>
+<pre><code>## [1] 44</code></pre>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="statistical-analysis.html#cb404-1" tabindex="-1"></a><span class="co"># INTER QUARTILE RANGE (IQR)</span></span>
+<span id="cb404-2"><a href="statistical-analysis.html#cb404-2" tabindex="-1"></a><span class="fu">IQR</span>(athlete_weights)</span></code></pre></div>
+<pre><code>## [1] 19</code></pre>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+</div>
+<div id="visualization-of-descriptive-statistics" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Visualization of Descriptive Statistics<a href="statistical-analysis.html#visualization-of-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
 <div id="correlation-and-regression-analysis" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Correlation and Regression Analysis<a href="statistical-analysis.html#correlation-and-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-correlation" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Introduction to Correlation<a href="statistical-analysis.html#introduction-to-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Pearson and Spearman Correlation</strong></li>
+</ul>
+</div>
 </div>
 <div id="advanced-statistical-methods" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Advanced Statistical Methods<a href="statistical-analysis.html#advanced-statistical-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>

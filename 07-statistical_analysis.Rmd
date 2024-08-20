@@ -48,15 +48,12 @@ Mean, median and mode can also be calculated using Base R using the functions `m
 # Create vector ages
 ages = c(12, 58, 27, 33, 31, 27, 37)
 # Average/mean
-print("MEAN")
 mean(ages)
 
 # Median
-print("MEDIAN")
 median(ages)
 
 # Mode
-print("MODE")
 mode(ages)
 ```
 
@@ -64,7 +61,95 @@ mode(ages)
 
 - **Variance and Standard deviation**
 
+Variance is statistical measure of dispersion that defines how spread the data points are in a data set in relation to the mean of the data set. Standard deviation is the measure of how data is clustered around the mean. It is simply defined to as the square root of variance. 
+
+Variance and standard deviation can be calculated in R environment using `var()` and `sd()` functions respectively. 
+
+Lets create a vector of weights of the athletes in kilograms and calculate the variance and standard deviation.
+
+```{r}
+# Sample vector 
+athlete_weights = c(55, 76, 52, 68, 71, 63, 58, 52, 85, 96)
+
+# Calculate variance
+var(athlete_weights)
+
+# Calculate standard deviation
+sd(athlete_weights)
+```
+
+<-**Add a practical exercise**->
+
+- **Range and Interquartile Range**
+
+**Range** is the difference between the maximum and minimum values in the data set. This defines the spread and dispersion of a data set. 
+
+Below is the formula for Range:
+
+**Range** *=* **Maximum Value** *-* **Minimum Value**
+
+Lets use the weights vector above to calculate the range;
+
+`weights` = `55, 76, 52, 68, 71, 63, 58, 52, 85, 96`
+
+`maximum_weight` = `96`
+
+`minimum_weight` = `52`
+
+`Range = maximum_weight - minimum_weight = 44`
+
+Range is essential in data analysis as it gives a quick sense of variability in the data set, however it vulnerable to outliers since it gives importance to the maximum and minimum values even if they are extreme. 
+
+**Interquartile Range(IQR)** is the difference between the first quartile (Q1) and third quartile(Q3) value. First Quartile is the median of the lower half of the data while Thrid quartile is the median of the upper of the data set. Therefore 
+
+**IQR** *=* **Q3** *-* **Q1**
+
+Lets calculate the IQR of the vector weights step by step;- 
+
+i. Define the data weights and arrange the data in ascending order. 
+`weights = 52, 52, 55, 58, 63, 68, 71, 76, 85, 96`. 
+ii. Determine the first quartile (Q1). Select the lower half(first five values) of the data and find their median which is the first quartile (Q1)
+
+`lower_half = 52, 52, 55, 58, 63`
+
+`Q1 = 55`
+
+iii. Determine the third quartile (Q3). Select the upper half(last five values) and find their median which is the third quartile. 
+
+`upper_half = 68, 71, 76, 85, 96`
+
+`Q3 = 76`
+
+iv. Calculate the Interquartile Range (IQR) by finding the difference between Q1 and Q3. 
+
+`IQR = Q3 - Q1 = 76 - 55 = 21`
+
+The IQR for the weights data set is 21. 
+
+
+Range and IQR can be calculated in R environment using the `range()` and `IQR()` function respectively. However function range returns the maximum and the minmum values in the dataset. 
+
+```{r}
+# Sample vector 
+athlete_weights = c(55, 76, 52, 68, 71, 63, 58, 52, 85, 96)
+                    
+# RANGE 
+range(athlete_weights) # returns maximum and minimum values
+diff(range(athlete_weights)) # calculate the range value
+
+# INTER QUARTILE RANGE (IQR)
+IQR(athlete_weights)
+```
+
+<-**Add a practical exercise**->
+
+### Visualization of Descriptive Statistics
+
 
 ## Correlation and Regression Analysis
+### Introduction to Correlation 
+- **Pearson and Spearman Correlation**
+
+
 
 ## Advanced Statistical Methods
