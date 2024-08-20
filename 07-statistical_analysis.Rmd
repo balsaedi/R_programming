@@ -2,7 +2,68 @@
 ## Basic Statistical Concepts
 ### Introduction to Descriptive Statistics
 
-- **Mean, Median and Mode**
+- **Mean, Median and Mode**  
+
+**Mean** is the sum of all values divided by the number of values in the set. It also referred to as average. 
+<br> 
+**Median** is the middle value when values in a data set is ordered/lined up in ascending/descending order. 
+<br>
+**Mode** is the number that occurs most in the data set. Simply, the most frequent value in the data set. 
+
+All these, are measures of central tendency. Central tendency identifies the center or typical value of a data set. Measuring central tendency summarizes the data by identifying skewness, distribution and how the data is robust to outliers. Business calculate the central tendencies like average sales, median customer age to make informed decision-making. 
+
+
+Below is the formula to calculate mean. 
+
+![](images/mean_formula.png)
+
+where *xi* represents each value in the data set, and *n* is the number of values. Lets calculate mean of the vector `ages` with the values `12, 58, 27, 33, 31, 27, 37` manually with the steps below;
+```
+# Add the values together
+total_age = 12 + 58 + 27 + 33 + 31 + 27 + 37
+total_age # is 225
+
+number_of_values = 7 # there are 7 values 
+
+mean age = total_age/number_of_values
+mean_age # is 32.14
+```
+
+The average age is 32.14. 
+
+To calculate the median of the vector `ages`, the ages are arranged in descending/ascending order and the middle one is selected. In this case we will line them up in ascending order 
+
+```
+# Line the ages up in ascending order 
+12, 27, 27, 31, 33, 37, 58
+
+# There are 7 ages, the fourth one from either side is the median value
+# The median age is 31
+```
+
+To find mode, you just find the value that appears the most, for the values `12, 27, 27 , 31, 33, 37, 58`, age 27 appears twice while these other ages appear once. The value 27 is therefore the mode. 
+
+Mean, median and mode can also be calculated using Base R using the functions `mean()`, `median()` and `mode()` where the vector ages is the argument. 
+```{r}
+# Create vector ages
+ages = c(12, 58, 27, 33, 31, 27, 37)
+# Average/mean
+print("MEAN")
+mean(ages)
+
+# Median
+print("MEDIAN")
+median(ages)
+
+# Mode
+print("MODE")
+mode(ages)
+```
+
+<-**Add a practical exercise**->
+
+- **Variance and Standard deviation**
+
 
 ## Correlation and Regression Analysis
 

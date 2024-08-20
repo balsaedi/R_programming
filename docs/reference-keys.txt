@@ -55,6 +55,7 @@ choosing-a-data-set
 conducting-eda
 present-findings
 statistical-analysis
-basic-concepts
+basic-statistical-concepts
+introduction-to-descriptive-statistics
 correlation-and-regression-analysis
 advanced-statistical-methods
