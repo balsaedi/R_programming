@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-08-19" />
+<meta name="date" content="2024-08-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,7 +200,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a></li>
+<li class="chapter" data-level="5.1" data-path="data-visualization.html"><a href="data-visualization.html#basic-data-visualization"><i class="fa fa-check"></i><b>5.1</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
@@ -239,16 +242,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Data Manipulation<a href="data-manipulation.html#data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="basic-data-manipulation" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Basic Data Manipulation<a href="data-manipulation.html#basic-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sorting Data:</p>
-<ul>
-<li>Explanation of sorting data in R using order() and sort() functions.</li>
-<li>Demonstration of sorting data frames by one or more columns.</li>
-</ul>
-<p>Basic Data Cleaning Techniques:</p>
-<ul>
-<li>Overview of common data cleaning tasks (e.g., handling missing data, removing duplicates).</li>
-<li>Demonstration of how to detect and manage missing values using is.na() and na.omit() functions.</li>
-</ul>
 <div id="introduction-to-data-manipulation" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Introduction to Data Manipulation<a href="data-manipulation.html#introduction-to-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Data Manipulation is the adjusting, organizing and transforming of the raw data is not a more useful and suitable format for data analysis. These are some of the reasons that make data manipulation mandatory in the data analysis process;</p>
@@ -309,9 +302,9 @@ Data Manipulation ensures that the data that is fed into the system is timely, a
 ## 5           373450  8.0500              S
 ## 6           330877  8.4583              Q</code></pre>
 <ol style="list-style-type: decimal">
-<li><strong>Extract a row</strong>
-When subsetting to extract data for a single row the square brackets <code>[ ]</code> will be used with the position of the index you want to extract. Lets extract all the information of the 10th passenger.</li>
+<li><strong>Extract a row</strong></li>
 </ol>
+<p>When subsetting to extract data for a single row the square brackets <code>[ ]</code> will be used with the position of the index you want to extract. Lets extract all the information of the 10th passenger.</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-manipulation.html#cb261-1" tabindex="-1"></a>titanic[<span class="dv">10</span>, ] <span class="co"># note the comma after the index 10</span></span></code></pre></div>
 <pre><code>##    PassengerId Survived Pclass                                Name    Sex Age
 ## 10          10        1      2 Nasser, Mrs. Nicholas (Adele Achem) female  14
@@ -335,18 +328,18 @@ When subsetting to extract data for a single row the square brackets <code>[ ]</
 ## 9  347742 11.1333              S
 ## 10 237736 30.0708              C</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><strong>Extract a column</strong><br />
-When subsetting to extract data for a single column the square brackets <code>[ ]</code> will be used as before, with the position of the index or column name you want to extract. Lets extract all the information of the column <code>Name</code>.</li>
+<li><strong>Extract a column</strong></li>
 </ol>
+<p>When subsetting to extract data for a single column the square brackets <code>[ ]</code> will be used as before, with the position of the index or column name you want to extract. Lets extract all the information of the column <code>Name</code>.</p>
 <pre><code>titanic[, &quot;Name&quot;] # note the comma before &quot;Name&quot;</code></pre>
 <p><img src="images/dataset_images/titanic_names.png" /></p>
 <p>An index of the column can be used in place of the column name. For instance, the column, “PassengerId” is the first column therefore its index will be <code>1</code>. Lets subset the column by calling the index.</p>
 <pre><code>titanic[, 1] # note the comma before the column index</code></pre>
 <p><img src="images/dataset_images/titanic_passengers_id.png" /></p>
 <ol start="3" style="list-style-type: decimal">
-<li><strong>Extracting a single element</strong><br />
-A single element that has a defined position in a data frame, both the row index and the column name/index are called.</li>
+<li><strong>Extracting a single element</strong></li>
 </ol>
+<p>A single element that has a defined position in a data frame, both the row index and the column name/index are called.</p>
 <pre><code>dataframe[row_index, column index/name]</code></pre>
 <p>Lets extract the age of the Name of the fifth passenger.</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-manipulation.html#cb268-1" tabindex="-1"></a>titanic[<span class="dv">5</span>, <span class="st">&quot;Name&quot;</span>]</span></code></pre></div>
@@ -357,9 +350,9 @@ A single element that has a defined position in a data frame, both the row index
 <p>Subsetting a data set can be done by <strong>filtering</strong> data based on logical conditions to extract rows that meet certain criteria. They involve comparisons operators such as <code>&gt;, &lt;, ==, !=</code> or logical operators like <code>&amp;</code>(and), <code>|</code>(or), <code>!</code> (not).</p>
 <p>In this titanic data set we:-</p>
 <ol style="list-style-type: decimal">
-<li><strong>Filter based on a single condition</strong>
-Lets find the passengers who survived on the titanic.</li>
+<li><strong>Filter based on a single condition</strong></li>
 </ol>
+<p>Lets find the passengers who survived on the titanic.</p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-manipulation.html#cb272-1" tabindex="-1"></a>survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Survived <span class="sc">==</span> <span class="dv">1</span>, ]</span>
 <span id="cb272-2"><a href="data-manipulation.html#cb272-2" tabindex="-1"></a><span class="fu">head</span>(survivors) <span class="co"># view the first few rows of survivors</span></span></code></pre></div>
 <pre><code>##    PassengerId Survived Pclass
@@ -410,9 +403,9 @@ Lets find the passengers who survived on the titanic.</li>
 ## 28    19950 263.0000 C23 C25 C27        S</code></pre>
 <p>The above examples, the extracted data set met a single condition.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><strong>Filtering based on Multiple Conditions</strong>
-Data can be subsetted by filtering based on more than one condition. To demonstrate this, lets find the female passengers who survived. Here there are two conditions;-</li>
+<li><strong>Filtering based on Multiple Conditions</strong></li>
 </ol>
+<p>Data can be subsetted by filtering based on more than one condition. To demonstrate this, lets find the female passengers who survived. Here there are two conditions;-</p>
 <ul>
 <li>the passenger must be a female,</li>
 <li>the passenger must have survived.</li>
@@ -463,9 +456,9 @@ Data can be subsetted by filtering based on more than one condition. To demonstr
 ## NA.1    NA    NA    &lt;NA&gt;      NA  &lt;NA&gt;     &lt;NA&gt;
 ## NA.2    NA    NA    &lt;NA&gt;      NA  &lt;NA&gt;     &lt;NA&gt;</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><strong>Filtering using Negation</strong><br />
-The <code>!=</code> sign a logical operator that is used to negate a condition. Lets use it to find the passengers who did not survive.</li>
+<li><strong>Filtering using Negation</strong></li>
 </ol>
+<p>The <code>!=</code> sign a logical operator that is used to negate a condition. Lets use it to find the passengers who did not survive.</p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="data-manipulation.html#cb280-1" tabindex="-1"></a>non_survivors <span class="ot">&lt;-</span> titanic[titanic<span class="sc">$</span>Survived <span class="sc">!=</span> <span class="dv">1</span>, ]</span>
 <span id="cb280-2"><a href="data-manipulation.html#cb280-2" tabindex="-1"></a><span class="fu">tail</span>(non_survivors) <span class="co"># view the last few records </span></span></code></pre></div>
 <pre><code>##     PassengerId Survived Pclass                                     Name    Sex
@@ -630,10 +623,10 @@ The <code>!=</code> sign a logical operator that is used to negate a condition. 
 <p><strong>Data Cleaning</strong> is the process of fixing, removing incorrect, incomplete or otherwise problematic data from a data set. This is a crucial step in data analysis as it leads to more reliable analyses and insights.</p>
 <p>Here some data cleaning techniques used;</p>
 <ol style="list-style-type: decimal">
-<li><strong>Handling Missing Data</strong><br />
-The null values are identified by <code>is.na()</code> function. If there exists null values, they are removed by <code>na.omit()</code> function. The null values can also be replaced by appropriate substitutes such as the mean, median, zero value or a placeholder, this is referred to as imputation.<br />
-Lets create a vector <code>myvector</code> will null values, identify the null values, remove/impute them.</li>
+<li><strong>Handling Missing Data</strong></li>
 </ol>
+<p>The null values are identified by <code>is.na()</code> function. If there exists null values, they are removed by <code>na.omit()</code> function. The null values can also be replaced by appropriate substitutes such as the mean, median, zero value or a placeholder, this is referred to as imputation.<br />
+Lets create a vector <code>myvector</code> will null values, identify the null values, remove/impute them.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="data-manipulation.html#cb306-1" tabindex="-1"></a><span class="co"># Create a vector that has missing values</span></span>
 <span id="cb306-2"><a href="data-manipulation.html#cb306-2" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">43</span>, <span class="cn">NA</span>, <span class="dv">32</span>, <span class="dv">65</span>, <span class="dv">11</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">34</span>, <span class="dv">98</span>, <span class="dv">57</span>) <span class="co"># NA is the missing value</span></span>
 <span id="cb306-3"><a href="data-manipulation.html#cb306-3" tabindex="-1"></a></span>
@@ -657,9 +650,9 @@ Lets create a vector <code>myvector</code> will null values, identify the null v
 <pre><code>##  [1] 12 43 44 32 65 11 44 44 34 98 57</code></pre>
 <p>&lt;- <strong>Add more ways to remove null values</strong> -&gt; <a href="https://sparkbyexamples.com/r-programming/remove-na-from-vector-in-r/#" class="uri">https://sparkbyexamples.com/r-programming/remove-na-from-vector-in-r/#</a>:~:text=In%20R%2C%20NA%20denotes%20’Missing,NA%20values%20from%20a%20vector.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><strong>Removing Duplicates</strong>
-In a raw data set there may exist some duplicated entries/records/rows that will give false results in data analysis thereby leading to poor insights and decision-making. The duplicates are identified by <code>duplicated()</code> function. If there exists any duplicates, they are removed by subsetting or calling <code>unique()</code> function.</li>
+<li><strong>Removing Duplicates</strong></li>
 </ol>
+<p>In a raw data set there may exist some duplicated entries/records/rows that will give false results in data analysis thereby leading to poor insights and decision-making. The duplicates are identified by <code>duplicated()</code> function. If there exists any duplicates, they are removed by subsetting or calling <code>unique()</code> function.</p>
 <p>Lets create a data frame with duplicate values and remove them</p>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="data-manipulation.html#cb314-1" tabindex="-1"></a><span class="co"># Creating a simple data frame</span></span>
 <span id="cb314-2"><a href="data-manipulation.html#cb314-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
@@ -699,14 +692,14 @@ In a raw data set there may exist some duplicated entries/records/rows that will
 ## 4        4   David  40    NA
 ## 5        5     Eva  29    92</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><strong>Handling Outliers</strong>
-Outliers are extreme values that differ from most other data points in a data set. hey can be detected by identifying the upper bound and lower bound using boxplots. They are removed by;</li>
+<li><strong>Handling Outliers</strong></li>
 </ol>
+<p>Outliers are extreme values that differ from most other data points in a data set. hey can be detected by identifying the upper bound and lower bound using boxplots. They are removed by;</p>
 <pre><code>clean_data &lt;- raw_data[raw_data$column &lt; upper_bound &amp; raw_data$column &gt; lower_bound, ]</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><strong>Standardizing Data</strong><br />
-There are numerous ways that data can be standardized such ensuring a consistent date format across the data set and correcting case.</li>
+<li><strong>Standardizing Data</strong></li>
 </ol>
+<p>There are numerous ways that data can be standardized such ensuring a consistent date format across the data set and correcting case.</p>
 <p>Lets create a vector with different date formats and make it consistent</p>
 <div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="data-manipulation.html#cb323-1" tabindex="-1"></a><span class="co"># Creating a vector with different date formats</span></span>
 <span id="cb323-2"><a href="data-manipulation.html#cb323-2" tabindex="-1"></a>date_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2023-08-01&quot;</span>, <span class="st">&quot;01/08/2023&quot;</span>, <span class="st">&quot;August 1, 2023&quot;</span>, <span class="st">&quot;20230801&quot;</span>, <span class="st">&quot;08-01-2023&quot;</span>)</span>

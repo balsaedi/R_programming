@@ -1,16 +1,5 @@
 # Data Manipulation
 ## Basic Data Manipulation 
-Sorting Data:
-
-- Explanation of sorting data in R using order() and sort() functions.
-- Demonstration of sorting data frames by one or more columns.
-
-Basic Data Cleaning Techniques:
-
-- Overview of common data cleaning tasks (e.g., handling missing data, removing duplicates).
-- Demonstration of how to detect and manage missing values using is.na() and na.omit() functions.
-
-
 ### Introduction to Data Manipulation
 Data Manipulation is the adjusting, organizing and transforming of the raw data is not a more useful and suitable format for data analysis. These are some of the reasons that make data manipulation mandatory in the data analysis process; 
 
@@ -61,7 +50,8 @@ titanic <- titanic_train
 head(titanic) # view the first few rows of the titanic data set
 ```
 
-1. **Extract a row**
+1. **Extract a row**  
+
 When subsetting to extract data for a single row the square brackets `[ ]` will be used with the position of the index you want to extract. Lets extract all the information of the 10th passenger.
 ```{r}
 titanic[10, ] # note the comma after the index 10
@@ -70,7 +60,8 @@ Also, more indices can be subsetted in the format `[i:j, ]` where the `i` is the
 ```{r}
 titanic[7:10, ]
 ```
-2. **Extract a column**  
+2. **Extract a column** 
+
 When subsetting to extract data for a single column the square brackets `[ ]` will be used as before, with the position of the index or column name you want to extract. Lets extract all the information of the column `Name`.
 ```
 titanic[, "Name"] # note the comma before "Name"
@@ -84,6 +75,7 @@ titanic[, 1] # note the comma before the column index
 ![](images/dataset_images/titanic_passengers_id.png)
 
 3. **Extracting a single element**  
+
 A single element that has a defined position in a data frame, both the row index and the column name/index are called. 
 ```
 dataframe[row_index, column index/name]
@@ -105,6 +97,8 @@ Subsetting a data set can be done by **filtering** data based on logical conditi
 In this titanic data set we:-
 
 1. **Filter based on a single condition**
+
+
 Lets find the passengers who survived on the titanic.
 ```{r}
 survivors <- titanic[titanic$Survived == 1, ]
@@ -120,6 +114,8 @@ head(first_class_passengers)
 The above examples, the extracted data set met a single condition. 
 
 2. **Filtering based on Multiple Conditions**
+
+
 Data can be subsetted by filtering based on more than one condition. To demonstrate this, lets find the female passengers who survived. Here there are two conditions;-
 
 - the passenger must be a female,
@@ -141,6 +137,7 @@ head(minor_female_survivors)
 ```
 
 3. **Filtering using Negation**  
+
 The `!=` sign a logical operator that is used to negate a condition. Lets use it to find the passengers who did not survive. 
 ```{r}
 non_survivors <- titanic[titanic$Survived != 1, ]
@@ -257,6 +254,7 @@ head(titanic_sorted_by_class_and_age)
 Here some data cleaning techniques used; 
 
 1. **Handling Missing Data**  
+
 The null values are identified by `is.na()` function. If there exists null values, they are removed by `na.omit()` function. The null values can also be replaced by appropriate substitutes  such as the mean, median, zero value or a placeholder, this is referred to as imputation.  
 Lets create a vector `myvector` will null values, identify the null values, remove/impute them. 
 ```{r}
@@ -281,6 +279,7 @@ my_vector
 <- **Add more ways to remove null values** -> https://sparkbyexamples.com/r-programming/remove-na-from-vector-in-r/#:~:text=In%20R%2C%20NA%20denotes%20'Missing,NA%20values%20from%20a%20vector.
 
 2. **Removing Duplicates**
+
 In a raw data set there may exist some duplicated entries/records/rows that will give false results in data analysis thereby leading to poor insights and decision-making. The duplicates are identified by `duplicated()` function. If there exists any duplicates, they are removed by subsetting or calling  `unique()` function.  
 
 Lets create a data frame with duplicate values and remove them 
@@ -311,12 +310,14 @@ clean_data2
 ```
 
 3. **Handling Outliers**
+
 Outliers are extreme values that differ from most other data points in a data set. hey can be detected by identifying the upper bound and lower bound using boxplots. They are removed by;
 ```
 clean_data <- raw_data[raw_data$column < upper_bound & raw_data$column > lower_bound, ]
 ```
 
-4. **Standardizing Data**  
+4. **Standardizing Data**
+
 There are numerous ways that data can be standardized such ensuring a consistent date format across the data set and correcting case. 
 
 Lets create a vector with different date formats and make it consistent
@@ -470,8 +471,8 @@ You will be required to use the `car_sales` data set from https://raw.githubuser
 library(dplyr)
 
 # Read the data 
-data_link = "https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv"
-car_sales = read.csv(data_link)
+data_path = "data/car_sales.csv"
+car_sales = read.csv(data_path)
 
 # select the required columns 
 selected_cars_df = select(car_sales, 
@@ -548,8 +549,8 @@ With the `car_sales` data set that you used above, use `filter()` function to ge
 library(dplyr)
 
 # Read the data 
-data_link = "https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv"
-car_sales = read.csv(data_link)
+data_path = "data/car_sales.csv"
+car_sales = read.csv(data_path)
 
 # Filter to find cars sold from 2008
 latest_car_sales = filter(car_sales, 
@@ -624,8 +625,8 @@ Arrange the columns in the `car_sales` data set according to `mileage` in descen
 library(dplyr)
 
 # Read the data into a data frame
-data_link = "https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv"
-car_sales = read.csv(data_link)
+data_path = "data/car_sales.csv"
+car_sales = read.csv(data_path)
 
 # Order according to mileage in descending order
 mileage_order = arrange(car_sales, 
@@ -692,8 +693,8 @@ Using the `car_sales` data set, create a new column, `"distance_covered_km"`, ca
 library(dplyr)
 
 # Read the data set 
-data_link = "https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv"
-car_sales = read.csv(data_link)
+data_path = "data/car_sales.csv"
+car_sales = read.csv(data_path)
 
 # Create new column "distance_covered_km
 mutated_car_sales = mutate(car_sales,
@@ -744,8 +745,8 @@ Use the `car_sales` data set provided before to work on this activity. Load the 
 library(dplyr)
 
 # Load the car sales data 
-data_link = "https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv"
-car_sales = read.csv(data_link)
+data_path = "data/car_sales.csv"
+car_sales = read.csv(data_path)
 
 # Group the sales by model
 car_sales_by_model = group_by(car_sales, model)
@@ -807,8 +808,8 @@ You will be required to use the `car_sales` data set once again. Calculate the d
 library(dplyr)
 
 # Load the car sales data 
-data_link = "https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv"
-car_sales = read.csv(data_link)
+data_path = "data/car_sales.csv"
+car_sales = read.csv(data_path)
 
 # Calculate the summary statistics
 summarise(car_sales)

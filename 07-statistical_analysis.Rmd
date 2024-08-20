@@ -1,5 +1,8 @@
 # Statistical Analysis
-## Basic Concepts
+## Basic Statistical Concepts
+### Introduction to Descriptive Statistics
+
+- **Mean, Median and Mode**
 
 ## Correlation and Regression Analysis
 

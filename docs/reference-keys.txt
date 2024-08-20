@@ -45,6 +45,8 @@ chaining
 hands-on-exercises-1
 data-visualization
 basic-data-visualization
+introduction-to-ggplot2
+creating-basic-plots
 advanced-data-visualization
 explanatory-data-analysis
 introduction-to-eda
