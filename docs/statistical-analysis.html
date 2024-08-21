@@ -223,6 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#correlation-and-regression-analysis"><i class="fa fa-check"></i><b>7.2</b> Correlation and Regression Analysis</a>
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a></li>
 </ul></li>
@@ -349,7 +350,7 @@ mean_age # is 32.14</code></pre>
 <pre><code>## [1] 52 96</code></pre>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="statistical-analysis.html#cb402-1" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(athlete_weights)) <span class="co"># calculate the range value</span></span></code></pre></div>
 <pre><code>## [1] 44</code></pre>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="statistical-analysis.html#cb404-1" tabindex="-1"></a><span class="co"># INTER QUARTILE RANGE (IQR)</span></span>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="statistical-analysis.html#cb404-1" tabindex="-1"></a><span class="co"># INTER QUARTILE RANGE (IQR)http://127.0.0.1:38237/rmd_output/1/basic-data-types-and-structures.html</span></span>
 <span id="cb404-2"><a href="statistical-analysis.html#cb404-2" tabindex="-1"></a><span class="fu">IQR</span>(athlete_weights)</span></code></pre></div>
 <pre><code>## [1] 19</code></pre>
 <p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
@@ -364,6 +365,34 @@ mean_age # is 32.14</code></pre>
 <h3><span class="header-section-number">7.2.1</span> Introduction to Correlation<a href="statistical-analysis.html#introduction-to-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><strong>Pearson and Spearman Correlation</strong></li>
+</ul>
+<p>Correlation is the relationship between two variables. It can also defined to as the statistic measure to the degree to which two variables move in relation to each other.</p>
+<p>There are two types of correlation in statistics;- pearson and spearman correlations. They differ in their calculation methods, assumptions and type of relationships they are suited for.</p>
+<p>Pearson correlation measures the linear relationship between two variables with the assumptions that there is a linear relationship between the variables and the data is normally distributed. Contrarily, Spearman correlation measures the monotonic relationship(whether there is a consistent positive or negative change ) between two variables. The data to be analyzed, don’t need to be normally distributed, it can be ordinal with the variables having a non-linear relationship.</p>
+<p>Lets take two variables, <code>X</code> and <code>Y</code>, Pearson correlation is calculated by dividing the covariance of <code>X</code> and <code>Y</code> with their product of standard deviation. Below is its formula;</p>
+<p><img src="images/pearson_formula.png" /></p>
+<p><code>r</code> is the pearson correlation and it can range from -1 to +1.</p>
+<p>Spearman correlation is calculated by ranking data points, then applying Pearson correlation formula. Below is the formula of spearman correlation;</p>
+<p><img src="images/spearman_formula.png" /></p>
+<p>where;</p>
+<ul>
+<li><code>d</code> is the difference between the ranks of corresponding variables</li>
+<li><code>n</code> is the number of observations</li>
+<li><code>r</code> is the pearson correlation</li>
+</ul>
+<p>Spearman correlation is insensitive with outliers because it uses ranks other than outliers.</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<ul>
+<li><strong>Visualizing Correlation</strong></li>
+</ul>
+<p>Demonstration of scatter plots to visualize the relationship between two variables.</p>
+<p>Introduction to correlation heatmaps using ggcorrplot or corrplot.</p>
+<p>Practical exercise: Create scatter plots and correlation heatmaps for a dataset.</p>
+</div>
+<div id="introduction-to-regression-analysis" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Introduction to Regression Analysis<a href="statistical-analysis.html#introduction-to-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Simple Linear Regression</strong></li>
 </ul>
 </div>
 </div>

@@ -137,7 +137,7 @@ athlete_weights = c(55, 76, 52, 68, 71, 63, 58, 52, 85, 96)
 range(athlete_weights) # returns maximum and minimum values
 diff(range(athlete_weights)) # calculate the range value
 
-# INTER QUARTILE RANGE (IQR)
+# INTER QUARTILE RANGE (IQR)http://127.0.0.1:38237/rmd_output/1/basic-data-types-and-structures.html
 IQR(athlete_weights)
 ```
 
@@ -149,6 +149,43 @@ IQR(athlete_weights)
 ## Correlation and Regression Analysis
 ### Introduction to Correlation 
 - **Pearson and Spearman Correlation**
+
+Correlation is the relationship between two variables. It can also defined to as the statistic measure to the degree to which two variables move in relation to each other. 
+
+There are two types of correlation in statistics;- pearson and spearman correlations. They differ in their calculation methods, assumptions and type of relationships they are suited for. 
+
+Pearson correlation measures the linear relationship between two variables with the assumptions that there is a linear relationship between the variables and the data is normally distributed. Contrarily, Spearman correlation measures the monotonic relationship(whether there is a consistent positive or negative change ) between two variables. The data to be analyzed, don't need to be normally distributed, it can be ordinal with the variables having a non-linear relationship. 
+
+Lets take two variables, `X` and `Y`, Pearson correlation is calculated by dividing the covariance of `X` and `Y` with their product of standard deviation. Below is its formula;
+
+![](images/pearson_formula.png)
+
+`r` is the pearson correlation and it can range from -1 to +1. 
+
+Spearman correlation is calculated by ranking data points, then applying Pearson correlation formula. Below is the formula of spearman correlation;
+
+![](images/spearman_formula.png)
+
+where; 
+
+  * `d` is the difference between the ranks of corresponding variables
+  * `n` is the number of observations
+  * `r` is the pearson correlation
+  
+Spearman correlation is insensitive with outliers because it uses ranks other than outliers. 
+
+<-**Add a practical exercise**->
+
+- **Visualizing Correlation**
+
+Demonstration of scatter plots to visualize the relationship between two variables.
+
+Introduction to correlation heatmaps using ggcorrplot or corrplot.
+
+Practical exercise: Create scatter plots and correlation heatmaps for a dataset.
+
+### Introduction to Regression Analysis
+- **Simple Linear Regression**
 
 
 

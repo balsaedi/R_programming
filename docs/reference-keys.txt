@@ -60,4 +60,5 @@ introduction-to-descriptive-statistics
 visualization-of-descriptive-statistics
 correlation-and-regression-analysis
 introduction-to-correlation
+introduction-to-regression-analysis
 advanced-statistical-methods
