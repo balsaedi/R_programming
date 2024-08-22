@@ -225,7 +225,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-correlation"><i class="fa fa-check"></i><b>7.2.1</b> Introduction to Correlation</a></li>
 <li class="chapter" data-level="7.2.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-regression-analysis"><i class="fa fa-check"></i><b>7.2.2</b> Introduction to Regression Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#advanced-statistical-methods"><i class="fa fa-check"></i><b>7.3</b> Advanced Statistical Methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -447,12 +450,93 @@ mean_age # is 32.14</code></pre>
 ## Residual standard error: 1.219e-14 on 3 degrees of freedom
 ## Multiple R-squared:      1,  Adjusted R-squared:      1 
 ## F-statistic: 1.683e+30 on 1 and 3 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Coefficients, the intercept represent the value <code>c</code> in the equation. The R- Squared value indicates how well the independent variable explains the dependent variable. The closer the R-square value to 1 the better the fit.</p>
+<p>Coefficients, the value <code>B</code> and <code>c</code> represent the intercept and the <strong>gradient(slope)</strong> in the equation. The <strong>R- Squared</strong> value indicates how well the independent variable explains the dependent variable. The closer the R-square value to 1 the better the fit. Finally, the <strong>p-value</strong> is associated with the gradient and tells the statistician whether the relationship between the variables is statistically significant.</p>
+<p>&lt;–<strong>Add a practical exercise</strong>-&gt;</p>
+<ul>
+<li><strong>Multiple Linear Regression</strong></li>
+</ul>
+<p>Unlike simple linear regression, multiple linear regression describes the linear relationship between two or more independent variables with one target(dependent) variable. The objective of multiple linear regression is to;-</p>
+<ol style="list-style-type: lower-roman">
+<li>Find the strength of the relationship between two or more independent variables with the target variables.</li>
+<li>Find the value of the target variable at a certain value of the independent variable.</li>
+</ol>
+<p>When working on a multiple linear regression it is assumed that; the <strong>variance is homogeneous</strong> such that the prediction error does not change significantly across the predictor(independent) variables. It is also assumed, <strong>observations were independent</strong> and there was no hidden relationships among the variables when collecting the data. Additionally, the collected data follows <strong>a normal distribution</strong> and the independent variables have <strong>a linear relationship(linearity)</strong> with the dependent variable, therefore, the line of best fit through the data points is straight and not curved.</p>
+<p>Multiple linear regression is modeled by;-</p>
+<p><img src="images/multiple_linear_regression.png" /></p>
+<p>where;-</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(y\)</span> is the predicted value of the target variable.</li>
+<li><span class="math inline">\(\beta_0\)</span> is the y-intercept. Value of y when all other parameters are zero.</li>
+<li><span class="math inline">\(\beta_1X_1\)</span>: <span class="math inline">\(\beta_1\)</span> is the regression coefficient of the first independent variable while <span class="math inline">\(X_1\)</span> is the independent variable value.
+<span class="math inline">\(\cdots\)</span> do the same for however the number of independent variables are present.</li>
+<li><span class="math inline">\(\beta_nX_n\)</span>: the regression coefficient of the last independent variable.</li>
+<li><span class="math inline">\(\epsilon\)</span> is the model error(variation not explained by the independent variables)</li>
+</ol>
+<p>The Multiple linear regression model calculates three things to find the best fit line for each independent variable;-</p>
+<ol style="list-style-type: lower-roman">
+<li>The regression coefficient <span class="math inline">\(\beta_iX_i\)</span> that will minimize the overall error rate(model error).</li>
+<li>The associated p-value. If the relationship between the independent variable is statistically significant.</li>
+<li>The t-statistic of the model. T-statistic is the ratio of the difference in a number’s estimated value from its assumed value to its standard error.</li>
+</ol>
+<p>Lets create a multiple linear regression from a hypothetical data using base R.</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="statistical-analysis.html#cb412-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb412-2"><a href="statistical-analysis.html#cb412-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable 1 (x1)</span></span>
+<span id="cb412-3"><a href="statistical-analysis.html#cb412-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)          <span class="co"># Independent variable 2 (x2)</span></span>
+<span id="cb412-4"><a href="statistical-analysis.html#cb412-4" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb412-5"><a href="statistical-analysis.html#cb412-5" tabindex="-1"></a></span>
+<span id="cb412-6"><a href="statistical-analysis.html#cb412-6" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb412-7"><a href="statistical-analysis.html#cb412-7" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, age, weight)</span>
+<span id="cb412-8"><a href="statistical-analysis.html#cb412-8" tabindex="-1"></a>data</span></code></pre></div>
+<pre><code>##   height age weight
+## 1    150  25     65
+## 2    160  30     70
+## 3    170  35     75
+## 4    180  40     80
+## 5    190  45     85</code></pre>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="statistical-analysis.html#cb414-1" tabindex="-1"></a><span class="co"># Fit the linear model with multiple predictors</span></span>
+<span id="cb414-2"><a href="statistical-analysis.html#cb414-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
+<span id="cb414-3"><a href="statistical-analysis.html#cb414-3" tabindex="-1"></a></span>
+<span id="cb414-4"><a href="statistical-analysis.html#cb414-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb414-5"><a href="statistical-analysis.html#cb414-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## Warning in summary.lm(model): essentially perfect fit: summary may be
+## unreliable</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ height + age, data = data)
+## 
+## Residuals:
+##          1          2          3          4          5 
+##  1.335e-14 -1.367e-14 -6.097e-15 -1.891e-16  6.607e-15 
+## 
+## Coefficients: (1 not defined because of singularities)
+##               Estimate Std. Error    t value Pr(&gt;|t|)    
+## (Intercept) -1.000e+01  6.575e-14 -1.521e+14   &lt;2e-16 ***
+## height       5.000e-01  3.854e-16  1.297e+15   &lt;2e-16 ***
+## age                 NA         NA         NA       NA    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.219e-14 on 3 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 1.683e+30 on 1 and 3 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>&lt;-<strong>Interpret the results</strong>-&gt;</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<ul>
+<li><strong>Hands-on Exercises</strong></li>
+</ul>
+<p>Participants conduct correlation analysis and fit regression models on provided datasets.</p>
+<p>Interpretation and discussion of the statistical models and their implications.</p>
 </div>
 </div>
 <div id="advanced-statistical-methods" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Advanced Statistical Methods<a href="statistical-analysis.html#advanced-statistical-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-hypothesis-testing" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Introduction to Hypothesis Testing<a href="statistical-analysis.html#introduction-to-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Concept of Hypothesis Testing</strong></li>
+</ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -515,6 +599,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

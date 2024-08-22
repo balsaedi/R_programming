@@ -62,3 +62,4 @@ correlation-and-regression-analysis
 introduction-to-correlation
 introduction-to-regression-analysis
 advanced-statistical-methods
+introduction-to-hypothesis-testing
