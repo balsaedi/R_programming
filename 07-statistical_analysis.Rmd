@@ -185,8 +185,48 @@ Introduction to correlation heatmaps using ggcorrplot or corrplot.
 Practical exercise: Create scatter plots and correlation heatmaps for a dataset.
 
 ### Introduction to Regression Analysis
+Regression is a statistical method used to measure the strength and relationship of a target(dependent) with one or more independent variables. Correlation is very vital in determining regression. Linear regression is the most technique of regression, there are some more advanced forms of regression. 
+
 - **Simple Linear Regression**
 
+This type of regression is used to estimate the relation of one independent variable with the target variable. For instance the relationship between age and height of children. relationship between weight and BMI of athletes, relationship between rainfall and soil erosion. 
+
+When creating a simple linear regression model, a line is fitted a line to the observed data. 
+
+Simple linear regression is modeled by this equation; 
+
+```
+y = c + BX + e
+```
+Where;-
+
+i. `y` is the target variable
+ii. `X` is the independent variable
+iii. `B` is the slope.gradient(change in `y` for one-unit change in `X`) 
+iv. `c` is the y-intercept(Value of target variable when independent variable is zero)
+v. `e` is the error/noise. variation in `y` but not as a resultant explained by `X`
+
+The goal of simple of linear regression it to have the best fitting line that with the equation `y = BX + c`. Base R has a method of fitting a linear regression and finding the best fit line using `lm()` function. `lm()` stands for "linear model". 
+
+Lets create a simple linear regression model to a hypothetical data set where height of athletes is predicted based on weight. 
+
+```{r}
+# Create a sample dataset
+height <- c(150, 160, 170, 180, 190)  # Independent variable (x)
+weight <- c(65, 70, 75, 80, 85)       # Dependent variable (y)
+
+# Combine into a data frame
+data <- data.frame(height, weight)
+print(data)
+
+# Fit the linear model
+lin_reg <- lm(weight ~ height, data = data)
+
+# View the summary of the model
+summary(lin_reg)
+```
+
+Coefficients, the intercept represent the value `c` in the equation. The R- Squared value indicates how well the independent variable explains the dependent variable. The closer the R-square value to 1 the better the fit. 
 
 
 ## Advanced Statistical Methods

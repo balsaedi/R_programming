@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-08-20" />
+<meta name="date" content="2024-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -391,9 +391,63 @@ mean_age # is 32.14</code></pre>
 </div>
 <div id="introduction-to-regression-analysis" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Introduction to Regression Analysis<a href="statistical-analysis.html#introduction-to-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Regression is a statistical method used to measure the strength and relationship of a target(dependent) with one or more independent variables. Correlation is very vital in determining regression. Linear regression is the most technique of regression, there are some more advanced forms of regression.</p>
 <ul>
 <li><strong>Simple Linear Regression</strong></li>
 </ul>
+<p>This type of regression is used to estimate the relation of one independent variable with the target variable. For instance the relationship between age and height of children. relationship between weight and BMI of athletes, relationship between rainfall and soil erosion.</p>
+<p>When creating a simple linear regression model, a line is fitted a line to the observed data.</p>
+<p>Simple linear regression is modeled by this equation;</p>
+<pre><code>y = c + BX + e</code></pre>
+<p>Where;-</p>
+<ol style="list-style-type: lower-roman">
+<li><code>y</code> is the target variable</li>
+<li><code>X</code> is the independent variable</li>
+<li><code>B</code> is the slope.gradient(change in <code>y</code> for one-unit change in <code>X</code>)</li>
+<li><code>c</code> is the y-intercept(Value of target variable when independent variable is zero)</li>
+<li><code>e</code> is the error/noise. variation in <code>y</code> but not as a resultant explained by <code>X</code></li>
+</ol>
+<p>The goal of simple of linear regression it to have the best fitting line that with the equation <code>y = BX + c</code>. Base R has a method of fitting a linear regression and finding the best fit line using <code>lm()</code> function. <code>lm()</code> stands for “linear model”.</p>
+<p>Lets create a simple linear regression model to a hypothetical data set where height of athletes is predicted based on weight.</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="statistical-analysis.html#cb407-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb407-2"><a href="statistical-analysis.html#cb407-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable (x)</span></span>
+<span id="cb407-3"><a href="statistical-analysis.html#cb407-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb407-4"><a href="statistical-analysis.html#cb407-4" tabindex="-1"></a></span>
+<span id="cb407-5"><a href="statistical-analysis.html#cb407-5" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb407-6"><a href="statistical-analysis.html#cb407-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, weight)</span>
+<span id="cb407-7"><a href="statistical-analysis.html#cb407-7" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
+<pre><code>##   height weight
+## 1    150     65
+## 2    160     70
+## 3    170     75
+## 4    180     80
+## 5    190     85</code></pre>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="statistical-analysis.html#cb409-1" tabindex="-1"></a><span class="co"># Fit the linear model</span></span>
+<span id="cb409-2"><a href="statistical-analysis.html#cb409-2" tabindex="-1"></a>lin_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> data)</span>
+<span id="cb409-3"><a href="statistical-analysis.html#cb409-3" tabindex="-1"></a></span>
+<span id="cb409-4"><a href="statistical-analysis.html#cb409-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb409-5"><a href="statistical-analysis.html#cb409-5" tabindex="-1"></a><span class="fu">summary</span>(lin_reg)</span></code></pre></div>
+<pre><code>## Warning in summary.lm(lin_reg): essentially perfect fit: summary may be
+## unreliable</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ height, data = data)
+## 
+## Residuals:
+##          1          2          3          4          5 
+##  1.335e-14 -1.367e-14 -6.097e-15 -1.891e-16  6.607e-15 
+## 
+## Coefficients:
+##               Estimate Std. Error    t value Pr(&gt;|t|)    
+## (Intercept) -1.000e+01  6.575e-14 -1.521e+14   &lt;2e-16 ***
+## height       5.000e-01  3.854e-16  1.297e+15   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.219e-14 on 3 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 1.683e+30 on 1 and 3 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Coefficients, the intercept represent the value <code>c</code> in the equation. The R- Squared value indicates how well the independent variable explains the dependent variable. The closer the R-square value to 1 the better the fit.</p>
 </div>
 </div>
 <div id="advanced-statistical-methods" class="section level2 hasAnchor" number="7.3">
