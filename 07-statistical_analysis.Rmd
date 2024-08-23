@@ -106,9 +106,9 @@ Range is essential in data analysis as it gives a quick sense of variability in 
 
 Lets calculate the IQR of the vector weights step by step;- 
 
-i. Define the data weights and arrange the data in ascending order. 
+  i. Define the data weights and arrange the data in ascending order. 
 `weights = 52, 52, 55, 58, 63, 68, 71, 76, 85, 96`. 
-ii. Determine the first quartile (Q1). Select the lower half(first five values) of the data and find their median which is the first quartile (Q1)
+  ii. Determine the first quartile (Q1). Select the lower half(first five values) of the data and find their median which is the first quartile (Q1)
 
 `lower_half = 52, 52, 55, 58, 63`
 
@@ -200,11 +200,11 @@ y = c + BX + e
 ```
 Where;-
 
-i. `y` is the target variable
-ii. `X` is the independent variable
-iii. `B` is the slope.gradient(change in `y` for one-unit change in `X`) 
-iv. `c` is the y-intercept(Value of target variable when independent variable is zero)
-v. `e` is the error/noise. variation in `y` but not as a resultant explained by `X`
+  i. `y` is the target variable
+  ii. `X` is the independent variable
+  iii. `B` is the slope.gradient(change in `y` for one-unit change in `X`) 
+  iv. `c` is the y-intercept(Value of target variable when independent variable is zero)
+  v. `e` is the error/noise. variation in `y` but not as a resultant explained by `X`
 
 The goal of simple of linear regression it to have the best fitting line that with the equation `y = BX + c`. Base R has a method of fitting a linear regression and finding the best fit line using `lm()` function. `lm()` stands for "linear model". 
 
@@ -234,8 +234,8 @@ Coefficients, the value `B` and `c` represent the intercept and the **gradient(s
 
 Unlike simple linear regression, multiple linear regression describes the linear relationship between two or more independent variables with one target(dependent) variable. The objective of multiple linear regression is to;-
 
-i. Find the strength of the relationship between two or more independent variables with the target variables. 
-ii. Find the value of the target variable at a certain value of the independent variable. 
+  i. Find the strength of the relationship between two or more independent variables with the target variables. 
+  ii. Find the value of the target variable at a certain value of the independent variable. 
 
 When working on a multiple linear regression it is assumed that; the **variance is homogeneous** such that the prediction error does not change significantly across the predictor(independent) variables. It is also assumed, **observations were independent** and there was no hidden relationships among the variables when collecting the data. Additionally, the collected data follows **a normal distribution** and the independent variables have **a linear relationship(linearity)** with the dependent variable, therefore, the line of best fit through the data points is straight and not curved. 
 
@@ -245,12 +245,12 @@ Multiple linear regression is modeled by;-
 
 where;-
 
-i. $y$ is the predicted value of the target variable. 
-ii. $\beta_0$ is the y-intercept. Value of y when all other parameters are zero. 
-iii. $\beta_1X_1$: $\beta_1$ is the regression coefficient of the first independent variable while $X_1$ is the independent variable value. 
+  i. $y$ is the predicted value of the target variable. 
+  ii. $\beta_0$ is the y-intercept. Value of y when all other parameters are zero. 
+  iii. $\beta_1X_1$: $\beta_1$ is the regression coefficient of the first independent variable while $X_1$ is the independent variable value. 
 $\cdots$ do the same for however the number of independent variables are present. 
-iv. $\beta_nX_n$: the regression coefficient of the last independent variable. 
-v. $\epsilon$ is the model error(variation not explained by the independent variables)
+  iv. $\beta_nX_n$: the regression coefficient of the last independent variable. 
+  v. $\epsilon$ is the model error(variation not explained by the independent variables)
 
 The Multiple linear regression model calculates three things to find the best fit line for each independent variable;-
 
@@ -291,6 +291,28 @@ Interpretation and discussion of the statistical models and their implications.
 ## Advanced Statistical Methods
 ### Introduction to Hypothesis Testing
 - **Concept of Hypothesis Testing**
+
+Hypothesis testing is a type of statistical analysis that is used to make assumptions of a population based on a sample of data. It is particularly used to find the relationship between two variables(populations). A real life example of hypothesis testing is that a teacher may assume that 60% of the students come from a middle-class family. There are two types of hypothesis; 
+
+  - Null hypothesis($H_0$)
+  - Alternate hypothesis ($H_1$ or $H_a$)
+  
+**Null hypothesis** is states that there is no effect or no difference($\mu = 0$). For instance there is no effect of standards of living to college admissions. **Alternate hypothesis** is the opposite and contradicts the null hypothesis. It provide evidence for what the statistician is trying to find($\mu \neq 0$). In this case, the standards of living have an effect on college admissions.
+
+The important aspects before conducting hypothesis testing are;-
+
+  - *Significance level.* It is the probability of rejecting the null hypothesis when it is actually true. 
+  - *P-Value* is the probability of obtaining a test statistic at least as extreme as the one observed, given the null hypothesis is true. Most hypothesis testing projects are set at 0.05. Less than 0.05(or the set value) indicates the null the test is statistically significant and the null hypothesis should be rejected. Otherwise, the test is statistically insignificant and the null hypothesis is not rejected. 
+  - **
+
+Now that you are familiar with the hypothesis testing aspects, take the following steps to perform hypothesis testing;- 
+
+  i. Formulating the hypothesis by defining the null and alternate hypothesis.
+  ii. Collect and analyze the data. 
+  iii. Choose a significant level($a$) and calculate the p-value. 
+  iv. Make a decision by comparing the p-value to the significant level.
+  v. Conclude your analysis results. 
+  
 
 
 
