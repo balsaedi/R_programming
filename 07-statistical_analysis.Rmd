@@ -303,7 +303,8 @@ The important aspects before conducting hypothesis testing are;-
 
   - *Significance level.* It is the probability of rejecting the null hypothesis when it is actually true. 
   - *P-Value* is the probability of obtaining a test statistic at least as extreme as the one observed, given the null hypothesis is true. Most hypothesis testing projects are set at 0.05. Less than 0.05(or the set value) indicates the null the test is statistically significant and the null hypothesis should be rejected. Otherwise, the test is statistically insignificant and the null hypothesis is not rejected. 
-  - **
+  - *Test statistic* also called T-statistic is a standardized value calcluated during a hypothesis test. It cab z-test or a t-test.
+  -*Decision rule* is based on the calculated p-value and the significant level. In a hypothesis test where the significant and the p-value is 0.03444 the null hypothesis is not rejected. 
 
 Now that you are familiar with the hypothesis testing aspects, take the following steps to perform hypothesis testing;- 
 
@@ -313,6 +314,20 @@ Now that you are familiar with the hypothesis testing aspects, take the followin
   iv. Make a decision by comparing the p-value to the significant level.
   v. Conclude your analysis results. 
   
+- **T-tests**
+  - *One-Sample t-test*
+  
+  
+  -*Two-Sample t-test*
 
 
 
+
+
+
+# Datasets 
+- tweets Dataset from the rtweet Package
+- "Credit Card Fraud" dataset ifrom R package  creditcard
+- The "Groceries" from the R package  comes  arules
+- "pima" from MASS package
+- airquality (find the package)

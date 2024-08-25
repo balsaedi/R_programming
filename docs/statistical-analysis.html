@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-08-23" />
+<meta name="date" content="2024-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="explanatory-data-analysis.html"/>
-
+<link rel="next" href="datasets.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -230,6 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>8</b> Datasets</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -545,7 +546,8 @@ mean_age # is 32.14</code></pre>
 <ul>
 <li><em>Significance level.</em> It is the probability of rejecting the null hypothesis when it is actually true.</li>
 <li><em>P-Value</em> is the probability of obtaining a test statistic at least as extreme as the one observed, given the null hypothesis is true. Most hypothesis testing projects are set at 0.05. Less than 0.05(or the set value) indicates the null the test is statistically significant and the null hypothesis should be rejected. Otherwise, the test is statistically insignificant and the null hypothesis is not rejected.</li>
-<li>**</li>
+<li><em>Test statistic</em> also called T-statistic is a standardized value calcluated during a hypothesis test. It cab z-test or a t-test.
+-<em>Decision rule</em> is based on the calculated p-value and the significant level. In a hypothesis test where the significant and the p-value is 0.03444 the null hypothesis is not rejected.</li>
 </ul>
 <p>Now that you are familiar with the hypothesis testing aspects, take the following steps to perform hypothesis testing;-</p>
 <ol style="list-style-type: lower-roman">
@@ -555,7 +557,13 @@ mean_age # is 32.14</code></pre>
 <li>Make a decision by comparing the p-value to the significant level.</li>
 <li>Conclude your analysis results.</li>
 </ol>
-
+<ul>
+<li><strong>T-tests</strong>
+<ul>
+<li><em>One-Sample t-test</em></li>
+</ul>
+-<em>Two-Sample t-test</em></li>
+</ul>
 </div>
 </div>
 </div>
@@ -564,8 +572,8 @@ mean_age # is 32.14</code></pre>
           </div>
         </div>
       </div>
-<a href="explanatory-data-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="explanatory-data-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datasets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
