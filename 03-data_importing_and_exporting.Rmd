@@ -1,6 +1,21 @@
 # Data Importing and Exporting 
+## Introduction to Data Importing 
+Explanation of different data formats (e.g., CSV, Excel, JSON).
+Overview of R functions for reading data (read.csv(), read_excel(), read.table(), etc.).
 
+Loading data in R can be very stressful since every file format has a function to import the data. However, it can be very simple when wel explained. Here are some of the most commonly used data file formats R and their importation;-
 
+- Comma Separated Value(CSV - .csv) files imported by `read.csv("filepath")` function
+- Excel(.xlsx) files loaded by `read_excel("filepath")` function`
+- XML(.xml) imported by `read.xml("filepath")` function` 
+- Javascript Object Notation (JSON) by  `read.json("filepath")``
+
+There are more data files with different formats that can be used in R, their importation will be explained later in the course. 
+
+## Demonstration of Data Importing
+- **Importing a CSV file in R**
+
+There are different formats to import a csv file in R. We will use the `read.csv()` and `read.delim()` which are functions from the baseR. 
 
 
 

@@ -25,6 +25,8 @@ matrix
 mathematical-operations-in-a-matrix
 data-frame
 data-importing-and-exporting
+introduction-to-data-importing
+demonstration-of-data-importing
 data-manipulation
 basic-data-manipulation
 introduction-to-data-manipulation
