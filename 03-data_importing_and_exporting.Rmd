@@ -17,8 +17,64 @@ There are more data files with different formats that can be used in R, their im
 
 There are different formats to import a csv file in R. We will use the `read.csv()` and `read.delim()` which are functions from the baseR. 
 
+Reading a csv file using `read.csv()` function. 
+```{r}
+# read the csv file to the data frame 
+df <- read.csv('data/hotel_bookings_clean.csv')
+head(df) # show first few rows 
+```
 
+Now, lets read the same csv file with `read.delim()` function. Remember to add "," as the separator. `sep=","`. 
+```{r}
+# Read the csv file 
+df <- read.delim("data/hotel_bookings_clean.csv", sep = ",")
+head(df) # show the first few rows
+```
+Lets also read the csv file using the `read.table()` function(note the `sep=","` argument);
+```{r}
+df <- read.table("data/hotel_bookings_clean.csv", sep = ",")
+head(df)
+```
 
+The `read_csv()` function is one more way to read a csv file. This function comes from the `readr` package that is installed by;
+```
+install.packages("readr")
+```
 
+and imported by;
+```{r}
+library(readr)
+```
 
+Lets read a csv file using the `read_csv()`(note the '_' instead of a '.') from the `readr` library. 
+```{r}
+df <- read_csv("data/hotel_bookings_clean.csv", show_col_types = FALSE)
+head(df)
+```
 
+`read.csv()`, `read.delim()`, `read.table()` and `read_csv()` are the functions used to read CSV files in R. 
+
+- **Importing Excel file in R**
+
+In this section we will read the HR employee data for descriptive and inferential analytics. We will use the `read_excel` from the `readxl` package. It can be imported by;
+```{r}
+library(readxl)
+```
+
+Let's load the excel data into R data frame. 
+```{r}
+df <- read_excel("data/HR_Employee_Data.xlsx")
+head(df)
+```
+
+If they are multiple worksheets in the excel, the read_excel has an argument `sheet` for sheet number(By default, sheet 1 is loaded. Lets load the first sheet. 
+```{r}
+df_sheet1 <- read_excel("data/HR_Employee_Data.xlsx", sheet=1)
+head(df_sheet1)
+```
+
+A detail documentation of the `read_excel()` function can be found [here](https://www.rdocumentation.org/packages/readxl/versions/1.4.1/topics/read_excel)
+
+<- **Add more methods**->
+
+## Introduction to Data Exporting

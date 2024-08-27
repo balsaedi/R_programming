@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-08-26" />
+<meta name="date" content="2024-08-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -175,6 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
 <li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
@@ -275,6 +276,436 @@ Overview of R functions for reading data (read.csv(), read_excel(), read.table()
 <li><strong>Importing a CSV file in R</strong></li>
 </ul>
 <p>There are different formats to import a csv file in R. We will use the <code>read.csv()</code> and <code>read.delim()</code> which are functions from the baseR.</p>
+<p>Reading a csv file using <code>read.csv()</code> function.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="data-importing-and-exporting.html#cb257-1" tabindex="-1"></a><span class="co"># read the csv file to the data frame </span></span>
+<span id="cb257-2"><a href="data-importing-and-exporting.html#cb257-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/hotel_bookings_clean.csv&#39;</span>)</span>
+<span id="cb257-3"><a href="data-importing-and-exporting.html#cb257-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show first few rows </span></span></code></pre></div>
+<pre><code>##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
+## 1           0       342                       27                         1
+## 2           0       737                       27                         1
+## 3           0         7                       27                         1
+## 4           0        13                       27                         1
+## 5           0        14                       27                         1
+## 6           0        14                       27                         1
+##   arrival_date_month stays_in_weekend_nights stays_in_week_nights adults
+## 1                  7                       0                    0      2
+## 2                  7                       0                    0      2
+## 3                  7                       0                    1      1
+## 4                  7                       0                    1      1
+## 5                  7                       0                    2      2
+## 6                  7                       0                    2      2
+##   children babies is_repeated_guest previous_cancellations
+## 1        0      0                 0                      0
+## 2        0      0                 0                      0
+## 3        0      0                 0                      0
+## 4        0      0                 0                      0
+## 5        0      0                 0                      0
+## 6        0      0                 0                      0
+##   previous_bookings_not_canceled required_car_parking_spaces
+## 1                              0                           0
+## 2                              0                           0
+## 3                              0                           0
+## 4                              0                           0
+## 5                              0                           0
+## 6                              0                           0
+##   total_of_special_requests avg_daily_rate booked_by_company booked_by_agent
+## 1                         0              0                 0               0
+## 2                         0              0                 0               0
+## 3                         0             75                 0               0
+## 4                         0             75                 0               1
+## 5                         1             98                 0               1
+## 6                         1             98                 0               1
+##   hotel_City hotel_Resort meal_BB meal_FB meal_HB meal_No_meal
+## 1          0            1       1       0       0            0
+## 2          0            1       1       0       0            0
+## 3          0            1       1       0       0            0
+## 4          0            1       1       0       0            0
+## 5          0            1       1       0       0            0
+## 6          0            1       1       0       0            0
+##   market_segment_Aviation market_segment_Complementary market_segment_Corporate
+## 1                       0                            0                        0
+## 2                       0                            0                        0
+## 3                       0                            0                        0
+## 4                       0                            0                        1
+## 5                       0                            0                        0
+## 6                       0                            0                        0
+##   market_segment_Direct market_segment_Groups market_segment_Offline_TA_TO
+## 1                     1                     0                            0
+## 2                     1                     0                            0
+## 3                     1                     0                            0
+## 4                     0                     0                            0
+## 5                     0                     0                            0
+## 6                     0                     0                            0
+##   market_segment_Online_TA market_segment_Undefined
+## 1                        0                        0
+## 2                        0                        0
+## 3                        0                        0
+## 4                        0                        0
+## 5                        1                        0
+## 6                        1                        0
+##   distribution_channel_Corporate distribution_channel_Direct
+## 1                              0                           1
+## 2                              0                           1
+## 3                              0                           1
+## 4                              1                           0
+## 5                              0                           0
+## 6                              0                           0
+##   distribution_channel_GDS distribution_channel_TA_TO
+## 1                        0                          0
+## 2                        0                          0
+## 3                        0                          0
+## 4                        0                          0
+## 5                        0                          1
+## 6                        0                          1
+##   distribution_channel_Undefined reserved_room_type_A reserved_room_type_B
+## 1                              0                    0                    0
+## 2                              0                    0                    0
+## 3                              0                    1                    0
+## 4                              0                    1                    0
+## 5                              0                    1                    0
+## 6                              0                    1                    0
+##   reserved_room_type_C reserved_room_type_D reserved_room_type_E
+## 1                    1                    0                    0
+## 2                    1                    0                    0
+## 3                    0                    0                    0
+## 4                    0                    0                    0
+## 5                    0                    0                    0
+## 6                    0                    0                    0
+##   reserved_room_type_F reserved_room_type_G reserved_room_type_H
+## 1                    0                    0                    0
+## 2                    0                    0                    0
+## 3                    0                    0                    0
+## 4                    0                    0                    0
+## 5                    0                    0                    0
+## 6                    0                    0                    0
+##   reserved_room_type_L deposit_type_No_Deposit deposit_type_Non_Refund
+## 1                    0                       1                       0
+## 2                    0                       1                       0
+## 3                    0                       1                       0
+## 4                    0                       1                       0
+## 5                    0                       1                       0
+## 6                    0                       1                       0
+##   deposit_type_Refundable customer_type_Contract customer_type_Group
+## 1                       0                      0                   0
+## 2                       0                      0                   0
+## 3                       0                      0                   0
+## 4                       0                      0                   0
+## 5                       0                      0                   0
+## 6                       0                      0                   0
+##   customer_type_Transient customer_type_Transient.Party
+## 1                       1                             0
+## 2                       1                             0
+## 3                       1                             0
+## 4                       1                             0
+## 5                       1                             0
+## 6                       1                             0</code></pre>
+<p>Now, lets read the same csv file with <code>read.delim()</code> function. Remember to add “,” as the separator. <code>sep=","</code>.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-importing-and-exporting.html#cb259-1" tabindex="-1"></a><span class="co"># Read the csv file </span></span>
+<span id="cb259-2"><a href="data-importing-and-exporting.html#cb259-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb259-3"><a href="data-importing-and-exporting.html#cb259-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show the first few rows</span></span></code></pre></div>
+<pre><code>##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
+## 1           0       342                       27                         1
+## 2           0       737                       27                         1
+## 3           0         7                       27                         1
+## 4           0        13                       27                         1
+## 5           0        14                       27                         1
+## 6           0        14                       27                         1
+##   arrival_date_month stays_in_weekend_nights stays_in_week_nights adults
+## 1                  7                       0                    0      2
+## 2                  7                       0                    0      2
+## 3                  7                       0                    1      1
+## 4                  7                       0                    1      1
+## 5                  7                       0                    2      2
+## 6                  7                       0                    2      2
+##   children babies is_repeated_guest previous_cancellations
+## 1        0      0                 0                      0
+## 2        0      0                 0                      0
+## 3        0      0                 0                      0
+## 4        0      0                 0                      0
+## 5        0      0                 0                      0
+## 6        0      0                 0                      0
+##   previous_bookings_not_canceled required_car_parking_spaces
+## 1                              0                           0
+## 2                              0                           0
+## 3                              0                           0
+## 4                              0                           0
+## 5                              0                           0
+## 6                              0                           0
+##   total_of_special_requests avg_daily_rate booked_by_company booked_by_agent
+## 1                         0              0                 0               0
+## 2                         0              0                 0               0
+## 3                         0             75                 0               0
+## 4                         0             75                 0               1
+## 5                         1             98                 0               1
+## 6                         1             98                 0               1
+##   hotel_City hotel_Resort meal_BB meal_FB meal_HB meal_No_meal
+## 1          0            1       1       0       0            0
+## 2          0            1       1       0       0            0
+## 3          0            1       1       0       0            0
+## 4          0            1       1       0       0            0
+## 5          0            1       1       0       0            0
+## 6          0            1       1       0       0            0
+##   market_segment_Aviation market_segment_Complementary market_segment_Corporate
+## 1                       0                            0                        0
+## 2                       0                            0                        0
+## 3                       0                            0                        0
+## 4                       0                            0                        1
+## 5                       0                            0                        0
+## 6                       0                            0                        0
+##   market_segment_Direct market_segment_Groups market_segment_Offline_TA_TO
+## 1                     1                     0                            0
+## 2                     1                     0                            0
+## 3                     1                     0                            0
+## 4                     0                     0                            0
+## 5                     0                     0                            0
+## 6                     0                     0                            0
+##   market_segment_Online_TA market_segment_Undefined
+## 1                        0                        0
+## 2                        0                        0
+## 3                        0                        0
+## 4                        0                        0
+## 5                        1                        0
+## 6                        1                        0
+##   distribution_channel_Corporate distribution_channel_Direct
+## 1                              0                           1
+## 2                              0                           1
+## 3                              0                           1
+## 4                              1                           0
+## 5                              0                           0
+## 6                              0                           0
+##   distribution_channel_GDS distribution_channel_TA_TO
+## 1                        0                          0
+## 2                        0                          0
+## 3                        0                          0
+## 4                        0                          0
+## 5                        0                          1
+## 6                        0                          1
+##   distribution_channel_Undefined reserved_room_type_A reserved_room_type_B
+## 1                              0                    0                    0
+## 2                              0                    0                    0
+## 3                              0                    1                    0
+## 4                              0                    1                    0
+## 5                              0                    1                    0
+## 6                              0                    1                    0
+##   reserved_room_type_C reserved_room_type_D reserved_room_type_E
+## 1                    1                    0                    0
+## 2                    1                    0                    0
+## 3                    0                    0                    0
+## 4                    0                    0                    0
+## 5                    0                    0                    0
+## 6                    0                    0                    0
+##   reserved_room_type_F reserved_room_type_G reserved_room_type_H
+## 1                    0                    0                    0
+## 2                    0                    0                    0
+## 3                    0                    0                    0
+## 4                    0                    0                    0
+## 5                    0                    0                    0
+## 6                    0                    0                    0
+##   reserved_room_type_L deposit_type_No_Deposit deposit_type_Non_Refund
+## 1                    0                       1                       0
+## 2                    0                       1                       0
+## 3                    0                       1                       0
+## 4                    0                       1                       0
+## 5                    0                       1                       0
+## 6                    0                       1                       0
+##   deposit_type_Refundable customer_type_Contract customer_type_Group
+## 1                       0                      0                   0
+## 2                       0                      0                   0
+## 3                       0                      0                   0
+## 4                       0                      0                   0
+## 5                       0                      0                   0
+## 6                       0                      0                   0
+##   customer_type_Transient customer_type_Transient.Party
+## 1                       1                             0
+## 2                       1                             0
+## 3                       1                             0
+## 4                       1                             0
+## 5                       1                             0
+## 6                       1                             0</code></pre>
+<p>Lets also read the csv file using the <code>read.table()</code> function(note the <code>sep=","</code> argument);</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-importing-and-exporting.html#cb261-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb261-2"><a href="data-importing-and-exporting.html#cb261-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##            V1        V2                       V3                        V4
+## 1 is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
+## 2           0       342                       27                         1
+## 3           0       737                       27                         1
+## 4           0         7                       27                         1
+## 5           0        13                       27                         1
+## 6           0        14                       27                         1
+##                   V5                      V6                   V7     V8
+## 1 arrival_date_month stays_in_weekend_nights stays_in_week_nights adults
+## 2                  7                       0                    0      2
+## 3                  7                       0                    0      2
+## 4                  7                       0                    1      1
+## 5                  7                       0                    1      1
+## 6                  7                       0                    2      2
+##         V9    V10               V11                    V12
+## 1 children babies is_repeated_guest previous_cancellations
+## 2        0      0                 0                      0
+## 3        0      0                 0                      0
+## 4        0      0                 0                      0
+## 5        0      0                 0                      0
+## 6        0      0                 0                      0
+##                              V13                         V14
+## 1 previous_bookings_not_canceled required_car_parking_spaces
+## 2                              0                           0
+## 3                              0                           0
+## 4                              0                           0
+## 5                              0                           0
+## 6                              0                           0
+##                         V15            V16               V17             V18
+## 1 total_of_special_requests avg_daily_rate booked_by_company booked_by_agent
+## 2                         0              0                 0               0
+## 3                         0              0                 0               0
+## 4                         0             75                 0               0
+## 5                         0             75                 0               1
+## 6                         1             98                 0               1
+##          V19          V20     V21     V22     V23          V24
+## 1 hotel_City hotel_Resort meal_BB meal_FB meal_HB meal_No_meal
+## 2          0            1       1       0       0            0
+## 3          0            1       1       0       0            0
+## 4          0            1       1       0       0            0
+## 5          0            1       1       0       0            0
+## 6          0            1       1       0       0            0
+##                       V25                          V26                      V27
+## 1 market_segment_Aviation market_segment_Complementary market_segment_Corporate
+## 2                       0                            0                        0
+## 3                       0                            0                        0
+## 4                       0                            0                        0
+## 5                       0                            0                        1
+## 6                       0                            0                        0
+##                     V28                   V29                          V30
+## 1 market_segment_Direct market_segment_Groups market_segment_Offline_TA_TO
+## 2                     1                     0                            0
+## 3                     1                     0                            0
+## 4                     1                     0                            0
+## 5                     0                     0                            0
+## 6                     0                     0                            0
+##                        V31                      V32
+## 1 market_segment_Online_TA market_segment_Undefined
+## 2                        0                        0
+## 3                        0                        0
+## 4                        0                        0
+## 5                        0                        0
+## 6                        1                        0
+##                              V33                         V34
+## 1 distribution_channel_Corporate distribution_channel_Direct
+## 2                              0                           1
+## 3                              0                           1
+## 4                              0                           1
+## 5                              1                           0
+## 6                              0                           0
+##                        V35                        V36
+## 1 distribution_channel_GDS distribution_channel_TA_TO
+## 2                        0                          0
+## 3                        0                          0
+## 4                        0                          0
+## 5                        0                          0
+## 6                        0                          1
+##                              V37                  V38                  V39
+## 1 distribution_channel_Undefined reserved_room_type_A reserved_room_type_B
+## 2                              0                    0                    0
+## 3                              0                    0                    0
+## 4                              0                    1                    0
+## 5                              0                    1                    0
+## 6                              0                    1                    0
+##                    V40                  V41                  V42
+## 1 reserved_room_type_C reserved_room_type_D reserved_room_type_E
+## 2                    1                    0                    0
+## 3                    1                    0                    0
+## 4                    0                    0                    0
+## 5                    0                    0                    0
+## 6                    0                    0                    0
+##                    V43                  V44                  V45
+## 1 reserved_room_type_F reserved_room_type_G reserved_room_type_H
+## 2                    0                    0                    0
+## 3                    0                    0                    0
+## 4                    0                    0                    0
+## 5                    0                    0                    0
+## 6                    0                    0                    0
+##                    V46                     V47                     V48
+## 1 reserved_room_type_L deposit_type_No_Deposit deposit_type_Non_Refund
+## 2                    0                       1                       0
+## 3                    0                       1                       0
+## 4                    0                       1                       0
+## 5                    0                       1                       0
+## 6                    0                       1                       0
+##                       V49                    V50                 V51
+## 1 deposit_type_Refundable customer_type_Contract customer_type_Group
+## 2                       0                      0                   0
+## 3                       0                      0                   0
+## 4                       0                      0                   0
+## 5                       0                      0                   0
+## 6                       0                      0                   0
+##                       V52                           V53
+## 1 customer_type_Transient customer_type_Transient-Party
+## 2                       1                             0
+## 3                       1                             0
+## 4                       1                             0
+## 5                       1                             0
+## 6                       1                             0</code></pre>
+<p>The <code>read_csv()</code> function is one more way to read a csv file. This function comes from the <code>readr</code> package that is installed by;</p>
+<pre><code>install.packages(&quot;readr&quot;)</code></pre>
+<p>and imported by;</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="data-importing-and-exporting.html#cb264-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<p>Lets read a csv file using the <code>read_csv()</code>(note the ’_’ instead of a ‘.’) from the <code>readr</code> library.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-importing-and-exporting.html#cb265-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb265-2"><a href="data-importing-and-exporting.html#cb265-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 53
+##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
+##         &lt;dbl&gt;     &lt;dbl&gt;                    &lt;dbl&gt;                     &lt;dbl&gt;
+## 1           0       342                       27                         1
+## 2           0       737                       27                         1
+## 3           0         7                       27                         1
+## 4           0        13                       27                         1
+## 5           0        14                       27                         1
+## 6           0        14                       27                         1
+## # ℹ 49 more variables: arrival_date_month &lt;dbl&gt;, stays_in_weekend_nights &lt;dbl&gt;,
+## #   stays_in_week_nights &lt;dbl&gt;, adults &lt;dbl&gt;, children &lt;dbl&gt;, babies &lt;dbl&gt;,
+## #   is_repeated_guest &lt;dbl&gt;, previous_cancellations &lt;dbl&gt;,
+## #   previous_bookings_not_canceled &lt;dbl&gt;, required_car_parking_spaces &lt;dbl&gt;,
+## #   total_of_special_requests &lt;dbl&gt;, avg_daily_rate &lt;dbl&gt;,
+## #   booked_by_company &lt;dbl&gt;, booked_by_agent &lt;dbl&gt;, hotel_City &lt;dbl&gt;,
+## #   hotel_Resort &lt;dbl&gt;, meal_BB &lt;dbl&gt;, meal_FB &lt;dbl&gt;, meal_HB &lt;dbl&gt;, …</code></pre>
+<p><code>read.csv()</code>, <code>read.delim()</code>, <code>read.table()</code> and <code>read_csv()</code> are the functions used to read CSV files in R.</p>
+<ul>
+<li><strong>Importing Excel file in R</strong></li>
+</ul>
+<p>In this section we will read the HR employee data for descriptive and inferential analytics. We will use the <code>read_excel</code> from the <code>readxl</code> package. It can be imported by;</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-importing-and-exporting.html#cb267-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
+<p>Let’s load the excel data into R data frame.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-importing-and-exporting.html#cb268-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>)</span>
+<span id="cb268-2"><a href="data-importing-and-exporting.html#cb268-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##   Emp_Id  satisfaction_level last_evaluation number_project average_montly_hours
+##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
+## 1 IND024…               0.38            0.53              2                  157
+## 2 IND281…               0.8             0.86              5                  262
+## 3 IND071…               0.11            0.88              7                  272
+## 4 IND304…               0.72            0.87              5                  223
+## 5 IND240…               0.37            0.52              2                  159
+## 6 IND086…               0.41            0.5               2                  153
+## # ℹ 6 more variables: time_spend_company &lt;dbl&gt;, Work_accident &lt;dbl&gt;,
+## #   left &lt;dbl&gt;, promotion_last_5years &lt;dbl&gt;, Department &lt;chr&gt;, salary &lt;chr&gt;</code></pre>
+<p>If they are multiple worksheets in the excel, the read_excel has an argument <code>sheet</code> for sheet number(By default, sheet 1 is loaded. Lets load the first sheet.</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-importing-and-exporting.html#cb270-1" tabindex="-1"></a>df_sheet1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>, <span class="at">sheet=</span><span class="dv">1</span>)</span>
+<span id="cb270-2"><a href="data-importing-and-exporting.html#cb270-2" tabindex="-1"></a><span class="fu">head</span>(df_sheet1)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 11
+##   Emp_Id  satisfaction_level last_evaluation number_project average_montly_hours
+##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
+## 1 IND024…               0.38            0.53              2                  157
+## 2 IND281…               0.8             0.86              5                  262
+## 3 IND071…               0.11            0.88              7                  272
+## 4 IND304…               0.72            0.87              5                  223
+## 5 IND240…               0.37            0.52              2                  159
+## 6 IND086…               0.41            0.5               2                  153
+## # ℹ 6 more variables: time_spend_company &lt;dbl&gt;, Work_accident &lt;dbl&gt;,
+## #   left &lt;dbl&gt;, promotion_last_5years &lt;dbl&gt;, Department &lt;chr&gt;, salary &lt;chr&gt;</code></pre>
+<p>A detail documentation of the <code>read_excel()</code> function can be found <a href="https://www.rdocumentation.org/packages/readxl/versions/1.4.1/topics/read_excel">here</a></p>
+<p>&lt;- <strong>Add more methods</strong>-&gt;</p>
+</div>
+<div id="introduction-to-data-exporting" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Introduction to Data Exporting<a href="data-importing-and-exporting.html#introduction-to-data-exporting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>

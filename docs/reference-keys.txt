@@ -27,6 +27,7 @@ data-frame
 data-importing-and-exporting
 introduction-to-data-importing
 demonstration-of-data-importing
+introduction-to-data-exporting
 data-manipulation
 basic-data-manipulation
 introduction-to-data-manipulation
