@@ -46,12 +46,23 @@ It includes a console, syntax-highlighting editor that supports direct code exec
 R studio is an open source software from posit and can be freely be downloaded from https://posit.co/download/rstudio-desktop/. This link has all the installation files for Mac, Linux and Windows. You will download the installation file and install based on your computer operating system. 
 
 ### CRAN 
+**CRAN** in full is Comprehensive R Archive Network that is a central repository for R and its packages. It stores a collection R function data and compiled code. It is an essential part in R and acts as a hub due to the open source nature of R. 
 
 ## Setting Up R Environment 
 ### Installation of R and RStudio
 
 - Step-by-step guide to downloading and installing R and RStudio on participants' computers.
 - Overview of the installation process on different operating systems (Windows, macOS, Linux).
+
+==============================================================
+
+
+
+
+
+
+
+==============================================================
 
 ### Introduction to RStudio Interface
 
