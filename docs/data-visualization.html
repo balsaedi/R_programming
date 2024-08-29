@@ -279,21 +279,21 @@ There are 5 key steps in plotting in ggplot;
 </ol>
 </p>
 <p>Here is an example of a layered approach in creating charts by applying the “Grammar of Graphics”.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="data-visualization.html#cb399-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb399-2"><a href="data-visualization.html#cb399-2" tabindex="-1"></a></span>
-<span id="cb399-3"><a href="data-visualization.html#cb399-3" tabindex="-1"></a><span class="co"># Sample data</span></span>
-<span id="cb399-4"><a href="data-visualization.html#cb399-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb399-5"><a href="data-visualization.html#cb399-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
-<span id="cb399-6"><a href="data-visualization.html#cb399-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
-<span id="cb399-7"><a href="data-visualization.html#cb399-7" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb399-8"><a href="data-visualization.html#cb399-8" tabindex="-1"></a>)</span>
-<span id="cb399-9"><a href="data-visualization.html#cb399-9" tabindex="-1"></a></span>
-<span id="cb399-10"><a href="data-visualization.html#cb399-10" tabindex="-1"></a><span class="co"># Creating a scatter plot</span></span>
-<span id="cb399-11"><a href="data-visualization.html#cb399-11" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
-<span id="cb399-12"><a href="data-visualization.html#cb399-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> category)) <span class="sc">+</span> <span class="co">#aesthetics</span></span>
-<span id="cb399-13"><a href="data-visualization.html#cb399-13" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#geometrics</span></span>
-<span id="cb399-14"><a href="data-visualization.html#cb399-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatter Plot Example&quot;</span>, <span class="at">x =</span> <span class="st">&quot;X-Axis&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Y-Axis&quot;</span>) <span class="sc">+</span></span>
-<span id="cb399-15"><a href="data-visualization.html#cb399-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="data-visualization.html#cb401-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb401-2"><a href="data-visualization.html#cb401-2" tabindex="-1"></a></span>
+<span id="cb401-3"><a href="data-visualization.html#cb401-3" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb401-4"><a href="data-visualization.html#cb401-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb401-5"><a href="data-visualization.html#cb401-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb401-6"><a href="data-visualization.html#cb401-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb401-7"><a href="data-visualization.html#cb401-7" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb401-8"><a href="data-visualization.html#cb401-8" tabindex="-1"></a>)</span>
+<span id="cb401-9"><a href="data-visualization.html#cb401-9" tabindex="-1"></a></span>
+<span id="cb401-10"><a href="data-visualization.html#cb401-10" tabindex="-1"></a><span class="co"># Creating a scatter plot</span></span>
+<span id="cb401-11"><a href="data-visualization.html#cb401-11" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
+<span id="cb401-12"><a href="data-visualization.html#cb401-12" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> category)) <span class="sc">+</span> <span class="co">#aesthetics</span></span>
+<span id="cb401-13"><a href="data-visualization.html#cb401-13" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#geometrics</span></span>
+<span id="cb401-14"><a href="data-visualization.html#cb401-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatter Plot Example&quot;</span>, <span class="at">x =</span> <span class="st">&quot;X-Axis&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Y-Axis&quot;</span>) <span class="sc">+</span></span>
+<span id="cb401-15"><a href="data-visualization.html#cb401-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <div id="creating-basic-plots" class="section level4 hasAnchor" number="5.1.1.1">
 <h4><span class="header-section-number">5.1.1.1</span> Creating Basic Plots<a href="data-visualization.html#creating-basic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -302,24 +302,24 @@ There are 5 key steps in plotting in ggplot;
 </ul>
 <p>Scatter plot is used to show a numerical relationship between two or more variables for instance height versus weight of footballers. It is also used to detect correlation, the increase in one variable can lead to increase/decrease of another variable. Furthermore scatter plots are used to detect outliers, values that appear out of the general patterns of other data points is said to be an outlier in this case. However, scatter plots is not suitable when working with categorical data especially when only two variables are to be analyzed.</p>
 <p>Lets create a basic scatter plot to compare height and weight;-</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="data-visualization.html#cb400-1" tabindex="-1"></a><span class="co">#Prepare a Sample data</span></span>
-<span id="cb400-2"><a href="data-visualization.html#cb400-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb400-3"><a href="data-visualization.html#cb400-3" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>),</span>
-<span id="cb400-4"><a href="data-visualization.html#cb400-4" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>)</span>
-<span id="cb400-5"><a href="data-visualization.html#cb400-5" tabindex="-1"></a>)</span>
-<span id="cb400-6"><a href="data-visualization.html#cb400-6" tabindex="-1"></a></span>
-<span id="cb400-7"><a href="data-visualization.html#cb400-7" tabindex="-1"></a><span class="co"># Creating a basic scatter plot</span></span>
-<span id="cb400-8"><a href="data-visualization.html#cb400-8" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
-<span id="cb400-9"><a href="data-visualization.html#cb400-9" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="co"># aesthetics</span></span>
-<span id="cb400-10"><a href="data-visualization.html#cb400-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="data-visualization.html#cb402-1" tabindex="-1"></a><span class="co">#Prepare a Sample data</span></span>
+<span id="cb402-2"><a href="data-visualization.html#cb402-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb402-3"><a href="data-visualization.html#cb402-3" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>),</span>
+<span id="cb402-4"><a href="data-visualization.html#cb402-4" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>)</span>
+<span id="cb402-5"><a href="data-visualization.html#cb402-5" tabindex="-1"></a>)</span>
+<span id="cb402-6"><a href="data-visualization.html#cb402-6" tabindex="-1"></a></span>
+<span id="cb402-7"><a href="data-visualization.html#cb402-7" tabindex="-1"></a><span class="co"># Creating a basic scatter plot</span></span>
+<span id="cb402-8"><a href="data-visualization.html#cb402-8" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
+<span id="cb402-9"><a href="data-visualization.html#cb402-9" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="co"># aesthetics</span></span>
+<span id="cb402-10"><a href="data-visualization.html#cb402-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-179-1.png" width="672" />
 To make the chart more informative, titles and labels are added.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="data-visualization.html#cb401-1" tabindex="-1"></a><span class="co"># Creating a basic scatter plot</span></span>
-<span id="cb401-2"><a href="data-visualization.html#cb401-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
-<span id="cb401-3"><a href="data-visualization.html#cb401-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="co"># aesthetics</span></span>
-<span id="cb401-4"><a href="data-visualization.html#cb401-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb401-5"><a href="data-visualization.html#cb401-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Height vs. Weight&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Height (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Weight (kg)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb401-6"><a href="data-visualization.html#cb401-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="data-visualization.html#cb403-1" tabindex="-1"></a><span class="co"># Creating a basic scatter plot</span></span>
+<span id="cb403-2"><a href="data-visualization.html#cb403-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
+<span id="cb403-3"><a href="data-visualization.html#cb403-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span> <span class="co"># aesthetics</span></span>
+<span id="cb403-4"><a href="data-visualization.html#cb403-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb403-5"><a href="data-visualization.html#cb403-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Height vs. Weight&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Height (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Weight (kg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb403-6"><a href="data-visualization.html#cb403-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 <p>Lets explain the chart step by step;-</p>
 <ul>
@@ -342,18 +342,18 @@ To make the chart more informative, titles and labels are added.</p>
 </ol>
 <p>There are many more uses of bar charts however there are some use cases where bar charts are not preferred like when working with continuous data, scatter and line charts are more befitting. Also, bar charts are not appropriate where data has too many categories, heatmaps will do better.</p>
 <p>To create a simple bar chart using ggplot2, we use <code>geom_bar</code> to define thats its a bar chart.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="data-visualization.html#cb402-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
-<span id="cb402-2"><a href="data-visualization.html#cb402-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb402-3"><a href="data-visualization.html#cb402-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
-<span id="cb402-4"><a href="data-visualization.html#cb402-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">17</span>, <span class="dv">35</span>, <span class="dv">10</span>)</span>
-<span id="cb402-5"><a href="data-visualization.html#cb402-5" tabindex="-1"></a>)</span>
-<span id="cb402-6"><a href="data-visualization.html#cb402-6" tabindex="-1"></a></span>
-<span id="cb402-7"><a href="data-visualization.html#cb402-7" tabindex="-1"></a><span class="do">## The data set above will be used to create a bar chart</span></span>
-<span id="cb402-8"><a href="data-visualization.html#cb402-8" tabindex="-1"></a><span class="co"># Creating a bar chart</span></span>
-<span id="cb402-9"><a href="data-visualization.html#cb402-9" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb402-10"><a href="data-visualization.html#cb402-10" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb402-11"><a href="data-visualization.html#cb402-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Value by Category&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">+</span></span>
-<span id="cb402-12"><a href="data-visualization.html#cb402-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="data-visualization.html#cb404-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb404-2"><a href="data-visualization.html#cb404-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb404-3"><a href="data-visualization.html#cb404-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb404-4"><a href="data-visualization.html#cb404-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">17</span>, <span class="dv">35</span>, <span class="dv">10</span>)</span>
+<span id="cb404-5"><a href="data-visualization.html#cb404-5" tabindex="-1"></a>)</span>
+<span id="cb404-6"><a href="data-visualization.html#cb404-6" tabindex="-1"></a></span>
+<span id="cb404-7"><a href="data-visualization.html#cb404-7" tabindex="-1"></a><span class="do">## The data set above will be used to create a bar chart</span></span>
+<span id="cb404-8"><a href="data-visualization.html#cb404-8" tabindex="-1"></a><span class="co"># Creating a bar chart</span></span>
+<span id="cb404-9"><a href="data-visualization.html#cb404-9" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb404-10"><a href="data-visualization.html#cb404-10" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb404-11"><a href="data-visualization.html#cb404-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Value by Category&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">+</span></span>
+<span id="cb404-12"><a href="data-visualization.html#cb404-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 <p>&lt;-<strong>Practical exercise: Creating bar charts for categorical data.</strong>-&gt;</p>
 <ul>

@@ -46,23 +46,36 @@ It includes a console, syntax-highlighting editor that supports direct code exec
 R studio is an open source software from posit and can be freely be downloaded from https://posit.co/download/rstudio-desktop/. This link has all the installation files for Mac, Linux and Windows. You will download the installation file and install based on your computer operating system. 
 
 ### CRAN 
-**CRAN** in full is Comprehensive R Archive Network that is a central repository for R and its packages. It stores a collection R function data and compiled code. It is an essential part in R and acts as a hub due to the open source nature of R. 
+**CRAN** in full is Comprehensive R Archive Network that is a central repository for R and its packages. It stores a collection R function data and compiled code. It is an essential part in R and acts as a hub due to the open source nature of R. It supports the growth and adoption of R by making powerful tools easily accessible to users and developers alike. The CRAN repo can be accessed [here](https://cran.r-project.org/). 
 
 ## Setting Up R Environment 
 ### Installation of R and RStudio
+Follow the steps below to download and install R;
 
-- Step-by-step guide to downloading and installing R and RStudio on participants' computers.
-- Overview of the installation process on different operating systems (Windows, macOS, Linux).
+i. Visit [here](https://cran.r-project.org/) to visit the CRAN web interface. 
+ii. Download the precompiled binaries according to your computer operating system
+![](images/cran_repo.png)
+iii. If you are using linux(Debian/Ubuntu) run the below command to install R on the terminal. 
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install r-base
+```
 
-==============================================================
+iv. Open the downloaded R file and follow instructions to install R on Mac and Window. 
+v. After installing R on Mac, run the below command on terminal to verify its installation. 
+```
+R
+```
+vi. `q()` to quit the R console on the terminal. 
 
+The process of R studio installation is essentially the same as R;-
 
-
-
-
-
-
-==============================================================
+i. Visit the R studio [downloads](https://posit.co/download/rstudio-desktop/#download) page to download R according to your computer's operating system. 
+ii. For linux, move the downloaded file to the `home/<user>` directory and open the terminal. 
+iii. Run `sudo dpkg -i rstudio-1.2.5033-amd64.deb` to install RStudio. Remember to replace the `rstudio-1.2.5033-amd64.deb` with the downloaded filepath. 
+iv. On Windows and Mac, open the downloaded the downloaded file, open it and follow the instructions to install it. 
+v. Open the RStudio and DO YOUR MAGIC!!!
 
 ### Introduction to RStudio Interface
 

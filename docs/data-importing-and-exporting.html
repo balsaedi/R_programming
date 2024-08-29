@@ -277,9 +277,9 @@ Overview of R functions for reading data (read.csv(), read_excel(), read.table()
 </ul>
 <p>There are different formats to import a csv file in R. We will use the <code>read.csv()</code> and <code>read.delim()</code> which are functions from the baseR.</p>
 <p>Reading a csv file using <code>read.csv()</code> function.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="data-importing-and-exporting.html#cb257-1" tabindex="-1"></a><span class="co"># read the csv file to the data frame </span></span>
-<span id="cb257-2"><a href="data-importing-and-exporting.html#cb257-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/hotel_bookings_clean.csv&#39;</span>)</span>
-<span id="cb257-3"><a href="data-importing-and-exporting.html#cb257-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show first few rows </span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-importing-and-exporting.html#cb259-1" tabindex="-1"></a><span class="co"># read the csv file to the data frame </span></span>
+<span id="cb259-2"><a href="data-importing-and-exporting.html#cb259-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/hotel_bookings_clean.csv&#39;</span>)</span>
+<span id="cb259-3"><a href="data-importing-and-exporting.html#cb259-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show first few rows </span></span></code></pre></div>
 <pre><code>##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
 ## 1           0       342                       27                         1
 ## 2           0       737                       27                         1
@@ -400,9 +400,9 @@ Overview of R functions for reading data (read.csv(), read_excel(), read.table()
 ## 5                       1                             0
 ## 6                       1                             0</code></pre>
 <p>Now, lets read the same csv file with <code>read.delim()</code> function. Remember to add “,” as the separator. <code>sep=","</code>.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-importing-and-exporting.html#cb259-1" tabindex="-1"></a><span class="co"># Read the csv file </span></span>
-<span id="cb259-2"><a href="data-importing-and-exporting.html#cb259-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
-<span id="cb259-3"><a href="data-importing-and-exporting.html#cb259-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show the first few rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-importing-and-exporting.html#cb261-1" tabindex="-1"></a><span class="co"># Read the csv file </span></span>
+<span id="cb261-2"><a href="data-importing-and-exporting.html#cb261-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb261-3"><a href="data-importing-and-exporting.html#cb261-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show the first few rows</span></span></code></pre></div>
 <pre><code>##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
 ## 1           0       342                       27                         1
 ## 2           0       737                       27                         1
@@ -523,8 +523,8 @@ Overview of R functions for reading data (read.csv(), read_excel(), read.table()
 ## 5                       1                             0
 ## 6                       1                             0</code></pre>
 <p>Lets also read the csv file using the <code>read.table()</code> function(note the <code>sep=","</code> argument);</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-importing-and-exporting.html#cb261-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
-<span id="cb261-2"><a href="data-importing-and-exporting.html#cb261-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="data-importing-and-exporting.html#cb263-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb263-2"><a href="data-importing-and-exporting.html#cb263-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 <pre><code>##            V1        V2                       V3                        V4
 ## 1 is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
 ## 2           0       342                       27                         1
@@ -647,10 +647,10 @@ Overview of R functions for reading data (read.csv(), read_excel(), read.table()
 <p>The <code>read_csv()</code> function is one more way to read a csv file. This function comes from the <code>readr</code> package that is installed by;</p>
 <pre><code>install.packages(&quot;readr&quot;)</code></pre>
 <p>and imported by;</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="data-importing-and-exporting.html#cb264-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-importing-and-exporting.html#cb266-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
 <p>Lets read a csv file using the <code>read_csv()</code>(note the ’_’ instead of a ‘.’) from the <code>readr</code> library.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-importing-and-exporting.html#cb265-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb265-2"><a href="data-importing-and-exporting.html#cb265-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-importing-and-exporting.html#cb267-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb267-2"><a href="data-importing-and-exporting.html#cb267-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 53
 ##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
 ##         &lt;dbl&gt;     &lt;dbl&gt;                    &lt;dbl&gt;                     &lt;dbl&gt;
@@ -672,10 +672,10 @@ Overview of R functions for reading data (read.csv(), read_excel(), read.table()
 <li><strong>Importing Excel file in R</strong></li>
 </ul>
 <p>In this section we will read the HR employee data for descriptive and inferential analytics. We will use the <code>read_excel</code> from the <code>readxl</code> package. It can be imported by;</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-importing-and-exporting.html#cb267-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-importing-and-exporting.html#cb269-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
 <p>Let’s load the excel data into R data frame.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-importing-and-exporting.html#cb268-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>)</span>
-<span id="cb268-2"><a href="data-importing-and-exporting.html#cb268-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-importing-and-exporting.html#cb270-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>)</span>
+<span id="cb270-2"><a href="data-importing-and-exporting.html#cb270-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   Emp_Id  satisfaction_level last_evaluation number_project average_montly_hours
 ##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
@@ -688,8 +688,8 @@ Overview of R functions for reading data (read.csv(), read_excel(), read.table()
 ## # ℹ 6 more variables: time_spend_company &lt;dbl&gt;, Work_accident &lt;dbl&gt;,
 ## #   left &lt;dbl&gt;, promotion_last_5years &lt;dbl&gt;, Department &lt;chr&gt;, salary &lt;chr&gt;</code></pre>
 <p>If they are multiple worksheets in the excel, the read_excel has an argument <code>sheet</code> for sheet number(By default, sheet 1 is loaded. Lets load the first sheet.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-importing-and-exporting.html#cb270-1" tabindex="-1"></a>df_sheet1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>, <span class="at">sheet=</span><span class="dv">1</span>)</span>
-<span id="cb270-2"><a href="data-importing-and-exporting.html#cb270-2" tabindex="-1"></a><span class="fu">head</span>(df_sheet1)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-importing-and-exporting.html#cb272-1" tabindex="-1"></a>df_sheet1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>, <span class="at">sheet=</span><span class="dv">1</span>)</span>
+<span id="cb272-2"><a href="data-importing-and-exporting.html#cb272-2" tabindex="-1"></a><span class="fu">head</span>(df_sheet1)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   Emp_Id  satisfaction_level last_evaluation number_project average_montly_hours
 ##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
