@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-08-29" />
+<meta name="date" content="2024-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -175,7 +175,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-importing"><i class="fa fa-check"></i><b>3.1</b> Introduction to Data Importing</a></li>
 <li class="chapter" data-level="3.2" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#demonstration-of-data-importing"><i class="fa fa-check"></i><b>3.2</b> Demonstration of Data Importing</a></li>
-<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a></li>
+<li class="chapter" data-level="3.3" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#introduction-to-data-exporting"><i class="fa fa-check"></i><b>3.3</b> Introduction to Data Exporting</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-importing-and-exporting.html"><a href="data-importing-and-exporting.html#overview-of-r-functions-to-store-data"><i class="fa fa-check"></i><b>3.3.1</b> Overview of R functions to store data</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation</a>
 <ul>
@@ -259,14 +262,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Data Importing and Exporting<a href="data-importing-and-exporting.html#data-importing-and-exporting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="introduction-to-data-importing" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Introduction to Data Importing<a href="data-importing-and-exporting.html#introduction-to-data-importing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Explanation of different data formats (e.g., CSV, Excel, JSON).
-Overview of R functions for reading data (read.csv(), read_excel(), read.table(), etc.).</p>
-<p>Loading data in R can be very stressful since every file format has a function to import the data. However, it can be very simple when wel explained. Here are some of the most commonly used data file formats R and their importation;-</p>
+<p>Loading data in R can be very stressful since every file format has a function to import the data. However, it can be very simple when well explained. Here are some of the most commonly used data file formats R and their importation;-</p>
 <ul>
 <li>Comma Separated Value(CSV - .csv) files imported by <code>read.csv("filepath")</code> function</li>
 <li>Excel(.xlsx) files loaded by <code>read_excel("filepath")</code> function`</li>
 <li>XML(.xml) imported by <code>read.xml("filepath")</code> function`</li>
-<li>Javascript Object Notation (JSON) by `read.json(“filepath”)``</li>
+<li>Javascript Object Notation (JSON) by <code>read.json("filepath")</code></li>
 </ul>
 <p>There are more data files with different formats that can be used in R, their importation will be explained later in the course.</p>
 </div>
@@ -706,7 +707,59 @@ Overview of R functions for reading data (read.csv(), read_excel(), read.table()
 </div>
 <div id="introduction-to-data-exporting" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Introduction to Data Exporting<a href="data-importing-and-exporting.html#introduction-to-data-exporting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="overview-of-r-functions-to-store-data" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Overview of R functions to store data<a href="data-importing-and-exporting.html#overview-of-r-functions-to-store-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>After data wrangling, manipulation and processing, the end product(processed data) can be saved for further.future use. The data can also be share to others. R has several functions to write the processed data locally into either CSV, Excel, text or other file formats.</p>
+<p>Lets go through a brief overview of how data can be exported in R;</p>
+<ol style="list-style-type: lower-roman">
+<li>CSV files are exported by <code>write.csv()</code> function.</li>
+<li>The excel files are written locally by <code>write.xlsx()</code> function. Remember to install the <code>xlsx</code> package before exporting data to excel. The package is installed by</li>
+</ol>
+<pre><code>install.packages(&quot;xlsx&quot;)</code></pre>
+<ol start="3" style="list-style-type: lower-roman">
+<li><code>writeLines()</code> is used to write vectors to a text file.</li>
+<li>The <code>write.table()</code> function is more of a general function that different types of files for example TSV, CSV and text files.</li>
+</ol>
+<p>Lets create a small data frame and demonstrate how these functions work.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-importing-and-exporting.html#cb275-1" tabindex="-1"></a><span class="co"># Sample data frame</span></span>
+<span id="cb275-2"><a href="data-importing-and-exporting.html#cb275-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb275-3"><a href="data-importing-and-exporting.html#cb275-3" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>),</span>
+<span id="cb275-4"><a href="data-importing-and-exporting.html#cb275-4" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>),</span>
+<span id="cb275-5"><a href="data-importing-and-exporting.html#cb275-5" tabindex="-1"></a>  <span class="at">Salary =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">60000</span>, <span class="dv">70000</span>)</span>
+<span id="cb275-6"><a href="data-importing-and-exporting.html#cb275-6" tabindex="-1"></a>)</span>
+<span id="cb275-7"><a href="data-importing-and-exporting.html#cb275-7" tabindex="-1"></a></span>
+<span id="cb275-8"><a href="data-importing-and-exporting.html#cb275-8" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##      Name Age Salary
+## 1   Alice  25  50000
+## 2     Bob  30  60000
+## 3 Charlie  35  70000</code></pre>
+<p>The data frame will be exported to csv by <code>write.csv(data_frame, file=filepath)</code>. Lets do it;</p>
+<pre><code>write.csv(df, file=&quot;data/sample_data.csv&quot;)</code></pre>
+<p>Then export the same data frame <code>df</code> to an excel file using the the command <code>write.xlsx(data_frame, file=filepath)</code></p>
+<pre><code>library(xlsx)
+write.xlsx(df, file=&quot;data/sample_data.xlsx&quot;)</code></pre>
+<p>Also, the <code>openxlsx</code> package can be used to export data to excel. The package is installed by;</p>
+<pre><code>install.packages(&quot;openxlsx&quot;)</code></pre>
+<p>and the file is written by the same <code>write.xlsx()</code> function.</p>
+<p>Lets repeat the process of exporting using the <code>write.xlsx()</code> function from the <code>openxlsx</code> library.</p>
+<pre><code>library(openxlsx)
+write.xlsx(df, file=&quot;data/sample_data_2.xlsx&quot;)</code></pre>
+<p>Finally, lets export the data frame using the <code>write.table()</code> function.</p>
+<pre><code># Export to a text file with space as a delimiter
+write.table(df, file = &quot;data/sample_data.txt&quot;, sep = &quot; &quot;, row.names = FALSE, quote = FALSE)</code></pre>
+<p>The same data frame can be converted to a data vector and loaded to a text file using the <code>writeLines(data_vector, filepath)</code>.</p>
+<p>Lets convert the data frame to a data vector and show the output.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="data-importing-and-exporting.html#cb282-1" tabindex="-1"></a><span class="co"># Convert data frame to a character vector</span></span>
+<span id="cb282-2"><a href="data-importing-and-exporting.html#cb282-2" tabindex="-1"></a>df_vector <span class="ot">&lt;-</span> <span class="fu">apply</span>(df, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">paste</span>(row, <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb282-3"><a href="data-importing-and-exporting.html#cb282-3" tabindex="-1"></a></span>
+<span id="cb282-4"><a href="data-importing-and-exporting.html#cb282-4" tabindex="-1"></a>df_vector</span></code></pre></div>
+<pre><code>## [1] &quot;Alice 25 50000&quot;   &quot;Bob 30 60000&quot;     &quot;Charlie 35 70000&quot;</code></pre>
+<p>Export the file</p>
+<pre><code># Write the character vector to a text file
+writeLines(data_vector, &quot;data/sample_data_with_writeLines.txt&quot;)</code></pre>
+<p>&lt;-<strong>Add practical exercises</strong>-&gt;</p>
 
+</div>
 </div>
 </div>
             </section>
