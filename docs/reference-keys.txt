@@ -51,6 +51,7 @@ data-visualization
 basic-data-visualization
 introduction-to-ggplot2
 creating-basic-plots
+customizing-plots
 advanced-data-visualization
 explanatory-data-analysis
 introduction-to-eda

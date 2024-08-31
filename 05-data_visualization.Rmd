@@ -123,5 +123,96 @@ ggplot(df, aes(x = category, y = value)) +
 
 - **Histograms**
 
+Histogram is visually similar to the bar chart however it is used show frequency and distribution across a list-like data set(vectors, lists, sets, arrays, etc) that stores continuous numeric values. The count of observation within a certain range of values are displayed. 
+
+Lets create a vector of random 100 ages and plot the data to a histogram.
+
+```{r}
+# Generate random 1000 ages between 0 and 100
+set.seed(42)
+ages <- sample(0:100, 1000, replace = TRUE)
+
+# Create a data frame to use with ggplot
+age_data <- data.frame(Age = ages)
+
+# PLOTTING
+# Create the histogram using ggplot
+ggplot(age_data, aes(x = Age)) +
+  geom_histogram(binwidth = 5, fill = "blue", color = "black") +
+  labs(title = "Histogram of Randomly Generated Ages", x = "Age", y = "Frequency") +
+  theme_minimal()
+```
+
+The bins are groups of ages ranging 5 years. 
+
+<-**Add a practical exercise**->
+
+#### Customizing plots
+- **Themes**
+
+Themes in `ggplot2` control the overall appearance of the plot for instance the grid line, font style, background color etc. To clearly explain the `theme` concept we will create a sample data set and plot it. The theme will be altered to show the changes in the appearance. 
+
+Create a data set and plot a basic bar plot from `ggplot2`
+```{r}
+# Sample data
+df <- data.frame(
+  category = c("A", "B", "C", "D"),
+  value = c(23, 17, 35, 10)
+)
+
+# Plot a basic bar chart
+# Create a basic bar plot
+ggplot(df, aes(x = category, y = value)) +
+  geom_bar(stat = "identity")
+```
+
+Lets apply some built-in themes from `ggplot`. In this case, we will use the `theme_minimal()`. 
+```{r}
+# Bar plot with theme_minimal
+ggplot(df, aes(x = category, y = value)) +
+  geom_bar(stat = "identity") +
+  theme_minimal()
+```
+The `theme_minimal()` removes background colors, extra gridlines and axes' tickers to give the a chart a clean look. 
+
+Now, lets try with the `theme_classic()`
+```{r}
+# Bar plot with theme_classic
+ggplot(df, aes(x = category, y = value)) +
+  geom_bar(stat = "identity") +
+  theme_classic()
+```
+
+The `theme_classic()` gives the bar plot a clear white background, black borderline with raised 0 point on the axes and bars. 
+
+The third theme in this course is the `theme_light()`. Lets try it with the same data set. 
+```{r}
+# Bar plot with theme_light
+ggplot(df, aes(x = category, y = value)) +
+  geom_bar(stat = "identity") +
+  theme_light()
+```
+
+The `theme_light()` is gives grey gridlines, grey borderline and raised bars(not touching the axes).
+
+The last theme in this list is the `theme_dark()`. Lets try it below here;
+```{r}
+# Bar plot with theme_dark
+ggplot(df, aes(x = category, y = value)) +
+  geom_bar(stat = "identity") +
+  theme_dark()
+```
+The `theme_dark()` is a clear opposite of `theme_light` as it produces a plot with a dark gridlines. 
+
+There are more themes provided in `ggplot2` like `theme_bw()`
+
+- **Labels and Titles**
+
+
+
+- **Color and aesthetics**
+
+
+
 
 ## Advanced Data Visualization

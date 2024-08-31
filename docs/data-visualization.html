@@ -362,6 +362,76 @@ To make the chart more informative, titles and labels are added.</p>
 <ul>
 <li><strong>Histograms</strong></li>
 </ul>
+<p>Histogram is visually similar to the bar chart however it is used show frequency and distribution across a list-like data set(vectors, lists, sets, arrays, etc) that stores continuous numeric values. The count of observation within a certain range of values are displayed.</p>
+<p>Lets create a vector of random 100 ages and plot the data to a histogram.</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="data-visualization.html#cb416-1" tabindex="-1"></a><span class="co"># Generate random 1000 ages between 0 and 100</span></span>
+<span id="cb416-2"><a href="data-visualization.html#cb416-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb416-3"><a href="data-visualization.html#cb416-3" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb416-4"><a href="data-visualization.html#cb416-4" tabindex="-1"></a></span>
+<span id="cb416-5"><a href="data-visualization.html#cb416-5" tabindex="-1"></a><span class="co"># Create a data frame to use with ggplot</span></span>
+<span id="cb416-6"><a href="data-visualization.html#cb416-6" tabindex="-1"></a>age_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Age =</span> ages)</span>
+<span id="cb416-7"><a href="data-visualization.html#cb416-7" tabindex="-1"></a></span>
+<span id="cb416-8"><a href="data-visualization.html#cb416-8" tabindex="-1"></a><span class="co"># PLOTTING</span></span>
+<span id="cb416-9"><a href="data-visualization.html#cb416-9" tabindex="-1"></a><span class="co"># Create the histogram using ggplot</span></span>
+<span id="cb416-10"><a href="data-visualization.html#cb416-10" tabindex="-1"></a><span class="fu">ggplot</span>(age_data, <span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span></span>
+<span id="cb416-11"><a href="data-visualization.html#cb416-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb416-12"><a href="data-visualization.html#cb416-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of Randomly Generated Ages&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb416-13"><a href="data-visualization.html#cb416-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<p>The bins are groups of ages ranging 5 years.</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+</div>
+<div id="customizing-plots" class="section level4 hasAnchor" number="5.1.1.2">
+<h4><span class="header-section-number">5.1.1.2</span> Customizing plots<a href="data-visualization.html#customizing-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Themes</strong></li>
+</ul>
+<p>Themes in <code>ggplot2</code> control the overall appearance of the plot for instance the grid line, font style, background color etc. To clearly explain the <code>theme</code> concept we will create a sample data set and plot it. The theme will be altered to show the changes in the appearance.</p>
+<p>Create a data set and plot a basic bar plot from <code>ggplot2</code></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="data-visualization.html#cb417-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb417-2"><a href="data-visualization.html#cb417-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb417-3"><a href="data-visualization.html#cb417-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb417-4"><a href="data-visualization.html#cb417-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">17</span>, <span class="dv">35</span>, <span class="dv">10</span>)</span>
+<span id="cb417-5"><a href="data-visualization.html#cb417-5" tabindex="-1"></a>)</span>
+<span id="cb417-6"><a href="data-visualization.html#cb417-6" tabindex="-1"></a></span>
+<span id="cb417-7"><a href="data-visualization.html#cb417-7" tabindex="-1"></a><span class="co"># Plot a basic bar chart</span></span>
+<span id="cb417-8"><a href="data-visualization.html#cb417-8" tabindex="-1"></a><span class="co"># Create a basic bar plot</span></span>
+<span id="cb417-9"><a href="data-visualization.html#cb417-9" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb417-10"><a href="data-visualization.html#cb417-10" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p>Lets apply some built-in themes from <code>ggplot</code>. In this case, we will use the <code>theme_minimal()</code>.</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="data-visualization.html#cb418-1" tabindex="-1"></a><span class="co"># Bar plot with theme_minimal</span></span>
+<span id="cb418-2"><a href="data-visualization.html#cb418-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb418-3"><a href="data-visualization.html#cb418-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb418-4"><a href="data-visualization.html#cb418-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-186-1.png" width="672" />
+The <code>theme_minimal()</code> removes background colors, extra gridlines and axes’ tickers to give the a chart a clean look.</p>
+<p>Now, lets try with the <code>theme_classic()</code></p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="data-visualization.html#cb419-1" tabindex="-1"></a><span class="co"># Bar plot with theme_classic</span></span>
+<span id="cb419-2"><a href="data-visualization.html#cb419-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb419-3"><a href="data-visualization.html#cb419-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb419-4"><a href="data-visualization.html#cb419-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p>The <code>theme_classic()</code> gives the bar plot a clear white background, black borderline with raised 0 point on the axes and bars.</p>
+<p>The third theme in this course is the <code>theme_light()</code>. Lets try it with the same data set.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="data-visualization.html#cb420-1" tabindex="-1"></a><span class="co"># Bar plot with theme_light</span></span>
+<span id="cb420-2"><a href="data-visualization.html#cb420-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb420-3"><a href="data-visualization.html#cb420-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb420-4"><a href="data-visualization.html#cb420-4" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p>The <code>theme_light()</code> is gives grey gridlines, grey borderline and raised bars(not touching the axes).</p>
+<p>The last theme in this list is the <code>theme_dark()</code>. Lets try it below here;</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="data-visualization.html#cb421-1" tabindex="-1"></a><span class="co"># Bar plot with theme_dark</span></span>
+<span id="cb421-2"><a href="data-visualization.html#cb421-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb421-3"><a href="data-visualization.html#cb421-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb421-4"><a href="data-visualization.html#cb421-4" tabindex="-1"></a>  <span class="fu">theme_dark</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-189-1.png" width="672" />
+The <code>theme_dark()</code> is a clear opposite of <code>theme_light</code> as it produces a plot with a dark gridlines.</p>
+<p>There are more themes provided in <code>ggplot2</code> like <code>theme_bw()</code></p>
+<ul>
+<li><p><strong>Labels and Titles</strong></p></li>
+<li><p><strong>Color and aesthetics</strong></p></li>
+</ul>
 </div>
 </div>
 </div>
