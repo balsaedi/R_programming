@@ -202,17 +202,95 @@ ggplot(df, aes(x = category, y = value)) +
   geom_bar(stat = "identity") +
   theme_dark()
 ```
-The `theme_dark()` is a clear opposite of `theme_light` as it produces a plot with a dark gridlines. 
+The `theme_dark()` is a clear opposite of `theme_light` as it produces a plot with a dark grid lines. 
 
 There are more themes provided in `ggplot2` like `theme_bw()`
 
+<-**Add a practical exercise**->
+
 - **Labels and Titles**
 
+The appearance of the charts can be made more appealing and informative by adding labels and titles. This can be achieved adding the function `labs` to a ready plot. 
 
+Lets plot the same bar chart as above and add more information with labels; 
+```{r}
+# Create a basic bar plot
+p <- ggplot(df, aes(x = category, y = value)) +
+  geom_bar(stat = "identity")
+
+p # Show the plot
+```
+
+The above chart is stored in a variable `p`. Lets add/modify the labels and titles using the `labs()` function. 
+```{r}
+# Bar plot with title, axis labels, and caption
+p + labs(
+  title = "Bar Plot of Categories",
+  subtitle = "Values by Category",
+  x = "Category",
+  y = "Value",
+  caption = "Source: Sample Data"
+)
+
+# Remember `p` is the bar plot
+```
+
+The bar plot is more informative now. Lets make the chart more appealing by modifying the appearance of the labels using the `theme()` function along with the `element_text()` function. 
+```{r}
+# Bar plot with customized title and labels
+p + labs(
+  title = "Bar Plot of Categories",
+  subtitle = "Values by Category",
+  x = "Category",
+  y = "Value",
+  caption = "Source: Sample Data"
+) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16),
+    plot.subtitle = element_text(hjust = 0.5, size = 14),
+    axis.title.x = element_text(face = "italic", size = 12),
+    axis.title.y = element_text(face = "italic", size = 12),
+    plot.caption = element_text(hjust = 0, face = "italic", size = 10)
+  )
+```
+
+<-**Add a practical exercise**->
 
 - **Color and aesthetics**
 
+The general aesthetics are essential when presenting the analysis results. They enhance the visual appearance of the charts. It also allows the users/analyst to distinguish different properties/categories in a variable. They include; color, size and shape.
+
+Lets plot a simple bar chart and add a flavor of aesthetics. 
+```{r}
+# Sample data with an additional variable. Modified the original one
+df <- data.frame(
+  category = c("A", "B", "C", "D"),
+  value = c(23, 17, 35, 10),
+  group = c("G1", "G2", "G1", "G2")
+)
 
 
+# Bar plot with mapped color, size, and shape
+ggplot(df, aes(x = category, y = value, color = group, size = value, shape = group)) +
+  geom_point()
+```
+
+Lets break down the scatter plot on how aesthetics are applied. 
+
+i. `color = group`: Maps the group variable to the color of the points. Each group will have a different color.
+ii. `size = value`: Maps the value variable to the size of the points. Points with higher values will be larger.
+iii. `shape = group`: Maps the group variable to the shape of the points. Different groups will have different shapes.
+
+Above there, the color was selected automatically by R. It can also be customized to fit our taste. Lets do a bit of color customization.
+```{r}
+# Customizing colors manually
+ggplot(df, aes(x = category, y = value, color = group)) +
+  geom_point(size = 5) +
+  scale_color_manual(values = c("G1" = "blue", "G2" = "red"))
+```
+
+The `scale_color_manual()` function allows you to manually set the colors for each level of the group variable. In this case, G1 is set to blue and G2 to red.
+
+<-**add a practical exercise**-> 
 
 ## Advanced Data Visualization

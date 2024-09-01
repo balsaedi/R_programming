@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-08-31" />
+<meta name="date" content="2024-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -293,16 +293,16 @@ mean_age # is 32.14</code></pre>
 # The median age is 31</code></pre>
 <p>To find mode, you just find the value that appears the most, for the values <code>12, 27, 27 , 31, 33, 37, 58</code>, age 27 appears twice while these other ages appear once. The value 27 is therefore the mode.</p>
 <p>Mean, median and mode can also be calculated using Base R using the functions <code>mean()</code>, <code>median()</code> and <code>mode()</code> where the vector ages is the argument.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="statistical-analysis.html#cb424-1" tabindex="-1"></a><span class="co"># Create vector ages</span></span>
-<span id="cb424-2"><a href="statistical-analysis.html#cb424-2" tabindex="-1"></a>ages <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">58</span>, <span class="dv">27</span>, <span class="dv">33</span>, <span class="dv">31</span>, <span class="dv">27</span>, <span class="dv">37</span>)</span>
-<span id="cb424-3"><a href="statistical-analysis.html#cb424-3" tabindex="-1"></a><span class="co"># Average/mean</span></span>
-<span id="cb424-4"><a href="statistical-analysis.html#cb424-4" tabindex="-1"></a><span class="fu">mean</span>(ages)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="statistical-analysis.html#cb430-1" tabindex="-1"></a><span class="co"># Create vector ages</span></span>
+<span id="cb430-2"><a href="statistical-analysis.html#cb430-2" tabindex="-1"></a>ages <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">58</span>, <span class="dv">27</span>, <span class="dv">33</span>, <span class="dv">31</span>, <span class="dv">27</span>, <span class="dv">37</span>)</span>
+<span id="cb430-3"><a href="statistical-analysis.html#cb430-3" tabindex="-1"></a><span class="co"># Average/mean</span></span>
+<span id="cb430-4"><a href="statistical-analysis.html#cb430-4" tabindex="-1"></a><span class="fu">mean</span>(ages)</span></code></pre></div>
 <pre><code>## [1] 32.14286</code></pre>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="statistical-analysis.html#cb426-1" tabindex="-1"></a><span class="co"># Median</span></span>
-<span id="cb426-2"><a href="statistical-analysis.html#cb426-2" tabindex="-1"></a><span class="fu">median</span>(ages)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="statistical-analysis.html#cb432-1" tabindex="-1"></a><span class="co"># Median</span></span>
+<span id="cb432-2"><a href="statistical-analysis.html#cb432-2" tabindex="-1"></a><span class="fu">median</span>(ages)</span></code></pre></div>
 <pre><code>## [1] 31</code></pre>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="statistical-analysis.html#cb428-1" tabindex="-1"></a><span class="co"># Mode</span></span>
-<span id="cb428-2"><a href="statistical-analysis.html#cb428-2" tabindex="-1"></a><span class="fu">mode</span>(ages)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="statistical-analysis.html#cb434-1" tabindex="-1"></a><span class="co"># Mode</span></span>
+<span id="cb434-2"><a href="statistical-analysis.html#cb434-2" tabindex="-1"></a><span class="fu">mode</span>(ages)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 <ul>
@@ -311,14 +311,14 @@ mean_age # is 32.14</code></pre>
 <p>Variance is statistical measure of dispersion that defines how spread the data points are in a data set in relation to the mean of the data set. Standard deviation is the measure of how data is clustered around the mean. It is simply defined to as the square root of variance.</p>
 <p>Variance and standard deviation can be calculated in R environment using <code>var()</code> and <code>sd()</code> functions respectively.</p>
 <p>Lets create a vector of weights of the athletes in kilograms and calculate the variance and standard deviation.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="statistical-analysis.html#cb430-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
-<span id="cb430-2"><a href="statistical-analysis.html#cb430-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
-<span id="cb430-3"><a href="statistical-analysis.html#cb430-3" tabindex="-1"></a></span>
-<span id="cb430-4"><a href="statistical-analysis.html#cb430-4" tabindex="-1"></a><span class="co"># Calculate variance</span></span>
-<span id="cb430-5"><a href="statistical-analysis.html#cb430-5" tabindex="-1"></a><span class="fu">var</span>(athlete_weights)</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="statistical-analysis.html#cb436-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
+<span id="cb436-2"><a href="statistical-analysis.html#cb436-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
+<span id="cb436-3"><a href="statistical-analysis.html#cb436-3" tabindex="-1"></a></span>
+<span id="cb436-4"><a href="statistical-analysis.html#cb436-4" tabindex="-1"></a><span class="co"># Calculate variance</span></span>
+<span id="cb436-5"><a href="statistical-analysis.html#cb436-5" tabindex="-1"></a><span class="fu">var</span>(athlete_weights)</span></code></pre></div>
 <pre><code>## [1] 216.7111</code></pre>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="statistical-analysis.html#cb432-1" tabindex="-1"></a><span class="co"># Calculate standard deviation</span></span>
-<span id="cb432-2"><a href="statistical-analysis.html#cb432-2" tabindex="-1"></a><span class="fu">sd</span>(athlete_weights)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="statistical-analysis.html#cb438-1" tabindex="-1"></a><span class="co"># Calculate standard deviation</span></span>
+<span id="cb438-2"><a href="statistical-analysis.html#cb438-2" tabindex="-1"></a><span class="fu">sd</span>(athlete_weights)</span></code></pre></div>
 <pre><code>## [1] 14.72111</code></pre>
 <p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 <ul>
@@ -354,16 +354,16 @@ mean_age # is 32.14</code></pre>
 <p><code>IQR = Q3 - Q1 = 76 - 55 = 21</code></p>
 <p>The IQR for the weights data set is 21.</p>
 <p>Range and IQR can be calculated in R environment using the <code>range()</code> and <code>IQR()</code> function respectively. However function range returns the maximum and the minmum values in the dataset.</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="statistical-analysis.html#cb434-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
-<span id="cb434-2"><a href="statistical-analysis.html#cb434-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
-<span id="cb434-3"><a href="statistical-analysis.html#cb434-3" tabindex="-1"></a>                    </span>
-<span id="cb434-4"><a href="statistical-analysis.html#cb434-4" tabindex="-1"></a><span class="co"># RANGE </span></span>
-<span id="cb434-5"><a href="statistical-analysis.html#cb434-5" tabindex="-1"></a><span class="fu">range</span>(athlete_weights) <span class="co"># returns maximum and minimum values</span></span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="statistical-analysis.html#cb440-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
+<span id="cb440-2"><a href="statistical-analysis.html#cb440-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
+<span id="cb440-3"><a href="statistical-analysis.html#cb440-3" tabindex="-1"></a>                    </span>
+<span id="cb440-4"><a href="statistical-analysis.html#cb440-4" tabindex="-1"></a><span class="co"># RANGE </span></span>
+<span id="cb440-5"><a href="statistical-analysis.html#cb440-5" tabindex="-1"></a><span class="fu">range</span>(athlete_weights) <span class="co"># returns maximum and minimum values</span></span></code></pre></div>
 <pre><code>## [1] 52 96</code></pre>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="statistical-analysis.html#cb436-1" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(athlete_weights)) <span class="co"># calculate the range value</span></span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="statistical-analysis.html#cb442-1" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(athlete_weights)) <span class="co"># calculate the range value</span></span></code></pre></div>
 <pre><code>## [1] 44</code></pre>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="statistical-analysis.html#cb438-1" tabindex="-1"></a><span class="co"># INTER QUARTILE RANGE (IQR)http://127.0.0.1:38237/rmd_output/1/basic-data-types-and-structures.html</span></span>
-<span id="cb438-2"><a href="statistical-analysis.html#cb438-2" tabindex="-1"></a><span class="fu">IQR</span>(athlete_weights)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="statistical-analysis.html#cb444-1" tabindex="-1"></a><span class="co"># INTER QUARTILE RANGE (IQR)http://127.0.0.1:38237/rmd_output/1/basic-data-types-and-structures.html</span></span>
+<span id="cb444-2"><a href="statistical-analysis.html#cb444-2" tabindex="-1"></a><span class="fu">IQR</span>(athlete_weights)</span></code></pre></div>
 <pre><code>## [1] 19</code></pre>
 <p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
@@ -421,24 +421,24 @@ mean_age # is 32.14</code></pre>
 </ol>
 <p>The goal of simple of linear regression it to have the best fitting line that with the equation <code>y = BX + c</code>. Base R has a method of fitting a linear regression and finding the best fit line using <code>lm()</code> function. <code>lm()</code> stands for “linear model”.</p>
 <p>Lets create a simple linear regression model to a hypothetical data set where height of athletes is predicted based on weight.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="statistical-analysis.html#cb441-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
-<span id="cb441-2"><a href="statistical-analysis.html#cb441-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable (x)</span></span>
-<span id="cb441-3"><a href="statistical-analysis.html#cb441-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
-<span id="cb441-4"><a href="statistical-analysis.html#cb441-4" tabindex="-1"></a></span>
-<span id="cb441-5"><a href="statistical-analysis.html#cb441-5" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
-<span id="cb441-6"><a href="statistical-analysis.html#cb441-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, weight)</span>
-<span id="cb441-7"><a href="statistical-analysis.html#cb441-7" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="statistical-analysis.html#cb447-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb447-2"><a href="statistical-analysis.html#cb447-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable (x)</span></span>
+<span id="cb447-3"><a href="statistical-analysis.html#cb447-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb447-4"><a href="statistical-analysis.html#cb447-4" tabindex="-1"></a></span>
+<span id="cb447-5"><a href="statistical-analysis.html#cb447-5" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb447-6"><a href="statistical-analysis.html#cb447-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, weight)</span>
+<span id="cb447-7"><a href="statistical-analysis.html#cb447-7" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
 <pre><code>##   height weight
 ## 1    150     65
 ## 2    160     70
 ## 3    170     75
 ## 4    180     80
 ## 5    190     85</code></pre>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="statistical-analysis.html#cb443-1" tabindex="-1"></a><span class="co"># Fit the linear model</span></span>
-<span id="cb443-2"><a href="statistical-analysis.html#cb443-2" tabindex="-1"></a>lin_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> data)</span>
-<span id="cb443-3"><a href="statistical-analysis.html#cb443-3" tabindex="-1"></a></span>
-<span id="cb443-4"><a href="statistical-analysis.html#cb443-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
-<span id="cb443-5"><a href="statistical-analysis.html#cb443-5" tabindex="-1"></a><span class="fu">summary</span>(lin_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="statistical-analysis.html#cb449-1" tabindex="-1"></a><span class="co"># Fit the linear model</span></span>
+<span id="cb449-2"><a href="statistical-analysis.html#cb449-2" tabindex="-1"></a>lin_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> data)</span>
+<span id="cb449-3"><a href="statistical-analysis.html#cb449-3" tabindex="-1"></a></span>
+<span id="cb449-4"><a href="statistical-analysis.html#cb449-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb449-5"><a href="statistical-analysis.html#cb449-5" tabindex="-1"></a><span class="fu">summary</span>(lin_reg)</span></code></pre></div>
 <pre><code>## Warning in summary.lm(lin_reg): essentially perfect fit: summary may be
 ## unreliable</code></pre>
 <pre><code>## 
@@ -488,25 +488,25 @@ mean_age # is 32.14</code></pre>
 <li>The t-statistic of the model. T-statistic is the ratio of the difference in a number’s estimated value from its assumed value to its standard error.</li>
 </ol>
 <p>Lets create a multiple linear regression from a hypothetical data using base R.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="statistical-analysis.html#cb446-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
-<span id="cb446-2"><a href="statistical-analysis.html#cb446-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable 1 (x1)</span></span>
-<span id="cb446-3"><a href="statistical-analysis.html#cb446-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)          <span class="co"># Independent variable 2 (x2)</span></span>
-<span id="cb446-4"><a href="statistical-analysis.html#cb446-4" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
-<span id="cb446-5"><a href="statistical-analysis.html#cb446-5" tabindex="-1"></a></span>
-<span id="cb446-6"><a href="statistical-analysis.html#cb446-6" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
-<span id="cb446-7"><a href="statistical-analysis.html#cb446-7" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, age, weight)</span>
-<span id="cb446-8"><a href="statistical-analysis.html#cb446-8" tabindex="-1"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="statistical-analysis.html#cb452-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb452-2"><a href="statistical-analysis.html#cb452-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable 1 (x1)</span></span>
+<span id="cb452-3"><a href="statistical-analysis.html#cb452-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)          <span class="co"># Independent variable 2 (x2)</span></span>
+<span id="cb452-4"><a href="statistical-analysis.html#cb452-4" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb452-5"><a href="statistical-analysis.html#cb452-5" tabindex="-1"></a></span>
+<span id="cb452-6"><a href="statistical-analysis.html#cb452-6" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb452-7"><a href="statistical-analysis.html#cb452-7" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, age, weight)</span>
+<span id="cb452-8"><a href="statistical-analysis.html#cb452-8" tabindex="-1"></a>data</span></code></pre></div>
 <pre><code>##   height age weight
 ## 1    150  25     65
 ## 2    160  30     70
 ## 3    170  35     75
 ## 4    180  40     80
 ## 5    190  45     85</code></pre>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="statistical-analysis.html#cb448-1" tabindex="-1"></a><span class="co"># Fit the linear model with multiple predictors</span></span>
-<span id="cb448-2"><a href="statistical-analysis.html#cb448-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
-<span id="cb448-3"><a href="statistical-analysis.html#cb448-3" tabindex="-1"></a></span>
-<span id="cb448-4"><a href="statistical-analysis.html#cb448-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
-<span id="cb448-5"><a href="statistical-analysis.html#cb448-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="statistical-analysis.html#cb454-1" tabindex="-1"></a><span class="co"># Fit the linear model with multiple predictors</span></span>
+<span id="cb454-2"><a href="statistical-analysis.html#cb454-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
+<span id="cb454-3"><a href="statistical-analysis.html#cb454-3" tabindex="-1"></a></span>
+<span id="cb454-4"><a href="statistical-analysis.html#cb454-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb454-5"><a href="statistical-analysis.html#cb454-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## Warning in summary.lm(model): essentially perfect fit: summary may be
 ## unreliable</code></pre>
 <pre><code>## 

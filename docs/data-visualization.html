@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-08-31" />
+<meta name="date" content="2024-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -426,12 +426,80 @@ The <code>theme_minimal()</code> removes background colors, extra gridlines and 
 <span id="cb421-3"><a href="data-visualization.html#cb421-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb421-4"><a href="data-visualization.html#cb421-4" tabindex="-1"></a>  <span class="fu">theme_dark</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-189-1.png" width="672" />
-The <code>theme_dark()</code> is a clear opposite of <code>theme_light</code> as it produces a plot with a dark gridlines.</p>
+The <code>theme_dark()</code> is a clear opposite of <code>theme_light</code> as it produces a plot with a dark grid lines.</p>
 <p>There are more themes provided in <code>ggplot2</code> like <code>theme_bw()</code></p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 <ul>
-<li><p><strong>Labels and Titles</strong></p></li>
-<li><p><strong>Color and aesthetics</strong></p></li>
+<li><strong>Labels and Titles</strong></li>
 </ul>
+<p>The appearance of the charts can be made more appealing and informative by adding labels and titles. This can be achieved adding the function <code>labs</code> to a ready plot.</p>
+<p>Lets plot the same bar chart as above and add more information with labels;</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="data-visualization.html#cb422-1" tabindex="-1"></a><span class="co"># Create a basic bar plot</span></span>
+<span id="cb422-2"><a href="data-visualization.html#cb422-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb422-3"><a href="data-visualization.html#cb422-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span>
+<span id="cb422-4"><a href="data-visualization.html#cb422-4" tabindex="-1"></a></span>
+<span id="cb422-5"><a href="data-visualization.html#cb422-5" tabindex="-1"></a>p <span class="co"># Show the plot</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p>The above chart is stored in a variable <code>p</code>. Lets add/modify the labels and titles using the <code>labs()</code> function.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="data-visualization.html#cb423-1" tabindex="-1"></a><span class="co"># Bar plot with title, axis labels, and caption</span></span>
+<span id="cb423-2"><a href="data-visualization.html#cb423-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb423-3"><a href="data-visualization.html#cb423-3" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Bar Plot of Categories&quot;</span>,</span>
+<span id="cb423-4"><a href="data-visualization.html#cb423-4" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Values by Category&quot;</span>,</span>
+<span id="cb423-5"><a href="data-visualization.html#cb423-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>,</span>
+<span id="cb423-6"><a href="data-visualization.html#cb423-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb423-7"><a href="data-visualization.html#cb423-7" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Source: Sample Data&quot;</span></span>
+<span id="cb423-8"><a href="data-visualization.html#cb423-8" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="data-visualization.html#cb424-1" tabindex="-1"></a><span class="co"># Remember `p` is the bar plot</span></span></code></pre></div>
+<p>The bar plot is more informative now. Lets make the chart more appealing by modifying the appearance of the labels using the <code>theme()</code> function along with the <code>element_text()</code> function.</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="data-visualization.html#cb425-1" tabindex="-1"></a><span class="co"># Bar plot with customized title and labels</span></span>
+<span id="cb425-2"><a href="data-visualization.html#cb425-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb425-3"><a href="data-visualization.html#cb425-3" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Bar Plot of Categories&quot;</span>,</span>
+<span id="cb425-4"><a href="data-visualization.html#cb425-4" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Values by Category&quot;</span>,</span>
+<span id="cb425-5"><a href="data-visualization.html#cb425-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>,</span>
+<span id="cb425-6"><a href="data-visualization.html#cb425-6" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb425-7"><a href="data-visualization.html#cb425-7" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Source: Sample Data&quot;</span></span>
+<span id="cb425-8"><a href="data-visualization.html#cb425-8" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb425-9"><a href="data-visualization.html#cb425-9" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb425-10"><a href="data-visualization.html#cb425-10" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb425-11"><a href="data-visualization.html#cb425-11" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb425-12"><a href="data-visualization.html#cb425-12" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb425-13"><a href="data-visualization.html#cb425-13" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb425-14"><a href="data-visualization.html#cb425-14" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
+<span id="cb425-15"><a href="data-visualization.html#cb425-15" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<ul>
+<li><strong>Color and aesthetics</strong></li>
+</ul>
+<p>The general aesthetics are essential when presenting the analysis results. They enhance the visual appearance of the charts. It also allows the users/analyst to distinguish different properties/categories in a variable. They include; color, size and shape.</p>
+<p>Lets plot a simple bar chart and add a flavor of aesthetics.</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="data-visualization.html#cb426-1" tabindex="-1"></a><span class="co"># Sample data with an additional variable. Modified the original one</span></span>
+<span id="cb426-2"><a href="data-visualization.html#cb426-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb426-3"><a href="data-visualization.html#cb426-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb426-4"><a href="data-visualization.html#cb426-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">17</span>, <span class="dv">35</span>, <span class="dv">10</span>),</span>
+<span id="cb426-5"><a href="data-visualization.html#cb426-5" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>, <span class="st">&quot;G1&quot;</span>, <span class="st">&quot;G2&quot;</span>)</span>
+<span id="cb426-6"><a href="data-visualization.html#cb426-6" tabindex="-1"></a>)</span>
+<span id="cb426-7"><a href="data-visualization.html#cb426-7" tabindex="-1"></a></span>
+<span id="cb426-8"><a href="data-visualization.html#cb426-8" tabindex="-1"></a></span>
+<span id="cb426-9"><a href="data-visualization.html#cb426-9" tabindex="-1"></a><span class="co"># Bar plot with mapped color, size, and shape</span></span>
+<span id="cb426-10"><a href="data-visualization.html#cb426-10" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value, <span class="at">color =</span> group, <span class="at">size =</span> value, <span class="at">shape =</span> group)) <span class="sc">+</span></span>
+<span id="cb426-11"><a href="data-visualization.html#cb426-11" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p>Lets break down the scatter plot on how aesthetics are applied.</p>
+<ol style="list-style-type: lower-roman">
+<li><code>color = group</code>: Maps the group variable to the color of the points. Each group will have a different color.</li>
+<li><code>size = value</code>: Maps the value variable to the size of the points. Points with higher values will be larger.</li>
+<li><code>shape = group</code>: Maps the group variable to the shape of the points. Different groups will have different shapes.</li>
+</ol>
+<p>Above there, the color was selected automatically by R. It can also be customized to fit our taste. Lets do a bit of color customization.</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="data-visualization.html#cb427-1" tabindex="-1"></a><span class="co"># Customizing colors manually</span></span>
+<span id="cb427-2"><a href="data-visualization.html#cb427-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb427-3"><a href="data-visualization.html#cb427-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb427-4"><a href="data-visualization.html#cb427-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;G1&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;G2&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<p>The <code>scale_color_manual()</code> function allows you to manually set the colors for each level of the group variable. In this case, G1 is set to blue and G2 to red.</p>
+<p>&lt;-<strong>add a practical exercise</strong>-&gt;</p>
 </div>
 </div>
 </div>
