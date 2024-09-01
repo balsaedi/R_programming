@@ -294,3 +294,75 @@ The `scale_color_manual()` function allows you to manually set the colors for ea
 <-**add a practical exercise**-> 
 
 ## Advanced Data Visualization
+### Creating Complex Visualizations
+- **Boxplots**
+
+Box plot is a type of chart that uses boxes and lines to show distributions of one or more groups of a continuous numeric data. They provide a high-level information at a glance for instance the data symmetry, skew and variance. They can also be used to show outliers within a data set. This is the only chart that can effectively give the measure of spread and central tendency(median, quartiles and range). 
+
+Lets plot a simple boxplot for the age of employees from the IBM Human Resource Analytics data; The data can be downloaded from [here](https://www.kaggle.com/code/faressayah/ibm-hr-analytics-employee-attrition-performance/input)
+```{r}
+df <- read.csv("data/HR-Employee-Attrition.csv")
+
+# Plot a boxplot
+ggplot(df, aes(y=Age))+
+  geom_boxplot(fill="black")
+```
+
+The upper quartile for the employees' age is 43(Q3) while the lower quartile(Q1) is 30.The median age is approximately 36. There are no outliers in the dataset. Lets compare the distribution of ages between male and female employees; (The `x` argument will be introduced in `aes()` function)
+```{r}
+# Plot a boxplot
+ggplot(df, aes(y=Age, x=Gender))+
+  geom_boxplot(fill=c("pink", "lightblue"))
+```
+The female employee have an older working population than the male counterparts with a median age of approximately 36 and 35 respectively. 
+
+The distance between Q3 and Q1 (in this case the height of the box) is know as the Interquartile Range(IQR). 
+
+The above boxplots are vertical, they can be shifted to horizontal by interchanging the `y` and `x` argument in the function `aes()`. Lets do it;
+```{r}
+# Plot a horizontal boxplot 
+ggplot(df, aes(x=Age, y=Gender))+
+  geom_boxplot(fill=c("pink", "lightblue"))
+```
+
+Lets add a few customization to make the graph more informative and visually appealing
+```{r}
+# BOXPLOT 
+ggplot(df, aes(x=Age, y=Gender))+
+  geom_boxplot(fill=c("pink", "lightblue"))+
+  theme_dark() + 
+  labs(
+  title = "IBM HR Analytics",
+  subtitle = "Boxplots of Employees' age by Gender",
+  x = "Age",
+  y = "Gender",
+  caption = "Source: Kaggle"
+) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16),
+    plot.subtitle = element_text(hjust = 0.5, size = 14),
+    axis.title.x = element_text(face = "italic", size = 12),
+    axis.title.y = element_text(face = "italic", size = 12),
+    plot.caption = element_text(hjust = 0, face = "italic", size = 10)
+  )
+  
+```
+
+<-**Add a practical exercise**->
+
+- **Violin Plots**
+
+An alternative to the boxplot is the violin plot. The violin plot addresses the issue of distribution. It shows the distribution curve unlike the boxplot and histogram. 
+
+To demonstrate this, lets visualize the distribution of employees age using a violin plot. 
+```{r}
+# VIOLINE PLOT 
+ggplot(df, aes(x=Age, y=""))+
+  geom_violin(fill = "skyblue", color = "darkblue")
+```
+
+<-**Add a practical exercise**->
+
+- **Facet Grids**
+
+### Combining Multiple Plots

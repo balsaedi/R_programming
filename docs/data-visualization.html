@@ -212,7 +212,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="data-visualization.html"><a href="data-visualization.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to ggplot2</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a></li>
+<li class="chapter" data-level="5.2" data-path="data-visualization.html"><a href="data-visualization.html#advanced-data-visualization"><i class="fa fa-check"></i><b>5.2</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-visualization.html"><a href="data-visualization.html#creating-complex-visualizations"><i class="fa fa-check"></i><b>5.2.1</b> Creating Complex Visualizations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-visualization.html"><a href="data-visualization.html#combining-multiple-plots"><i class="fa fa-check"></i><b>5.2.2</b> Combining Multiple Plots</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="explanatory-data-analysis.html"><a href="explanatory-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Explanatory Data Analysis</a>
 <ul>
@@ -505,7 +509,70 @@ The <code>theme_dark()</code> is a clear opposite of <code>theme_light</code> as
 </div>
 <div id="advanced-data-visualization" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Advanced Data Visualization<a href="data-visualization.html#advanced-data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="creating-complex-visualizations" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Creating Complex Visualizations<a href="data-visualization.html#creating-complex-visualizations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Boxplots</strong></li>
+</ul>
+<p>Box plot is a type of chart that uses boxes and lines to show distributions of one or more groups of a continuous numeric data. They provide a high-level information at a glance for instance the data symmetry, skew and variance. They can also be used to show outliers within a data set. This is the only chart that can effectively give the measure of spread and central tendency(median, quartiles and range).</p>
+<p>Lets plot a simple boxplot for the age of employees from the IBM Human Resource Analytics data; The data can be downloaded from <a href="https://www.kaggle.com/code/faressayah/ibm-hr-analytics-employee-attrition-performance/input">here</a></p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="data-visualization.html#cb428-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/HR-Employee-Attrition.csv&quot;</span>)</span>
+<span id="cb428-2"><a href="data-visualization.html#cb428-2" tabindex="-1"></a></span>
+<span id="cb428-3"><a href="data-visualization.html#cb428-3" tabindex="-1"></a><span class="co"># Plot a boxplot</span></span>
+<span id="cb428-4"><a href="data-visualization.html#cb428-4" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y=</span>Age))<span class="sc">+</span></span>
+<span id="cb428-5"><a href="data-visualization.html#cb428-5" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<p>The upper quartile for the employees’ age is 43(Q3) while the lower quartile(Q1) is 30.The median age is approximately 36. There are no outliers in the dataset. Lets compare the distribution of ages between male and female employees; (The <code>x</code> argument will be introduced in <code>aes()</code> function)</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="data-visualization.html#cb429-1" tabindex="-1"></a><span class="co"># Plot a boxplot</span></span>
+<span id="cb429-2"><a href="data-visualization.html#cb429-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y=</span>Age, <span class="at">x=</span>Gender))<span class="sc">+</span></span>
+<span id="cb429-3"><a href="data-visualization.html#cb429-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-196-1.png" width="672" />
+The female employee have an older working population than the male counterparts with a median age of approximately 36 and 35 respectively.</p>
+<p>The distance between Q3 and Q1 (in this case the height of the box) is know as the Interquartile Range(IQR).</p>
+<p>The above boxplots are vertical, they can be shifted to horizontal by interchanging the <code>y</code> and <code>x</code> argument in the function <code>aes()</code>. Lets do it;</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="data-visualization.html#cb430-1" tabindex="-1"></a><span class="co"># Plot a horizontal boxplot </span></span>
+<span id="cb430-2"><a href="data-visualization.html#cb430-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span>Gender))<span class="sc">+</span></span>
+<span id="cb430-3"><a href="data-visualization.html#cb430-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<p>Lets add a few customization to make the graph more informative and visually appealing</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="data-visualization.html#cb431-1" tabindex="-1"></a><span class="co"># BOXPLOT </span></span>
+<span id="cb431-2"><a href="data-visualization.html#cb431-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span>Gender))<span class="sc">+</span></span>
+<span id="cb431-3"><a href="data-visualization.html#cb431-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))<span class="sc">+</span></span>
+<span id="cb431-4"><a href="data-visualization.html#cb431-4" tabindex="-1"></a>  <span class="fu">theme_dark</span>() <span class="sc">+</span> </span>
+<span id="cb431-5"><a href="data-visualization.html#cb431-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb431-6"><a href="data-visualization.html#cb431-6" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;IBM HR Analytics&quot;</span>,</span>
+<span id="cb431-7"><a href="data-visualization.html#cb431-7" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;Boxplots of Employees&#39; age by Gender&quot;</span>,</span>
+<span id="cb431-8"><a href="data-visualization.html#cb431-8" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb431-9"><a href="data-visualization.html#cb431-9" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb431-10"><a href="data-visualization.html#cb431-10" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Source: Kaggle&quot;</span></span>
+<span id="cb431-11"><a href="data-visualization.html#cb431-11" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb431-12"><a href="data-visualization.html#cb431-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb431-13"><a href="data-visualization.html#cb431-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb431-14"><a href="data-visualization.html#cb431-14" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb431-15"><a href="data-visualization.html#cb431-15" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb431-16"><a href="data-visualization.html#cb431-16" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb431-17"><a href="data-visualization.html#cb431-17" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
+<span id="cb431-18"><a href="data-visualization.html#cb431-18" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<ul>
+<li><strong>Violin Plots</strong></li>
+</ul>
+<p>An alternative to the boxplot is the violin plot. The violin plot addresses the issue of distribution. It shows the distribution curve unlike the boxplot and histogram.</p>
+<p>To demonstrate this, lets visualize the distribution of employees age using a violin plot.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="data-visualization.html#cb432-1" tabindex="-1"></a><span class="co"># VIOLINE PLOT </span></span>
+<span id="cb432-2"><a href="data-visualization.html#cb432-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span><span class="st">&quot;&quot;</span>))<span class="sc">+</span></span>
+<span id="cb432-3"><a href="data-visualization.html#cb432-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<ul>
+<li><strong>Facet Grids</strong></li>
+</ul>
+</div>
+<div id="combining-multiple-plots" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Combining Multiple Plots<a href="data-visualization.html#combining-multiple-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
+</div>
 </div>
 </div>
             </section>

@@ -53,6 +53,8 @@ introduction-to-ggplot2
 creating-basic-plots
 customizing-plots
 advanced-data-visualization
+creating-complex-visualizations
+combining-multiple-plots
 explanatory-data-analysis
 introduction-to-eda
 eda-in-practice
