@@ -365,4 +365,54 @@ ggplot(df, aes(x=Age, y=""))+
 
 - **Facet Grids**
 
+`ggplot2` has a functionality that enables creating multiple plots at once on the same chart. This concept is referred to as faceting. This use full especially when comparing two populations characteristics like distributions. There are two main functions that are used by statisticians; `facet_wrap()` and `facet_grid()`. 
+
+i. `facet_wrap()`: Is used to design multiple plots under a single dimension(facet by one variable). Wraps plots in a grid
+ii. `facet_grid()`: It creates grid of plots based on two variables(rows and columns). It's particularly useful when comparing data across multiple dimensions. 
+
+Lets create a box plot to demonstrate `facet_wrap()` and `facet_grid()`. 
+
+Create a sample data for demonstrations
+```{r}
+# Create sample data
+df <- data.frame(
+  category = rep(c("A", "B", "C"), each = 100),
+  sub_category = rep(c("X", "Y"), each = 50, times = 3),
+  value = c(rnorm(100, mean = 10, sd = 2),
+            rnorm(100, mean = 15, sd = 2.5),
+            rnorm(100, mean = 20, sd = 3))
+)
+
+head(df)
+```
+
+A basic box plot to show the distribution of `"value"`. 
+```{r}
+# Basic boxplot
+p <- ggplot(df, aes(x = sub_category, y = value)) +
+  geom_boxplot() +
+  labs(
+    title = "Boxplot of Values by Sub-Category",
+    x = "Sub-Category",
+    y = "Value"
+  )
+
+p
+```
+
+Facet with `facet_wrap()`. This will divide `"value"` into categories based on the `category` column and create a separate boxplot for each category. 
+```{r}
+# Facet the plot by 'category' using facet_wrap
+p + facet_wrap(~ category)
+```
+
+Facet with the `facet_grid()` to create a grid of plots based on each `category` and `sub_category`
+```{r}
+# Facet the plot by 'category' and 'sub_category' using facet_grid
+p + facet_grid(category ~ sub_category)
+```
+As seen above, there is a boxplot to represent the distribution for each `sub_category` in a `category`. 
+
+<-**Add a practical exercise**->
+
 ### Combining Multiple Plots

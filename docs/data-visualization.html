@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-01" />
+<meta name="date" content="2024-09-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -568,6 +568,52 @@ The female employee have an older working population than the male counterparts 
 <ul>
 <li><strong>Facet Grids</strong></li>
 </ul>
+<p><code>ggplot2</code> has a functionality that enables creating multiple plots at once on the same chart. This concept is referred to as faceting. This use full especially when comparing two populations characteristics like distributions. There are two main functions that are used by statisticians; <code>facet_wrap()</code> and <code>facet_grid()</code>.</p>
+<ol style="list-style-type: lower-roman">
+<li><code>facet_wrap()</code>: Is used to design multiple plots under a single dimension(facet by one variable). Wraps plots in a grid</li>
+<li><code>facet_grid()</code>: It creates grid of plots based on two variables(rows and columns). It’s particularly useful when comparing data across multiple dimensions.</li>
+</ol>
+<p>Lets create a box plot to demonstrate <code>facet_wrap()</code> and <code>facet_grid()</code>.</p>
+<p>Create a sample data for demonstrations</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="data-visualization.html#cb433-1" tabindex="-1"></a><span class="co"># Create sample data</span></span>
+<span id="cb433-2"><a href="data-visualization.html#cb433-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb433-3"><a href="data-visualization.html#cb433-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="at">each =</span> <span class="dv">100</span>),</span>
+<span id="cb433-4"><a href="data-visualization.html#cb433-4" tabindex="-1"></a>  <span class="at">sub_category =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>), <span class="at">each =</span> <span class="dv">50</span>, <span class="at">times =</span> <span class="dv">3</span>),</span>
+<span id="cb433-5"><a href="data-visualization.html#cb433-5" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>),</span>
+<span id="cb433-6"><a href="data-visualization.html#cb433-6" tabindex="-1"></a>            <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="fl">2.5</span>),</span>
+<span id="cb433-7"><a href="data-visualization.html#cb433-7" tabindex="-1"></a>            <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="dv">3</span>))</span>
+<span id="cb433-8"><a href="data-visualization.html#cb433-8" tabindex="-1"></a>)</span>
+<span id="cb433-9"><a href="data-visualization.html#cb433-9" tabindex="-1"></a></span>
+<span id="cb433-10"><a href="data-visualization.html#cb433-10" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##   category sub_category     value
+## 1        A            X  8.853046
+## 2        A            X  6.143750
+## 3        A            X 11.328782
+## 4        A            X  6.794920
+## 5        A            X  7.290799
+## 6        A            X  3.964135</code></pre>
+<p>A basic box plot to show the distribution of <code>"value"</code>.</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="data-visualization.html#cb435-1" tabindex="-1"></a><span class="co"># Basic boxplot</span></span>
+<span id="cb435-2"><a href="data-visualization.html#cb435-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> sub_category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb435-3"><a href="data-visualization.html#cb435-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb435-4"><a href="data-visualization.html#cb435-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb435-5"><a href="data-visualization.html#cb435-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Boxplot of Values by Sub-Category&quot;</span>,</span>
+<span id="cb435-6"><a href="data-visualization.html#cb435-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Sub-Category&quot;</span>,</span>
+<span id="cb435-7"><a href="data-visualization.html#cb435-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Value&quot;</span></span>
+<span id="cb435-8"><a href="data-visualization.html#cb435-8" tabindex="-1"></a>  )</span>
+<span id="cb435-9"><a href="data-visualization.html#cb435-9" tabindex="-1"></a></span>
+<span id="cb435-10"><a href="data-visualization.html#cb435-10" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+<p>Facet with <code>facet_wrap()</code>. This will divide <code>"value"</code> into categories based on the <code>category</code> column and create a separate boxplot for each category.</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="data-visualization.html#cb436-1" tabindex="-1"></a><span class="co"># Facet the plot by &#39;category&#39; using facet_wrap</span></span>
+<span id="cb436-2"><a href="data-visualization.html#cb436-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> category)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
+<p>Facet with the <code>facet_grid()</code> to create a grid of plots based on each <code>category</code> and <code>sub_category</code></p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="data-visualization.html#cb437-1" tabindex="-1"></a><span class="co"># Facet the plot by &#39;category&#39; and &#39;sub_category&#39; using facet_grid</span></span>
+<span id="cb437-2"><a href="data-visualization.html#cb437-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(category <span class="sc">~</span> sub_category)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-203-1.png" width="672" />
+As seen above, there is a boxplot to represent the distribution for each <code>sub_category</code> in a <code>category</code>.</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
 <div id="combining-multiple-plots" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Combining Multiple Plots<a href="data-visualization.html#combining-multiple-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
