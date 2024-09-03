@@ -254,6 +254,8 @@ ggplot(df, aes(x = value)) +
 
 From the graphs above, histograms provide a bar-chart-like representation of the data distribution while density plots proved a smoother view of the data distribution. 
 
+<-**Add a practical exercise**->
+
 ## Correlation and Regression Analysis
 ### Introduction to Correlation 
 - **Pearson and Spearman Correlation**
@@ -286,11 +288,86 @@ Spearman correlation is insensitive with outliers because it uses ranks other th
 
 - **Visualizing Correlation**
 
-Demonstration of scatter plots to visualize the relationship between two variables.
+The relationship of exactly two numeric continuous variables can be viewed using scatter plots while the relationship between multiple(two or more) can be analyzed using a correlation plot(heatmap)
 
-Introduction to correlation heatmaps using ggcorrplot or corrplot.
+```{r}
+# Set seed for reproducibility
+set.seed(123)
 
-Practical exercise: Create scatter plots and correlation heatmaps for a data set.
+# Create a linear relationship with some noise
+x <- rnorm(100, mean = 50, sd = 10)
+y <- 2 * x + 5 + rnorm(100, mean = 0, sd = 5)  # Linear relationship with noise
+
+# Combine into a data frame
+df <- data.frame(x = x, y = y)
+
+
+# Create a scatter plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(color = "blue") +
+  labs(
+    title = "Scatter Plot of X vs Y",
+    x = "X Variable",
+    y = "Y Variable"
+  ) +
+  theme_minimal()
+```
+
+In the scatter plot above;
+
+i. The `X` and `y` variables have a positive correlation. The increase in `X` leads to an increase in `Y`. 
+ii. There are no outliers in the data set. There are no data points that are out of the general pattern.
+iii. The relationship between `X` and `Y` is linear.
+
+On the other hand, the heatmap is a visual representation of the correlation matrix where each cell represents the relationship between two variables. The color of the cell indicates the strength of the relationship between the concerned variables. 
+
+Lets create a data frame with multiple variables, and plot a heatmap. 
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Create 6 variables
+var1 <- rnorm(100, mean = 50, sd = 10)
+var2 <- rnorm(100, mean = 60, sd = 15)
+var3 <- rnorm(100, mean = 70, sd = 20)
+var4 <- rnorm(100, mean = 80, sd = 25)
+var5 <- 3 * var1 + 7 + rnorm(100, mean = 0, sd = 5)  # Linear relationship with var1
+var6 <- rnorm(100, mean = 90, sd = 30)
+
+# Combine into a data frame
+df <- data.frame(var1 = var1, var2 = var2, var3 = var3, var4 = var4, var5 = var5, var6 = var6)
+
+# Display the first few rows of the data set
+head(df)
+```
+`var5` has a linear relationship with `var1`. Lets plot a heatmap of the data frame `df`. However, lets install the `ggcorrplot` and the `corrplot` packages
+```
+install.packages(c("ggcorrplot", "corrplot"))
+```
+
+Create a correlation heatmap using the `ggcorrplot` package
+```{r}
+library(ggcorrplot)
+
+# Calculate the correlation matrix
+cor_matrix <- cor(df)
+
+# Create a correlation heatmap
+ggcorrplot(cor_matrix, method = "circle", lab = TRUE, lab_size = 3, colors = c("red", "white", "blue")) + 
+  labs(title = "Heatmap 1")
+```
+
+Lets repeat the same using the `corrplot` package
+```{r warning=FALSE, error=FALSE}
+library(corrplot)
+
+# Create a correlation heatmap using corrplot
+corrplot(cor_matrix, method = "color", type = "upper", tl.col = "black", tl.srt = 45)
+```
+
+The two plots visualizes the correlation between the variables in the data set. `Var5` and `Var1` have a high correlation(0.98) while `Var5` and `Var2` have a very low correlation value(-0.07)
+
+<-**Add a practical exercise**->
 
 ### Introduction to Regression Analysis
 Regression is a statistical method used to measure the strength and relationship of a target(dependent) with one or more independent variables. Correlation is very vital in determining regression. Linear regression is the most technique of regression, there are some more advanced forms of regression. 

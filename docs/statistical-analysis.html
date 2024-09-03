@@ -471,6 +471,7 @@ Most values in the data set range between 10 and 20. Let,s also plot the data fo
 <span id="cb472-9"><a href="statistical-analysis.html#cb472-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
 <p>From the graphs above, histograms provide a bar-chart-like representation of the data distribution while density plots proved a smoother view of the data distribution.</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
 </div>
 <div id="correlation-and-regression-analysis" class="section level2 hasAnchor" number="7.2">
@@ -499,9 +500,79 @@ Most values in the data set range between 10 and 20. Let,s also plot the data fo
 <ul>
 <li><strong>Visualizing Correlation</strong></li>
 </ul>
-<p>Demonstration of scatter plots to visualize the relationship between two variables.</p>
-<p>Introduction to correlation heatmaps using ggcorrplot or corrplot.</p>
-<p>Practical exercise: Create scatter plots and correlation heatmaps for a data set.</p>
+<p>The relationship of exactly two numeric continuous variables can be viewed using scatter plots while the relationship between multiple(two or more) can be analyzed using a correlation plot(heatmap)</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="statistical-analysis.html#cb473-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb473-2"><a href="statistical-analysis.html#cb473-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb473-3"><a href="statistical-analysis.html#cb473-3" tabindex="-1"></a></span>
+<span id="cb473-4"><a href="statistical-analysis.html#cb473-4" tabindex="-1"></a><span class="co"># Create a linear relationship with some noise</span></span>
+<span id="cb473-5"><a href="statistical-analysis.html#cb473-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb473-6"><a href="statistical-analysis.html#cb473-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">5</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)  <span class="co"># Linear relationship with noise</span></span>
+<span id="cb473-7"><a href="statistical-analysis.html#cb473-7" tabindex="-1"></a></span>
+<span id="cb473-8"><a href="statistical-analysis.html#cb473-8" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb473-9"><a href="statistical-analysis.html#cb473-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb473-10"><a href="statistical-analysis.html#cb473-10" tabindex="-1"></a></span>
+<span id="cb473-11"><a href="statistical-analysis.html#cb473-11" tabindex="-1"></a></span>
+<span id="cb473-12"><a href="statistical-analysis.html#cb473-12" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
+<span id="cb473-13"><a href="statistical-analysis.html#cb473-13" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb473-14"><a href="statistical-analysis.html#cb473-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb473-15"><a href="statistical-analysis.html#cb473-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb473-16"><a href="statistical-analysis.html#cb473-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scatter Plot of X vs Y&quot;</span>,</span>
+<span id="cb473-17"><a href="statistical-analysis.html#cb473-17" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;X Variable&quot;</span>,</span>
+<span id="cb473-18"><a href="statistical-analysis.html#cb473-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Y Variable&quot;</span></span>
+<span id="cb473-19"><a href="statistical-analysis.html#cb473-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb473-20"><a href="statistical-analysis.html#cb473-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
+<p>In the scatter plot above;</p>
+<ol style="list-style-type: lower-roman">
+<li>The <code>X</code> and <code>y</code> variables have a positive correlation. The increase in <code>X</code> leads to an increase in <code>Y</code>.</li>
+<li>There are no outliers in the data set. There are no data points that are out of the general pattern.</li>
+<li>The relationship between <code>X</code> and <code>Y</code> is linear.</li>
+</ol>
+<p>On the other hand, the heatmap is a visual representation of the correlation matrix where each cell represents the relationship between two variables. The color of the cell indicates the strength of the relationship between the concerned variables.</p>
+<p>Lets create a data frame with multiple variables, and plot a heatmap.</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="statistical-analysis.html#cb474-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb474-2"><a href="statistical-analysis.html#cb474-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb474-3"><a href="statistical-analysis.html#cb474-3" tabindex="-1"></a></span>
+<span id="cb474-4"><a href="statistical-analysis.html#cb474-4" tabindex="-1"></a><span class="co"># Create 6 variables</span></span>
+<span id="cb474-5"><a href="statistical-analysis.html#cb474-5" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb474-6"><a href="statistical-analysis.html#cb474-6" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">60</span>, <span class="at">sd =</span> <span class="dv">15</span>)</span>
+<span id="cb474-7"><a href="statistical-analysis.html#cb474-7" tabindex="-1"></a>var3 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb474-8"><a href="statistical-analysis.html#cb474-8" tabindex="-1"></a>var4 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">80</span>, <span class="at">sd =</span> <span class="dv">25</span>)</span>
+<span id="cb474-9"><a href="statistical-analysis.html#cb474-9" tabindex="-1"></a>var5 <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> var1 <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)  <span class="co"># Linear relationship with var1</span></span>
+<span id="cb474-10"><a href="statistical-analysis.html#cb474-10" tabindex="-1"></a>var6 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">90</span>, <span class="at">sd =</span> <span class="dv">30</span>)</span>
+<span id="cb474-11"><a href="statistical-analysis.html#cb474-11" tabindex="-1"></a></span>
+<span id="cb474-12"><a href="statistical-analysis.html#cb474-12" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb474-13"><a href="statistical-analysis.html#cb474-13" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">var1 =</span> var1, <span class="at">var2 =</span> var2, <span class="at">var3 =</span> var3, <span class="at">var4 =</span> var4, <span class="at">var5 =</span> var5, <span class="at">var6 =</span> var6)</span>
+<span id="cb474-14"><a href="statistical-analysis.html#cb474-14" tabindex="-1"></a></span>
+<span id="cb474-15"><a href="statistical-analysis.html#cb474-15" tabindex="-1"></a><span class="co"># Display the first few rows of the data set</span></span>
+<span id="cb474-16"><a href="statistical-analysis.html#cb474-16" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##       var1     var2      var3     var4     var5      var6
+## 1 44.39524 49.34390 113.97621 62.11895 139.8180  71.94321
+## 2 47.69823 63.85326  96.24826 61.18278 144.2514  60.18904
+## 3 65.58708 56.29962  64.69710 56.53653 200.5875 120.80355
+## 4 50.70508 54.78686  80.86388 53.68717 158.9710 112.53184
+## 5 51.29288 45.72572  61.71320 69.07101 164.2321  44.72500
+## 6 67.15065 59.32458  60.47506 88.27948 200.1992  87.14558</code></pre>
+<p><code>var5</code> has a linear relationship with <code>var1</code>. Lets plot a heatmap of the data frame <code>df</code>. However, lets install the <code>ggcorrplot</code> and the <code>corrplot</code> packages</p>
+<pre><code>install.packages(c(&quot;ggcorrplot&quot;, &quot;corrplot&quot;))</code></pre>
+<p>Create a correlation heatmap using the <code>ggcorrplot</code> package</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="statistical-analysis.html#cb477-1" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
+<span id="cb477-2"><a href="statistical-analysis.html#cb477-2" tabindex="-1"></a></span>
+<span id="cb477-3"><a href="statistical-analysis.html#cb477-3" tabindex="-1"></a><span class="co"># Calculate the correlation matrix</span></span>
+<span id="cb477-4"><a href="statistical-analysis.html#cb477-4" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(df)</span>
+<span id="cb477-5"><a href="statistical-analysis.html#cb477-5" tabindex="-1"></a></span>
+<span id="cb477-6"><a href="statistical-analysis.html#cb477-6" tabindex="-1"></a><span class="co"># Create a correlation heatmap</span></span>
+<span id="cb477-7"><a href="statistical-analysis.html#cb477-7" tabindex="-1"></a><span class="fu">ggcorrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&quot;circle&quot;</span>, <span class="at">lab =</span> <span class="cn">TRUE</span>, <span class="at">lab_size =</span> <span class="dv">3</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb477-8"><a href="statistical-analysis.html#cb477-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Heatmap 1&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<p>Lets repeat the same using the <code>corrplot</code> package</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="statistical-analysis.html#cb478-1" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
+<pre><code>## corrplot 0.94 loaded</code></pre>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="statistical-analysis.html#cb480-1" tabindex="-1"></a><span class="co"># Create a correlation heatmap using corrplot</span></span>
+<span id="cb480-2"><a href="statistical-analysis.html#cb480-2" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<p>The two plots visualizes the correlation between the variables in the data set. <code>Var5</code> and <code>Var1</code> have a high correlation(0.98) while <code>Var5</code> and <code>Var2</code> have a very low correlation value(-0.07)</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
 <div id="introduction-to-regression-analysis" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Introduction to Regression Analysis<a href="statistical-analysis.html#introduction-to-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -523,24 +594,24 @@ Most values in the data set range between 10 and 20. Let,s also plot the data fo
 </ol>
 <p>The goal of simple of linear regression it to have the best fitting line that with the equation <code>y = BX + c</code>. Base R has a method of fitting a linear regression and finding the best fit line using <code>lm()</code> function. <code>lm()</code> stands for “linear model”.</p>
 <p>Lets create a simple linear regression model to a hypothetical data set where height of athletes is predicted based on weight.</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="statistical-analysis.html#cb474-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
-<span id="cb474-2"><a href="statistical-analysis.html#cb474-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable (x)</span></span>
-<span id="cb474-3"><a href="statistical-analysis.html#cb474-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
-<span id="cb474-4"><a href="statistical-analysis.html#cb474-4" tabindex="-1"></a></span>
-<span id="cb474-5"><a href="statistical-analysis.html#cb474-5" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
-<span id="cb474-6"><a href="statistical-analysis.html#cb474-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, weight)</span>
-<span id="cb474-7"><a href="statistical-analysis.html#cb474-7" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="statistical-analysis.html#cb482-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb482-2"><a href="statistical-analysis.html#cb482-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable (x)</span></span>
+<span id="cb482-3"><a href="statistical-analysis.html#cb482-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb482-4"><a href="statistical-analysis.html#cb482-4" tabindex="-1"></a></span>
+<span id="cb482-5"><a href="statistical-analysis.html#cb482-5" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb482-6"><a href="statistical-analysis.html#cb482-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, weight)</span>
+<span id="cb482-7"><a href="statistical-analysis.html#cb482-7" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
 <pre><code>##   height weight
 ## 1    150     65
 ## 2    160     70
 ## 3    170     75
 ## 4    180     80
 ## 5    190     85</code></pre>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="statistical-analysis.html#cb476-1" tabindex="-1"></a><span class="co"># Fit the linear model</span></span>
-<span id="cb476-2"><a href="statistical-analysis.html#cb476-2" tabindex="-1"></a>lin_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> data)</span>
-<span id="cb476-3"><a href="statistical-analysis.html#cb476-3" tabindex="-1"></a></span>
-<span id="cb476-4"><a href="statistical-analysis.html#cb476-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
-<span id="cb476-5"><a href="statistical-analysis.html#cb476-5" tabindex="-1"></a><span class="fu">summary</span>(lin_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="statistical-analysis.html#cb484-1" tabindex="-1"></a><span class="co"># Fit the linear model</span></span>
+<span id="cb484-2"><a href="statistical-analysis.html#cb484-2" tabindex="-1"></a>lin_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> data)</span>
+<span id="cb484-3"><a href="statistical-analysis.html#cb484-3" tabindex="-1"></a></span>
+<span id="cb484-4"><a href="statistical-analysis.html#cb484-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb484-5"><a href="statistical-analysis.html#cb484-5" tabindex="-1"></a><span class="fu">summary</span>(lin_reg)</span></code></pre></div>
 <pre><code>## Warning in summary.lm(lin_reg): essentially perfect fit: summary may be
 ## unreliable</code></pre>
 <pre><code>## 
@@ -590,25 +661,25 @@ Most values in the data set range between 10 and 20. Let,s also plot the data fo
 <li>The t-statistic of the model. T-statistic is the ratio of the difference in a number’s estimated value from its assumed value to its standard error.</li>
 </ol>
 <p>Lets create a multiple linear regression from a hypothetical data using base R.</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="statistical-analysis.html#cb479-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
-<span id="cb479-2"><a href="statistical-analysis.html#cb479-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable 1 (x1)</span></span>
-<span id="cb479-3"><a href="statistical-analysis.html#cb479-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)          <span class="co"># Independent variable 2 (x2)</span></span>
-<span id="cb479-4"><a href="statistical-analysis.html#cb479-4" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
-<span id="cb479-5"><a href="statistical-analysis.html#cb479-5" tabindex="-1"></a></span>
-<span id="cb479-6"><a href="statistical-analysis.html#cb479-6" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
-<span id="cb479-7"><a href="statistical-analysis.html#cb479-7" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, age, weight)</span>
-<span id="cb479-8"><a href="statistical-analysis.html#cb479-8" tabindex="-1"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="statistical-analysis.html#cb487-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb487-2"><a href="statistical-analysis.html#cb487-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable 1 (x1)</span></span>
+<span id="cb487-3"><a href="statistical-analysis.html#cb487-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)          <span class="co"># Independent variable 2 (x2)</span></span>
+<span id="cb487-4"><a href="statistical-analysis.html#cb487-4" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb487-5"><a href="statistical-analysis.html#cb487-5" tabindex="-1"></a></span>
+<span id="cb487-6"><a href="statistical-analysis.html#cb487-6" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb487-7"><a href="statistical-analysis.html#cb487-7" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, age, weight)</span>
+<span id="cb487-8"><a href="statistical-analysis.html#cb487-8" tabindex="-1"></a>data</span></code></pre></div>
 <pre><code>##   height age weight
 ## 1    150  25     65
 ## 2    160  30     70
 ## 3    170  35     75
 ## 4    180  40     80
 ## 5    190  45     85</code></pre>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="statistical-analysis.html#cb481-1" tabindex="-1"></a><span class="co"># Fit the linear model with multiple predictors</span></span>
-<span id="cb481-2"><a href="statistical-analysis.html#cb481-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
-<span id="cb481-3"><a href="statistical-analysis.html#cb481-3" tabindex="-1"></a></span>
-<span id="cb481-4"><a href="statistical-analysis.html#cb481-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
-<span id="cb481-5"><a href="statistical-analysis.html#cb481-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="statistical-analysis.html#cb489-1" tabindex="-1"></a><span class="co"># Fit the linear model with multiple predictors</span></span>
+<span id="cb489-2"><a href="statistical-analysis.html#cb489-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
+<span id="cb489-3"><a href="statistical-analysis.html#cb489-3" tabindex="-1"></a></span>
+<span id="cb489-4"><a href="statistical-analysis.html#cb489-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb489-5"><a href="statistical-analysis.html#cb489-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## Warning in summary.lm(model): essentially perfect fit: summary may be
 ## unreliable</code></pre>
 <pre><code>## 
