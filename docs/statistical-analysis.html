@@ -424,6 +424,53 @@ Boxplots provide a visual summary of data distribution. It helps the analyst und
 <ul>
 <li><strong>Histograms and Density Plots</strong></li>
 </ul>
+<p>These two types of plots are used to visualize the distribution of data.</p>
+<p>A <strong>histogram</strong> is a graphical representation of the distribution of a data set. It divides the data into bins (intervals) and displays the frequency (or count) of data points that fall within each bin. Histograms are particularly useful for:</p>
+<ol style="list-style-type: lower-roman">
+<li>Visualizing the shape of the data distribution: Whether the data is skewed, symmetric, or multimodal.</li>
+<li>Identifying outliers: Extreme values that fall far outside the range of most data points.</li>
+<li>Understanding the spread: How data points are distributed across the range of values.</li>
+</ol>
+<p>Lets plot a simple histogram for this;</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="statistical-analysis.html#cb470-1" tabindex="-1"></a><span class="co"># Simple Histogram </span></span>
+<span id="cb470-2"><a href="statistical-analysis.html#cb470-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_with_outliers, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb470-3"><a href="statistical-analysis.html#cb470-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb470-4"><a href="statistical-analysis.html#cb470-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb470-5"><a href="statistical-analysis.html#cb470-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Histogram of Values with Outliers&quot;</span>,</span>
+<span id="cb470-6"><a href="statistical-analysis.html#cb470-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb470-7"><a href="statistical-analysis.html#cb470-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span></span>
+<span id="cb470-8"><a href="statistical-analysis.html#cb470-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb470-9"><a href="statistical-analysis.html#cb470-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-216-1.png" width="672" />
+Most values in the data set range between 10 and 20. Let,s also plot the data for a nomal distribution.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="statistical-analysis.html#cb471-1" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb471-2"><a href="statistical-analysis.html#cb471-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb471-3"><a href="statistical-analysis.html#cb471-3" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb471-4"><a href="statistical-analysis.html#cb471-4" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Histogram of Values&quot;</span>,</span>
+<span id="cb471-5"><a href="statistical-analysis.html#cb471-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb471-6"><a href="statistical-analysis.html#cb471-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span></span>
+<span id="cb471-7"><a href="statistical-analysis.html#cb471-7" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb471-8"><a href="statistical-analysis.html#cb471-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+<p>Most of the values are at the center and make a bell-curve.</p>
+<p>On the other hand, a <strong>density plot</strong> is a smoothed version of a histogram. It estimates the probability density function of a continuous variable, allowing for a smoother visualization of the distribution. Density plots are particularly useful for:</p>
+<ol style="list-style-type: lower-roman">
+<li>Comparing distributions: Since density plots can overlay multiple distributions, they are helpful in comparing different data sets or groups within a data set.</li>
+<li>Visualizing the shape of the data: The smooth curve makes it easier to identify peaks (modes), skewness, and the overall spread.</li>
+<li>Understanding the relative likelihood of data: The area under the density curve represents the probability of data falling within a particular range.</li>
+</ol>
+<p>Lets plot a density plot and find the visual difference;</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="statistical-analysis.html#cb472-1" tabindex="-1"></a><span class="co"># Create a density plot</span></span>
+<span id="cb472-2"><a href="statistical-analysis.html#cb472-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb472-3"><a href="statistical-analysis.html#cb472-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;lightgreen&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb472-4"><a href="statistical-analysis.html#cb472-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb472-5"><a href="statistical-analysis.html#cb472-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Density Plot of Values&quot;</span>,</span>
+<span id="cb472-6"><a href="statistical-analysis.html#cb472-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb472-7"><a href="statistical-analysis.html#cb472-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb472-8"><a href="statistical-analysis.html#cb472-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb472-9"><a href="statistical-analysis.html#cb472-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p>From the graphs above, histograms provide a bar-chart-like representation of the data distribution while density plots proved a smoother view of the data distribution.</p>
 </div>
 </div>
 <div id="correlation-and-regression-analysis" class="section level2 hasAnchor" number="7.2">
@@ -454,7 +501,7 @@ Boxplots provide a visual summary of data distribution. It helps the analyst und
 </ul>
 <p>Demonstration of scatter plots to visualize the relationship between two variables.</p>
 <p>Introduction to correlation heatmaps using ggcorrplot or corrplot.</p>
-<p>Practical exercise: Create scatter plots and correlation heatmaps for a dataset.</p>
+<p>Practical exercise: Create scatter plots and correlation heatmaps for a data set.</p>
 </div>
 <div id="introduction-to-regression-analysis" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Introduction to Regression Analysis<a href="statistical-analysis.html#introduction-to-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -476,24 +523,24 @@ Boxplots provide a visual summary of data distribution. It helps the analyst und
 </ol>
 <p>The goal of simple of linear regression it to have the best fitting line that with the equation <code>y = BX + c</code>. Base R has a method of fitting a linear regression and finding the best fit line using <code>lm()</code> function. <code>lm()</code> stands for “linear model”.</p>
 <p>Lets create a simple linear regression model to a hypothetical data set where height of athletes is predicted based on weight.</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="statistical-analysis.html#cb471-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
-<span id="cb471-2"><a href="statistical-analysis.html#cb471-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable (x)</span></span>
-<span id="cb471-3"><a href="statistical-analysis.html#cb471-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
-<span id="cb471-4"><a href="statistical-analysis.html#cb471-4" tabindex="-1"></a></span>
-<span id="cb471-5"><a href="statistical-analysis.html#cb471-5" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
-<span id="cb471-6"><a href="statistical-analysis.html#cb471-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, weight)</span>
-<span id="cb471-7"><a href="statistical-analysis.html#cb471-7" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="statistical-analysis.html#cb474-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb474-2"><a href="statistical-analysis.html#cb474-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable (x)</span></span>
+<span id="cb474-3"><a href="statistical-analysis.html#cb474-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb474-4"><a href="statistical-analysis.html#cb474-4" tabindex="-1"></a></span>
+<span id="cb474-5"><a href="statistical-analysis.html#cb474-5" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb474-6"><a href="statistical-analysis.html#cb474-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, weight)</span>
+<span id="cb474-7"><a href="statistical-analysis.html#cb474-7" tabindex="-1"></a><span class="fu">print</span>(data)</span></code></pre></div>
 <pre><code>##   height weight
 ## 1    150     65
 ## 2    160     70
 ## 3    170     75
 ## 4    180     80
 ## 5    190     85</code></pre>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="statistical-analysis.html#cb473-1" tabindex="-1"></a><span class="co"># Fit the linear model</span></span>
-<span id="cb473-2"><a href="statistical-analysis.html#cb473-2" tabindex="-1"></a>lin_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> data)</span>
-<span id="cb473-3"><a href="statistical-analysis.html#cb473-3" tabindex="-1"></a></span>
-<span id="cb473-4"><a href="statistical-analysis.html#cb473-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
-<span id="cb473-5"><a href="statistical-analysis.html#cb473-5" tabindex="-1"></a><span class="fu">summary</span>(lin_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="statistical-analysis.html#cb476-1" tabindex="-1"></a><span class="co"># Fit the linear model</span></span>
+<span id="cb476-2"><a href="statistical-analysis.html#cb476-2" tabindex="-1"></a>lin_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> data)</span>
+<span id="cb476-3"><a href="statistical-analysis.html#cb476-3" tabindex="-1"></a></span>
+<span id="cb476-4"><a href="statistical-analysis.html#cb476-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb476-5"><a href="statistical-analysis.html#cb476-5" tabindex="-1"></a><span class="fu">summary</span>(lin_reg)</span></code></pre></div>
 <pre><code>## Warning in summary.lm(lin_reg): essentially perfect fit: summary may be
 ## unreliable</code></pre>
 <pre><code>## 
@@ -543,25 +590,25 @@ Boxplots provide a visual summary of data distribution. It helps the analyst und
 <li>The t-statistic of the model. T-statistic is the ratio of the difference in a number’s estimated value from its assumed value to its standard error.</li>
 </ol>
 <p>Lets create a multiple linear regression from a hypothetical data using base R.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="statistical-analysis.html#cb476-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
-<span id="cb476-2"><a href="statistical-analysis.html#cb476-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable 1 (x1)</span></span>
-<span id="cb476-3"><a href="statistical-analysis.html#cb476-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)          <span class="co"># Independent variable 2 (x2)</span></span>
-<span id="cb476-4"><a href="statistical-analysis.html#cb476-4" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
-<span id="cb476-5"><a href="statistical-analysis.html#cb476-5" tabindex="-1"></a></span>
-<span id="cb476-6"><a href="statistical-analysis.html#cb476-6" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
-<span id="cb476-7"><a href="statistical-analysis.html#cb476-7" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, age, weight)</span>
-<span id="cb476-8"><a href="statistical-analysis.html#cb476-8" tabindex="-1"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="statistical-analysis.html#cb479-1" tabindex="-1"></a><span class="co"># Create a sample dataset</span></span>
+<span id="cb479-2"><a href="statistical-analysis.html#cb479-2" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)  <span class="co"># Independent variable 1 (x1)</span></span>
+<span id="cb479-3"><a href="statistical-analysis.html#cb479-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>)          <span class="co"># Independent variable 2 (x2)</span></span>
+<span id="cb479-4"><a href="statistical-analysis.html#cb479-4" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>)       <span class="co"># Dependent variable (y)</span></span>
+<span id="cb479-5"><a href="statistical-analysis.html#cb479-5" tabindex="-1"></a></span>
+<span id="cb479-6"><a href="statistical-analysis.html#cb479-6" tabindex="-1"></a><span class="co"># Combine into a data frame</span></span>
+<span id="cb479-7"><a href="statistical-analysis.html#cb479-7" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(height, age, weight)</span>
+<span id="cb479-8"><a href="statistical-analysis.html#cb479-8" tabindex="-1"></a>data</span></code></pre></div>
 <pre><code>##   height age weight
 ## 1    150  25     65
 ## 2    160  30     70
 ## 3    170  35     75
 ## 4    180  40     80
 ## 5    190  45     85</code></pre>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="statistical-analysis.html#cb478-1" tabindex="-1"></a><span class="co"># Fit the linear model with multiple predictors</span></span>
-<span id="cb478-2"><a href="statistical-analysis.html#cb478-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
-<span id="cb478-3"><a href="statistical-analysis.html#cb478-3" tabindex="-1"></a></span>
-<span id="cb478-4"><a href="statistical-analysis.html#cb478-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
-<span id="cb478-5"><a href="statistical-analysis.html#cb478-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="statistical-analysis.html#cb481-1" tabindex="-1"></a><span class="co"># Fit the linear model with multiple predictors</span></span>
+<span id="cb481-2"><a href="statistical-analysis.html#cb481-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> data)</span>
+<span id="cb481-3"><a href="statistical-analysis.html#cb481-3" tabindex="-1"></a></span>
+<span id="cb481-4"><a href="statistical-analysis.html#cb481-4" tabindex="-1"></a><span class="co"># View the summary of the model</span></span>
+<span id="cb481-5"><a href="statistical-analysis.html#cb481-5" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## Warning in summary.lm(model): essentially perfect fit: summary may be
 ## unreliable</code></pre>
 <pre><code>## 

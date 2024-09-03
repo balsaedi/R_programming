@@ -199,7 +199,60 @@ The red dots are the outliers
 
 - **Histograms and Density Plots**
 
+These two types of plots are used to visualize the distribution of data. 
 
+A **histogram** is a graphical representation of the distribution of a data set. It divides the data into bins (intervals) and displays the frequency (or count) of data points that fall within each bin. Histograms are particularly useful for:
+
+i. Visualizing the shape of the data distribution: Whether the data is skewed, symmetric, or multimodal.
+ii. Identifying outliers: Extreme values that fall far outside the range of most data points.
+iii. Understanding the spread: How data points are distributed across the range of values.
+
+Lets plot a simple histogram for this;
+```{r}
+# Simple Histogram 
+ggplot(df_with_outliers, aes(x = value)) +
+  geom_histogram(binwidth = 5, fill = "skyblue", color = "black") +
+  labs(
+    title = "Histogram of Values with Outliers",
+    x = "Value",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+Most values in the data set range between 10 and 20. Let,s also plot the data for a nomal distribution.
+```{r}
+ggplot(df, aes(x = value)) +
+  geom_histogram(binwidth = 5, fill = "skyblue", color = "black") +
+  labs(
+    title = "Histogram of Values",
+    x = "Value",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+
+Most of the values are at the center and make a bell-curve.
+
+On the other hand, a **density plot** is a smoothed version of a histogram. It estimates the probability density function of a continuous variable, allowing for a smoother visualization of the distribution. Density plots are particularly useful for:
+
+i. Comparing distributions: Since density plots can overlay multiple distributions, they are helpful in comparing different data sets or groups within a data set.
+ii. Visualizing the shape of the data: The smooth curve makes it easier to identify peaks (modes), skewness, and the overall spread.
+iii. Understanding the relative likelihood of data: The area under the density curve represents the probability of data falling within a particular range.
+
+Lets plot a density plot and find the visual difference;
+```{r}
+# Create a density plot
+ggplot(df, aes(x = value)) +
+  geom_density(fill = "lightgreen", color = "darkgreen", alpha = 0.6) +
+  labs(
+    title = "Density Plot of Values",
+    x = "Value",
+    y = "Density"
+  ) +
+  theme_minimal()
+```
+
+From the graphs above, histograms provide a bar-chart-like representation of the data distribution while density plots proved a smoother view of the data distribution. 
 
 ## Correlation and Regression Analysis
 ### Introduction to Correlation 
@@ -237,7 +290,7 @@ Demonstration of scatter plots to visualize the relationship between two variabl
 
 Introduction to correlation heatmaps using ggcorrplot or corrplot.
 
-Practical exercise: Create scatter plots and correlation heatmaps for a dataset.
+Practical exercise: Create scatter plots and correlation heatmaps for a data set.
 
 ### Introduction to Regression Analysis
 Regression is a statistical method used to measure the strength and relationship of a target(dependent) with one or more independent variables. Correlation is very vital in determining regression. Linear regression is the most technique of regression, there are some more advanced forms of regression. 
