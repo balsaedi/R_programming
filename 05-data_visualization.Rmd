@@ -416,3 +416,84 @@ As seen above, there is a boxplot to represent the distribution for each `sub_ca
 <-**Add a practical exercise**->
 
 ### Combining Multiple Plots
+Different plots can be combined into a single visualization. This provides a comprehensive view and different aspects of the data. The interrelationships between the variables can also be analyzed. There are multiple ways to combine plots in R(`ggplot`);
+
+i. Using `patchwork`
+ii. Using `gridExtra`
+
+i. **patchwork**
+
+The `patchwork` library provides a straightforward way to combine plots. 
+
+Install the library
+```
+install.packages("patchwork")
+```
+
+Lets then make some plots from the `mtcars` data set and combine them
+```{r}
+# Load the library
+library(patchwork)
+
+# Load the data 
+data("mtcars")
+
+# Make three plots 
+p1 <- ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + ggtitle("Scatter Plot")
+p2 <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) + geom_boxplot() + ggtitle("Boxplot")
+p3 <- ggplot(mtcars, aes(x = factor(cyl))) + geom_bar() + ggtitle("Bar Chart")
+```
+
+Combine the plots side by side 
+```{r}
+# Combine plots side by side
+p1 + p2 + p3
+```
+
+The plots can also be combined by stacking them together
+```{r}
+# Stack plots vertically
+p1 / p2 / p3
+```
+
+`+` is used to combine the plots side by side while `/` is used to stack the plots vertically. Brackets `()` are used to group two or more plots together. 
+
+Lets create a complex layout where two plots are grouped to the right and one plot is one the left side.
+```{r}
+(p1+(p2/p3))
+```
+
+Alternatively the plots can be plotted by using `|` instead of `+`.
+```{r}
+(p1|(p2/p3)) # Note the '|' instead of '+'
+```
+
+ii. **gridExtra**
+
+The `gridExtra` package allows the plots to be combined with a pre-determined number of rows and columns. 
+
+Install the `gridExtra` package 
+```
+install.packages("gridExtra")
+```
+
+Load the package and combine the three plots
+```{r}
+library(gridExtra)
+
+# Combine plots using gridExtra
+grid.arrange(p1, p2, p3, nrow = 2, ncol = 2)
+```
+
+Lets stack the plots
+```{r}
+# Stack the plots 
+grid.arrange(p1, p2, p3, nrow = 3, ncol = 1)
+```
+
+Now combine the three plots side by side 
+```{r}
+grid.arrange(p1, p2, p3, nrow = 1, ncol = 3)
+```
+
+<-**Add a practical exercise**->

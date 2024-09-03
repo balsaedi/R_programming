@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-02" />
+<meta name="date" content="2024-09-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -617,6 +617,65 @@ As seen above, there is a boxplot to represent the distribution for each <code>s
 </div>
 <div id="combining-multiple-plots" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Combining Multiple Plots<a href="data-visualization.html#combining-multiple-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Different plots can be combined into a single visualization. This provides a comprehensive view and different aspects of the data. The interrelationships between the variables can also be analyzed. There are multiple ways to combine plots in R(<code>ggplot</code>);</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Using <code>patchwork</code></p></li>
+<li><p>Using <code>gridExtra</code></p></li>
+<li><p><strong>patchwork</strong></p></li>
+</ol>
+<p>The <code>patchwork</code> library provides a straightforward way to combine plots.</p>
+<p>Install the library</p>
+<pre><code>install.packages(&quot;patchwork&quot;)</code></pre>
+<p>Lets then make some plots from the <code>mtcars</code> data set and combine them</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="data-visualization.html#cb439-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb439-2"><a href="data-visualization.html#cb439-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb439-3"><a href="data-visualization.html#cb439-3" tabindex="-1"></a></span>
+<span id="cb439-4"><a href="data-visualization.html#cb439-4" tabindex="-1"></a><span class="co"># Load the data </span></span>
+<span id="cb439-5"><a href="data-visualization.html#cb439-5" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mtcars&quot;</span>)</span>
+<span id="cb439-6"><a href="data-visualization.html#cb439-6" tabindex="-1"></a></span>
+<span id="cb439-7"><a href="data-visualization.html#cb439-7" tabindex="-1"></a><span class="co"># Make three plots </span></span>
+<span id="cb439-8"><a href="data-visualization.html#cb439-8" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Scatter Plot&quot;</span>)</span>
+<span id="cb439-9"><a href="data-visualization.html#cb439-9" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Boxplot&quot;</span>)</span>
+<span id="cb439-10"><a href="data-visualization.html#cb439-10" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Bar Chart&quot;</span>)</span></code></pre></div>
+<p>Combine the plots side by side</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="data-visualization.html#cb440-1" tabindex="-1"></a><span class="co"># Combine plots side by side</span></span>
+<span id="cb440-2"><a href="data-visualization.html#cb440-2" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
+<p>The plots can also be combined by stacking them together</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="data-visualization.html#cb441-1" tabindex="-1"></a><span class="co"># Stack plots vertically</span></span>
+<span id="cb441-2"><a href="data-visualization.html#cb441-2" tabindex="-1"></a>p1 <span class="sc">/</span> p2 <span class="sc">/</span> p3</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p><code>+</code> is used to combine the plots side by side while <code>/</code> is used to stack the plots vertically. Brackets <code>()</code> are used to group two or more plots together.</p>
+<p>Lets create a complex layout where two plots are grouped to the right and one plot is one the left side.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="data-visualization.html#cb442-1" tabindex="-1"></a>(p1<span class="sc">+</span>(p2<span class="sc">/</span>p3))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
+<p>Alternatively the plots can be plotted by using <code>|</code> instead of <code>+</code>.</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="data-visualization.html#cb443-1" tabindex="-1"></a>(p1<span class="sc">|</span>(p2<span class="sc">/</span>p3)) <span class="co"># Note the &#39;|&#39; instead of &#39;+&#39;</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-roman">
+<li><strong>gridExtra</strong></li>
+</ol>
+<p>The <code>gridExtra</code> package allows the plots to be combined with a pre-determined number of rows and columns.</p>
+<p>Install the <code>gridExtra</code> package</p>
+<pre><code>install.packages(&quot;gridExtra&quot;)</code></pre>
+<p>Load the package and combine the three plots</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="data-visualization.html#cb445-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;gridExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="data-visualization.html#cb448-1" tabindex="-1"></a><span class="co"># Combine plots using gridExtra</span></span>
+<span id="cb448-2"><a href="data-visualization.html#cb448-2" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
+<p>Lets stack the plots</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="data-visualization.html#cb449-1" tabindex="-1"></a><span class="co"># Stack the plots </span></span>
+<span id="cb449-2"><a href="data-visualization.html#cb449-2" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
+<p>Now combine the three plots side by side</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="data-visualization.html#cb450-1" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 
 </div>
 </div>
