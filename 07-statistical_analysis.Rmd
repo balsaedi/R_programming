@@ -144,6 +144,61 @@ IQR(athlete_weights)
 <-**Add a practical exercise**->
 
 ### Visualization of Descriptive Statistics
+- **Boxplots**
+Boxplots provide a visual summary of data distribution. It helps the analyst understand the spread, skewness and outliers in the data set. 
+
+![](images/labelled_boxplot.png)
+
+The diagram above shows a labelled boxplot. Lets breakdown each part;
+
+i. **Minimum(Lower Whisker)**: is the smallest data point that appear between the first quartile(Q1) and 1.5x Interquartile Range(IQR) towards the lower limit(left side here. 
+ii. **Maximum(Upper Whisker**: is the largest data point that appear between the third quartile(Q3) and 1.5x IQR towards the upper limit(right side here)
+iii. **First Quartile(Q1)**: is the 25$^{th}$ percentile  depicting that 25% of the data points are below here. 
+iv. **Third Quartile(Q3)**: is the 75$^{th}$ percentile, depicting that 75% of the data points are above here. 
+v. **Median(Q2)**: is the 50$^{th}$ percentile that divides the data into two equal halves, 50% of the data points are above and below here. 
+vi. **Interquartile Range**: The difference between the third quartile(Q3) and the first quartile(Q1). 
+vii. **Outliers**: Data points that fall outside the whiskers are considered as outliers and are plotted as dot alone. 
+
+Lets engage in a practical session and plot a boxplot from the `ggplot`. 
+
+```{r}
+library(ggplot2)
+
+# Sample data
+set.seed(123) # for reproducibility
+df <- data.frame(
+  group = rep(c("A", "B", "C"), each = 50),
+  value = c(rnorm(50, mean = 10, sd = 2),
+            rnorm(50, mean = 15, sd = 2.5),
+            rnorm(50, mean = 20, sd = 3))
+)
+
+# Create some outliers
+outliers <- data.frame(
+  group = c(rep("A", 4), rep("B", 4), rep("C", 4)),
+  value = c(-2, 3, -30, -35, 50, 6, 45, 50, -17, 8, 60, 65)  # Low and high outliers
+)
+
+# Introduce the outliers into the data set 
+df_with_outliers <- rbind(df, outliers)
+
+
+# Plot a simple boxplot 
+ggplot(df_with_outliers, aes(x = value)) +
+  geom_boxplot(outlier.colour = "red") +
+  labs(
+    title = "Boxplot of Values",
+    x = "Value"
+  ) +
+  theme_minimal()
+```
+
+The red dots are the outliers
+
+<-**Add a practical exercise**->
+
+- **Histograms and Density Plots**
+
 
 
 ## Correlation and Regression Analysis
