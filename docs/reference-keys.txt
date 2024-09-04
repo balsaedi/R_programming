@@ -65,9 +65,12 @@ statistical-analysis
 basic-statistical-concepts
 introduction-to-descriptive-statistics
 visualization-of-descriptive-statistics
+hands-on-exercise-1
 correlation-and-regression-analysis
 introduction-to-correlation
 introduction-to-regression-analysis
 advanced-statistical-methods
 introduction-to-hypothesis-testing
+concept-of-hypothesis-testing
+t-tests
 datasets
