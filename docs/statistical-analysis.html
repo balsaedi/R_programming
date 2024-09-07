@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-04" />
+<meta name="date" content="2024-09-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -747,6 +747,53 @@ Most values in the data set range between 10 and 20. Let,s also plot the data fo
 <ul>
 <li><em>One-Sample t-test</em></li>
 </ul>
+<p>One sample t-test is a statistical method used to find if the mean of a sample is different from the population(or preassumed) mean.</p>
+<p>It is based on the t-distribution(most observations fall close to the mean, and the rest of the observations make up the tails on either side) and is commonly used when dealing with small sample sizes. One sample t-test is especially performed where the population standard deviation is unknown.</p>
+<p>Below is the formula for one sample t-test
+<span class="math display">\[t={{\overline{X}-\mu}\over s / \sqrt{n}}\]</span></p>
+<p>where;</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(t\)</span>: the one sample t-test value. t-test statistic</li>
+<li><span class="math inline">\(n\)</span>: the number of the observations in the sample</li>
+<li><span class="math inline">\(\overline{X}\)</span>: is the sample mean</li>
+<li><span class="math inline">\(s\)</span>: standard deviation of the sample</li>
+<li><span class="math inline">\(\mu\)</span>: Hypothesized population mean</li>
+</ol>
+<p>The result <span class="math inline">\(t\)</span>, simply measures how many standard errors the sample mean is away from the hypothesized population mean.</p>
+<p>Before conducting t-test, there is a need to establish the null(H0) and alternate hypothesis(Ha) where;</p>
+<ul>
+<li><em>Null Hypothesis(H0)</em>: There is no significant difference between the sample mean and the population(hypothesized) mean.</li>
+<li><em>ALternate Hypothesis(Ha)</em>: There is a significant difference between the sample mean and the population mean.</li>
+</ul>
+<p>P-value is the <strong>Add some content</strong></p>
+<p>Lets perform a t-test using R;</p>
+<p>We will generate sample data</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="statistical-analysis.html#cb492-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb492-2"><a href="statistical-analysis.html#cb492-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb492-3"><a href="statistical-analysis.html#cb492-3" tabindex="-1"></a></span>
+<span id="cb492-4"><a href="statistical-analysis.html#cb492-4" tabindex="-1"></a><span class="co"># Generate random student marks (out of 100)</span></span>
+<span id="cb492-5"><a href="statistical-analysis.html#cb492-5" tabindex="-1"></a>student_marks <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb492-6"><a href="statistical-analysis.html#cb492-6" tabindex="-1"></a></span>
+<span id="cb492-7"><a href="statistical-analysis.html#cb492-7" tabindex="-1"></a><span class="co"># Display the first few marks</span></span>
+<span id="cb492-8"><a href="statistical-analysis.html#cb492-8" tabindex="-1"></a><span class="fu">head</span>(student_marks)</span></code></pre></div>
+<pre><code>## [1] 59.39524 62.69823 80.58708 65.70508 66.29288 82.15065</code></pre>
+<p>Perform the t-test</p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="statistical-analysis.html#cb494-1" tabindex="-1"></a><span class="co"># Conduct one-sample t-test</span></span>
+<span id="cb494-2"><a href="statistical-analysis.html#cb494-2" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(student_marks, <span class="at">mu =</span> <span class="dv">70</span>)</span>
+<span id="cb494-3"><a href="statistical-analysis.html#cb494-3" tabindex="-1"></a></span>
+<span id="cb494-4"><a href="statistical-analysis.html#cb494-4" tabindex="-1"></a><span class="co"># Display the t-test result</span></span>
+<span id="cb494-5"><a href="statistical-analysis.html#cb494-5" tabindex="-1"></a><span class="fu">print</span>(t_test_result)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  student_marks
+## t = -3.0546, df = 29, p-value = 0.004797
+## alternative hypothesis: true mean is not equal to 70
+## 95 percent confidence interval:
+##  60.86573 68.19219
+## sample estimates:
+## mean of x 
+##  64.52896</code></pre>
 <p>-<em>Two-Sample t-test</em></p>
 </div>
 </div>

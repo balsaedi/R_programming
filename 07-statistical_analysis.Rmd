@@ -503,10 +503,54 @@ Now that you are familiar with the hypothesis testing aspects, take the followin
   
 #### T-tests
 - *One-Sample t-test*
-  
 
-  
-  
+One sample t-test is a statistical method used to find if the mean of a sample is different from the population(or preassumed) mean. 
+
+It is based on the t-distribution(most observations fall close to the mean, and the rest of the observations make up the tails on either side) and is commonly used when dealing with small sample sizes. One sample t-test is especially performed where the population standard deviation is unknown. 
+
+Below is the formula for one sample t-test
+$$t={{\overline{X}-\mu}\over s / \sqrt{n}}$$
+
+where;
+
+i. $t$: the one sample t-test value. t-test statistic
+ii. $n$: the number of the observations in the sample
+iii. $\overline{X}$: is the sample mean
+iv. $s$: standard deviation of the sample 
+v. $\mu$: Hypothesized population mean
+
+The result $t$, simply measures how many standard errors the sample mean is away from the hypothesized population mean. 
+
+Before conducting t-test, there is a need to establish the null(H0) and alternate hypothesis(Ha) where;
+
+- *Null Hypothesis(H0)*: There is no significant difference between the sample mean and the population(hypothesized) mean.
+- *ALternate Hypothesis(Ha)*: There is a significant difference between the sample mean and the population mean. 
+
+P-value is the **Add some content**
+
+Lets perform a t-test using R;
+
+We will generate sample data
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Generate random student marks (out of 100)
+student_marks <- rnorm(30, mean = 65, sd = 10)
+
+# Display the first few marks
+head(student_marks)
+```
+
+Perform the t-test
+```{r}
+# Conduct one-sample t-test
+t_test_result <- t.test(student_marks, mu = 70)
+
+# Display the t-test result
+print(t_test_result)
+```
+
 -*Two-Sample t-test*
 
 
