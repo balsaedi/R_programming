@@ -630,6 +630,19 @@ anova
 
 <-**Add a practical example**->
 
+#### Chi-Square Test
+This is a statistical test that determines the difference between the observed and the expected data. It determines if the relationship between two categorical variables is due to chance or a relationship between them. 
+
+It is calculated by;
+$$x_{c}^{2} = \frac{\sum(O_{i}-E_{i})}{E_i}$$
+
+Where; 
+
+i. $c$ is the degree of freedom. This is a statistical calculation that represents the number of variables that can carry and is calculated to ensure the chi-square tests are statistically valid
+ii. $O$ is the observed value
+iii. $E$ is the expected value
+
+
 
 
 ## Datasets 

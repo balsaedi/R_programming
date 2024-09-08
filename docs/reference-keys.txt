@@ -74,4 +74,5 @@ introduction-to-hypothesis-testing
 concept-of-hypothesis-testing
 t-tests
 anova-analysis-of-variance
+chi-square-test
 datasets
