@@ -552,6 +552,54 @@ print(t_test_result)
 ```
 
 -*Two-Sample t-test*
+Unlike one sample t-test where a sample population is tested against a pre-assumed mean, the Tow-sample t-test determines if there is a significant difference between the means of two independent populations. 
+
+The practical application of two-sample t-test can be when comparing the test scores of two classes. This helps the statistician to understand if one class did better than the other one or it's just a matter of luck. 
+
+These are the prerequisites before conducting a two-sample t-test; 
+
+i. The groups contain separate data with a similar distribution.
+ii. The two populations have a normal(typical bell-curve) distribution.
+iii. The two sample populations have a similar variations
+
+The two sample t-test is calculated by;
+$$t={\overline{x_1}-\overline{x_2}}\over{\sqrt{s_{1}^{2}}\over{n_1}-}$$
+
+<--**Remember to complete the formula of ....**-->
+
+Where;
+
+- $\overline{x}_1$ and $\overline{x}_2$ are the mean of the first sample and the second sample respectively
+- $s_{1}$ and $s_{2}$ are the standard deviation of sample 1 and sample 2 respectively
+- $n_1$ and $n_2$ are the sample sizes of the first and second sample respectively. 
+
+Let create a random population of student scores for two classes and perform two-sample t-test in R; 
+
+```{r}
+# Generate the population sample
+set.seed(123)
+group_A_scores <- rnorm(25, mean = 75, sd = 8)  # Group A
+group_B_scores <- rnorm(25, mean = 80, sd = 10)  # Group B
+
+# Display the first few scores of each group
+head(group_A_scores)
+head(group_B_scores)
+```
+
+Performing the two sample t-test. Lets set the confidence level to 95%(0.95)
+```{r}
+ttest_result = t.test(group_A_scores, group_B_scores, 
+                      alternative = "two.sided", mu = 0, paired = FALSE,
+                      var.equal = FALSE, conf.level = 0.95)
+
+ttest_result
+```
+
+<-**Make a conclusion of the observations**->
+
+<-**Add a practical exercise**->
+
+
 
 
 

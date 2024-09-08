@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-07" />
+<meta name="date" content="2024-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -794,7 +794,54 @@ Most values in the data set range between 10 and 20. Let,s also plot the data fo
 ## sample estimates:
 ## mean of x 
 ##  64.52896</code></pre>
-<p>-<em>Two-Sample t-test</em></p>
+<p>-<em>Two-Sample t-test</em>
+Unlike one sample t-test where a sample population is tested against a pre-assumed mean, the Tow-sample t-test determines if there is a significant difference between the means of two independent populations.</p>
+<p>The practical application of two-sample t-test can be when comparing the test scores of two classes. This helps the statistician to understand if one class did better than the other one or it’s just a matter of luck.</p>
+<p>These are the prerequisites before conducting a two-sample t-test;</p>
+<ol style="list-style-type: lower-roman">
+<li>The groups contain separate data with a similar distribution.</li>
+<li>The two populations have a normal(typical bell-curve) distribution.</li>
+<li>The two sample populations have a similar variations</li>
+</ol>
+<p>The two sample t-test is calculated by;
+<span class="math display">\[t={\overline{x_1}-\overline{x_2}}\over{\sqrt{s_{1}^{2}}\over{n_1}-}\]</span></p>
+<p>&lt;–<strong>Remember to complete the formula of ….</strong>–&gt;</p>
+<p>Where;</p>
+<ul>
+<li><span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span> are the mean of the first sample and the second sample respectively</li>
+<li><span class="math inline">\(s_{1}\)</span> and <span class="math inline">\(s_{2}\)</span> are the standard deviation of sample 1 and sample 2 respectively</li>
+<li><span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes of the first and second sample respectively.</li>
+</ul>
+<p>Let create a random population of student scores for two classes and perform two-sample t-test in R;</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="statistical-analysis.html#cb496-1" tabindex="-1"></a><span class="co"># Generate the population sample</span></span>
+<span id="cb496-2"><a href="statistical-analysis.html#cb496-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb496-3"><a href="statistical-analysis.html#cb496-3" tabindex="-1"></a>group_A_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">75</span>, <span class="at">sd =</span> <span class="dv">8</span>)  <span class="co"># Group A</span></span>
+<span id="cb496-4"><a href="statistical-analysis.html#cb496-4" tabindex="-1"></a>group_B_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">80</span>, <span class="at">sd =</span> <span class="dv">10</span>)  <span class="co"># Group B</span></span>
+<span id="cb496-5"><a href="statistical-analysis.html#cb496-5" tabindex="-1"></a></span>
+<span id="cb496-6"><a href="statistical-analysis.html#cb496-6" tabindex="-1"></a><span class="co"># Display the first few scores of each group</span></span>
+<span id="cb496-7"><a href="statistical-analysis.html#cb496-7" tabindex="-1"></a><span class="fu">head</span>(group_A_scores)</span></code></pre></div>
+<pre><code>## [1] 70.51619 73.15858 87.46967 75.56407 76.03430 88.72052</code></pre>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="statistical-analysis.html#cb498-1" tabindex="-1"></a><span class="fu">head</span>(group_B_scores)</span></code></pre></div>
+<pre><code>## [1] 63.13307 88.37787 81.53373 68.61863 92.53815 84.26464</code></pre>
+<p>Performing the two sample t-test. Lets set the confidence level to 95%(0.95)</p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="statistical-analysis.html#cb500-1" tabindex="-1"></a>ttest_result <span class="ot">=</span> <span class="fu">t.test</span>(group_A_scores, group_B_scores, </span>
+<span id="cb500-2"><a href="statistical-analysis.html#cb500-2" tabindex="-1"></a>                      <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb500-3"><a href="statistical-analysis.html#cb500-3" tabindex="-1"></a>                      <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb500-4"><a href="statistical-analysis.html#cb500-4" tabindex="-1"></a></span>
+<span id="cb500-5"><a href="statistical-analysis.html#cb500-5" tabindex="-1"></a>ttest_result</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  group_A_scores and group_B_scores
+## t = -2.6403, df = 46.312, p-value = 0.01125
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -11.080984  -1.495049
+## sample estimates:
+## mean of x mean of y 
+##  74.73336  81.02137</code></pre>
+<p>&lt;-<strong>Make a conclusion of the observations</strong>-&gt;</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
 </div>
 </div>
