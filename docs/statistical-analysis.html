@@ -843,6 +843,45 @@ Unlike one sample t-test where a sample population is tested against a pre-assum
 <p>&lt;-<strong>Make a conclusion of the observations</strong>-&gt;</p>
 <p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
+<div id="anova-analysis-of-variance" class="section level4 hasAnchor" number="7.3.1.3">
+<h4><span class="header-section-number">7.3.1.3</span> ANOVA (Analysis of Variance)<a href="statistical-analysis.html#anova-analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>ANOVA is a statistical test used to analyze the difference between the means of more than two groups. This is different from the ttest that analyzes one or two groups, it uses F test to find the statistical significance. Multiple means are compared at once and if one mean is different the hypothesis is rejected.</p>
+<p>The F test compares the variance in each group from the overal group variance.</p>
+<p>An practical example of ANOVA is where a farmer wants to test the effect of three different fertilizers on the crop yield. The difference in the crop yield will be calculated.</p>
+<p>Before conducting ANOVA, the following assumptions are made;</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>Independence of observations</strong>: the data was collected using statistically valid sampling methods and there are no hidden relationships among the observations.</li>
+<li><strong>Normal distribution</strong>: the dependent variable should follow a normal distribution.</li>
+<li><strong>Homogeinity of variance</strong>: All the groups being tested should have similar variations.</li>
+</ol>
+<p>&lt;-<strong>Formula for ANOVA</strong>-&gt;</p>
+<p>Lets calculate the ANOVA using the the crop yield data set. The fertilizer are in three categories; 1, 2 and 3</p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="statistical-analysis.html#cb502-1" tabindex="-1"></a><span class="co"># Load the data set </span></span>
+<span id="cb502-2"><a href="statistical-analysis.html#cb502-2" tabindex="-1"></a>crop_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/cropdata.csv&quot;</span>)</span>
+<span id="cb502-3"><a href="statistical-analysis.html#cb502-3" tabindex="-1"></a><span class="fu">head</span>(crop_df) <span class="co"># view the first few rows of the data set</span></span></code></pre></div>
+<pre><code>##   density block fertilizer    yield
+## 1       1     1          1 177.2287
+## 2       2     2          1 177.5500
+## 3       1     3          1 176.4085
+## 4       2     4          1 177.7036
+## 5       1     1          1 177.1255
+## 6       2     2          1 176.7783</code></pre>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="statistical-analysis.html#cb504-1" tabindex="-1"></a><span class="co"># Calculate one way ANOVA </span></span>
+<span id="cb504-2"><a href="statistical-analysis.html#cb504-2" tabindex="-1"></a>anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> fertilizer, <span class="at">data =</span> crop_df)</span>
+<span id="cb504-3"><a href="statistical-analysis.html#cb504-3" tabindex="-1"></a>anova</span></code></pre></div>
+<pre><code>## Call:
+##    aov(formula = yield ~ fertilizer, data = crop_df)
+## 
+## Terms:
+##                 fertilizer Residuals
+## Sum of Squares     5.74322  36.21101
+## Deg. of Freedom          1        94
+## 
+## Residual standard error: 0.6206638
+## Estimated effects may be unbalanced</code></pre>
+<p>&lt;-<strong>Interpret and report the ANOVA results</strong><a href="https://www.scribbr.com/statistics/one-way-anova/#:~:text=ANOVA%2C%20which%20stands%20for%20Analysis,ANOVA%20uses%20two%20independent%20variables.">here</a>-&gt;</p>
+<p>&lt;-<strong>Add a practical example</strong>-&gt;</p>
+</div>
 </div>
 </div>
 <div id="datasets" class="section level2 hasAnchor" number="7.4">

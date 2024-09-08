@@ -599,10 +599,36 @@ ttest_result
 
 <-**Add a practical exercise**->
 
+#### ANOVA (Analysis of Variance)
+ANOVA is a statistical test used to analyze the difference between the means of more than two groups. This is different from the ttest that analyzes one or two groups, it uses F test to find the statistical significance. Multiple means are compared at once and if one mean is different the hypothesis is rejected. 
+
+The F test compares the variance in each group from the overal group variance. 
+
+An practical example of ANOVA is where a farmer wants to test the effect of three different fertilizers on the crop yield. The difference in the crop yield will be calculated. 
+
+Before conducting ANOVA, the following assumptions are made;
+
+i. **Independence of observations**: the data was collected using statistically valid sampling methods and there are no hidden relationships among the observations. 
+ii. **Normal distribution**: the dependent variable should follow a normal distribution.
+iii. **Homogeinity of variance**: All the groups being tested should have similar variations. 
 
 
+<-**Formula for ANOVA**->
 
+Lets calculate the ANOVA using the the crop yield data set. The fertilizer are in three categories; 1, 2 and 3
+```{r}
+# Load the data set 
+crop_df <- read.csv("data/cropdata.csv")
+head(crop_df) # view the first few rows of the data set
 
+# Calculate one way ANOVA 
+anova <- aov(yield ~ fertilizer, data = crop_df)
+anova
+```
+
+<-**Interpret and report the ANOVA results**[here](https://www.scribbr.com/statistics/one-way-anova/#:~:text=ANOVA%2C%20which%20stands%20for%20Analysis,ANOVA%20uses%20two%20independent%20variables.)->
+
+<-**Add a practical example**->
 
 
 
