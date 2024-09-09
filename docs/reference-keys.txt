@@ -75,4 +75,5 @@ concept-of-hypothesis-testing
 t-tests
 anova-analysis-of-variance
 chi-square-test
+hands-on-exercises-2
 datasets

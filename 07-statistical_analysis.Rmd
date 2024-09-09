@@ -642,8 +642,49 @@ i. $c$ is the degree of freedom. This is a statistical calculation that represen
 ii. $O$ is the observed value
 iii. $E$ is the expected value
 
+Lets perform Chi-square on a survey data from the `MASS` library. The survey data represents data from a survey conducted on students. 
 
+- Null Hypothesis ($H_0$): The smoking habit is independent of the student's exercise level
+- ALternate Hypothesis ($H_a$): The smoking habit is dependent on the exercise level.
 
+Load the data
+```{r}
+# Load the library
+library(MASS)
+
+head(survey) # view the data
+```
+
+Create a contigency table between the Smoke and the Exercise leel. 
+```{r}
+# Create a contingency table with the needed variables.       
+stu_data = table(survey$Smoke,survey$Exer) 
+                 
+print(stu_data)
+```
+
+Perform the chi-square test on the `stu_data`, the contigency table.
+```{r warning=FALSE}
+# applying chisq.test() function
+print(chisq.test(stu_data))
+```
+
+From the results, the p-value is 0.4828 which is greater than 0.05 therefore the null hypothesis is not rejected. It'c concluded that the smoking habit is independent of the exercise level since there is weak to now correlation between the `Smoke` and `Exer` variables. 
+
+Finally, lets visualize the results from the contigency table;
+```{r}
+# Visualize the data with a bar plot
+barplot(stu_data, beside = TRUE, col = c("lightblue", "lightgreen"),
+        main = "Smoking Habits vs Exercise Levels",
+        xlab = "Exercise Level", ylab = "Number of Students")
+ 
+# Add legend separately
+legend("center", legend = rownames(stu_data), fill = c("lightblue", "lightgreen"))
+```
+
+You can see from the table, those students who never smoke lead in every exercise level while the heavy smokers are the least in every group. 
+
+### Hands-on Exercises
 
 ## Datasets 
 - tweets Dataset from the rtweet Package
