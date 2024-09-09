@@ -684,6 +684,8 @@ legend("center", legend = rownames(stu_data), fill = c("lightblue", "lightgreen"
 
 You can see from the table, those students who never smoke lead in every exercise level while the heavy smokers are the least in every group. 
 
+<-**Add a practical exercise**->
+
 ### Hands-on Exercises
 
 ## Datasets 

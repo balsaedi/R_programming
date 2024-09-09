@@ -1,0 +1,98 @@
+# Time Series Analysis
+## Introduction to Time Series Data 
+The time series data refers to a sequence of data points collected or recorded at regular time intervals. Each data has a specific time stamps and the data is always dependent on the previous time and after. The order of the rows doesn't matter but the timestamp does, this is what is referred to as **temporal ordering**. Here are some of the distinct characteristics of time series data;
+
+i. *Trend*: the time series data tend to show long-term increase or decrease over a period of time.
+ii. *Temporal Dependence*: In time series, the current data values are often influenced by the previous data values and may impact the future ones. 
+iii. *Seasonality*: some of the time series data often exhibit repeating patterns at regular intervals for instance daily, monthly and annually.
+iv. *Autocorrelation*: current values can be correlated with future or previous time points. 
+v. *Stationarity*: Time series is often stationary if its statistical properties for instance mean and variance remain constant over time.
+
+Time series has several applications in the industry, here are some of its applications;
+
+- **Forecasting**; predicting future values based on the previous and current values.
+- **Anomaly detection**; identify outliers or any unusual patterns over a certain period of time. 
+- **Seasonality**; Find and analyze recurring patterns.
+- **Trend Analysis**; Identify trends or patterns over a certain period of time.
+- Used in economic and financial analysis to predict economic indicators such as GDP, exchange rates and inflation rates. 
+- Measuring natural phenomena like measuring rainfall in weather forecasting.
+
+## Basic Time Series Concepts
+- **Components of Time Series**
+
+![](images/time-series-chart.jpeg)
+
+The above graph represents an example of a time series data. To understand the underlying structure in time series, it is broken down into three components; trend, seasonality and noise. These components characterize the pattern and behavior of data over time. 
+
+1. *Trend*; This will show the general direction of data whether it is upward(increasing) or downward(decreasing). They indicate long-term movement depicting overall growth or decline. The above chart shows that there was an overall growth(upward trend) over the year
+2. *Seasonality*; It is the predictable pattern that appear regularly. In the chart above there is a quarterly rise and drop of values.
+3. *Cycles*; represents the fluctuations that don't have a fixed period.
+4. *Noise*; its is the residual variability of data that has no explanations by the factors affecting the trend. The variability is always small compared to the trend and cycle. 
+
+Lets use the R inbuilt data set, `AirPassengers` to decompose the time series data into trend, seasonality ...
+```{r}
+# Load the data 
+data("AirPassengers")
+
+head(AirPassengers)
+
+# Decompose the air passengers time series 
+decomposed_ts <- decompose(AirPassengers)
+# Plotting will be done later
+# decomposed_ts # uncomment to show the data
+```
+
+<-**Add a practical exercise**->
+
+- **Visualization of Time Series Data**
+
+Visualization is a crucial step in the time series analysis process as it enables;
+
+- the researcher to analyze the important concepts in the data such as trend, seasonality and noise
+- the analyst to track perfomance over time
+- to diagnose alien behaviors like sudden spikes and presence of outliers 
+- the analyst to communicate insights to the non-technical stake holders.
+
+Lets visualize the  time series data of the `AirPassengers`. 
+```{r}
+plot.ts(AirPassengers, 
+         main = "AirPasengers Time Series ",
+        ylab = "Passengers",
+        xlab = "Time",
+        col = "blue", 
+        lwd = 2)
+```
+
+Lets now visualize the decomposed time series. 
+```{r}
+plot(decomposed_ts)
+```
+
+The number of Air Passengers has increased from 1950 to 1960. There is an upward trend. Now lets repeat the process using the `ggplot2` library. 
+```{r}
+# Load the library
+library(ggplot2)
+
+# Convert the air passengers to a dataframe
+df_airpassengers <- data.frame(
+  # Month = as.Date(time(AirPassengers)),  # Extracting the time component
+  Month = seq(from = as.Date("1949-01-31"), to = as.Date("1960-12-31"), by = "month"),
+  Passengers = as.numeric(AirPassengers) # Extracting the passenger counts
+)
+
+head(df_airpassengers)
+
+# Plot the data
+ggplot(df_airpassengers, aes(x = Month, y = Passengers)) +
+  geom_line(color = "blue", size = 1) +         # Line for the time series data
+  labs(title = "Air Passengers Time Series Data",       # Title
+       x = "Month",                              # X-axis label
+       y = "Passengers") +                           # Y-axis label
+  theme_minimal()                               # Apply a minimal theme
+```
+
+<-**Add a practical exercise**->
+
+## Basic Time Series Forecasting 
+
+## Hands-On Exercises 

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Explanatory Data Analysis | R Course</title>
-  <meta name="description" content="Chapter 6 Explanatory Data Analysis | R Course" />
+  <title>Chapter 8 Working with Real-World Data | R Course</title>
+  <meta name="description" content="Chapter 8 Working with Real-World Data | R Course" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Explanatory Data Analysis | R Course" />
+  <meta property="og:title" content="Chapter 8 Working with Real-World Data | R Course" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Explanatory Data Analysis | R Course" />
+  <meta name="twitter:title" content="Chapter 8 Working with Real-World Data | R Course" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-visualization.html"/>
-<link rel="next" href="statistical-analysis.html"/>
+<link rel="prev" href="statistical-analysis.html"/>
+<link rel="next" href="time-series-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -276,39 +276,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="explanatory-data-analysis" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Explanatory Data Analysis<a href="explanatory-data-analysis.html#explanatory-data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-to-eda" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Introduction to EDA<a href="explanatory-data-analysis.html#introduction-to-eda" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Exploratory Data Analysis (EDA)</strong> is a critical process in the data analysis workflow. It involves examining and visualizing a dataset to uncover patterns, spot anomalies, test hypotheses, and check assumptions using summary statistics and graphical representations. EDA provides a solid understanding of the data and lays the foundation for more advanced statistical analyses or machine learning models.</p>
-<p>The key objectives of EDA are;-</p>
-<ol style="list-style-type: decimal">
-<li>Understand and familiarize the data structure.</li>
-<li>Detect outliers and anomalies.</li>
-<li>Identify patterns and trends.</li>
-<li>Check and verify assumptions, etc.</li>
-</ol>
-<p>By performing EDA thoroughly, the groundwork is laid for more accurate results, ultimately provides insights that lead to better decision-making. EDA also guides to better model-selection.</p>
-<p>Here are the common techniques involved in EDA;-</p>
-<ul>
-<li><strong>Summary Statistics</strong>: The analysts compute the summary statistics like mean, median, mode and standard deviation to find the spread and central tendency in the data.</li>
-<li><strong>Data Visualization</strong>: Charts and graphs are drawn to provide a visual interpretation of the data set.</li>
-<li><strong>Data Cleaning and Preparation</strong>: Data manipulation and pre-processing is done to reduce the risk of misinterpretation.</li>
-</ul>
-<p>There are more EDA techniques like univariate, bivariate and multivariate analysis, and inferential statistics.</p>
-<div id="eda-in-practice" class="section level3 hasAnchor" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> EDA in practice<a href="explanatory-data-analysis.html#eda-in-practice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="choosing-a-data-set" class="section level4 hasAnchor" number="6.1.1.1">
-<h4><span class="header-section-number">6.1.1.1</span> Choosing a data set<a href="explanatory-data-analysis.html#choosing-a-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="working-with-real-world-data" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Working with Real-World Data<a href="working-with-real-world-data.html#working-with-real-world-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="handling-large-datasets" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Handling Large Datasets<a href="working-with-real-world-data.html#handling-large-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="conducting-eda" class="section level4 hasAnchor" number="6.1.1.2">
-<h4><span class="header-section-number">6.1.1.2</span> Conducting EDA<a href="explanatory-data-analysis.html#conducting-eda" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-</div>
-<div id="present-findings" class="section level4 hasAnchor" number="6.1.1.3">
-<h4><span class="header-section-number">6.1.1.3</span> Present Findings<a href="explanatory-data-analysis.html#present-findings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="data-cleaning-and-transformation" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Data Cleaning and Transformation<a href="working-with-real-world-data.html#data-cleaning-and-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
-</div>
-</div>
 </div>
 </div>
             </section>
@@ -316,8 +291,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="statistical-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="statistical-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="time-series-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -348,7 +323,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/balsaedi/RCourse/edit/main/06-explanatory_data_analysis.Rmd",
+"link": "https://github.com/balsaedi/RCourse/edit/main/08-working_with_real_world_data.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -356,7 +331,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/balsaedi/RCourse/blob/main/06-explanatory_data_analysis.Rmd",
+"link": "https://github.com/balsaedi/RCourse/blob/main/08-working_with_real_world_data.Rmd",
 "text": null
 },
 "download": null,

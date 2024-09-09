@@ -77,3 +77,11 @@ anova-analysis-of-variance
 chi-square-test
 hands-on-exercises-2
 datasets
+working-with-real-world-data
+handling-large-datasets
+data-cleaning-and-transformation
+time-series-analysis
+introduction-to-time-series-data
+basic-time-series-concepts
+basic-time-series-forecasting
+hands-on-exercises-3
