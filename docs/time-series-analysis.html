@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-09" />
+<meta name="date" content="2024-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -254,7 +254,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#introduction-to-time-series-data"><i class="fa fa-check"></i><b>9.1</b> Introduction to Time Series Data</a></li>
 <li class="chapter" data-level="9.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-concepts"><i class="fa fa-check"></i><b>9.2</b> Basic Time Series Concepts</a></li>
-<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a></li>
+<li class="chapter" data-level="9.3" data-path="time-series-analysis.html"><a href="time-series-analysis.html#basic-time-series-forecasting"><i class="fa fa-check"></i><b>9.3</b> Basic Time Series Forecasting</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
+<li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
+</ul></li>
 <li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -376,10 +380,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Call `lifecycle::last_lifecycle_warnings()` to see
 ## where this warning was generated.</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
+<p>Now lets visualize the decomposed time series (<code>AirPassengers</code>) data using the <code>ggplot2</code> library;</p>
+<ul>
+<li>create a data frame from the decomposed data</li>
+</ul>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="time-series-analysis.html#cb526-1" tabindex="-1"></a><span class="co"># Create a data frame with all the components</span></span>
+<span id="cb526-2"><a href="time-series-analysis.html#cb526-2" tabindex="-1"></a>df_decomposed <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb526-3"><a href="time-series-analysis.html#cb526-3" tabindex="-1"></a>  <span class="at">Date =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1949-01-31&quot;</span>), <span class="at">to =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1960-12-31&quot;</span>), <span class="at">by =</span> <span class="st">&quot;month&quot;</span>), </span>
+<span id="cb526-4"><a href="time-series-analysis.html#cb526-4" tabindex="-1"></a>  <span class="at">Observed =</span> <span class="fu">as.numeric</span>(AirPassengers),</span>
+<span id="cb526-5"><a href="time-series-analysis.html#cb526-5" tabindex="-1"></a>  <span class="at">Trend =</span> <span class="fu">as.numeric</span>(decomposed_ts<span class="sc">$</span>trend),</span>
+<span id="cb526-6"><a href="time-series-analysis.html#cb526-6" tabindex="-1"></a>  <span class="at">Seasonal =</span> <span class="fu">as.numeric</span>(decomposed_ts<span class="sc">$</span>seasonal),</span>
+<span id="cb526-7"><a href="time-series-analysis.html#cb526-7" tabindex="-1"></a>  <span class="at">Residual =</span> <span class="fu">as.numeric</span>(decomposed_ts<span class="sc">$</span>random)</span>
+<span id="cb526-8"><a href="time-series-analysis.html#cb526-8" tabindex="-1"></a>)</span>
+<span id="cb526-9"><a href="time-series-analysis.html#cb526-9" tabindex="-1"></a></span>
+<span id="cb526-10"><a href="time-series-analysis.html#cb526-10" tabindex="-1"></a><span class="co"># Remove the null values </span></span>
+<span id="cb526-11"><a href="time-series-analysis.html#cb526-11" tabindex="-1"></a>df_decomposed <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df_decomposed)</span>
+<span id="cb526-12"><a href="time-series-analysis.html#cb526-12" tabindex="-1"></a></span>
+<span id="cb526-13"><a href="time-series-analysis.html#cb526-13" tabindex="-1"></a><span class="fu">head</span>(df_decomposed)</span></code></pre></div>
+<pre><code>##          Date Observed    Trend  Seasonal   Residual
+## 7  1949-07-31      148 126.7917  63.83081 -42.622475
+## 8  1949-08-31      148 127.2500  62.82323 -42.073232
+## 9  1949-10-01      136 127.9583  16.52020  -8.478535
+## 10 1949-10-31      119 128.5833 -20.64268  11.059343
+## 11 1949-12-01      104 129.0000 -53.59343  28.593434
+## 12 1949-12-31      118 129.7500 -28.61995  16.869949</code></pre>
+<p><strong>Check</strong>______<strong>it</strong>____<strong>later</strong></p>
 <p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
 <div id="basic-time-series-forecasting" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Basic Time Series Forecasting<a href="time-series-analysis.html#basic-time-series-forecasting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="moving-averages" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Moving Averages<a href="time-series-analysis.html#moving-averages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Moving average is a statistical calculations used to analyze values over a specific period of time. Its main focus is to smooth out the short term fluctuations that makes it easier to identify the underlying trends in the data. It smoothens the time series data by avering the the values over a sliding window.</p>
+<p>There are two types of Moving Averages, namely;</p>
+<ol style="list-style-type: lower-roman">
+<li>Simple Moving Averages(SMA)</li>
+<li>Weighted Moving Averages (WMA)</li>
+</ol>
+<p>Moving Average can also be referred to as the <strong>rolling mean</strong>. In this course we will demonstrate how to calculate and plot the Simple Moving Average using the <code>rollmean()</code> and <code>filter()</code> functions from the <code>zoo</code> and the Base R respectively.</p>
+<ul>
+<li>Load the required libraries</li>
+</ul>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="time-series-analysis.html#cb528-1" tabindex="-1"></a><span class="co"># Load the libraries </span></span>
+<span id="cb528-2"><a href="time-series-analysis.html#cb528-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># for plotting </span></span>
+<span id="cb528-3"><a href="time-series-analysis.html#cb528-3" tabindex="-1"></a><span class="fu">library</span>(zoo) <span class="co"># to access `rollmean` function</span></span></code></pre></div>
+<ul>
+<li>Load the data and calulate the moving average using the <code>rollmean()</code> function. Since the data was collected in monthly basis, a yearly moving average will be calculated.</li>
+</ul>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="time-series-analysis.html#cb529-1" tabindex="-1"></a><span class="co"># Load the AirPassengers dataset</span></span>
+<span id="cb529-2"><a href="time-series-analysis.html#cb529-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;AirPassengers&quot;</span>)</span>
+<span id="cb529-3"><a href="time-series-analysis.html#cb529-3" tabindex="-1"></a></span>
+<span id="cb529-4"><a href="time-series-analysis.html#cb529-4" tabindex="-1"></a><span class="co"># Calculate 12-month moving average using rollmean() from zoo package</span></span>
+<span id="cb529-5"><a href="time-series-analysis.html#cb529-5" tabindex="-1"></a>moving_avg <span class="ot">&lt;-</span> <span class="fu">rollmean</span>(AirPassengers, </span>
+<span id="cb529-6"><a href="time-series-analysis.html#cb529-6" tabindex="-1"></a>                       <span class="at">k =</span> <span class="dv">12</span>, <span class="co"># 12- Month Moving Average</span></span>
+<span id="cb529-7"><a href="time-series-analysis.html#cb529-7" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="cn">NA</span>) </span>
+<span id="cb529-8"><a href="time-series-analysis.html#cb529-8" tabindex="-1"></a></span>
+<span id="cb529-9"><a href="time-series-analysis.html#cb529-9" tabindex="-1"></a><span class="co"># Create a data frame combining the original data and moving average</span></span>
+<span id="cb529-10"><a href="time-series-analysis.html#cb529-10" tabindex="-1"></a>df_airpassengers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb529-11"><a href="time-series-analysis.html#cb529-11" tabindex="-1"></a>  <span class="at">Month =</span> <span class="fu">as.Date</span>(<span class="fu">time</span>(AirPassengers)),</span>
+<span id="cb529-12"><a href="time-series-analysis.html#cb529-12" tabindex="-1"></a>  <span class="at">Passengers =</span> <span class="fu">as.numeric</span>(AirPassengers),</span>
+<span id="cb529-13"><a href="time-series-analysis.html#cb529-13" tabindex="-1"></a>  <span class="at">MovingAvg =</span> <span class="fu">as.numeric</span>(moving_avg)</span>
+<span id="cb529-14"><a href="time-series-analysis.html#cb529-14" tabindex="-1"></a>)</span>
+<span id="cb529-15"><a href="time-series-analysis.html#cb529-15" tabindex="-1"></a></span>
+<span id="cb529-16"><a href="time-series-analysis.html#cb529-16" tabindex="-1"></a><span class="co"># View the first few rows of the data frame</span></span>
+<span id="cb529-17"><a href="time-series-analysis.html#cb529-17" tabindex="-1"></a><span class="fu">head</span>(df_airpassengers, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##         Month Passengers MovingAvg
+## 1  1949-01-01        112        NA
+## 2  1949-02-01        118        NA
+## 3  1949-03-01        132        NA
+## 4  1949-04-01        129        NA
+## 5  1949-05-01        121        NA
+## 6  1949-06-01        135  126.6667
+## 7  1949-07-01        148  126.9167
+## 8  1949-08-01        148  127.5833
+## 9  1949-09-01        136  128.3333
+## 10 1949-10-01        119  128.8333</code></pre>
+<ul>
+<li>Now plot the time series data along with the moving average</li>
+</ul>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="time-series-analysis.html#cb531-1" tabindex="-1"></a><span class="co"># Plot original data and moving average</span></span>
+<span id="cb531-2"><a href="time-series-analysis.html#cb531-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_airpassengers, <span class="fu">aes</span>(<span class="at">x =</span> Month)) <span class="sc">+</span> </span>
+<span id="cb531-3"><a href="time-series-analysis.html#cb531-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Passengers), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Original data</span></span>
+<span id="cb531-4"><a href="time-series-analysis.html#cb531-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> MovingAvg), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Moving average</span></span>
+<span id="cb531-5"><a href="time-series-analysis.html#cb531-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;AirPassengers - Moving Average (12 months)&quot;</span>,</span>
+<span id="cb531-6"><a href="time-series-analysis.html#cb531-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Passengers&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb531-7"><a href="time-series-analysis.html#cb531-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 11 rows containing missing values or values
+## outside the scale range (`geom_line()`).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
+<ul>
+<li><p><em>The blue line represents the original time series data</em></p></li>
+<li><p><em>The red line represents the Moving Average data</em>, you can see that the line is smoother.</p></li>
+<li><p>Let’s repeat the process but this time we use the <code>filter()</code> function from the Base R. Remember <code>dplyr</code> also has <code>filter()</code> function. To speficify use <code>stats::filter()</code>.</p></li>
+</ul>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="time-series-analysis.html#cb533-1" tabindex="-1"></a><span class="co"># Calculate the Moving Average</span></span>
+<span id="cb533-2"><a href="time-series-analysis.html#cb533-2" tabindex="-1"></a>moving_avg_filter <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">filter</span>(AirPassengers, <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">12</span>, <span class="dv">12</span>), <span class="at">sides =</span> <span class="dv">2</span>)</span>
+<span id="cb533-3"><a href="time-series-analysis.html#cb533-3" tabindex="-1"></a></span>
+<span id="cb533-4"><a href="time-series-analysis.html#cb533-4" tabindex="-1"></a><span class="co"># Add the moving average to the existing data frame</span></span>
+<span id="cb533-5"><a href="time-series-analysis.html#cb533-5" tabindex="-1"></a>df_airpassengers<span class="sc">$</span>MovingAvg_Filter <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(moving_avg_filter)</span>
+<span id="cb533-6"><a href="time-series-analysis.html#cb533-6" tabindex="-1"></a></span>
+<span id="cb533-7"><a href="time-series-analysis.html#cb533-7" tabindex="-1"></a><span class="co"># Plot original data and moving average calculated by filter()</span></span>
+<span id="cb533-8"><a href="time-series-analysis.html#cb533-8" tabindex="-1"></a><span class="fu">ggplot</span>(df_airpassengers, <span class="fu">aes</span>(<span class="at">x =</span> Month)) <span class="sc">+</span> </span>
+<span id="cb533-9"><a href="time-series-analysis.html#cb533-9" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Passengers), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Original data</span></span>
+<span id="cb533-10"><a href="time-series-analysis.html#cb533-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> MovingAvg_Filter), <span class="at">color =</span> <span class="st">&quot;green&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Moving average from filter</span></span>
+<span id="cb533-11"><a href="time-series-analysis.html#cb533-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;AirPassengers - Moving Average (12 months, filter())&quot;</span>,</span>
+<span id="cb533-12"><a href="time-series-analysis.html#cb533-12" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Passengers&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb533-13"><a href="time-series-analysis.html#cb533-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<ul>
+<li><em>The green line represents the simple moving average over a 12-month sliding window</em></li>
+</ul>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+</div>
+<div id="arima-model" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> ARIMA model<a href="time-series-analysis.html#arima-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
 </div>
 <div id="hands-on-exercises-3" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Hands-On Exercises<a href="time-series-analysis.html#hands-on-exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>

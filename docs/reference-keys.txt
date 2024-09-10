@@ -84,4 +84,6 @@ time-series-analysis
 introduction-to-time-series-data
 basic-time-series-concepts
 basic-time-series-forecasting
+moving-averages
+arima-model
 hands-on-exercises-3

@@ -91,8 +91,110 @@ ggplot(df_airpassengers, aes(x = Month, y = Passengers)) +
   theme_minimal()                               # Apply a minimal theme
 ```
 
+Now lets visualize the decomposed time series (`AirPassengers`) data using the `ggplot2` library;
+
+- create a data frame from the decomposed data 
+```{r}
+# Create a data frame with all the components
+df_decomposed <- data.frame(
+  Date = seq(from = as.Date("1949-01-31"), to = as.Date("1960-12-31"), by = "month"), 
+  Observed = as.numeric(AirPassengers),
+  Trend = as.numeric(decomposed_ts$trend),
+  Seasonal = as.numeric(decomposed_ts$seasonal),
+  Residual = as.numeric(decomposed_ts$random)
+)
+
+# Remove the null values 
+df_decomposed <- na.omit(df_decomposed)
+
+head(df_decomposed)
+```
+
+
+**Check**______**it**____**later**
+
+
+
 <-**Add a practical exercise**->
 
 ## Basic Time Series Forecasting 
+### Moving Averages
+
+Moving average is a statistical calculations used to analyze values over a specific period of time. Its main focus is to smooth out the short term fluctuations that makes it easier to identify the underlying trends in the data. It smoothens the time series data by avering the the values over a sliding window. 
+
+There are two types of Moving Averages, namely;
+
+i. Simple Moving Averages(SMA)
+ii. Weighted Moving Averages (WMA)
+
+Moving Average can also be referred to as the **rolling mean**. In this course we will demonstrate how to calculate and plot the Simple Moving Average using the `rollmean()` and `filter()` functions from the `zoo` and the Base R respectively. 
+
+- Load the required libraries 
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Load the libraries 
+library(ggplot2) # for plotting 
+library(zoo) # to access `rollmean` function
+```
+
+- Load the data and calulate the moving average using the `rollmean()` function. Since the data was collected in monthly basis, a yearly moving average will be calculated. 
+```{r warning=FALSE}
+# Load the AirPassengers dataset
+data("AirPassengers")
+
+# Calculate 12-month moving average using rollmean() from zoo package
+moving_avg <- rollmean(AirPassengers, 
+                       k = 12, # 12- Month Moving Average
+                       fill = NA) 
+
+# Create a data frame combining the original data and moving average
+df_airpassengers <- data.frame(
+  Month = as.Date(time(AirPassengers)),
+  Passengers = as.numeric(AirPassengers),
+  MovingAvg = as.numeric(moving_avg)
+)
+
+# View the first few rows of the data frame
+head(df_airpassengers, 10)
+```
+
+- Now plot the time series data along with the moving average
+```{r}
+# Plot original data and moving average
+ggplot(df_airpassengers, aes(x = Month)) + 
+  geom_line(aes(y = Passengers), color = "blue", size = 1) +  # Original data
+  geom_line(aes(y = MovingAvg), color = "red", size = 1.2) +  # Moving average
+  labs(title = "AirPassengers - Moving Average (12 months)",
+       y = "Number of Passengers", x = "Month") +
+  theme_minimal()
+```
+
+* *The blue line represents the original time series data*
+
+* *The red line represents the Moving Average data*, you can see that the line is smoother. 
+
+- Let's repeat the process but this time we use the `filter()` function from the Base R. Remember `dplyr` also has `filter()` function. To speficify use `stats::filter()`. 
+```{r warning=FALSE}
+# Calculate the Moving Average
+moving_avg_filter <- stats::filter(AirPassengers, rep(1/12, 12), sides = 2)
+
+# Add the moving average to the existing data frame
+df_airpassengers$MovingAvg_Filter <- as.numeric(moving_avg_filter)
+
+# Plot original data and moving average calculated by filter()
+ggplot(df_airpassengers, aes(x = Month)) + 
+  geom_line(aes(y = Passengers), color = "blue", size = 1) +  # Original data
+  geom_line(aes(y = MovingAvg_Filter), color = "green", size = 1.2) +  # Moving average from filter
+  labs(title = "AirPassengers - Moving Average (12 months, filter())",
+       y = "Number of Passengers", x = "Month") +
+  theme_minimal()
+
+```
+
+* *The green line represents the simple moving average over a 12-month sliding window*
+
+<-**Add a practical exercise**->
+
+### ARIMA model 
+
 
 ## Hands-On Exercises 
