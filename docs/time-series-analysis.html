@@ -494,6 +494,115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="arima-model" class="section level3 hasAnchor" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> ARIMA model<a href="time-series-analysis.html#arima-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>ARIMA</strong> stands for <em>AutoRegressive Integrated Moving Average</em> that is defined in three parameters namely; p, d and q where;</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>AR(p) Autoregression</strong>: This utilizes the relationship between the current values and the previous one where the current ones are dependent on the previous.</li>
+<li><strong>I(d) Integration</strong>: It entails subtracting the current observations of a series with its previous values <code>d</code> number of times. This is done to make the time series stationary.</li>
+<li><strong>MA(q) Moving Average</strong>: A model that uses the dependency between an observation and a residual error from a moving average model applied to lagged observations. A moving average component depicts the error of the model as a combination of previous error terms. The order q represents the number of terms to be included in the model</li>
+</ol>
+<p>In summary, <code>p</code>, <code>d</code> and <code>q</code> represents the number of autoregressive (AR) terms, the number of differences required to make the series stationary and the number of moving averages(MA) respectively. These values are determined using the following diagonstic tools;</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>Autocorrelation Function(ACF)</strong>: identifies the MA terms</li>
+<li><strong>Partial Autocorrelation Function (PACF)</strong>: identifies the number of AR terms.</li>
+<li><strong>Differencing</strong>: determines the value of <code>d</code> need to make the series stationary.</li>
+</ol>
+<p>R has <code>auto.arima()</code> function from the <code>forecast</code> library designed to create the ARIMA model.
+The <code>forecast</code> library can be installed by;</p>
+<pre><code>install.packages(&quot;forecast&quot;)</code></pre>
+<p>Lets use the <code>AirPassengers</code> data to design our ARIMA model.</p>
+<p><strong>Step 1</strong>: Check stationarity</p>
+<p>To create an ARIMA model the time series data, in this case the <code>AirPassengers</code>, must be stationary i.e have a constant mean and variance. Otherwise, differencing is applied to make it stationary. The <code>diff()</code> is used to this.</p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="time-series-analysis.html#cb535-1" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
+<span id="cb535-2"><a href="time-series-analysis.html#cb535-2" tabindex="-1"></a><span class="fu">library</span>(forecast)</span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="time-series-analysis.html#cb537-1" tabindex="-1"></a><span class="co"># Load the AirPassengers data set if not loaded already</span></span>
+<span id="cb537-2"><a href="time-series-analysis.html#cb537-2" tabindex="-1"></a></span>
+<span id="cb537-3"><a href="time-series-analysis.html#cb537-3" tabindex="-1"></a><span class="co"># Make the data stationary by differencing</span></span>
+<span id="cb537-4"><a href="time-series-analysis.html#cb537-4" tabindex="-1"></a>diff_passengers <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">log</span>(AirPassengers))</span></code></pre></div>
+<p><strong>Step 2</strong>: Use the ACF and PACF Plots to Identify ARIMA Parameters</p>
+<ul>
+<li><p>The <strong>ACF</strong> is used to find the correlation between the time series and the lagged versions((previous) of itself. Thats the <code>q</code> (MA) parameter.</p></li>
+<li><p>The <strong>PACF</strong> finds the correlation between the time series and the lagged versions of itself but after removing the effect of the intermediate lags. Thats the <code>p</code> (AR) parameter</p></li>
+</ul>
+<p><strong>Step 3</strong>: Plot the ACF and PACF</p>
+<p>The <code>acf()</code> and <code>pacf</code> functions are used to generate the plots.</p>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="time-series-analysis.html#cb538-1" tabindex="-1"></a><span class="co"># Plot the ACF and PACF of the differenced data</span></span>
+<span id="cb538-2"><a href="time-series-analysis.html#cb538-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># Set up for side-by-side plots</span></span>
+<span id="cb538-3"><a href="time-series-analysis.html#cb538-3" tabindex="-1"></a></span>
+<span id="cb538-4"><a href="time-series-analysis.html#cb538-4" tabindex="-1"></a><span class="co"># ACF plot</span></span>
+<span id="cb538-5"><a href="time-series-analysis.html#cb538-5" tabindex="-1"></a><span class="fu">acf</span>(diff_passengers, <span class="at">main =</span> <span class="st">&quot;ACF of Differenced AirPassengers&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="time-series-analysis.html#cb539-1" tabindex="-1"></a><span class="co"># PACF plot</span></span>
+<span id="cb539-2"><a href="time-series-analysis.html#cb539-2" tabindex="-1"></a><span class="fu">pacf</span>(diff_passengers, <span class="at">main =</span> <span class="st">&quot;PACF of Differenced AirPassengers&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<p>&lt;-<strong>Interpret the plots</strong>-&gt;</p>
+<p>The <code>AirPassengers</code> data set is not stationary, therefore the data will be transformed by log-transform before applying differencing</p>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="time-series-analysis.html#cb540-1" tabindex="-1"></a><span class="co"># Log transformation to stabilize variance</span></span>
+<span id="cb540-2"><a href="time-series-analysis.html#cb540-2" tabindex="-1"></a>log_passengers <span class="ot">&lt;-</span> <span class="fu">log</span>(AirPassengers)</span>
+<span id="cb540-3"><a href="time-series-analysis.html#cb540-3" tabindex="-1"></a></span>
+<span id="cb540-4"><a href="time-series-analysis.html#cb540-4" tabindex="-1"></a><span class="co"># Difference the log-transformed data to make it stationary</span></span>
+<span id="cb540-5"><a href="time-series-analysis.html#cb540-5" tabindex="-1"></a>diff_passengers <span class="ot">&lt;-</span> <span class="fu">diff</span>(log_passengers)</span>
+<span id="cb540-6"><a href="time-series-analysis.html#cb540-6" tabindex="-1"></a></span>
+<span id="cb540-7"><a href="time-series-analysis.html#cb540-7" tabindex="-1"></a><span class="co"># Plot the differenced series to check stationarity</span></span>
+<span id="cb540-8"><a href="time-series-analysis.html#cb540-8" tabindex="-1"></a><span class="fu">plot</span>(diff_passengers, <span class="at">main =</span> <span class="st">&quot;Differenced Log of AirPassengers&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Differenced Log(Passengers)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+<p><strong>Step 4</strong>: Fit the ARIMA model</p>
+<p>The <code>auto.arima()</code> function can be used to automate the process of selecting the <code>p</code>, <code>d</code>, <code>q</code> parameters.</p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="time-series-analysis.html#cb541-1" tabindex="-1"></a><span class="co"># Auto-identify ARIMA parameters and fit the model</span></span>
+<span id="cb541-2"><a href="time-series-analysis.html#cb541-2" tabindex="-1"></a>fit_arima <span class="ot">&lt;-</span> <span class="fu">auto.arima</span>(log_passengers)</span>
+<span id="cb541-3"><a href="time-series-analysis.html#cb541-3" tabindex="-1"></a></span>
+<span id="cb541-4"><a href="time-series-analysis.html#cb541-4" tabindex="-1"></a><span class="co"># Display the summary of the fitted ARIMA model</span></span>
+<span id="cb541-5"><a href="time-series-analysis.html#cb541-5" tabindex="-1"></a><span class="fu">summary</span>(fit_arima)</span></code></pre></div>
+<pre><code>## Series: log_passengers 
+## ARIMA(0,1,1)(0,1,1)[12] 
+## 
+## Coefficients:
+##           ma1     sma1
+##       -0.4018  -0.5569
+## s.e.   0.0896   0.0731
+## 
+## sigma^2 = 0.001371:  log likelihood = 244.7
+## AIC=-483.4   AICc=-483.21   BIC=-474.77
+## 
+## Training set error measures:
+##                        ME       RMSE        MAE        MPE      MAPE      MASE
+## Training set 0.0005730622 0.03504883 0.02626034 0.01098898 0.4752815 0.2169522
+##                    ACF1
+## Training set 0.01443892</code></pre>
+<p>Lets fit the ARIMA model with of order <code>1 1 1</code> to represent <code>p d q</code> respectively.</p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="time-series-analysis.html#cb543-1" tabindex="-1"></a><span class="co"># Fit ARIMA(1,1,1) model</span></span>
+<span id="cb543-2"><a href="time-series-analysis.html#cb543-2" tabindex="-1"></a>fit_manual_arima <span class="ot">&lt;-</span> <span class="fu">arima</span>(log_passengers, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb543-3"><a href="time-series-analysis.html#cb543-3" tabindex="-1"></a></span>
+<span id="cb543-4"><a href="time-series-analysis.html#cb543-4" tabindex="-1"></a><span class="co"># Display the summary of the fitted ARIMA model</span></span>
+<span id="cb543-5"><a href="time-series-analysis.html#cb543-5" tabindex="-1"></a><span class="fu">summary</span>(fit_manual_arima)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = log_passengers, order = c(1, 1, 1))
+## 
+## Coefficients:
+##           ar1     ma1
+##       -0.5780  0.8482
+## s.e.   0.1296  0.0865
+## 
+## sigma^2 estimated as 0.01027:  log likelihood = 124.31,  aic = -242.63
+## 
+## Training set error measures:
+##                       ME      RMSE        MAE       MPE     MAPE      MASE
+## Training set 0.008294478 0.1009741 0.08585615 0.1401158 1.557282 0.9477905
+##                  ACF1
+## Training set 0.010984</code></pre>
+<p><strong>Step 5</strong>: Forecast with the ARIMA model</p>
+<p>The fitted ARIMA model can now be used for forecasting the future values using the <code>arima()</code> function.</p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="time-series-analysis.html#cb545-1" tabindex="-1"></a><span class="co"># Forecast for the next 24 months (2 years)</span></span>
+<span id="cb545-2"><a href="time-series-analysis.html#cb545-2" tabindex="-1"></a>forecast_arima <span class="ot">&lt;-</span> <span class="fu">forecast</span>(fit_arima, <span class="at">h =</span> <span class="dv">24</span>)</span>
+<span id="cb545-3"><a href="time-series-analysis.html#cb545-3" tabindex="-1"></a></span>
+<span id="cb545-4"><a href="time-series-analysis.html#cb545-4" tabindex="-1"></a><span class="co"># Plot the forecast</span></span>
+<span id="cb545-5"><a href="time-series-analysis.html#cb545-5" tabindex="-1"></a><span class="fu">plot</span>(forecast_arima, <span class="at">main =</span> <span class="st">&quot;ARIMA Forecast for AirPassengers&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Log(Passengers)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
+<p>The blue part of the plot represents the forecasted values.</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
 </div>
 <div id="hands-on-exercises-3" class="section level2 hasAnchor" number="9.4">

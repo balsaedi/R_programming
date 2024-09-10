@@ -195,6 +195,110 @@ ggplot(df_airpassengers, aes(x = Month)) +
 <-**Add a practical exercise**->
 
 ### ARIMA model 
+**ARIMA** stands for *AutoRegressive Integrated Moving Average* that is defined in three parameters namely; p, d and q where;
+
+i. **AR(p) Autoregression**: This utilizes the relationship between the current values and the previous one where the current ones are dependent on the previous. 
+ii. **I(d) Integration**: It entails subtracting the current observations of a series with its previous values `d` number of times. This is done to make the time series stationary. 
+iii. **MA(q) Moving Average**: A model that uses the dependency between an observation and a residual error from a moving average model applied to lagged observations. A moving average component depicts the error of the model as a combination of previous error terms. The order q represents the number of terms to be included in the model
+
+In summary, `p`, `d` and `q` represents the number of autoregressive (AR) terms, the number of differences required to make the series stationary and the number of moving averages(MA) respectively. These values are determined using the following diagonstic tools;
+
+i. **Autocorrelation Function(ACF)**: identifies the MA terms 
+ii. **Partial Autocorrelation Function (PACF)**: identifies the number of AR terms.
+iii. **Differencing**: determines the value of `d` need to make the series stationary. 
+
+R has `auto.arima()` function from the `forecast` library designed to create the ARIMA model. 
+The `forecast` library can be installed by;
+```
+install.packages("forecast")
+```
+
+Lets use the `AirPassengers` data to design our ARIMA model. 
+
+**Step 1**: Check stationarity
+
+To create an ARIMA model the time series data, in this case the `AirPassengers`, must be stationary i.e have a constant mean and variance. Otherwise, differencing is applied to make it stationary. The `diff()` is used to this. 
+```{r}
+# Load necessary library
+library(forecast)
+
+# Load the AirPassengers data set if not loaded already
+
+# Make the data stationary by differencing
+diff_passengers <- diff(log(AirPassengers))
+```
+
+**Step 2**: Use the ACF and PACF Plots to Identify ARIMA Parameters
+
+- The **ACF** is used to find the correlation between the time series and the lagged versions((previous) of itself. Thats the `q` (MA) parameter.
+
+- The **PACF** finds the correlation between the time series and the lagged versions of itself but after removing the effect of the intermediate lags. Thats the `p` (AR) parameter
+
+**Step 3**: Plot the ACF and PACF
+
+The `acf()` and `pacf` functions are used to generate the plots.
+```{r}
+# Plot the ACF and PACF of the differenced data
+par(mfrow = c(1, 2))  # Set up for side-by-side plots
+
+# ACF plot
+acf(diff_passengers, main = "ACF of Differenced AirPassengers")
+
+```
+```{r}
+# PACF plot
+pacf(diff_passengers, main = "PACF of Differenced AirPassengers")
+```
+
+<-**Interpret the plots**->
+
+The `AirPassengers` data set is not stationary, therefore the data will be transformed by log-transform before applying differencing
+```{r}
+# Log transformation to stabilize variance
+log_passengers <- log(AirPassengers)
+
+# Difference the log-transformed data to make it stationary
+diff_passengers <- diff(log_passengers)
+
+# Plot the differenced series to check stationarity
+plot(diff_passengers, main = "Differenced Log of AirPassengers", ylab = "Differenced Log(Passengers)", xlab = "Time")
+
+```
+
+**Step 4**: Fit the ARIMA model
+
+The `auto.arima()` function can be used to automate the process of selecting the `p`, `d`, `q` parameters. 
+```{r}
+# Auto-identify ARIMA parameters and fit the model
+fit_arima <- auto.arima(log_passengers)
+
+# Display the summary of the fitted ARIMA model
+summary(fit_arima)
+```
+
+Lets fit the ARIMA model with of order `1 1 1` to represent `p d q` respectively. 
+```{r}
+# Fit ARIMA(1,1,1) model
+fit_manual_arima <- arima(log_passengers, order = c(1, 1, 1))
+
+# Display the summary of the fitted ARIMA model
+summary(fit_manual_arima)
+```
+
+**Step 5**: Forecast with the ARIMA model
+
+The fitted ARIMA model can now be used for forecasting the future values using the `arima()` function. 
+```{r}
+# Forecast for the next 24 months (2 years)
+forecast_arima <- forecast(fit_arima, h = 24)
+
+# Plot the forecast
+plot(forecast_arima, main = "ARIMA Forecast for AirPassengers", xlab = "Time", ylab = "Log(Passengers)")
+```
+
+The blue part of the plot represents the forecasted values. 
+
+<-**Add a practical exercise**->
 
 
 ## Hands-On Exercises 
