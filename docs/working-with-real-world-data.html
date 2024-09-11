@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-10" />
+<meta name="date" content="2024-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -247,7 +247,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a></li>
+<li class="chapter" data-level="8.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#handling-large-datasets"><i class="fa fa-check"></i><b>8.1</b> Handling Large Datasets</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#challenges-of-large-data-sets"><i class="fa fa-check"></i><b>8.1.1</b> Challenges of Large Data sets</a></li>
+<li class="chapter" data-level="8.1.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#efficient-data-handling-techniques"><i class="fa fa-check"></i><b>8.1.2</b> Efficient Data Handling Techniques</a></li>
+<li class="chapter" data-level="8.1.3" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#reading-and-writing-large-files"><i class="fa fa-check"></i><b>8.1.3</b> Reading and Writing Large Files</a></li>
+<li class="chapter" data-level="8.1.4" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>8.1.4</b> Hands-On Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="8.2" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>8.2</b> Data Cleaning and Transformation</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="time-series-analysis.html"><a href="time-series-analysis.html"><i class="fa fa-check"></i><b>9</b> Time Series Analysis</a>
@@ -259,7 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.1" data-path="time-series-analysis.html"><a href="time-series-analysis.html#moving-averages"><i class="fa fa-check"></i><b>9.3.1</b> Moving Averages</a></li>
 <li class="chapter" data-level="9.3.2" data-path="time-series-analysis.html"><a href="time-series-analysis.html#arima-model"><i class="fa fa-check"></i><b>9.3.2</b> ARIMA model</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
+<li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-4"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -284,6 +290,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 8</span> Working with Real-World Data<a href="working-with-real-world-data.html#working-with-real-world-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="handling-large-datasets" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Handling Large Datasets<a href="working-with-real-world-data.html#handling-large-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="challenges-of-large-data-sets" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Challenges of Large Data sets<a href="working-with-real-world-data.html#challenges-of-large-data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When working with data in R, one can encounter large data sets that are challenging to work on. These are some of the challenges;</p>
+<ul>
+<li>Data I/O takes a long time such that large files takes a long time to transfer data to or from a computers system which will slow down crucial processes like network operations, communication between the devices such as keyboard and microphone, and sharing data</li>
+<li>R has a file size limit of approximately 2 to 4gb, therefore it is a challenge to work on data sets above the limit like 5gb.</li>
+<li>There is more difficulty in indexing data sets which extremely large number of rows and columns.</li>
+<li>The processing speed of several algorithms and pre-trained model will reduce.</li>
+<li>Large data sets pose a threat on the memory management. R stores data entirely on the memory, therefore it can slow down or even crush the program under extreme cases.</li>
+</ul>
+<p>As a data analyst/statistician, large data sets are inevitable therefore researchers have worked on the issue of large data sets and come up with the following solutions;</p>
+<ul>
+<li>Optimize the memory usage through data type conversion and row-wise processing</li>
+<li>Processing large data sets in batches</li>
+<li>Using memory efficient objects and programming tricks like nested functions, lazy loading(load data into memory when its needed) and use of garbage collection where objects that are no longer useful are disposed.</li>
+<li>Partitioning and streaming by loading only small pieces of data into memory at any point in time.</li>
+<li>U*se specialized packages for large scale analysis like <code>data.table</code></li>
+</ul>
+</div>
+<div id="efficient-data-handling-techniques" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Efficient Data Handling Techniques<a href="working-with-real-world-data.html#efficient-data-handling-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="using-data.table-package" class="section level4 hasAnchor" number="8.1.2.1">
+<h4><span class="header-section-number">8.1.2.1</span> Using data.table Package<a href="working-with-real-world-data.html#using-data.table-package" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="memory-management-in-r" class="section level4 hasAnchor" number="8.1.2.2">
+<h4><span class="header-section-number">8.1.2.2</span> Memory Management in R<a href="working-with-real-world-data.html#memory-management-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+</div>
+<div id="reading-and-writing-large-files" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Reading and Writing Large Files<a href="working-with-real-world-data.html#reading-and-writing-large-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="optimized-file-io" class="section level4 hasAnchor" number="8.1.3.1">
+<h4><span class="header-section-number">8.1.3.1</span> Optimized File I/O<a href="working-with-real-world-data.html#optimized-file-io" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+</div>
+<div id="hands-on-exercises-3" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Hands-On Exercises<a href="working-with-real-world-data.html#hands-on-exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
 </div>
 <div id="data-cleaning-and-transformation" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Data Cleaning and Transformation<a href="working-with-real-world-data.html#data-cleaning-and-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>

@@ -79,6 +79,13 @@ hands-on-exercises-2
 datasets
 working-with-real-world-data
 handling-large-datasets
+challenges-of-large-data-sets
+efficient-data-handling-techniques
+using-data.table-package
+memory-management-in-r
+reading-and-writing-large-files
+optimized-file-io
+hands-on-exercises-3
 data-cleaning-and-transformation
 time-series-analysis
 introduction-to-time-series-data
@@ -86,4 +93,4 @@ basic-time-series-concepts
 basic-time-series-forecasting
 moving-averages
 arima-model
-hands-on-exercises-3
+hands-on-exercises-4
