@@ -12,15 +12,47 @@ When working with data in R, one can encounter large data sets that are challeng
 As a data analyst/statistician, large data sets are inevitable therefore researchers have worked on the issue of large data sets and come up with the following solutions; 
 
 - Optimize the memory usage through data type conversion and row-wise processing 
-- Processing large data sets in batches 
+- Processing large data sets in batches or in chunks. 
 - Using memory efficient objects and programming tricks like nested functions, lazy loading(load data into memory when its needed) and use of garbage collection where objects that are no longer useful are disposed. 
 - Partitioning and streaming by loading only small pieces of data into memory at any point in time. 
-- U*se specialized packages for large scale analysis like `data.table`
-
+- Use specialized packages for large scale analysis like `data.table`. 
+- Apply data sampling. Instead of processing the whole data at once. Take a random manageable sample from the data set and process it.
 
 ### Efficient Data Handling Techniques
-#### Using data.table Package 
+Lets dive deep on how to work on large data sets in R by applying the popular methods in data science. 
 
+#### Using data.table Package 
+The `data.table` package delivers an improved version of a `data.frame` structure. The data structure from this package(has the same name, `data.table`) is high performance, memory efficient thus being more fit for large data sets than the `data.frame` kind of a data structure. 
+
+Lets create a simple `data.table` from a random data set.
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# Load the library
+library(data.table)
+
+# Create the data.table 
+student_dtb <- data.table(stuid = c(2, 5, 3, 4, 6, 7, 4, 2, 0),# student id
+                          age = c(23, 45, 67, 23, 41, 43, 54, 67, 89)
+                          )
+
+student_dtb
+```
+
+A `data.frame` is created the same as a `data.table`
+```{r}
+# Create the data.frame
+student_df <- data.table(stuid = c(2, 5, 3, 4, 6, 7, 4, 2, 0),# student id
+                          age = c(23, 45, 67, 23, 41, 43, 54, 67, 89)
+                          )
+
+student_df
+```
+
+They almost look similar but they are more different in operations. Here are some of the differences;
+
+| `data.table`        | `data.frame`        |
+|-------------------- |---------------------|
+|faster than data.frame | 20X slower than data.table|
+|Used for more complex data structures and big data | Used for smalle tables and matrices|
 
 #### Memory Management in R
 

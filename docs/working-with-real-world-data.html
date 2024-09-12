@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-11" />
+<meta name="date" content="2024-09-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -303,16 +303,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As a data analyst/statistician, large data sets are inevitable therefore researchers have worked on the issue of large data sets and come up with the following solutions;</p>
 <ul>
 <li>Optimize the memory usage through data type conversion and row-wise processing</li>
-<li>Processing large data sets in batches</li>
+<li>Processing large data sets in batches or in chunks.</li>
 <li>Using memory efficient objects and programming tricks like nested functions, lazy loading(load data into memory when its needed) and use of garbage collection where objects that are no longer useful are disposed.</li>
 <li>Partitioning and streaming by loading only small pieces of data into memory at any point in time.</li>
-<li>U*se specialized packages for large scale analysis like <code>data.table</code></li>
+<li>Use specialized packages for large scale analysis like <code>data.table</code>.</li>
+<li>Apply data sampling. Instead of processing the whole data at once. Take a random manageable sample from the data set and process it.</li>
 </ul>
 </div>
 <div id="efficient-data-handling-techniques" class="section level3 hasAnchor" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Efficient Data Handling Techniques<a href="working-with-real-world-data.html#efficient-data-handling-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lets dive deep on how to work on large data sets in R by applying the popular methods in data science.</p>
 <div id="using-data.table-package" class="section level4 hasAnchor" number="8.1.2.1">
 <h4><span class="header-section-number">8.1.2.1</span> Using data.table Package<a href="working-with-real-world-data.html#using-data.table-package" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <code>data.table</code> package delivers an improved version of a <code>data.frame</code> structure. The data structure from this package(has the same name, <code>data.table</code>) is high performance, memory efficient thus being more fit for large data sets than the <code>data.frame</code> kind of a data structure.</p>
+<p>Lets create a simple <code>data.table</code> from a random data set.</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="working-with-real-world-data.html#cb517-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb517-2"><a href="working-with-real-world-data.html#cb517-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb517-3"><a href="working-with-real-world-data.html#cb517-3" tabindex="-1"></a></span>
+<span id="cb517-4"><a href="working-with-real-world-data.html#cb517-4" tabindex="-1"></a><span class="co"># Create the data.table </span></span>
+<span id="cb517-5"><a href="working-with-real-world-data.html#cb517-5" tabindex="-1"></a>student_dtb <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">stuid =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">0</span>),<span class="co"># student id</span></span>
+<span id="cb517-6"><a href="working-with-real-world-data.html#cb517-6" tabindex="-1"></a>                          <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>, <span class="dv">23</span>, <span class="dv">41</span>, <span class="dv">43</span>, <span class="dv">54</span>, <span class="dv">67</span>, <span class="dv">89</span>)</span>
+<span id="cb517-7"><a href="working-with-real-world-data.html#cb517-7" tabindex="-1"></a>                          )</span>
+<span id="cb517-8"><a href="working-with-real-world-data.html#cb517-8" tabindex="-1"></a></span>
+<span id="cb517-9"><a href="working-with-real-world-data.html#cb517-9" tabindex="-1"></a>student_dtb</span></code></pre></div>
+<pre><code>##    stuid   age
+##    &lt;num&gt; &lt;num&gt;
+## 1:     2    23
+## 2:     5    45
+## 3:     3    67
+## 4:     4    23
+## 5:     6    41
+## 6:     7    43
+## 7:     4    54
+## 8:     2    67
+## 9:     0    89</code></pre>
+<p>A <code>data.frame</code> is created the same as a <code>data.table</code></p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="working-with-real-world-data.html#cb519-1" tabindex="-1"></a><span class="co"># Create the data.frame</span></span>
+<span id="cb519-2"><a href="working-with-real-world-data.html#cb519-2" tabindex="-1"></a>student_df <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">stuid =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">0</span>),<span class="co"># student id</span></span>
+<span id="cb519-3"><a href="working-with-real-world-data.html#cb519-3" tabindex="-1"></a>                          <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>, <span class="dv">23</span>, <span class="dv">41</span>, <span class="dv">43</span>, <span class="dv">54</span>, <span class="dv">67</span>, <span class="dv">89</span>)</span>
+<span id="cb519-4"><a href="working-with-real-world-data.html#cb519-4" tabindex="-1"></a>                          )</span>
+<span id="cb519-5"><a href="working-with-real-world-data.html#cb519-5" tabindex="-1"></a></span>
+<span id="cb519-6"><a href="working-with-real-world-data.html#cb519-6" tabindex="-1"></a>student_df</span></code></pre></div>
+<pre><code>##    stuid   age
+##    &lt;num&gt; &lt;num&gt;
+## 1:     2    23
+## 2:     5    45
+## 3:     3    67
+## 4:     4    23
+## 5:     6    41
+## 6:     7    43
+## 7:     4    54
+## 8:     2    67
+## 9:     0    89</code></pre>
+<p>They almost look similar but they are more different in operations. Here are some of the differences;</p>
+<table>
+<colgroup>
+<col width="48%" />
+<col width="51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>data.table</code></th>
+<th><code>data.frame</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>faster than data.frame</td>
+<td>20X slower than data.table</td>
+</tr>
+<tr class="even">
+<td>Used for more complex data structures and big data</td>
+<td>Used for smalle tables and matrices</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="memory-management-in-r" class="section level4 hasAnchor" number="8.1.2.2">
 <h4><span class="header-section-number">8.1.2.2</span> Memory Management in R<a href="working-with-real-world-data.html#memory-management-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
