@@ -49,13 +49,28 @@ student_df
 
 They almost look similar but they are more different in operations. Here are some of the differences;
 
-| `data.table`        | `data.frame`        |
-|-------------------- |---------------------|
-|faster than data.frame | 20X slower than data.table|
-|Used for more complex data structures and big data | Used for smalle tables and matrices|
+
+
+| `data.table`                | `data.frame`                  |
+|---------------------------- | ----------------------------- |
+|faster than data.frame       | 20X slower than data.table    |
+|Used for more complex data structures and big data | Used for smaller tables and matrices|
+|Has built-in features like rolling joins and overlapping range| Lacks more features but friendly to a beginner|
+|code efficient     | Utilizes more code to get something done| 
+|`setDF(dt)` function is used to convert it to a data.frame where argument `dt` is the data.table| `setDT(df)` function is used to convert it to data.table where argument `df` is the data.frame|
+| Syntax: `data.table()`     | Syntax: `data.frame()`         |
+
+<-**Demonstrate basic data operations(check the guide)**->
+
+<-**Add a practical exercise**->
+
 
 #### Memory Management in R
 
+<-**Discuss it**->
+A good kind can be found [here](http://adv-r.had.co.nz/memory.html)
+
+<-**Remember a practical exercise**->
 
 ### Reading and Writing Large Files 
 #### Optimized File I/O
@@ -69,4 +84,25 @@ They almost look similar but they are more different in operations. Here are som
 
 
 ## Data Cleaning and Transformation
+### Introduction to Data Cleaning 
+#### Common Data Issues 
+Raw data from the field can be inaccurate and inconsistent and pose threats to data operations leading to false analysis and decision making. This type of data is know as dirty, unclean or rogue data. Here are some of the common data issues that render data unclean; 
 
+- **Incomplete data**: Some of the data points may be missing or left blank. 
+- **Duplicate data**: Some records in the data sets may occur multiple times in different sources.
+- **Outdated data**: Some data values that may have relevant information times ago may now be obsolete and irrelevant. 
+- **Inconsistent data formats**: Data may be in different ways across multiple data sources like records be presented in JSON formats, SQL tables, No SQL table or even in image formats(.png, .jpeg).
+- **Outlier Values**: Outliers are extremely high or low values in the data set like a data set containing age of students having one student that is 304 years old or body temperature data set containing values of $-51^0C$. These values are always impossible and can indicate errors, anomalies and exceptions in the datasets. 
+
+Data integrity is crucial in data analysis and can hinder the organizations' operations. The foundation of strategic planning, efficient operations and sound decision-making is based upon accurate, complete and consistent data. Here are some of the threats that unclean data pose to the organizations;
+
+- 
+#### Data Cleaning techniques 
+##### Handling Missing Data 
+##### Dealing with Outliers
+##### Data Transformation Techniques 
+- **Normalization and Standardization**
+
+- **Encoding Categorical Variables**
+
+### Hands-On Exercises

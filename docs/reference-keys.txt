@@ -87,10 +87,13 @@ reading-and-writing-large-files
 optimized-file-io
 hands-on-exercises-3
 data-cleaning-and-transformation
+introduction-to-data-cleaning
+common-data-issues
+hands-on-exercises-4
 time-series-analysis
 introduction-to-time-series-data
 basic-time-series-concepts
 basic-time-series-forecasting
 moving-averages
 arima-model
-hands-on-exercises-4
+hands-on-exercises-5
