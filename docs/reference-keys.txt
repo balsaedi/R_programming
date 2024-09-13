@@ -89,6 +89,10 @@ hands-on-exercises-3
 data-cleaning-and-transformation
 introduction-to-data-cleaning
 common-data-issues
+data-cleaning-techniques
+handling-missing-data
+dealing-with-outliers
+data-transformation-techniques
 hands-on-exercises-4
 time-series-analysis
 introduction-to-time-series-data
