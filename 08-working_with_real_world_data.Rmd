@@ -94,12 +94,133 @@ Raw data from the field can be inaccurate and inconsistent and pose threats to d
 - **Inconsistent data formats**: Data may be in different ways across multiple data sources like records be presented in JSON formats, SQL tables, No SQL table or even in image formats(.png, .jpeg).
 - **Outlier Values**: Outliers are extremely high or low values in the data set like a data set containing age of students having one student that is 304 years old or body temperature data set containing values of $-51^0C$. These values are always impossible and can indicate errors, anomalies and exceptions in the data sets. 
 
-Data integrity is crucial in data analysis and can hinder the organizations' operations. The foundation of strategic planning, efficient operations and sound decision-making is based upon accurate, complete and consistent data. Here are some of the threats that unclean data pose to the organizations;
+Data integrity is crucial in data analysis and can hinder the organizations' operations. The foundation of strategic planning, efficient operations and sound decision-making is based upon accurate, complete and consistent data. Here are some of the threats that unclean data pose to data analytics and businesses in general;
 
+- **Inconsistent Results**: For instance if a business finds conflicting or duplicate reports on customer behavior will lead to lose of trust or results' interpretation.
+- **Increased Costs**: Companies spend a lot of time and money on data cleaning, processing and verification
+- **Inaccurate Insights and Decision making**: Poor data quality like incorrect values may lead to poor insights thereby leading to poor decision-making. For instance inaccurate sales data may lead to flawed forecasting, poor inventory management and poor marketing strategies. 
+- **Missed Opportunities**: Poor data quality may prevent the company from identifying key trends and opportunity gaps in the market like customer segments or emerging markets
 
 #### Data Cleaning techniques 
 ##### Handling Missing Data 
+Having missing data values is inevitable especially when integrating data from different sources. While there is no specific set method(one-time solution) to handle the missing data points in R, researchers have come up with different methodologies to tackle this issue. Here are some of them; 
+
+- *Deletion*; this is a simple method that involves deleting all the records/rows that have null values. Otherwise, all rows that have null values in important columns can be deleted. `na.omit()` is one of the method. 
+- *Imputation*: There are packages in R that can fill the null values by imputation. They use the remaining values in the data to create a model that will find a value for the missing one. These packages include `imputeR`, `Amelia` and `MissForest` that use the automated variable selection, bootstrap multiple imputation and single imputation to handle null values. 
+- Use of algorithms that support null values for instance K-Nearest Neighbors(kNN) and Naive Bayes.
+- *Mean Imputation*: This is simply filling the null values with the average of the remaining values. 
+
+Lets create different random data sets and handle the missing values. However, before the issue of null value is fixed, the null values need to be identified in the data set. 
+
+Create a random athlete data set
+```{r}
+set.seed(123)  # Set seed for reproducibility
+
+# Generate a data frame with random data for athletes
+athlete_data <- data.frame(
+  athlete_id = 1:100,  # 100 athletes
+  name = paste0("Athlete", 1:100),
+  age = sample(18:40, 100, replace = TRUE),
+  sport = sample(c("Basketball", "Soccer", "Tennis", "Swimming", "Running"), 100, replace = TRUE),
+  country = sample(c("USA", "Kenya", "China", "Brazil", "Germany"), 100, replace = TRUE),
+  score = round(runif(100, 60, 100), 1)  # Scores between 60 and 100
+)
+
+# Introduce 15% missing values randomly across the entire data frame
+total_cells <- prod(dim(athlete_data))  # Total number of cells
+missing_cells <- round(0.15 * total_cells)  # 15% of cells will have missing values
+
+# Randomly select indices to be set to NA
+missing_indices <- sample(seq_len(total_cells), missing_cells)
+
+# Convert the data frame to a matrix for easier manipulation of specific indices
+athlete_data_matrix <- as.matrix(athlete_data)
+athlete_data_matrix[missing_indices] <- NA
+
+# Convert back to a data frame
+athlete_data <- as.data.frame(athlete_data_matrix)
+
+# View the dataset
+head(athlete_data)
+```
+
+Lets count the all null values. The `is.na()` from base R is used to identify the null values while the `sum()` sums up all the identified null values
+```{r}
+sum(is.na(athlete_data))
+```
+
+Alternatively, the total null values from the columns can be counted. The `sapply()` function along with the `is.na()` and `sum()` are used. 
+
+```{r}
+# Count the number of null values in each column
+null_counts <- sapply(athlete_data, function(x) sum(is.na(x)))
+
+# Display the counts of null values
+null_counts
+```
+
+Lets now delete the rows containing the null values by the `na.omit()` and rename the data frame `athlete_data_clean`
+```{r}
+athlete_data_clean <- na.omit(athlete_data)
+```
+
+Confirm the operation by counting the null values in each column and overall 
+```{r}
+# Count the null values by column 
+null_count_by_column <-  sapply(athlete_data_clean,
+                                function(x) sum(is.na(x)))
+null_count_by_column
+
+# Overall null count 
+overall_null_count <- sum(is.na(athlete_data_clean))
+print(paste("Overall Null Count: ", overall_null_count))
+```
+
+Now that we have seen how null values can be handled by deleting the rows with the null values, therefore lets perform imputation on the original data set. The null values will not be deleted however, they will be replaced by filling the null values with the previous or next value
+
+We will be using the original `athlete_data` that has null values. The `tidyr` package will be used which can be installed by;
+```
+# If not already installed run the command below on the console
+install.packages("tidyr")
+```
+
+Count the null values once again and view sample of the data set
+```{r}
+# Count the null values by column 
+null_count_by_column <-  sapply(athlete_data,
+                                function(x) sum(is.na(x)))
+null_count_by_column
+
+# View the sample of the data - first 6 records 
+head(athlete_data)
+```
+
+Now fill the null values with the previous values. Specificall the `sport`. `athlete_id` and the `age` columns
+```{r}
+# Import the package 
+library(tidyr)
+
+# Fill the null value with the previous value 
+athlete_data_filled <- athlete_data %>%
+  fill(athlete_id, age, sport, .direction = "down")
+
+# Count the null values by column 
+null_count_by_column <-  sapply(athlete_data_filled,
+                                function(x) sum(is.na(x)))
+null_count_by_column
+
+# View the first few rows 
+head(athlete_data_filled)
+```
+
+You can see the target columns(`age`, `athlete_id` and `sport`) are filled and have zero null values. In the `fill()` function, there is an argument, `.direction` that specify the direction in which to fill the missing value. In this case the value of the argument is `"down"` becuase we are filling based on the previous value. It can be either `"up"`, `"downup"`(based on previous the later) or `"updown"`(based on later then previous). 
+
+<--**Add a practical exercise**-->
+
+
 ##### Dealing with Outliers
+
+
 ##### Data Transformation Techniques 
 - **Normalization and Standardization**
 

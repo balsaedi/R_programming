@@ -432,12 +432,131 @@ A good kind can be found <a href="http://adv-r.had.co.nz/memory.html">here</a></
 <li><strong>Inconsistent data formats</strong>: Data may be in different ways across multiple data sources like records be presented in JSON formats, SQL tables, No SQL table or even in image formats(.png, .jpeg).</li>
 <li><strong>Outlier Values</strong>: Outliers are extremely high or low values in the data set like a data set containing age of students having one student that is 304 years old or body temperature data set containing values of <span class="math inline">\(-51^0C\)</span>. These values are always impossible and can indicate errors, anomalies and exceptions in the data sets.</li>
 </ul>
-<p>Data integrity is crucial in data analysis and can hinder the organizations’ operations. The foundation of strategic planning, efficient operations and sound decision-making is based upon accurate, complete and consistent data. Here are some of the threats that unclean data pose to the organizations;</p>
+<p>Data integrity is crucial in data analysis and can hinder the organizations’ operations. The foundation of strategic planning, efficient operations and sound decision-making is based upon accurate, complete and consistent data. Here are some of the threats that unclean data pose to data analytics and businesses in general;</p>
+<ul>
+<li><strong>Inconsistent Results</strong>: For instance if a business finds conflicting or duplicate reports on customer behavior will lead to lose of trust or results’ interpretation.</li>
+<li><strong>Increased Costs</strong>: Companies spend a lot of time and money on data cleaning, processing and verification</li>
+<li><strong>Inaccurate Insights and Decision making</strong>: Poor data quality like incorrect values may lead to poor insights thereby leading to poor decision-making. For instance inaccurate sales data may lead to flawed forecasting, poor inventory management and poor marketing strategies.</li>
+<li><strong>Missed Opportunities</strong>: Poor data quality may prevent the company from identifying key trends and opportunity gaps in the market like customer segments or emerging markets</li>
+</ul>
 </div>
 <div id="data-cleaning-techniques" class="section level4 hasAnchor" number="8.2.1.2">
 <h4><span class="header-section-number">8.2.1.2</span> Data Cleaning techniques<a href="working-with-real-world-data.html#data-cleaning-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div id="handling-missing-data" class="section level5 hasAnchor" number="8.2.1.2.1">
 <h5><span class="header-section-number">8.2.1.2.1</span> Handling Missing Data<a href="working-with-real-world-data.html#handling-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Having missing data values is inevitable especially when integrating data from different sources. While there is no specific set method(one-time solution) to handle the missing data points in R, researchers have come up with different methodologies to tackle this issue. Here are some of them;</p>
+<ul>
+<li><em>Deletion</em>; this is a simple method that involves deleting all the records/rows that have null values. Otherwise, all rows that have null values in important columns can be deleted. <code>na.omit()</code> is one of the method.</li>
+<li><em>Imputation</em>: There are packages in R that can fill the null values by imputation. They use the remaining values in the data to create a model that will find a value for the missing one. These packages include <code>imputeR</code>, <code>Amelia</code> and <code>MissForest</code> that use the automated variable selection, bootstrap multiple imputation and single imputation to handle null values.</li>
+<li>Use of algorithms that support null values for instance K-Nearest Neighbors(kNN) and Naive Bayes.</li>
+<li><em>Mean Imputation</em>: This is simply filling the null values with the average of the remaining values.</li>
+</ul>
+<p>Lets create different random data sets and handle the missing values. However, before the issue of null value is fixed, the null values need to be identified in the data set.</p>
+<p>Create a random athlete data set</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="working-with-real-world-data.html#cb521-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># Set seed for reproducibility</span></span>
+<span id="cb521-2"><a href="working-with-real-world-data.html#cb521-2" tabindex="-1"></a></span>
+<span id="cb521-3"><a href="working-with-real-world-data.html#cb521-3" tabindex="-1"></a><span class="co"># Generate a data frame with random data for athletes</span></span>
+<span id="cb521-4"><a href="working-with-real-world-data.html#cb521-4" tabindex="-1"></a>athlete_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb521-5"><a href="working-with-real-world-data.html#cb521-5" tabindex="-1"></a>  <span class="at">athlete_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,  <span class="co"># 100 athletes</span></span>
+<span id="cb521-6"><a href="working-with-real-world-data.html#cb521-6" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">paste0</span>(<span class="st">&quot;Athlete&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>),</span>
+<span id="cb521-7"><a href="working-with-real-world-data.html#cb521-7" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">40</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb521-8"><a href="working-with-real-world-data.html#cb521-8" tabindex="-1"></a>  <span class="at">sport =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Basketball&quot;</span>, <span class="st">&quot;Soccer&quot;</span>, <span class="st">&quot;Tennis&quot;</span>, <span class="st">&quot;Swimming&quot;</span>, <span class="st">&quot;Running&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb521-9"><a href="working-with-real-world-data.html#cb521-9" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;USA&quot;</span>, <span class="st">&quot;Kenya&quot;</span>, <span class="st">&quot;China&quot;</span>, <span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Germany&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb521-10"><a href="working-with-real-world-data.html#cb521-10" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">60</span>, <span class="dv">100</span>), <span class="dv">1</span>)  <span class="co"># Scores between 60 and 100</span></span>
+<span id="cb521-11"><a href="working-with-real-world-data.html#cb521-11" tabindex="-1"></a>)</span>
+<span id="cb521-12"><a href="working-with-real-world-data.html#cb521-12" tabindex="-1"></a></span>
+<span id="cb521-13"><a href="working-with-real-world-data.html#cb521-13" tabindex="-1"></a><span class="co"># Introduce 15% missing values randomly across the entire data frame</span></span>
+<span id="cb521-14"><a href="working-with-real-world-data.html#cb521-14" tabindex="-1"></a>total_cells <span class="ot">&lt;-</span> <span class="fu">prod</span>(<span class="fu">dim</span>(athlete_data))  <span class="co"># Total number of cells</span></span>
+<span id="cb521-15"><a href="working-with-real-world-data.html#cb521-15" tabindex="-1"></a>missing_cells <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.15</span> <span class="sc">*</span> total_cells)  <span class="co"># 15% of cells will have missing values</span></span>
+<span id="cb521-16"><a href="working-with-real-world-data.html#cb521-16" tabindex="-1"></a></span>
+<span id="cb521-17"><a href="working-with-real-world-data.html#cb521-17" tabindex="-1"></a><span class="co"># Randomly select indices to be set to NA</span></span>
+<span id="cb521-18"><a href="working-with-real-world-data.html#cb521-18" tabindex="-1"></a>missing_indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(total_cells), missing_cells)</span>
+<span id="cb521-19"><a href="working-with-real-world-data.html#cb521-19" tabindex="-1"></a></span>
+<span id="cb521-20"><a href="working-with-real-world-data.html#cb521-20" tabindex="-1"></a><span class="co"># Convert the data frame to a matrix for easier manipulation of specific indices</span></span>
+<span id="cb521-21"><a href="working-with-real-world-data.html#cb521-21" tabindex="-1"></a>athlete_data_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(athlete_data)</span>
+<span id="cb521-22"><a href="working-with-real-world-data.html#cb521-22" tabindex="-1"></a>athlete_data_matrix[missing_indices] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb521-23"><a href="working-with-real-world-data.html#cb521-23" tabindex="-1"></a></span>
+<span id="cb521-24"><a href="working-with-real-world-data.html#cb521-24" tabindex="-1"></a><span class="co"># Convert back to a data frame</span></span>
+<span id="cb521-25"><a href="working-with-real-world-data.html#cb521-25" tabindex="-1"></a>athlete_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(athlete_data_matrix)</span>
+<span id="cb521-26"><a href="working-with-real-world-data.html#cb521-26" tabindex="-1"></a></span>
+<span id="cb521-27"><a href="working-with-real-world-data.html#cb521-27" tabindex="-1"></a><span class="co"># View the dataset</span></span>
+<span id="cb521-28"><a href="working-with-real-world-data.html#cb521-28" tabindex="-1"></a><span class="fu">head</span>(athlete_data)</span></code></pre></div>
+<pre><code>##   athlete_id     name  age      sport country score
+## 1          1 Athlete1   32 Basketball Germany  95.6
+## 2          2 Athlete2   36     Tennis    &lt;NA&gt;  92.5
+## 3          3 Athlete3 &lt;NA&gt;       &lt;NA&gt;     USA  89.9
+## 4          4 Athlete4   20       &lt;NA&gt;  Brazil  66.2
+## 5          5     &lt;NA&gt;   27     Tennis   Kenya  65.0
+## 6       &lt;NA&gt; Athlete6   35    Running Germany  99.0</code></pre>
+<p>Lets count the all null values. The <code>is.na()</code> from base R is used to identify the null values while the <code>sum()</code> sums up all the identified null values</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="working-with-real-world-data.html#cb523-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(athlete_data))</span></code></pre></div>
+<pre><code>## [1] 90</code></pre>
+<p>Alternatively, the total null values from the columns can be counted. The <code>sapply()</code> function along with the <code>is.na()</code> and <code>sum()</code> are used.</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="working-with-real-world-data.html#cb525-1" tabindex="-1"></a><span class="co"># Count the number of null values in each column</span></span>
+<span id="cb525-2"><a href="working-with-real-world-data.html#cb525-2" tabindex="-1"></a>null_counts <span class="ot">&lt;-</span> <span class="fu">sapply</span>(athlete_data, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb525-3"><a href="working-with-real-world-data.html#cb525-3" tabindex="-1"></a></span>
+<span id="cb525-4"><a href="working-with-real-world-data.html#cb525-4" tabindex="-1"></a><span class="co"># Display the counts of null values</span></span>
+<span id="cb525-5"><a href="working-with-real-world-data.html#cb525-5" tabindex="-1"></a>null_counts</span></code></pre></div>
+<pre><code>## athlete_id       name        age      sport    country      score 
+##         17         18         10         14         18         13</code></pre>
+<p>Lets now delete the rows containing the null values by the <code>na.omit()</code> and rename the data frame <code>athlete_data_clean</code></p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="working-with-real-world-data.html#cb527-1" tabindex="-1"></a>athlete_data_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(athlete_data)</span></code></pre></div>
+<p>Confirm the operation by counting the null values in each column and overall</p>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="working-with-real-world-data.html#cb528-1" tabindex="-1"></a><span class="co"># Count the null values by column </span></span>
+<span id="cb528-2"><a href="working-with-real-world-data.html#cb528-2" tabindex="-1"></a>null_count_by_column <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(athlete_data_clean,</span>
+<span id="cb528-3"><a href="working-with-real-world-data.html#cb528-3" tabindex="-1"></a>                                <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb528-4"><a href="working-with-real-world-data.html#cb528-4" tabindex="-1"></a>null_count_by_column</span></code></pre></div>
+<pre><code>## athlete_id       name        age      sport    country      score 
+##          0          0          0          0          0          0</code></pre>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="working-with-real-world-data.html#cb530-1" tabindex="-1"></a><span class="co"># Overall null count </span></span>
+<span id="cb530-2"><a href="working-with-real-world-data.html#cb530-2" tabindex="-1"></a>overall_null_count <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(athlete_data_clean))</span>
+<span id="cb530-3"><a href="working-with-real-world-data.html#cb530-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Overall Null Count: &quot;</span>, overall_null_count))</span></code></pre></div>
+<pre><code>## [1] &quot;Overall Null Count:  0&quot;</code></pre>
+<p>Now that we have seen how null values can be handled by deleting the rows with the null values, therefore lets perform imputation on the original data set. The null values will not be deleted however, they will be replaced by filling the null values with the previous or next value</p>
+<p>We will be using the original <code>athlete_data</code> that has null values. The <code>tidyr</code> package will be used which can be installed by;</p>
+<pre><code># If not already installed run the command below on the console
+install.packages(&quot;tidyr&quot;)</code></pre>
+<p>Count the null values once again and view sample of the data set</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="working-with-real-world-data.html#cb533-1" tabindex="-1"></a><span class="co"># Count the null values by column </span></span>
+<span id="cb533-2"><a href="working-with-real-world-data.html#cb533-2" tabindex="-1"></a>null_count_by_column <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(athlete_data,</span>
+<span id="cb533-3"><a href="working-with-real-world-data.html#cb533-3" tabindex="-1"></a>                                <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb533-4"><a href="working-with-real-world-data.html#cb533-4" tabindex="-1"></a>null_count_by_column</span></code></pre></div>
+<pre><code>## athlete_id       name        age      sport    country      score 
+##         17         18         10         14         18         13</code></pre>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="working-with-real-world-data.html#cb535-1" tabindex="-1"></a><span class="co"># View the sample of the data - first 6 records </span></span>
+<span id="cb535-2"><a href="working-with-real-world-data.html#cb535-2" tabindex="-1"></a><span class="fu">head</span>(athlete_data)</span></code></pre></div>
+<pre><code>##   athlete_id     name  age      sport country score
+## 1          1 Athlete1   32 Basketball Germany  95.6
+## 2          2 Athlete2   36     Tennis    &lt;NA&gt;  92.5
+## 3          3 Athlete3 &lt;NA&gt;       &lt;NA&gt;     USA  89.9
+## 4          4 Athlete4   20       &lt;NA&gt;  Brazil  66.2
+## 5          5     &lt;NA&gt;   27     Tennis   Kenya  65.0
+## 6       &lt;NA&gt; Athlete6   35    Running Germany  99.0</code></pre>
+<p>Now fill the null values with the previous values. Specificall the <code>sport</code>. <code>athlete_id</code> and the <code>age</code> columns</p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="working-with-real-world-data.html#cb537-1" tabindex="-1"></a><span class="co"># Import the package </span></span>
+<span id="cb537-2"><a href="working-with-real-world-data.html#cb537-2" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb537-3"><a href="working-with-real-world-data.html#cb537-3" tabindex="-1"></a></span>
+<span id="cb537-4"><a href="working-with-real-world-data.html#cb537-4" tabindex="-1"></a><span class="co"># Fill the null value with the previous value </span></span>
+<span id="cb537-5"><a href="working-with-real-world-data.html#cb537-5" tabindex="-1"></a>athlete_data_filled <span class="ot">&lt;-</span> athlete_data <span class="sc">%&gt;%</span></span>
+<span id="cb537-6"><a href="working-with-real-world-data.html#cb537-6" tabindex="-1"></a>  <span class="fu">fill</span>(athlete_id, age, sport, <span class="at">.direction =</span> <span class="st">&quot;down&quot;</span>)</span>
+<span id="cb537-7"><a href="working-with-real-world-data.html#cb537-7" tabindex="-1"></a></span>
+<span id="cb537-8"><a href="working-with-real-world-data.html#cb537-8" tabindex="-1"></a><span class="co"># Count the null values by column </span></span>
+<span id="cb537-9"><a href="working-with-real-world-data.html#cb537-9" tabindex="-1"></a>null_count_by_column <span class="ot">&lt;-</span>  <span class="fu">sapply</span>(athlete_data_filled,</span>
+<span id="cb537-10"><a href="working-with-real-world-data.html#cb537-10" tabindex="-1"></a>                                <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb537-11"><a href="working-with-real-world-data.html#cb537-11" tabindex="-1"></a>null_count_by_column</span></code></pre></div>
+<pre><code>## athlete_id       name        age      sport    country      score 
+##          0         18          0          0         18         13</code></pre>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="working-with-real-world-data.html#cb539-1" tabindex="-1"></a><span class="co"># View the first few rows </span></span>
+<span id="cb539-2"><a href="working-with-real-world-data.html#cb539-2" tabindex="-1"></a><span class="fu">head</span>(athlete_data_filled)</span></code></pre></div>
+<pre><code>##   athlete_id     name age      sport country score
+## 1          1 Athlete1  32 Basketball Germany  95.6
+## 2          2 Athlete2  36     Tennis    &lt;NA&gt;  92.5
+## 3          3 Athlete3  36     Tennis     USA  89.9
+## 4          4 Athlete4  20     Tennis  Brazil  66.2
+## 5          5     &lt;NA&gt;  27     Tennis   Kenya  65.0
+## 6          5 Athlete6  35    Running Germany  99.0</code></pre>
+<p>You can see the target columns(<code>age</code>, <code>athlete_id</code> and <code>sport</code>) are filled and have zero null values. In the <code>fill()</code> function, there is an argument, <code>.direction</code> that specify the direction in which to fill the missing value. In this case the value of the argument is <code>"down"</code> becuase we are filling based on the previous value. It can be either <code>"up"</code>, <code>"downup"</code>(based on previous the later) or <code>"updown"</code>(based on later then previous).</p>
+<p>&lt;–<strong>Add a practical exercise</strong>–&gt;</p>
 </div>
 <div id="dealing-with-outliers" class="section level5 hasAnchor" number="8.2.1.2.2">
 <h5><span class="header-section-number">8.2.1.2.2</span> Dealing with Outliers<a href="working-with-real-world-data.html#dealing-with-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h5>
