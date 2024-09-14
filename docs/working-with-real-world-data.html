@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-13" />
+<meta name="date" content="2024-09-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -555,11 +555,97 @@ install.packages(&quot;tidyr&quot;)</code></pre>
 ## 4          4 Athlete4  20     Tennis  Brazil  66.2
 ## 5          5     &lt;NA&gt;  27     Tennis   Kenya  65.0
 ## 6          5 Athlete6  35    Running Germany  99.0</code></pre>
-<p>You can see the target columns(<code>age</code>, <code>athlete_id</code> and <code>sport</code>) are filled and have zero null values. In the <code>fill()</code> function, there is an argument, <code>.direction</code> that specify the direction in which to fill the missing value. In this case the value of the argument is <code>"down"</code> becuase we are filling based on the previous value. It can be either <code>"up"</code>, <code>"downup"</code>(based on previous the later) or <code>"updown"</code>(based on later then previous).</p>
+<p>You can see the target columns(<code>age</code>, <code>athlete_id</code> and <code>sport</code>) are filled and have zero null values. In the <code>fill()</code> function, there is an argument, <code>.direction</code> that specify the direction in which to fill the missing value. In this case the value of the argument is <code>"down"</code> because we are filling based on the previous value. It can be either <code>"up"</code>, <code>"downup"</code>(based on previous the later) or <code>"updown"</code>(based on later then previous).</p>
 <p>&lt;–<strong>Add a practical exercise</strong>–&gt;</p>
 </div>
 <div id="dealing-with-outliers" class="section level5 hasAnchor" number="8.2.1.2.2">
 <h5><span class="header-section-number">8.2.1.2.2</span> Dealing with Outliers<a href="working-with-real-world-data.html#dealing-with-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Outliers are values that that are completely different from the other data points in the data set. They may be extremely smaller or extremely larger than the values in the data set. Also outliers can present some non-realistic values for instance a body temperature of <span class="math inline">\(143^0C\)</span> or an athlete height of 0.23 meters. They are brought about by;</p>
+<ul>
+<li>Measurement error like the human error when collecting the data.</li>
+<li>When the sample picked does not accurately represent the population being studied for instance soil samples picked near a cow shed will have high levels of acidity.</li>
+<li>There might be a mixture of distribution brought about collecting data from two distinct populations.</li>
+<li>Nevertheless, outliers can indicate new behaviors in the data set, especially when the outliers values are the most recently collected data.</li>
+</ul>
+<p>When cleaning data, it is advisable to remove outliers as they can have a significant impact on the aftermath analysis for instance; skewed and biased results, misleading interpretations, increased range and standard deviation(gives false variability of the data), and erroneous assumptions.</p>
+<p>Let’s generate a random data set of health of villagers(like blood pressure, heart rate, body temperature etc) and use it to detect outliers within</p>
+<ul>
+<li>Generate a random data set</li>
+</ul>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="working-with-real-world-data.html#cb541-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb541-2"><a href="working-with-real-world-data.html#cb541-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb541-3"><a href="working-with-real-world-data.html#cb541-3" tabindex="-1"></a></span>
+<span id="cb541-4"><a href="working-with-real-world-data.html#cb541-4" tabindex="-1"></a><span class="co"># Create a data frame with health-related metrics for villagers</span></span>
+<span id="cb541-5"><a href="working-with-real-world-data.html#cb541-5" tabindex="-1"></a>health_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb541-6"><a href="working-with-real-world-data.html#cb541-6" tabindex="-1"></a>  <span class="at">villager_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,</span>
+<span id="cb541-7"><a href="working-with-real-world-data.html#cb541-7" tabindex="-1"></a>  <span class="at">body_temperature =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="fl">98.6</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">102</span>, <span class="at">sd =</span> <span class="dv">1</span>)),  <span class="co"># Include 5 outliers</span></span>
+<span id="cb541-8"><a href="working-with-real-world-data.html#cb541-8" tabindex="-1"></a>  <span class="at">blood_pressure =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="dv">120</span>, <span class="at">sd =</span> <span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">180</span>, <span class="at">sd =</span> <span class="dv">5</span>)),   <span class="co"># Include 5 outliers</span></span>
+<span id="cb541-9"><a href="working-with-real-world-data.html#cb541-9" tabindex="-1"></a>  <span class="at">heart_rate =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> <span class="dv">8</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">110</span>, <span class="at">sd =</span> <span class="dv">5</span>)),         <span class="co"># Include 5 outliers</span></span>
+<span id="cb541-10"><a href="working-with-real-world-data.html#cb541-10" tabindex="-1"></a>  <span class="at">cholesterol =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">95</span>, <span class="at">mean =</span> <span class="dv">200</span>, <span class="at">sd =</span> <span class="dv">30</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">300</span>, <span class="at">sd =</span> <span class="dv">10</span>))      <span class="co"># Include 5 outliers</span></span>
+<span id="cb541-11"><a href="working-with-real-world-data.html#cb541-11" tabindex="-1"></a>)</span>
+<span id="cb541-12"><a href="working-with-real-world-data.html#cb541-12" tabindex="-1"></a></span>
+<span id="cb541-13"><a href="working-with-real-world-data.html#cb541-13" tabindex="-1"></a><span class="co"># View the first few rows of the dataset</span></span>
+<span id="cb541-14"><a href="working-with-real-world-data.html#cb541-14" tabindex="-1"></a><span class="fu">head</span>(health_data)</span></code></pre></div>
+<pre><code>##   villager_id body_temperature blood_pressure heart_rate cholesterol
+## 1           1         98.03952       112.8959   87.59048    178.5427
+## 2           2         98.36982       122.5688   80.49930    177.4193
+## 3           3        100.15871       117.5331   67.87884    171.8438
+## 4           4         98.67051       116.5246   74.34555    168.4246
+## 5           5         98.72929       110.4838   66.68528    186.8852
+## 6           6        100.31506       119.5497   66.19002    209.9354</code></pre>
+<ul>
+<li>Find outliers using <strong>IQR(Interquartile Range)</strong>
+Any values larger than <span class="math inline">\(1.5xIQR\)</span> added to the upper quartile or smaller than the <span class="math inline">\(1.5xIQR\)</span> subtracted to the lower quartile.</li>
+</ul>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="working-with-real-world-data.html#cb543-1" tabindex="-1"></a><span class="co"># Function to identify outliers using IQR</span></span>
+<span id="cb543-2"><a href="working-with-real-world-data.html#cb543-2" tabindex="-1"></a>identify_outliers_iqr <span class="ot">&lt;-</span> <span class="cf">function</span>(data_column) {</span>
+<span id="cb543-3"><a href="working-with-real-world-data.html#cb543-3" tabindex="-1"></a>  Q1 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data_column, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb543-4"><a href="working-with-real-world-data.html#cb543-4" tabindex="-1"></a>  Q3 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(data_column, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb543-5"><a href="working-with-real-world-data.html#cb543-5" tabindex="-1"></a>  IQR_value <span class="ot">&lt;-</span> <span class="fu">IQR</span>(data_column, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb543-6"><a href="working-with-real-world-data.html#cb543-6" tabindex="-1"></a>  </span>
+<span id="cb543-7"><a href="working-with-real-world-data.html#cb543-7" tabindex="-1"></a>  lower_bound <span class="ot">&lt;-</span> Q1 <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_value</span>
+<span id="cb543-8"><a href="working-with-real-world-data.html#cb543-8" tabindex="-1"></a>  upper_bound <span class="ot">&lt;-</span> Q3 <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR_value</span>
+<span id="cb543-9"><a href="working-with-real-world-data.html#cb543-9" tabindex="-1"></a>  </span>
+<span id="cb543-10"><a href="working-with-real-world-data.html#cb543-10" tabindex="-1"></a>  <span class="fu">return</span>(data_column <span class="sc">&lt;</span> lower_bound <span class="sc">|</span> data_column <span class="sc">&gt;</span> upper_bound)</span>
+<span id="cb543-11"><a href="working-with-real-world-data.html#cb543-11" tabindex="-1"></a>}</span>
+<span id="cb543-12"><a href="working-with-real-world-data.html#cb543-12" tabindex="-1"></a></span>
+<span id="cb543-13"><a href="working-with-real-world-data.html#cb543-13" tabindex="-1"></a><span class="co"># Apply IQR method to identify outliers in each health metric</span></span>
+<span id="cb543-14"><a href="working-with-real-world-data.html#cb543-14" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_body_temp_iqr <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(health_data<span class="sc">$</span>body_temperature)</span>
+<span id="cb543-15"><a href="working-with-real-world-data.html#cb543-15" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_blood_pressure_iqr <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(health_data<span class="sc">$</span>blood_pressure)</span>
+<span id="cb543-16"><a href="working-with-real-world-data.html#cb543-16" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_heart_rate_iqr <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(health_data<span class="sc">$</span>heart_rate)</span>
+<span id="cb543-17"><a href="working-with-real-world-data.html#cb543-17" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_cholesterol_iqr <span class="ot">&lt;-</span> <span class="fu">identify_outliers_iqr</span>(health_data<span class="sc">$</span>cholesterol)</span>
+<span id="cb543-18"><a href="working-with-real-world-data.html#cb543-18" tabindex="-1"></a></span>
+<span id="cb543-19"><a href="working-with-real-world-data.html#cb543-19" tabindex="-1"></a><span class="co"># View the data with outlier flags for body temperature</span></span>
+<span id="cb543-20"><a href="working-with-real-world-data.html#cb543-20" tabindex="-1"></a>health_data[health_data<span class="sc">$</span>outlier_body_temp_iqr, <span class="fu">c</span>(<span class="st">&quot;villager_id&quot;</span>, <span class="st">&quot;body_temperature&quot;</span>)]</span></code></pre></div>
+<pre><code>##    villager_id body_temperature
+## 96          96         101.3997
+## 97          97         104.1873
+## 98          98         103.5326
+## 99          99         101.7643</code></pre>
+<ul>
+<li>Find the outliers using the <strong>z-score</strong> method. The Z-score method standardizes the data to have a mean of 0 and a standard deviation of 1. Outliers are values that have a z-score of greater than 3 or less than -3.</li>
+</ul>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="working-with-real-world-data.html#cb545-1" tabindex="-1"></a><span class="co"># Function to identify outliers using the Z-score</span></span>
+<span id="cb545-2"><a href="working-with-real-world-data.html#cb545-2" tabindex="-1"></a>identify_outliers_zscore <span class="ot">&lt;-</span> <span class="cf">function</span>(data_column) {</span>
+<span id="cb545-3"><a href="working-with-real-world-data.html#cb545-3" tabindex="-1"></a>  z_scores <span class="ot">&lt;-</span> <span class="fu">scale</span>(data_column)</span>
+<span id="cb545-4"><a href="working-with-real-world-data.html#cb545-4" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">abs</span>(z_scores) <span class="sc">&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb545-5"><a href="working-with-real-world-data.html#cb545-5" tabindex="-1"></a>}</span>
+<span id="cb545-6"><a href="working-with-real-world-data.html#cb545-6" tabindex="-1"></a></span>
+<span id="cb545-7"><a href="working-with-real-world-data.html#cb545-7" tabindex="-1"></a><span class="co"># Apply Z-score method to identify outliers in each health metric</span></span>
+<span id="cb545-8"><a href="working-with-real-world-data.html#cb545-8" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_body_temp_zscore <span class="ot">&lt;-</span> <span class="fu">identify_outliers_zscore</span>(health_data<span class="sc">$</span>body_temperature)</span>
+<span id="cb545-9"><a href="working-with-real-world-data.html#cb545-9" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_blood_pressure_zscore <span class="ot">&lt;-</span> <span class="fu">identify_outliers_zscore</span>(health_data<span class="sc">$</span>blood_pressure)</span>
+<span id="cb545-10"><a href="working-with-real-world-data.html#cb545-10" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_heart_rate_zscore <span class="ot">&lt;-</span> <span class="fu">identify_outliers_zscore</span>(health_data<span class="sc">$</span>heart_rate)</span>
+<span id="cb545-11"><a href="working-with-real-world-data.html#cb545-11" tabindex="-1"></a>health_data<span class="sc">$</span>outlier_cholesterol_zscore <span class="ot">&lt;-</span> <span class="fu">identify_outliers_zscore</span>(health_data<span class="sc">$</span>cholesterol)</span>
+<span id="cb545-12"><a href="working-with-real-world-data.html#cb545-12" tabindex="-1"></a></span>
+<span id="cb545-13"><a href="working-with-real-world-data.html#cb545-13" tabindex="-1"></a><span class="co"># View the data with Z-score outlier flags for blood pressure</span></span>
+<span id="cb545-14"><a href="working-with-real-world-data.html#cb545-14" tabindex="-1"></a>health_data[health_data<span class="sc">$</span>outlier_blood_pressure_zscore, <span class="fu">c</span>(<span class="st">&quot;villager_id&quot;</span>, <span class="st">&quot;blood_pressure&quot;</span>)]</span></code></pre></div>
+<pre><code>##     villager_id blood_pressure
+## 96           96       189.9861
+## 97           97       183.0035
+## 98           98       173.7436
+## 99           99       176.9442
+## 100         100       174.0726</code></pre>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
 <div id="data-transformation-techniques" class="section level5 hasAnchor" number="8.2.1.2.3">
 <h5><span class="header-section-number">8.2.1.2.3</span> Data Transformation Techniques<a href="working-with-real-world-data.html#data-transformation-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h5>

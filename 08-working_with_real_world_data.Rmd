@@ -213,13 +213,87 @@ null_count_by_column
 head(athlete_data_filled)
 ```
 
-You can see the target columns(`age`, `athlete_id` and `sport`) are filled and have zero null values. In the `fill()` function, there is an argument, `.direction` that specify the direction in which to fill the missing value. In this case the value of the argument is `"down"` becuase we are filling based on the previous value. It can be either `"up"`, `"downup"`(based on previous the later) or `"updown"`(based on later then previous). 
+You can see the target columns(`age`, `athlete_id` and `sport`) are filled and have zero null values. In the `fill()` function, there is an argument, `.direction` that specify the direction in which to fill the missing value. In this case the value of the argument is `"down"` because we are filling based on the previous value. It can be either `"up"`, `"downup"`(based on previous the later) or `"updown"`(based on later then previous). 
 
 <--**Add a practical exercise**-->
 
 
 ##### Dealing with Outliers
+Outliers are values that that are completely different from the other data points in the data set. They may be extremely smaller or extremely larger than the values in the data set. Also outliers can present some non-realistic values for instance a body temperature of $143^0C$ or an athlete height of 0.23 meters. They are brought about by; 
 
+- Measurement error like the human error when collecting the data.
+- When the sample picked does not accurately represent the population being studied for instance soil samples picked near a cow shed will have high levels of acidity.
+- There might be a mixture of distribution brought about collecting data from two distinct populations.
+- Nevertheless, outliers can indicate new behaviors in the data set, especially when the outliers values are the most recently collected data. 
+
+When cleaning data, it is advisable to remove outliers as they can have a significant impact on the aftermath analysis for instance; skewed and biased results, misleading interpretations, increased range and standard deviation(gives false variability of the data), and erroneous assumptions. 
+
+Let's generate a random data set of health of villagers(like blood pressure, heart rate, body temperature etc) and use it to detect outliers within 
+
+- Generate a random data set 
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Create a data frame with health-related metrics for villagers
+health_data <- data.frame(
+  villager_id = 1:100,
+  body_temperature = c(rnorm(95, mean = 98.6, sd = 1), rnorm(5, mean = 102, sd = 1)),  # Include 5 outliers
+  blood_pressure = c(rnorm(95, mean = 120, sd = 10), rnorm(5, mean = 180, sd = 5)),   # Include 5 outliers
+  heart_rate = c(rnorm(95, mean = 70, sd = 8), rnorm(5, mean = 110, sd = 5)),         # Include 5 outliers
+  cholesterol = c(rnorm(95, mean = 200, sd = 30), rnorm(5, mean = 300, sd = 10))      # Include 5 outliers
+)
+
+# View the first few rows of the dataset
+head(health_data)
+
+```
+
+- Find outliers using **IQR(Interquartile Range)**
+Any values larger than $1.5xIQR$ added to the upper quartile or smaller than the $1.5xIQR$ subtracted to the lower quartile. 
+```{r}
+# Function to identify outliers using IQR
+identify_outliers_iqr <- function(data_column) {
+  Q1 <- quantile(data_column, 0.25, na.rm = TRUE)
+  Q3 <- quantile(data_column, 0.75, na.rm = TRUE)
+  IQR_value <- IQR(data_column, na.rm = TRUE)
+  
+  lower_bound <- Q1 - 1.5 * IQR_value
+  upper_bound <- Q3 + 1.5 * IQR_value
+  
+  return(data_column < lower_bound | data_column > upper_bound)
+}
+
+# Apply IQR method to identify outliers in each health metric
+health_data$outlier_body_temp_iqr <- identify_outliers_iqr(health_data$body_temperature)
+health_data$outlier_blood_pressure_iqr <- identify_outliers_iqr(health_data$blood_pressure)
+health_data$outlier_heart_rate_iqr <- identify_outliers_iqr(health_data$heart_rate)
+health_data$outlier_cholesterol_iqr <- identify_outliers_iqr(health_data$cholesterol)
+
+# View the data with outlier flags for body temperature
+health_data[health_data$outlier_body_temp_iqr, c("villager_id", "body_temperature")]
+```
+
+- Find the outliers using the **z-score** method. The Z-score method standardizes the data to have a mean of 0 and a standard deviation of 1. Outliers are values that have a z-score of greater than 3 or less than -3.
+
+```{r}
+# Function to identify outliers using the Z-score
+identify_outliers_zscore <- function(data_column) {
+  z_scores <- scale(data_column)
+  return(abs(z_scores) > 3)
+}
+
+# Apply Z-score method to identify outliers in each health metric
+health_data$outlier_body_temp_zscore <- identify_outliers_zscore(health_data$body_temperature)
+health_data$outlier_blood_pressure_zscore <- identify_outliers_zscore(health_data$blood_pressure)
+health_data$outlier_heart_rate_zscore <- identify_outliers_zscore(health_data$heart_rate)
+health_data$outlier_cholesterol_zscore <- identify_outliers_zscore(health_data$cholesterol)
+
+# View the data with Z-score outlier flags for blood pressure
+health_data[health_data$outlier_blood_pressure_zscore, c("villager_id", "blood_pressure")]
+```
+
+<-**Add a practical exercise**->
 
 ##### Data Transformation Techniques 
 - **Normalization and Standardization**
