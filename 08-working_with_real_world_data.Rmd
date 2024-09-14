@@ -298,6 +298,105 @@ health_data[health_data$outlier_blood_pressure_zscore, c("villager_id", "blood_p
 ##### Data Transformation Techniques 
 - **Normalization and Standardization**
 
+Normalization and standardization are both data preprocessing techniques that adjust the range of input values to make them easier to analyze and process. They are often interchangeably however, they have different applications and techniques. To be specific;
+
+*Normalization* involves rescaling data within a specific range for instance between 0 and 1 where the maximum value will be 1 and the minimum be 0, all other values will range between zero and 1. Also, -1 and 1, 0 and 100 are among the most common ranges where statistician normalizes their data. This technique is useful where the distribution of the data is unknown or not normal but its likely to be affected by outliers due to its restricted range. 
+
+On the contrary, *Standardization* involves rescaling the data values to have a mean of zero and a standard deviation of one. This technique is useful when the distribution of the data is known and normally distributed. It is less likely to be affected by outliers because it does not have a restricted range. **Z-score** is of the most popular method of standardization. Here is the formula to calculate z-score;
+$$Z = {value-mean\over{standard deviation}}$$
+
+Lets normalize/standardize a vector `v1`, `v1<- c(1200,34567,3456,12,3456,0985,1211)` in three easy steps 
+
+1. *Min-Max Scaling*(normalization)
+
+The vector will be scaled in a range of 0 to 1 using a `preProcess` function from the `caret` package. 
+```{r}
+# Load the library
+library(caret)
+
+v1 <- c(1200,34567,3456,12,3456,0985,1211)
+
+# train the preprocesser(scaler)
+minMaxScaler <- preProcess(as.data.frame(v1), method=c("range"))
+
+# Apply the scaler
+v1_scaled <- predict(minMaxScaler, as.data.frame(v1))
+v1_scaled
+```
+
+2. *Using the `scale()` function*(standardization)
+
+```{r}
+# Create the vector
+v1 <- c(1200,34567,3456,12,3456,0985,1211)
+
+v1_scaled <- as.data.frame(scale(v1))
+v1_scaled
+```
+
+3. *Log transform*
+
+This is used especially when the data is unevenly distributed for instance being skewed by "stretching out" the tail of a right-skewed distribution making it more symmetric. 
+```{r}
+# Create the vector
+v1 <- c(1200,34567,3456,12,3456,0985,1211)
+
+log_scaled_v1 <- log(as.data.frame(v1))
+log_scaled_v1
+```
+
+<-**Add a practical exercise**->
+
 - **Encoding Categorical Variables**
+
+Encoding is the process of converting categorical variables to numerical variables in data preprocessing. Machine learning models only understand numerical values, therefore encoding is a crucial step in data preprocessing. The most common methods are **one-hot encoding** and **label encoding**. We will discuss how to perform them in R 
+
+1. *One-hot encoding*
+One hot encoding represents each category as a separate column and converts the categorical values into a 1 or 0 depending where the category is represented. This avoids the assumption of ordinality by the machine learning models. Lets perform one hot encoding on a color vector 
+```{r}
+library(caret)
+
+# Sample categorical variable
+color_df <- data.frame(
+  Color = c("Red", "Blue", "Green", "Red", "Blue")
+)
+
+# dummify the data 
+color_dmy <- dummyVars(" ~ .", data = color_df)
+new_color_df <- data.frame(predict(color_dmy, newdata = color_df))
+new_color_df
+```
+
+Alternatively you can use the `model_matrix`, a built-in R function
+```{r}
+# Using model.matrix() to one-hot encode
+color_df$Color <- as.factor(color_df$Color)  # Convert Color to a factor
+one_hot_encoded <- model.matrix(~ Color - 1, color_df)
+
+# View the encoded matrix
+one_hot_encoded
+```
+
+One-hot encoding is preferred in cases where the categories are nominal for example colors, countries since it does not assume any order between the categories
+
+2. *Label encoding*
+
+This method assigns a unique integer to each category. This method is simpler but it may impose unintended ordinality. 
+```{r}
+# Sample categorical variable
+color_df <- data.frame(
+  Color = c("Red", "Blue", "Green", "Red", "Blue")
+)
+
+# Label encoding
+color_df$Color_encoded <- as.numeric(as.factor(color_df$Color))
+
+# View the label encoded data
+color_df
+```
+
+Label encoding is preferred where the categories are ordinal for instance education levels, living standards, age groups etc. Categories that have a natural order
+
+<-**Add a practical exercise**->
 
 ### Hands-On Exercises

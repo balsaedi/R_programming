@@ -650,9 +650,141 @@ Any values larger than <span class="math inline">\(1.5xIQR\)</span> added to the
 <div id="data-transformation-techniques" class="section level5 hasAnchor" number="8.2.1.2.3">
 <h5><span class="header-section-number">8.2.1.2.3</span> Data Transformation Techniques<a href="working-with-real-world-data.html#data-transformation-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <ul>
-<li><p><strong>Normalization and Standardization</strong></p></li>
-<li><p><strong>Encoding Categorical Variables</strong></p></li>
+<li><strong>Normalization and Standardization</strong></li>
 </ul>
+<p>Normalization and standardization are both data preprocessing techniques that adjust the range of input values to make them easier to analyze and process. They are often interchangeably however, they have different applications and techniques. To be specific;</p>
+<p><em>Normalization</em> involves rescaling data within a specific range for instance between 0 and 1 where the maximum value will be 1 and the minimum be 0, all other values will range between zero and 1. Also, -1 and 1, 0 and 100 are among the most common ranges where statistician normalizes their data. This technique is useful where the distribution of the data is unknown or not normal but its likely to be affected by outliers due to its restricted range.</p>
+<p>On the contrary, <em>Standardization</em> involves rescaling the data values to have a mean of zero and a standard deviation of one. This technique is useful when the distribution of the data is known and normally distributed. It is less likely to be affected by outliers because it does not have a restricted range. <strong>Z-score</strong> is of the most popular method of standardization. Here is the formula to calculate z-score;
+<span class="math display">\[Z = {value-mean\over{standard deviation}}\]</span></p>
+<p>Lets normalize/standardize a vector <code>v1</code>, <code>v1&lt;- c(1200,34567,3456,12,3456,0985,1211)</code> in three easy steps</p>
+<ol style="list-style-type: decimal">
+<li><em>Min-Max Scaling</em>(normalization)</li>
+</ol>
+<p>The vector will be scaled in a range of 0 to 1 using a <code>preProcess</code> function from the <code>caret</code> package.</p>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="working-with-real-world-data.html#cb547-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb547-2"><a href="working-with-real-world-data.html#cb547-2" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;caret&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     lift</code></pre>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="working-with-real-world-data.html#cb551-1" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1200</span>,<span class="dv">34567</span>,<span class="dv">3456</span>,<span class="dv">12</span>,<span class="dv">3456</span>,<span class="dv">0985</span>,<span class="dv">1211</span>)</span>
+<span id="cb551-2"><a href="working-with-real-world-data.html#cb551-2" tabindex="-1"></a></span>
+<span id="cb551-3"><a href="working-with-real-world-data.html#cb551-3" tabindex="-1"></a><span class="co"># train the preprocesser(scaler)</span></span>
+<span id="cb551-4"><a href="working-with-real-world-data.html#cb551-4" tabindex="-1"></a>minMaxScaler <span class="ot">&lt;-</span> <span class="fu">preProcess</span>(<span class="fu">as.data.frame</span>(v1), <span class="at">method=</span><span class="fu">c</span>(<span class="st">&quot;range&quot;</span>))</span>
+<span id="cb551-5"><a href="working-with-real-world-data.html#cb551-5" tabindex="-1"></a></span>
+<span id="cb551-6"><a href="working-with-real-world-data.html#cb551-6" tabindex="-1"></a><span class="co"># Apply the scaler</span></span>
+<span id="cb551-7"><a href="working-with-real-world-data.html#cb551-7" tabindex="-1"></a>v1_scaled <span class="ot">&lt;-</span> <span class="fu">predict</span>(minMaxScaler, <span class="fu">as.data.frame</span>(v1))</span>
+<span id="cb551-8"><a href="working-with-real-world-data.html#cb551-8" tabindex="-1"></a>v1_scaled</span></code></pre></div>
+<pre><code>##           v1
+## 1 0.03437997
+## 2 1.00000000
+## 3 0.09966720
+## 4 0.00000000
+## 5 0.09966720
+## 6 0.02815801
+## 7 0.03469831</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Using the <code>scale()</code> function</em>(standardization)</li>
+</ol>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="working-with-real-world-data.html#cb553-1" tabindex="-1"></a><span class="co"># Create the vector</span></span>
+<span id="cb553-2"><a href="working-with-real-world-data.html#cb553-2" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1200</span>,<span class="dv">34567</span>,<span class="dv">3456</span>,<span class="dv">12</span>,<span class="dv">3456</span>,<span class="dv">0985</span>,<span class="dv">1211</span>)</span>
+<span id="cb553-3"><a href="working-with-real-world-data.html#cb553-3" tabindex="-1"></a></span>
+<span id="cb553-4"><a href="working-with-real-world-data.html#cb553-4" tabindex="-1"></a>v1_scaled <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">scale</span>(v1))</span>
+<span id="cb553-5"><a href="working-with-real-world-data.html#cb553-5" tabindex="-1"></a>v1_scaled</span></code></pre></div>
+<pre><code>##           V1
+## 1 -0.4175944
+## 2  2.2556070
+## 3 -0.2368546
+## 4 -0.5127711
+## 5 -0.2368546
+## 6 -0.4348191
+## 7 -0.4167131</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><em>Log transform</em></li>
+</ol>
+<p>This is used especially when the data is unevenly distributed for instance being skewed by “stretching out” the tail of a right-skewed distribution making it more symmetric.</p>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="working-with-real-world-data.html#cb555-1" tabindex="-1"></a><span class="co"># Create the vector</span></span>
+<span id="cb555-2"><a href="working-with-real-world-data.html#cb555-2" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1200</span>,<span class="dv">34567</span>,<span class="dv">3456</span>,<span class="dv">12</span>,<span class="dv">3456</span>,<span class="dv">0985</span>,<span class="dv">1211</span>)</span>
+<span id="cb555-3"><a href="working-with-real-world-data.html#cb555-3" tabindex="-1"></a></span>
+<span id="cb555-4"><a href="working-with-real-world-data.html#cb555-4" tabindex="-1"></a>log_scaled_v1 <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">as.data.frame</span>(v1))</span>
+<span id="cb555-5"><a href="working-with-real-world-data.html#cb555-5" tabindex="-1"></a>log_scaled_v1</span></code></pre></div>
+<pre><code>##          v1
+## 1  7.090077
+## 2 10.450655
+## 3  8.147867
+## 4  2.484907
+## 5  8.147867
+## 6  6.892642
+## 7  7.099202</code></pre>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<ul>
+<li><strong>Encoding Categorical Variables</strong></li>
+</ul>
+<p>Encoding is the process of converting categorical variables to numerical variables in data preprocessing. Machine learning models only understand numerical values, therefore encoding is a crucial step in data preprocessing. The most common methods are <strong>one-hot encoding</strong> and <strong>label encoding</strong>. We will discuss how to perform them in R</p>
+<ol style="list-style-type: decimal">
+<li><em>One-hot encoding</em>
+One hot encoding represents each category as a separate column and converts the categorical values into a 1 or 0 depending where the category is represented. This avoids the assumption of ordinality by the machine learning models. Lets perform one hot encoding on a color vector</li>
+</ol>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="working-with-real-world-data.html#cb557-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb557-2"><a href="working-with-real-world-data.html#cb557-2" tabindex="-1"></a></span>
+<span id="cb557-3"><a href="working-with-real-world-data.html#cb557-3" tabindex="-1"></a><span class="co"># Sample categorical variable</span></span>
+<span id="cb557-4"><a href="working-with-real-world-data.html#cb557-4" tabindex="-1"></a>color_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb557-5"><a href="working-with-real-world-data.html#cb557-5" tabindex="-1"></a>  <span class="at">Color =</span> <span class="fu">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blue&quot;</span>, <span class="st">&quot;Green&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blue&quot;</span>)</span>
+<span id="cb557-6"><a href="working-with-real-world-data.html#cb557-6" tabindex="-1"></a>)</span>
+<span id="cb557-7"><a href="working-with-real-world-data.html#cb557-7" tabindex="-1"></a></span>
+<span id="cb557-8"><a href="working-with-real-world-data.html#cb557-8" tabindex="-1"></a><span class="co"># dummify the data </span></span>
+<span id="cb557-9"><a href="working-with-real-world-data.html#cb557-9" tabindex="-1"></a>color_dmy <span class="ot">&lt;-</span> <span class="fu">dummyVars</span>(<span class="st">&quot; ~ .&quot;</span>, <span class="at">data =</span> color_df)</span>
+<span id="cb557-10"><a href="working-with-real-world-data.html#cb557-10" tabindex="-1"></a>new_color_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">predict</span>(color_dmy, <span class="at">newdata =</span> color_df))</span>
+<span id="cb557-11"><a href="working-with-real-world-data.html#cb557-11" tabindex="-1"></a>new_color_df</span></code></pre></div>
+<pre><code>##   ColorBlue ColorGreen ColorRed
+## 1         0          0        1
+## 2         1          0        0
+## 3         0          1        0
+## 4         0          0        1
+## 5         1          0        0</code></pre>
+<p>Alternatively you can use the <code>model_matrix</code>, a built-in R function</p>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="working-with-real-world-data.html#cb559-1" tabindex="-1"></a><span class="co"># Using model.matrix() to one-hot encode</span></span>
+<span id="cb559-2"><a href="working-with-real-world-data.html#cb559-2" tabindex="-1"></a>color_df<span class="sc">$</span>Color <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(color_df<span class="sc">$</span>Color)  <span class="co"># Convert Color to a factor</span></span>
+<span id="cb559-3"><a href="working-with-real-world-data.html#cb559-3" tabindex="-1"></a>one_hot_encoded <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> Color <span class="sc">-</span> <span class="dv">1</span>, color_df)</span>
+<span id="cb559-4"><a href="working-with-real-world-data.html#cb559-4" tabindex="-1"></a></span>
+<span id="cb559-5"><a href="working-with-real-world-data.html#cb559-5" tabindex="-1"></a><span class="co"># View the encoded matrix</span></span>
+<span id="cb559-6"><a href="working-with-real-world-data.html#cb559-6" tabindex="-1"></a>one_hot_encoded</span></code></pre></div>
+<pre><code>##   ColorBlue ColorGreen ColorRed
+## 1         0          0        1
+## 2         1          0        0
+## 3         0          1        0
+## 4         0          0        1
+## 5         1          0        0
+## attr(,&quot;assign&quot;)
+## [1] 1 1 1
+## attr(,&quot;contrasts&quot;)
+## attr(,&quot;contrasts&quot;)$Color
+## [1] &quot;contr.treatment&quot;</code></pre>
+<p>One-hot encoding is preferred in cases where the categories are nominal for example colors, countries since it does not assume any order between the categories</p>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Label encoding</em></li>
+</ol>
+<p>This method assigns a unique integer to each category. This method is simpler but it may impose unintended ordinality.</p>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="working-with-real-world-data.html#cb561-1" tabindex="-1"></a><span class="co"># Sample categorical variable</span></span>
+<span id="cb561-2"><a href="working-with-real-world-data.html#cb561-2" tabindex="-1"></a>color_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb561-3"><a href="working-with-real-world-data.html#cb561-3" tabindex="-1"></a>  <span class="at">Color =</span> <span class="fu">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blue&quot;</span>, <span class="st">&quot;Green&quot;</span>, <span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Blue&quot;</span>)</span>
+<span id="cb561-4"><a href="working-with-real-world-data.html#cb561-4" tabindex="-1"></a>)</span>
+<span id="cb561-5"><a href="working-with-real-world-data.html#cb561-5" tabindex="-1"></a></span>
+<span id="cb561-6"><a href="working-with-real-world-data.html#cb561-6" tabindex="-1"></a><span class="co"># Label encoding</span></span>
+<span id="cb561-7"><a href="working-with-real-world-data.html#cb561-7" tabindex="-1"></a>color_df<span class="sc">$</span>Color_encoded <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.factor</span>(color_df<span class="sc">$</span>Color))</span>
+<span id="cb561-8"><a href="working-with-real-world-data.html#cb561-8" tabindex="-1"></a></span>
+<span id="cb561-9"><a href="working-with-real-world-data.html#cb561-9" tabindex="-1"></a><span class="co"># View the label encoded data</span></span>
+<span id="cb561-10"><a href="working-with-real-world-data.html#cb561-10" tabindex="-1"></a>color_df</span></code></pre></div>
+<pre><code>##   Color Color_encoded
+## 1   Red             3
+## 2  Blue             1
+## 3 Green             2
+## 4   Red             3
+## 5  Blue             1</code></pre>
+<p>Label encoding is preferred where the categories are ordinal for instance education levels, living standards, age groups etc. Categories that have a natural order</p>
+<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 </div>
 </div>
 </div>
