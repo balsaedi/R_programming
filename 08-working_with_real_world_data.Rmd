@@ -67,10 +67,82 @@ They almost look similar but they are more different in operations. Here are som
 
 #### Memory Management in R
 
-<-**Discuss it**->
-A good kind can be found [here](http://adv-r.had.co.nz/memory.html)
+A clear grasp of memory management in R will help the analyst/statistician predict how much computer memory you will need for a given task and make you have the most out of the memory. Also, a proper memory management is crucial for effective use of the sytem resources hence the program running smoothly. The R objects are stored in the Random Access Memory (RAM).
 
-<-**Remember a practical exercise**->
+Lets explore some of the key techniques of Memory Management; 
+
+1. **Removing unused objects**
+
+Objects like variables and packages that are no longer required need to be removed to free up the memory. The `rm()` function is used to delete them 
+```{r}
+# Create a variable x
+x <- rnorm(11000)
+
+# Remove the variable x
+rm(x) # variable x is deleted
+```
+You can use the function `ls()` (with no argument) to confirm if `x` exists got deleted in the variable list
+
+2. **Monitoring memory usage**
+
+R has several functions that help in monitoring the memory usage. This helps the programmer identify if the session is consuming too much memory. 
+
+`object.size()` is one of function used to compute the memory usage.
+```{r}
+# Create a variable x
+x <- rnorm(100000)
+
+# Compute the memory usage
+object.size(x)
+```
+The variable `x` consumes approximately 800048 bytes of memory
+
+Besides, one can apply **memory profiling**, that is, tracking the memory usage while the scripts executes. `Rprof()` is an inbuilt R profile that gets the job done in real time. Lets demonstrate
+```{r}
+# Start memory profiling
+Rprof(memory.profiling = TRUE)
+
+# Run some computations
+x <- rnorm(1e6)
+y <- rnorm(1e6)
+
+# Stop profiling
+Rprof(NULL)
+
+# Summary of memory usage
+summaryRprof()
+```
+
+Additionally, the `pryr` package goes further to come up with additional functions to monitor memory usage. It can be installed by;
+```
+install.packages("pryr")
+```
+Below is a demonstration of how `pryr` library works
+```{r}
+# Load the library
+library(pryr)
+
+# Check memory usage of the entire R session
+mem_used()
+
+# Create a variable 
+y <- rnorm(1e6)
+
+# Check memory usage of a specific object
+object_size(y)
+```
+
+3. **Freeing up the Memory**
+
+R has an automatic memory management system, however the programmer might request garbage collection. The `gc()` function helps you clean unused memory. This is helpful after removing large objects 
+```
+# Collect the garbage to free up unused memory
+gc()
+```
+The `gc()` function will accelerate the process of garbage collection rather than waiting for R to automatically free up the memory. 
+
+
+<-**Remember a practical exercise** find the exercises [here](http://adv-r.had.co.nz/memory.html)->
 
 ### Reading and Writing Large Files 
 #### Optimized File I/O
