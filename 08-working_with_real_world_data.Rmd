@@ -148,7 +148,7 @@ The `gc()` function will accelerate the process of garbage collection rather tha
 #### Optimized File I/O
 
 
-
+<<--**Here is a good guide**[here](https://csgillespie.github.io/efficientR/input-output.html)-->>
 
 
 ### Hands-On Exercises

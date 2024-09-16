@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-15" />
+<meta name="date" content="2024-09-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -310,9 +310,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>There are different formats to import a csv file in R. We will use the <code>read.csv()</code> and <code>read.delim()</code> which are functions from the baseR.</p>
 <p>Reading a csv file using <code>read.csv()</code> function.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-importing-and-exporting.html#cb259-1" tabindex="-1"></a><span class="co"># read the csv file to the data frame </span></span>
-<span id="cb259-2"><a href="data-importing-and-exporting.html#cb259-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/hotel_bookings_clean.csv&#39;</span>)</span>
-<span id="cb259-3"><a href="data-importing-and-exporting.html#cb259-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show first few rows </span></span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="data-importing-and-exporting.html#cb257-1" tabindex="-1"></a><span class="co"># read the csv file to the data frame </span></span>
+<span id="cb257-2"><a href="data-importing-and-exporting.html#cb257-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/hotel_bookings_clean.csv&#39;</span>)</span>
+<span id="cb257-3"><a href="data-importing-and-exporting.html#cb257-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show first few rows </span></span></code></pre></div>
 <pre><code>##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
 ## 1           0       342                       27                         1
 ## 2           0       737                       27                         1
@@ -433,9 +433,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5                       1                             0
 ## 6                       1                             0</code></pre>
 <p>Now, lets read the same csv file with <code>read.delim()</code> function. Remember to add “,” as the separator. <code>sep=","</code>.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-importing-and-exporting.html#cb261-1" tabindex="-1"></a><span class="co"># Read the csv file </span></span>
-<span id="cb261-2"><a href="data-importing-and-exporting.html#cb261-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
-<span id="cb261-3"><a href="data-importing-and-exporting.html#cb261-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show the first few rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-importing-and-exporting.html#cb259-1" tabindex="-1"></a><span class="co"># Read the csv file </span></span>
+<span id="cb259-2"><a href="data-importing-and-exporting.html#cb259-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb259-3"><a href="data-importing-and-exporting.html#cb259-3" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co"># show the first few rows</span></span></code></pre></div>
 <pre><code>##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
 ## 1           0       342                       27                         1
 ## 2           0       737                       27                         1
@@ -556,8 +556,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5                       1                             0
 ## 6                       1                             0</code></pre>
 <p>Lets also read the csv file using the <code>read.table()</code> function(note the <code>sep=","</code> argument);</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="data-importing-and-exporting.html#cb263-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
-<span id="cb263-2"><a href="data-importing-and-exporting.html#cb263-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-importing-and-exporting.html#cb261-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb261-2"><a href="data-importing-and-exporting.html#cb261-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 <pre><code>##            V1        V2                       V3                        V4
 ## 1 is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
 ## 2           0       342                       27                         1
@@ -680,10 +680,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>read_csv()</code> function is one more way to read a csv file. This function comes from the <code>readr</code> package that is installed by;</p>
 <pre><code>install.packages(&quot;readr&quot;)</code></pre>
 <p>and imported by;</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-importing-and-exporting.html#cb266-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="data-importing-and-exporting.html#cb264-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
 <p>Lets read a csv file using the <code>read_csv()</code>(note the ’_’ instead of a ‘.’) from the <code>readr</code> library.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-importing-and-exporting.html#cb267-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb267-2"><a href="data-importing-and-exporting.html#cb267-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-importing-and-exporting.html#cb265-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/hotel_bookings_clean.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb265-2"><a href="data-importing-and-exporting.html#cb265-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 53
 ##   is_canceled lead_time arrival_date_week_number arrival_date_day_of_month
 ##         &lt;dbl&gt;     &lt;dbl&gt;                    &lt;dbl&gt;                     &lt;dbl&gt;
@@ -705,10 +705,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Importing Excel file in R</strong></li>
 </ul>
 <p>In this section we will read the HR employee data for descriptive and inferential analytics. We will use the <code>read_excel</code> from the <code>readxl</code> package. It can be imported by;</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-importing-and-exporting.html#cb269-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-importing-and-exporting.html#cb267-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
 <p>Let’s load the excel data into R data frame.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-importing-and-exporting.html#cb270-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>)</span>
-<span id="cb270-2"><a href="data-importing-and-exporting.html#cb270-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-importing-and-exporting.html#cb268-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>)</span>
+<span id="cb268-2"><a href="data-importing-and-exporting.html#cb268-2" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   Emp_Id  satisfaction_level last_evaluation number_project average_montly_hours
 ##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
@@ -721,8 +721,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ℹ 6 more variables: time_spend_company &lt;dbl&gt;, Work_accident &lt;dbl&gt;,
 ## #   left &lt;dbl&gt;, promotion_last_5years &lt;dbl&gt;, Department &lt;chr&gt;, salary &lt;chr&gt;</code></pre>
 <p>If they are multiple worksheets in the excel, the read_excel has an argument <code>sheet</code> for sheet number(By default, sheet 1 is loaded. Lets load the first sheet.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-importing-and-exporting.html#cb272-1" tabindex="-1"></a>df_sheet1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>, <span class="at">sheet=</span><span class="dv">1</span>)</span>
-<span id="cb272-2"><a href="data-importing-and-exporting.html#cb272-2" tabindex="-1"></a><span class="fu">head</span>(df_sheet1)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-importing-and-exporting.html#cb270-1" tabindex="-1"></a>df_sheet1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/HR_Employee_Data.xlsx&quot;</span>, <span class="at">sheet=</span><span class="dv">1</span>)</span>
+<span id="cb270-2"><a href="data-importing-and-exporting.html#cb270-2" tabindex="-1"></a><span class="fu">head</span>(df_sheet1)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   Emp_Id  satisfaction_level last_evaluation number_project average_montly_hours
 ##   &lt;chr&gt;                &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;                &lt;dbl&gt;
@@ -753,14 +753,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The <code>write.table()</code> function is more of a general function that different types of files for example TSV, CSV and text files.</li>
 </ol>
 <p>Lets create a small data frame and demonstrate how these functions work.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-importing-and-exporting.html#cb275-1" tabindex="-1"></a><span class="co"># Sample data frame</span></span>
-<span id="cb275-2"><a href="data-importing-and-exporting.html#cb275-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb275-3"><a href="data-importing-and-exporting.html#cb275-3" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>),</span>
-<span id="cb275-4"><a href="data-importing-and-exporting.html#cb275-4" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>),</span>
-<span id="cb275-5"><a href="data-importing-and-exporting.html#cb275-5" tabindex="-1"></a>  <span class="at">Salary =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">60000</span>, <span class="dv">70000</span>)</span>
-<span id="cb275-6"><a href="data-importing-and-exporting.html#cb275-6" tabindex="-1"></a>)</span>
-<span id="cb275-7"><a href="data-importing-and-exporting.html#cb275-7" tabindex="-1"></a></span>
-<span id="cb275-8"><a href="data-importing-and-exporting.html#cb275-8" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="data-importing-and-exporting.html#cb273-1" tabindex="-1"></a><span class="co"># Sample data frame</span></span>
+<span id="cb273-2"><a href="data-importing-and-exporting.html#cb273-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb273-3"><a href="data-importing-and-exporting.html#cb273-3" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>),</span>
+<span id="cb273-4"><a href="data-importing-and-exporting.html#cb273-4" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>),</span>
+<span id="cb273-5"><a href="data-importing-and-exporting.html#cb273-5" tabindex="-1"></a>  <span class="at">Salary =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">60000</span>, <span class="dv">70000</span>)</span>
+<span id="cb273-6"><a href="data-importing-and-exporting.html#cb273-6" tabindex="-1"></a>)</span>
+<span id="cb273-7"><a href="data-importing-and-exporting.html#cb273-7" tabindex="-1"></a></span>
+<span id="cb273-8"><a href="data-importing-and-exporting.html#cb273-8" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##      Name Age Salary
 ## 1   Alice  25  50000
 ## 2     Bob  30  60000
@@ -781,10 +781,10 @@ write.xlsx(df, file=&quot;data/sample_data_2.xlsx&quot;)</code></pre>
 write.table(df, file = &quot;data/sample_data.txt&quot;, sep = &quot; &quot;, row.names = FALSE, quote = FALSE)</code></pre>
 <p>The same data frame can be converted to a data vector and loaded to a text file using the <code>writeLines(data_vector, filepath)</code>.</p>
 <p>Lets convert the data frame to a data vector and show the output.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="data-importing-and-exporting.html#cb282-1" tabindex="-1"></a><span class="co"># Convert data frame to a character vector</span></span>
-<span id="cb282-2"><a href="data-importing-and-exporting.html#cb282-2" tabindex="-1"></a>df_vector <span class="ot">&lt;-</span> <span class="fu">apply</span>(df, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">paste</span>(row, <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb282-3"><a href="data-importing-and-exporting.html#cb282-3" tabindex="-1"></a></span>
-<span id="cb282-4"><a href="data-importing-and-exporting.html#cb282-4" tabindex="-1"></a>df_vector</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="data-importing-and-exporting.html#cb280-1" tabindex="-1"></a><span class="co"># Convert data frame to a character vector</span></span>
+<span id="cb280-2"><a href="data-importing-and-exporting.html#cb280-2" tabindex="-1"></a>df_vector <span class="ot">&lt;-</span> <span class="fu">apply</span>(df, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="fu">paste</span>(row, <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb280-3"><a href="data-importing-and-exporting.html#cb280-3" tabindex="-1"></a></span>
+<span id="cb280-4"><a href="data-importing-and-exporting.html#cb280-4" tabindex="-1"></a>df_vector</span></code></pre></div>
 <pre><code>## [1] &quot;Alice 25 50000&quot;   &quot;Bob 30 60000&quot;     &quot;Charlie 35 70000&quot;</code></pre>
 <p>Export the file</p>
 <pre><code># Write the character vector to a text file

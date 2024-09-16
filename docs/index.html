@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-15" />
+<meta name="date" content="2024-09-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">R Course</h1>
 <p class="author"><em>YOUR NAME HERE</em></p>
-<p class="date"><em>2024-09-15</em></p>
+<p class="date"><em>2024-09-16</em></p>
 </div>
 <div id="introduction-to-r-and-basic-programming-concepts" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction to R and Basic Programming Concepts<a href="index.html#introduction-to-r-and-basic-programming-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -406,17 +406,21 @@ The R syntax distinguishes between the uppercase letter and the lowercase letter
 <pre><code>## [1] 27</code></pre>
 <p>You can see that above here the variable <code>age</code> and <code>AGE</code> are treated as different.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p><strong>Assignment Operators</strong><br />
-R has several different methods to assign a value to a variable. They include;</p>
+<li><strong>Assignment Operators</strong><br />
+R has several different methods to assign a value to a variable. They include;</li>
+</ol>
 <ol style="list-style-type: lower-roman">
 <li><strong>Equal Sign(‘=’)</strong>: This assignment operator is always used when assigning the function arguments but can used in general assignments.</li>
-</ol></li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" tabindex="-1"></a>age <span class="ot">=</span> <span class="dv">21</span> <span class="co">#variable `age` is assigned to 21</span></span></code></pre></div>
-<pre><code>ii. **Left Arrow(&#39;&lt;-&#39;)**: This is the common type of assignment operator. The direction of the arrow points to the variable </code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="index.html#cb9-1" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># variable &#39;age&#39; assigned to 10</span></span></code></pre></div>
-<pre><code>iii. **Right Arrow(&#39;-&gt;&#39;)**: This is just like the right arrow operator however the direction of the arrow is reversed. The arrow should still point to the direction of the variable. </code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="index.html#cb11-1" tabindex="-1"></a><span class="dv">27</span> <span class="ot">-&gt;</span> age <span class="co"># arrow points to the direction of the variable, age</span></span></code></pre></div>
+<ol start="2" style="list-style-type: lower-roman">
+<li><strong>Left Arrow(‘&lt;-’)</strong>: This is the common type of assignment operator. The direction of the arrow points to the variable</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># variable &#39;age&#39; assigned to 10</span></span></code></pre></div>
+<ol start="3" style="list-style-type: lower-roman">
+<li><strong>Right Arrow(‘-&gt;’)</strong>: This is just like the right arrow operator however the direction of the arrow is reversed. The arrow should still point to the direction of the variable.</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="index.html#cb9-1" tabindex="-1"></a><span class="dv">27</span> <span class="ot">-&gt;</span> age <span class="co"># arrow points to the direction of the variable, age</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Use of symbols</strong><br />
 The R language has several symbols that have specific meaning important when writing code.</li>
@@ -424,32 +428,32 @@ The R language has several symbols that have specific meaning important when wri
 <ol style="list-style-type: lower-roman">
 <li><strong>The Hash(‘#’)</strong>: Is used for comments. R ignores any text that follows <code>#</code> in the same line</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="index.html#cb12-1" tabindex="-1"></a><span class="co"># This is a comment</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="index.html#cb10-1" tabindex="-1"></a><span class="co"># This is a comment</span></span></code></pre></div>
 <ol start="2" style="list-style-type: lower-roman">
 <li><strong>Dollar Sign (’$`)</strong>: Used to access elements of a list or column values in a data frame</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="index.html#cb13-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span>
-<span id="cb13-2"><a href="index.html#cb13-2" tabindex="-1"></a>df<span class="sc">$</span>a  <span class="co"># Accesses column &#39;a&#39; in the data frame</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="index.html#cb11-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb11-2"><a href="index.html#cb11-2" tabindex="-1"></a>df<span class="sc">$</span>a  <span class="co"># Accesses column &#39;a&#39; in the data frame</span></span></code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
 <ol start="3" style="list-style-type: lower-roman">
 <li><strong>Square brackets (<code>[]</code>)</strong>: They are used for indexing vectors, lists, matrices and data frames</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="index.html#cb15-1" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
-<span id="cb15-2"><a href="index.html#cb15-2" tabindex="-1"></a>v[<span class="dv">3</span>]  <span class="co"># Accesses the third element (20)</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="index.html#cb13-1" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb13-2"><a href="index.html#cb13-2" tabindex="-1"></a>v[<span class="dv">3</span>]  <span class="co"># Accesses the third element (20)</span></span></code></pre></div>
 <pre><code>## [1] 30</code></pre>
 <ol start="4" style="list-style-type: lower-roman">
 <li><strong>Curly braces (<code>{}</code>)</strong>: Used to group multiple expressions, for instance in loops and conditional statements. In this case we will use a if else conditional statement to show how curly braces are used</li>
 </ol>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="index.html#cb17-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb17-2"><a href="index.html#cb17-2" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb17-3"><a href="index.html#cb17-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Positive number&quot;</span>)</span>
-<span id="cb17-4"><a href="index.html#cb17-4" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="index.html#cb15-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb15-2"><a href="index.html#cb15-2" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb15-3"><a href="index.html#cb15-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Positive number&quot;</span>)</span>
+<span id="cb15-4"><a href="index.html#cb15-4" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Positive number&quot;</code></pre>
 <ol start="4" style="list-style-type: lower-roman">
 <li><strong>Left arrow (‘&lt;-’) and the right arrow (‘-&gt;’)</strong>: As mentioned earlier, these are assignment operators</li>
 <li><strong>Brackets ‘()’</strong>: Used for function calls and grouping expressions</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="index.html#cb19-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="index.html#cb17-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p>There are more symbols used in R especially in mathematical operators and advanced concepts that will be later introduced in the course.</p>
 <ol start="3" style="list-style-type: decimal">
@@ -458,12 +462,21 @@ R has set of reserved words that have special meaning like identifiers and funct
 <li><p><strong>Whitespace</strong><br />
 R generally ignores whitespace (spaces, tabs, newlines) between elements, except within character strings or where it would change the meaning of the code. Proper use of whitespace improves code readability.</p></li>
 </ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="index.html#cb21-1" tabindex="-1"></a>x <span class="ot">&lt;-</span>  <span class="dv">5</span> <span class="sc">+</span>  <span class="dv">3</span>  <span class="co"># Valid</span></span>
-<span id="cb21-2"><a href="index.html#cb21-2" tabindex="-1"></a>y <span class="ot">&lt;-</span><span class="dv">5</span><span class="sc">+</span><span class="dv">3</span>       <span class="co"># Also valid, but less readable</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="index.html#cb19-1" tabindex="-1"></a>x <span class="ot">&lt;-</span>  <span class="dv">5</span> <span class="sc">+</span>  <span class="dv">3</span>  <span class="co"># Valid</span></span>
+<span id="cb19-2"><a href="index.html#cb19-2" tabindex="-1"></a>y <span class="ot">&lt;-</span><span class="dv">5</span><span class="sc">+</span><span class="dv">3</span>       <span class="co"># Also valid, but less readable</span></span></code></pre></div>
 </div>
 </div>
 <div id="hands-on-exercise" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> Hands-on Exercise<a href="index.html#hands-on-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Solve the following equations;</p>
+<ol style="list-style-type: lower-alpha">
+<li><code>34 + 54</code></li>
+<li><code>76 - 10</code></li>
+<li><code>25 * 25</code></li>
+</ol></li>
+<li><p>Assign variable <code>d</code> and <code>f</code> to values <code>42</code> and <code>14</code> respectively and solve <code>d/f</code></p></li>
+</ol>
 
 </div>
 </div>

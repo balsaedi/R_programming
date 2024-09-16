@@ -108,17 +108,17 @@ You can see that above here the variable `age` and `AGE` are treated as differen
 2. **Assignment Operators**  
 R has several different methods to assign a value to a variable. They include;
 
-    i. **Equal Sign('=')**: This assignment operator is always used when assigning the function arguments but can used in general assignments.
+i. **Equal Sign('=')**: This assignment operator is always used when assigning the function arguments but can used in general assignments.
   
 ```{r}
 age = 21 #variable `age` is assigned to 21
 ```
-    ii. **Left Arrow('<-')**: This is the common type of assignment operator. The direction of the arrow points to the variable 
+ii. **Left Arrow('<-')**: This is the common type of assignment operator. The direction of the arrow points to the variable 
 
 ```{r}
 age <- 10 # variable 'age' assigned to 10
 ```
-    iii. **Right Arrow('->')**: This is just like the right arrow operator however the direction of the arrow is reversed. The arrow should still point to the direction of the variable. 
+iii. **Right Arrow('->')**: This is just like the right arrow operator however the direction of the arrow is reversed. The arrow should still point to the direction of the variable. 
 ```{r}
 27 -> age # arrow points to the direction of the variable, age
 ```
@@ -167,4 +167,10 @@ y <-5+3       # Also valid, but less readable
 ```
 
 ## Hands-on Exercise
+1. Solve the following equations;
 
+    a. `34 + 54`
+    b. `76 - 10`
+    c. `25 * 25`
+    
+2. Assign variable `d` and `f` to values `42` and `14` respectively and solve `d/f`
