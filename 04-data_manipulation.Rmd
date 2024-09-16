@@ -50,6 +50,13 @@ titanic <- titanic_train
 head(titanic) # view the first few rows of the titanic data set
 ```
 
+Subsetting by indexing can be done in three different ways that include 
+
+i. Extracting a Row
+ii. Extracting a column
+iii. Extracting a Single Element
+
+
 1. **Extract a row**  
 
 When subsetting to extract data for a single row the square brackets `[ ]` will be used with the position of the index you want to extract. Lets extract all the information of the 10th passenger.
@@ -203,7 +210,18 @@ v = c(43, 82, 11, 73, 34)
 order(v, decreasing = FALSE)
 ```
 
-<<<<**Add two more examples**>>>>
+Lets repeat the process but this time we order the indices of the vector `v` in a descending order
+```{r}
+v = c(43, 82, 11, 73, 34)
+order(v, decreasing = TRUE)
+```
+You can see that index `2` which has a value `82` on the original vector comes first while index `3` which has a value of `11` comes last
+
+The default value for the `decreasing` argument is `FALSE`.
+```{r}
+v = c(43, 82, 11, 73, 34)
+order(v) # no `decreasing` argument
+```
 
 3. `rank()`
 
@@ -275,8 +293,6 @@ clean_vector
 my_vector[is.na(my_vector)] <- mean(my_vector, na.rm = TRUE)
 my_vector
 ```
-
-<- **Add more ways to remove null values** -> https://sparkbyexamples.com/r-programming/remove-na-from-vector-in-r/#:~:text=In%20R%2C%20NA%20denotes%20'Missing,NA%20values%20from%20a%20vector.
 
 2. **Removing Duplicates**
 
@@ -351,8 +367,37 @@ print(clean_date_vector)
 
 ```
 
+<span style="color: green">**Practical exercise**</span>
+
+You will use the car sales data set found [here](https://github.com/balsaedi/R_programming/blob/main/data/car_sales.csv) to;
+
+i. Delete all the records that have any null value
+ii. Remove duplicated observations
+iii. Remove outliers
 
 ### Hands-on Exercises
+Download the Bengaluru Restaurants Dataset from [here](https://www.kaggle.com/datasets/mrmars1010/restaurants-dataset-bengaluru) and use it to for the activities below. 
+
+1. **Subsetting and Filtering**
+
+- Subset the data set to include only restaurants with a rating of 4.0 and above.
+- Filter the data set to include restaurants in specific locations: "Koramangala", "Indiranagar", and "MG Road".
+- Create a subset that includes only restaurants serving both "North Indian" and "Chinese" cuisine.
+- Filter out restaurants that have no reviews or ratings.
+
+2. **Sorting**
+
+- Sort the data set by restaurant ratings in descending order.
+- Sort the data set first by location and then by average cost for two people in ascending order.
+- Sort the data set by the number of votes a restaurant received, with the highest votes appearing first.
+
+3. **Data Cleaning**
+
+- Identify and remove rows with missing or null values in any key columns (e.g., ratings, cost, cuisine type).
+- Correct inconsistent data types: Ensure that numeric columns (such as "cost for two") are in the correct numeric format.
+- Remove any duplicate restaurant entries based on the restaurant name and location.
+- Ensure consistency in categorical data, such as correcting case sensitivity or spelling issues (e.g., "North Indian" vs. "north indian").
+- Identify and handle any outliers in the "cost for two" column.
 
 ## Data Manipulation with Dplyr
 ### Introduction to Dplyr package 
