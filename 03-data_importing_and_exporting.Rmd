@@ -15,30 +15,34 @@ There are more data files with different formats that can be used in R, their im
 There are different formats to import a csv file in R. We will use the `read.csv()` and `read.delim()` which are functions from the baseR. 
 
 Reading a csv file using `read.csv()` function. 
-```{r}
+```
 # read the csv file to the data frame 
 df <- read.csv('data/hotel_bookings_clean.csv')
 head(df) # show first few rows 
 ```
+![](images/dataset_images/data_importing_demo.png)
 
 Now, lets read the same csv file with `read.delim()` function. Remember to add "," as the separator. `sep=","`. 
-```{r}
+```
 # Read the csv file 
 df <- read.delim("data/hotel_bookings_clean.csv", sep = ",")
 head(df) # show the first few rows
 ```
+![](images/dataset_images/data_importing_demo.png)
+
 Lets also read the csv file using the `read.table()` function(note the `sep=","` argument);
-```{r}
+```
 df <- read.table("data/hotel_bookings_clean.csv", sep = ",")
 head(df)
 ```
+![](images/dataset_images/data_importing_demo_readtable.png)
 
 The `read_csv()` function is one more way to read a csv file. This function comes from the `readr` package that is installed by;
 ```
 install.packages("readr")
 ```
 
-and imported by;
+and the library can be imported by;
 ```{r}
 library(readr)
 ```
@@ -75,8 +79,7 @@ A detail documentation of the `read_excel()` function can be found [here](https:
 <- **Add more methods**->
 
 ## Introduction to Data Exporting
-### Overview of R functions to store data
-After data wrangling, manipulation and processing, the end product(processed data) can be saved for further.future use. The data can also be share to others. R has several functions to write the processed data locally into either CSV, Excel, text or other file formats. 
+After data wrangling, manipulation and processing, the end product(processed data) can be saved for further use. The data can also be share to others. R has several functions to write the processed data locally into either CSV, Excel, text or other file formats. 
 
 Lets go through a brief overview of how data can be exported in R; 
 
@@ -146,5 +149,8 @@ Export the file
 writeLines(data_vector, "data/sample_data_with_writeLines.txt")
 ```
 
+## Practical Exercise
+Down the house prices regression data set from [here](https://www.kaggle.com/datasets/prokshitha/home-value-insights) and do the following;
 
-<-**Add practical exercises**->
+i. Read the CSV file into a `data.frame` and give it a variable name `housePricesDF`
+ii. Write the `data.frame` into an Excel file locally.
