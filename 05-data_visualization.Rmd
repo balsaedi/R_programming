@@ -3,7 +3,7 @@
 ### Introduction to ggplot2
 ![](images/ggplot.png)
 
-This is package designed for data visualization. It provides a powerful and flexible framework for creating complex and aesthetically pleasing visualizations, allowing users to layer various components such as axes, scales, colors, and geoms to create detailed and customizable plots. 
+This is package designed for data visualization. It provides a powerful and flexible framework for creating complex and aesthetically pleasing visualizations, allowing users to layer various components such as axes, scales, colors, and `geoms` to create detailed and customizable plots. 
 
 The package is said that it implements the principle of "Grammar of Graphics". The "Grammar of Graphics" is a conceptual framework for creating graphs by Leland Wilkinson. The process of creating graphs is broken into fundamental components. This allows structure and flexible approach in data visualization. The plots are constructed by a layered approach by implementing these concepts step by step; data, aesthetics(`aes`), geometrics(`geoms`), statistical transformations (`stats`), scales, cordinates and facets.  
 
@@ -87,7 +87,12 @@ Lets explain the chart step by step;-
 - `labs()`: Adds the title and the axis labels to the chart. 
 - `theme_minimal()`: Applies a minimal theme to the plot for a minimalist and clean appearance.
 
-<-**Practical exercise: Creating scatter plots for different datasets**->
+<span style="color: green;">**Practical exercise**</span> 
+
+Solve the questions below;
+
+i. Using the `"mtcars"` inbuilt data set, plot a scatter chart to visualize the relationship between `mpg` (miles per gallon) and `hp` (horsepower). Label the axes appropirately. **Hint**: the data set can be loaded by `data("mtcars")` command.
+ii. Using the `airquality` data set, plot a scatter plot to show the relationship between `Wind` and `Temp`. **Hint**: the data set can be loaded by `data("airquality")` command. 
 
 - **Bar Charts**
 
@@ -119,7 +124,10 @@ ggplot(df, aes(x = category, y = value)) +
 ```
 
 
-<-**Practical exercise: Creating bar charts for categorical data.**->
+<span style="color: green;">**Practical exercise**</span> 
+
+Using the `mtcars` data set, create a bar plot to visualize the number of cars for each unique number of cylinders (`cyl`) in the mtcars data set. Label the bars with the appropriate cylinder categories and provide axis labels for clarity.
+
 
 - **Histograms**
 
@@ -145,7 +153,9 @@ ggplot(age_data, aes(x = Age)) +
 
 The bins are groups of ages ranging 5 years. 
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span> 
+
+Using the `rivers` in built R data set, plot a histogram to visualize the distribution of rovers length. **Hint**: The data set is loaded by the command `data("rivers")`. 
 
 #### Customizing plots
 - **Themes**

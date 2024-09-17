@@ -295,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-to-ggplot2" class="section level3 hasAnchor" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Introduction to ggplot2<a href="data-visualization.html#introduction-to-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="images/ggplot.png" /></p>
-<p>This is package designed for data visualization. It provides a powerful and flexible framework for creating complex and aesthetically pleasing visualizations, allowing users to layer various components such as axes, scales, colors, and geoms to create detailed and customizable plots.</p>
+<p>This is package designed for data visualization. It provides a powerful and flexible framework for creating complex and aesthetically pleasing visualizations, allowing users to layer various components such as axes, scales, colors, and <code>geoms</code> to create detailed and customizable plots.</p>
 <p>The package is said that it implements the principle of “Grammar of Graphics”. The “Grammar of Graphics” is a conceptual framework for creating graphs by Leland Wilkinson. The process of creating graphs is broken into fundamental components. This allows structure and flexible approach in data visualization. The plots are constructed by a layered approach by implementing these concepts step by step; data, aesthetics(<code>aes</code>), geometrics(<code>geoms</code>), statistical transformations (<code>stats</code>), scales, cordinates and facets.</p>
 <p>The package is also under the <code>tidyverse</code> package but can be installed by</p>
 <pre><code>install.packages(&quot;ggplot2&quot;)</code></pre>
@@ -361,7 +361,12 @@ To make the chart more informative, titles and labels are added.</p>
 <li><code>labs()</code>: Adds the title and the axis labels to the chart.</li>
 <li><code>theme_minimal()</code>: Applies a minimal theme to the plot for a minimalist and clean appearance.</li>
 </ul>
-<p>&lt;-<strong>Practical exercise: Creating scatter plots for different datasets</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Solve the questions below;</p>
+<ol style="list-style-type: lower-roman">
+<li>Using the <code>"mtcars"</code> inbuilt data set, plot a scatter chart to visualize the relationship between <code>mpg</code> (miles per gallon) and <code>hp</code> (horsepower). Label the axes appropirately. <strong>Hint</strong>: the data set can be loaded by <code>data("mtcars")</code> command.</li>
+<li>Using the <code>airquality</code> data set, plot a scatter plot to show the relationship between <code>Wind</code> and <code>Temp</code>. <strong>Hint</strong>: the data set can be loaded by <code>data("airquality")</code> command.</li>
+</ol>
 <ul>
 <li><strong>Bar Charts</strong></li>
 </ul>
@@ -388,7 +393,8 @@ To make the chart more informative, titles and labels are added.</p>
 <span id="cb414-11"><a href="data-visualization.html#cb414-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Value by Category&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">+</span></span>
 <span id="cb414-12"><a href="data-visualization.html#cb414-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
-<p>&lt;-<strong>Practical exercise: Creating bar charts for categorical data.</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>mtcars</code> data set, create a bar plot to visualize the number of cars for each unique number of cylinders (<code>cyl</code>) in the mtcars data set. Label the bars with the appropriate cylinder categories and provide axis labels for clarity.</p>
 <ul>
 <li><strong>Histograms</strong></li>
 </ul>
@@ -409,7 +415,8 @@ To make the chart more informative, titles and labels are added.</p>
 <span id="cb415-13"><a href="data-visualization.html#cb415-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 <p>The bins are groups of ages ranging 5 years.</p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>rivers</code> in built R data set, plot a histogram to visualize the distribution of rovers length. <strong>Hint</strong>: The data set is loaded by the command <code>data("rivers")</code>.</p>
 </div>
 <div id="customizing-plots" class="section level4 hasAnchor" number="5.1.1.2">
 <h4><span class="header-section-number">5.1.1.2</span> Customizing plots<a href="data-visualization.html#customizing-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
