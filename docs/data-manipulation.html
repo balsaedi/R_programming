@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-16" />
+<meta name="date" content="2024-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -932,7 +932,7 @@ remaining_data = select(data_frame, -col1_to_drop, -col2_to_drop)</code></pre>
 ## 4          4.6         3.1
 ## 5          5.0         3.6
 ## 6          5.4         3.9</code></pre>
-<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
 <p>You will be required to use the <code>car_sales</code> data set from <a href="https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv" class="uri">https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv</a>. Read the data using <code>read.csv</code> and select the <code>car, price, body, mileage, engV, engType, year, model</code>. Save the data frame from the selected columns as <code>selected_cars_df</code>. Show the first few rows of the <code>selected_cars_df</code>.</p>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="data-manipulation.html#cb372-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
 <span id="cb372-2"><a href="data-manipulation.html#cb372-2" tabindex="-1"></a><span class="co"># CODE HERE</span></span>
@@ -993,7 +993,7 @@ column_name &gt; 5 # This is the condition)</code></pre>
 ## 4          5.0         3.6          1.4         0.2  setosa
 ## 5          5.4         3.9          1.7         0.4  setosa
 ## 6          4.6         3.4          1.4         0.3  setosa</code></pre>
-<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
 <p>With the <code>car_sales</code> data set that you used above, use <code>filter()</code> function to get the cars that were sold from the year 2008 to present and name them <code>latest_car_sales</code>. Count the number of observations made and show the first few rows.</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="data-manipulation.html#cb378-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
 <span id="cb378-2"><a href="data-manipulation.html#cb378-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
@@ -1053,7 +1053,7 @@ arranged_data = arrange(data_frame, desc(column_name))</code></pre>
 ## 4          7.6         3.0          6.6         2.1 virginica
 ## 5          7.9         3.8          6.4         2.0 virginica
 ## 6          7.3         2.9          6.3         1.8 virginica</code></pre>
-<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
 <p>Arrange the columns in the <code>car_sales</code> data set according to <code>mileage</code> in descending order. Show the last few rows</p>
 <div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="data-manipulation.html#cb385-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
 <span id="cb385-2"><a href="data-manipulation.html#cb385-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
@@ -1115,7 +1115,7 @@ In this case we can calculate the log off Sepal length in the iris data</p>
 ## 5                     7.00
 ## 6                     4.25</code></pre>
 <p>The “Petal.Length.Width.Ratio” is found by dividing the Petal.Length and the Petal.Width variables.</p>
-<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
 <p>Using the <code>car_sales</code> data set, create a new column, <code>"distance_covered_km"</code>, calculated from the <code>mileage</code>. Just multiply <code>mileage</code> with <code>1.609</code>. Show the first few rows of the mutated data frame.</p>
 <div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="data-manipulation.html#cb390-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
 <span id="cb390-2"><a href="data-manipulation.html#cb390-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
@@ -1153,7 +1153,7 @@ In this case we can calculate the log off Sepal length in the iris data</p>
 ## 5          5           3.6          1.4         0.2 setosa 
 ## 6          5.4         3.9          1.7         0.4 setosa</code></pre>
 <p>This groupings allow the analyst to retrieve insights at more base level and uncover more insights that could not have been possible when analyzing the entire data set</p>
-<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
 <p>Use the <code>car_sales</code> data set provided before to work on this activity. Load the data and group the sales by <code>model</code> to get the sum of every quantitative feature/variable. Name the resultant data frame, <code>car_sales_by_model</code>. Display the resultant data frame.</p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="data-manipulation.html#cb393-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
 <span id="cb393-2"><a href="data-manipulation.html#cb393-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
@@ -1169,7 +1169,7 @@ In this case we can calculate the log off Sepal length in the iris data</p>
 </div>
 <div id="summarise" class="section level3 hasAnchor" number="4.2.8">
 <h3><span class="header-section-number">4.2.8</span> Summarise<a href="data-manipulation.html#summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To calculate summary statistics such as average, median and maximum the <code>summarise()</code> is used. This function collapses mutilple rows into a summary row. For instance calculating the mean Petal width;</p>
+<p>To calculate summary statistics such as average, median and maximum the <code>summarise()</code> is used. This function collapses multiple rows into a summary row. For instance calculating the mean Petal width;</p>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="data-manipulation.html#cb394-1" tabindex="-1"></a><span class="co"># Load the required libraries </span></span>
 <span id="cb394-2"><a href="data-manipulation.html#cb394-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb394-3"><a href="data-manipulation.html#cb394-3" tabindex="-1"></a></span>
@@ -1202,7 +1202,7 @@ In this case we can calculate the log off Sepal length in the iris data</p>
 ## 1 setosa          0.246
 ## 2 versicolor      1.33 
 ## 3 virginica       2.03</code></pre>
-<p><span style="color: green;"><strong>Activity</strong></span></p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
 <p>You will be required to use the <code>car_sales</code> data set once again. Calculate the descriptive statistics using <code>summarise()</code> command.</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="data-manipulation.html#cb398-1" tabindex="-1"></a><span class="co"># Load the dplyr library</span></span>
 <span id="cb398-2"><a href="data-manipulation.html#cb398-2" tabindex="-1"></a><span class="co"># CODE HERE </span></span>
@@ -1320,6 +1320,20 @@ In this case we can calculate the log off Sepal length in the iris data</p>
 <p>The above process has explained how chained works in <code>dplyr</code>. Many functions/processed can be chained together to manipulate data to the desired output. The next section will apply chaining to biology and be used to answer a few questions that will cement your understanding in R as a biologist.</p>
 <div id="hands-on-exercises-1" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Hands-on Exercises<a href="data-manipulation.html#hands-on-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will be required to download the Furniture Sales Dataset from <a href="https://www.kaggle.com/datasets/rajagrawal7089/furniture-sales-data">here</a>. Use the data set to answer the questions below;<br />
+1. Perform the following tasks using a combination of <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, <code>mutate()</code>, and <code>group_by()</code>.</p>
+<ol style="list-style-type: lower-roman">
+<li>Select the columns <code>"category"</code>, <code>"sales"</code>, and <code>"profit_margin"</code>. Filter the data set to include only orders with a <code>"sales"</code> amount greater than 25, and arrange the data by <code>"profit_margin"</code> in descending order.</li>
+<li>Group the data by <code>"category"</code> and calculate the total <code>sales</code> and <code>profit_margin</code> for each category. Arrange the results by total sales in ascending order.<br />
+<br></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Answer the following questions by chaining two or three <code>dplyr</code> verbs:</li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li>What store type had products made of fabric material sold?</li>
+<li>What is the average <code>"profit margin"</code> for each <code>"category"</code> of products?</li>
+</ol>
 
 </div>
 </div>

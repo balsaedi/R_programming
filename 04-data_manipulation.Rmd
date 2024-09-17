@@ -493,7 +493,7 @@ remaining_iris_data = select(iris,
 head(remaining_iris_data)
 ```
 
-<span style="color: green;">**Activity**</span>
+<span style="color: green;">**Practical exercise**</span>
 
 You will be required to use the `car_sales` data set from https://raw.githubusercontent.com/insaid2018/Term-1/master/Data/Projects/car_sales.csv. Read the data using `read.csv` and select the `car, price, body, mileage, engV, engType, year, model`. Save the data frame from the selected columns as `selected_cars_df`. Show the first few rows of the `selected_cars_df`. 
 
@@ -568,7 +568,7 @@ wide_sepal_iris = filter(iris, #the data frame
 head(wide_sepal_iris)
 ```
 
-<span style="color: green;">**Activity**</span>
+<span style="color: green;">**Practical exercise**</span>
 
 With the `car_sales` data set that you used above, use `filter()` function to get the cars that were sold from the year 2008 to present and name them `latest_car_sales`. Count the number of observations made and show the first few rows. 
 
@@ -647,7 +647,7 @@ by_petal_length = arrange(iris, # data frame
 head(by_petal_length)
 ```
 
-<span style="color: green;">**Activity**</span>
+<span style="color: green;">**Practical exercise**</span>
 
 Arrange the columns in the `car_sales` data set according to `mileage` in descending order. Show the last few rows
 
@@ -715,7 +715,7 @@ head(new_iris)
 
 The "Petal.Length.Width.Ratio" is found by dividing the Petal.Length and the Petal.Width variables. 
 
-<span style="color: green;">**Activity**</span>
+<span style="color: green;">**Practical exercise**</span>
 
 Using the `car_sales` data set, create a new column, `"distance_covered_km"`, calculated from the `mileage`. Just multiply `mileage` with `1.609`. Show the first few rows of the mutated data frame. 
 
@@ -767,7 +767,7 @@ head(iris_groups)
 
 This groupings allow the analyst to retrieve insights at more base level and uncover more insights that could not have been possible when analyzing the entire data set
 
-<span style="color: green;">**Activity**</span>
+<span style="color: green;">**Practical exercise**</span>
 
 Use the `car_sales` data set provided before to work on this activity. Load the data and group the sales by `model` to get the sum of every quantitative feature/variable. Name the resultant data frame, `car_sales_by_model`. Display the resultant data frame. 
 
@@ -802,7 +802,7 @@ car_sales_by_model
 
 
 ### Summarise
-To calculate summary statistics such as average, median and maximum the `summarise()` is used. This function collapses mutilple rows into a summary row. For instance calculating the mean Petal width;
+To calculate summary statistics such as average, median and maximum the `summarise()` is used. This function collapses multiple rows into a summary row. For instance calculating the mean Petal width;
 ```{r}
 # Load the required libraries 
 library(dplyr)
@@ -833,7 +833,7 @@ mean_petal_widths = summarise(grouped_iris, mean_value=mean(Petal.Width))
 mean_petal_widths
 ```
 
-<span style="color: green;">**Activity**</span>
+<span style="color: green;">**Practical exercise**</span>
 
 You will be required to use the `car_sales` data set once again. Calculate the descriptive statistics using `summarise()` command. 
 
@@ -945,9 +945,13 @@ head(cars4)
 The above process has explained how chained works in `dplyr`. Many functions/processed can be chained together to manipulate data to the desired output. The next section will apply chaining to biology and be used to answer a few questions that will cement your understanding in R as a biologist. 
 
 ### Hands-on Exercises
+You will be required to download the Furniture Sales Dataset from [here](https://www.kaggle.com/datasets/rajagrawal7089/furniture-sales-data). Use the data set to answer the questions below;  
+1. Perform the following tasks using a combination of `select()`, `filter()`, `arrange()`, `mutate()`, and `group_by()`.
 
+  i. Select the columns `"category"`, `"sales"`, and `"profit_margin"`. Filter the data set to include only orders with a `"sales"` amount greater than 25, and arrange the data by `"profit_margin"` in descending order.
+  ii. Group the data by `"category"` and calculate the total `sales` and `profit_margin` for each category. Arrange the results by total sales in ascending order.  
+<br>
+2. Answer the following questions by chaining two or three `dplyr` verbs:
 
-
-
-
-
+  i. What store type had products made of fabric material sold? 
+  ii.  What is the average `"profit margin"` for each `"category"` of products?
