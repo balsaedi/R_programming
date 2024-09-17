@@ -465,7 +465,8 @@ The <code>theme_minimal()</code> removes background colors, extra gridlines and 
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-188-1.png" width="672" />
 The <code>theme_dark()</code> is a clear opposite of <code>theme_light</code> as it produces a plot with a dark grid lines.</p>
 <p>There are more themes provided in <code>ggplot2</code> like <code>theme_bw()</code></p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>mtcars</code> data set, create a bar plot to visualize the number of cars for each unique number of cylinders (<code>cyl</code>) in the mtcars data set. Apply different themes to the bar plot.</p>
 <ul>
 <li><strong>Labels and Titles</strong></li>
 </ul>
@@ -505,7 +506,8 @@ The <code>theme_dark()</code> is a clear opposite of <code>theme_light</code> as
 <span id="cb424-14"><a href="data-visualization.html#cb424-14" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
 <span id="cb424-15"><a href="data-visualization.html#cb424-15" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>mtcars</code> data set, create a bar plot to visualize the number of cars for each unique number of cylinders (<code>cyl</code>) in the mtcars data set. Add <code>x</code>, <code>y</code> axes labels and titles to the plot.</p>
 <ul>
 <li><strong>Color and aesthetics</strong></li>
 </ul>
@@ -536,7 +538,8 @@ The <code>theme_dark()</code> is a clear opposite of <code>theme_light</code> as
 <span id="cb426-4"><a href="data-visualization.html#cb426-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;G1&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;G2&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>The <code>scale_color_manual()</code> function allows you to manually set the colors for each level of the group variable. In this case, G1 is set to blue and G2 to red.</p>
-<p>&lt;-<strong>add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the <code>mtcars</code> data set, create a bar plot to visualize the number of cars for each unique number of cylinders (<code>cyl</code>) in the mtcars data set. Play with different foreground and background colors to come up with the best looking plot.</p>
 </div>
 </div>
 </div>
@@ -587,7 +590,8 @@ The female employee have an older working population than the male counterparts 
 <span id="cb430-17"><a href="data-visualization.html#cb430-17" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
 <span id="cb430-18"><a href="data-visualization.html#cb430-18" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Load the inbuilt <code>ToothGrowth</code> data set and create a boxplot to compare the distribution of tooth length (<code>len</code>) across the different dose levels (<code>dose</code>) of Vitamin C in the <code>ToothGrowth</code> data set. Make sure to label the axes and title the plot appropriately.</p>
 <ul>
 <li><strong>Violin Plots</strong></li>
 </ul>
@@ -597,7 +601,8 @@ The female employee have an older working population than the male counterparts 
 <span id="cb431-2"><a href="data-visualization.html#cb431-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Age, <span class="at">y=</span><span class="st">&quot;&quot;</span>))<span class="sc">+</span></span>
 <span id="cb431-3"><a href="data-visualization.html#cb431-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the same <code>ToothGrowth</code> data set and create a violin plot to compare the distribution of tooth length (<code>len</code>) across the different dose levels (<code>dose</code>) of Vitamin C in the <code>ToothGrowth</code> data set. Make sure to label the axes and title the plot appropriately.</p>
 <ul>
 <li><strong>Facet Grids</strong></li>
 </ul>
@@ -646,7 +651,8 @@ The female employee have an older working population than the male counterparts 
 <span id="cb436-2"><a href="data-visualization.html#cb436-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(category <span class="sc">~</span> sub_category)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-202-1.png" width="672" />
 As seen above, there is a boxplot to represent the distribution for each <code>sub_category</code> in a <code>category</code>.</p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the same <code>ToothGrowth</code> data set, create a violin plot to visualize the distribution of tooth length (<code>le</code>n<code>) across the different dose levels (</code>dose<code>). Use</code>facet_wrap()<code>or</code>facet_grid()<code>to split the plot by the supplement type (</code>supp`). Make sure to label the axes and add an appropriate title</p>
 </div>
 <div id="combining-multiple-plots" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Combining Multiple Plots<a href="data-visualization.html#combining-multiple-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -708,7 +714,14 @@ As seen above, there is a boxplot to represent the distribution for each <code>s
 <p>Now combine the three plots side by side</p>
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="data-visualization.html#cb449-1" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Down load the E-commerce Customer Behavior Data set from <a href="https://www.kaggle.com/datasets/samps74/e-commerce-customer-behavior-dataset/data">here</a>. Create multiple plots that will combine;</p>
+<ul>
+<li>A histogram to show annual income distribution</li>
+<li>A box plot that will show Time on Site distribution</li>
+<li>A bar chart that compare different genders count for the customers</li>
+<li>A scatter plot to compare age vs annual income</li>
+</ul>
 
 </div>
 </div>

@@ -216,7 +216,9 @@ The `theme_dark()` is a clear opposite of `theme_light` as it produces a plot wi
 
 There are more themes provided in `ggplot2` like `theme_bw()`
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the `mtcars` data set, create a bar plot to visualize the number of cars for each unique number of cylinders (`cyl`) in the mtcars data set. Apply different themes to the bar plot. 
 
 - **Labels and Titles**
 
@@ -264,7 +266,9 @@ p + labs(
   )
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the `mtcars` data set, create a bar plot to visualize the number of cars for each unique number of cylinders (`cyl`) in the mtcars data set. Add `x`, `y` axes labels and titles to the plot. 
 
 - **Color and aesthetics**
 
@@ -301,7 +305,9 @@ ggplot(df, aes(x = category, y = value, color = group)) +
 
 The `scale_color_manual()` function allows you to manually set the colors for each level of the group variable. In this case, G1 is set to blue and G2 to red.
 
-<-**add a practical exercise**-> 
+<span style="color: green;">**Practical exercise**</span>
+
+Using the `mtcars` data set, create a bar plot to visualize the number of cars for each unique number of cylinders (`cyl`) in the mtcars data set. Play with different foreground and background colors to come up with the best looking plot. 
 
 ## Advanced Data Visualization
 ### Creating Complex Visualizations
@@ -358,7 +364,9 @@ ggplot(df, aes(x=Age, y=Gender))+
   
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Load the inbuilt `ToothGrowth` data set and create a boxplot to compare the distribution of tooth length (`len`) across the different dose levels (`dose`) of Vitamin C in the `ToothGrowth` data set. Make sure to label the axes and title the plot appropriately.
 
 - **Violin Plots**
 
@@ -371,7 +379,9 @@ ggplot(df, aes(x=Age, y=""))+
   geom_violin(fill = "skyblue", color = "darkblue")
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the same `ToothGrowth` data set and create a violin plot to compare the distribution of tooth length (`len`) across the different dose levels (`dose`) of Vitamin C in the `ToothGrowth` data set. Make sure to label the axes and title the plot appropriately.
 
 - **Facet Grids**
 
@@ -423,7 +433,10 @@ p + facet_grid(category ~ sub_category)
 ```
 As seen above, there is a boxplot to represent the distribution for each `sub_category` in a `category`. 
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the same `ToothGrowth` data set, create a violin plot to visualize the distribution of tooth length (`le`n`) across the different dose levels (`dose`). Use `facet_wrap()` or `facet_grid()` to split the plot by the supplement type (`supp`). Make sure to label the axes and add an appropriate title
+
 
 ### Combining Multiple Plots
 Different plots can be combined into a single visualization. This provides a comprehensive view and different aspects of the data. The interrelationships between the variables can also be analyzed. There are multiple ways to combine plots in R(`ggplot`);
@@ -506,4 +519,11 @@ Now combine the three plots side by side
 grid.arrange(p1, p2, p3, nrow = 1, ncol = 3)
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Down load the E-commerce Customer Behavior Data set from [here](https://www.kaggle.com/datasets/samps74/e-commerce-customer-behavior-dataset/data). Create multiple plots that will combine;
+
+- A histogram to show annual income distribution 
+- A box plot that will show Time on Site distribution 
+- A bar chart that compare different genders count for the customers 
+- A scatter plot to compare age vs annual income
