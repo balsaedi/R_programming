@@ -57,7 +57,9 @@ median(ages)
 mode(ages)
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Load the inbuilt `iris` R data set, retrieve the sepal width(`Sepal.Width`) and sepal length(`Sepal.length`) of the each Iris species and store in separate vectors. For instance, the sepal width for *setosa* should be in a variable `setosa.sepal.width`. Finally calculate and interpret the mean, median and mode for each vector
 
 - **Variance and Standard deviation**
 
@@ -78,7 +80,9 @@ var(athlete_weights)
 sd(athlete_weights)
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the same iris data set, calculate the variance and standard deviation for the `versicolor` species petal width(`Petal.Width`).
 
 - **Range and Interquartile Range**
 
@@ -141,10 +145,13 @@ diff(range(athlete_weights)) # calculate the range value
 IQR(athlete_weights)
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Load the `iris` data set and calculate the range and the Interquartile Range for the Petal Length and petal width for each iris species
 
 ### Visualization of Descriptive Statistics
 - **Boxplots**
+
 Boxplots provide a visual summary of data distribution. It helps the analyst understand the spread, skewness and outliers in the data set. 
 
 ![](images/labelled_boxplot.png)
@@ -195,7 +202,9 @@ ggplot(df_with_outliers, aes(x = value)) +
 
 The red dots are the outliers
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Use the `iris` data set to plot boxplots that represent the petal length for each species. Analyze the boxplots and compare them. 
 
 - **Histograms and Density Plots**
 
@@ -254,7 +263,9 @@ ggplot(df, aes(x = value)) +
 
 From the graphs above, histograms provide a bar-chart-like representation of the data distribution while density plots proved a smoother view of the data distribution. 
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Load the `airquality`, an inbuilt R data set. Plot a density plot and histogram separately to visualize the distribution of the speed of wind in mph(`Wind`)
 
 ### Hands On Exercise
 
