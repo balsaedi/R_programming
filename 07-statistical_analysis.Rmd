@@ -269,6 +269,8 @@ Load the `airquality`, an inbuilt R data set. Plot a density plot and histogram 
 
 ### Hands On Exercise
 
+
+
 ## Correlation and Regression Analysis
 ### Introduction to Correlation 
 - **Pearson and Spearman Correlation**
@@ -297,7 +299,9 @@ where;
   
 Spearman correlation is insensitive with outliers because it uses ranks other than outliers. 
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Load the `airquality` data set. Calculate the correlation of `Wind` and temperature `Wind`. Interpret the coefficients for various data sets.
 
 - **Visualizing Correlation**
 
@@ -380,7 +384,9 @@ corrplot(cor_matrix, method = "color", type = "upper", tl.col = "black", tl.srt 
 
 The two plots visualizes the correlation between the variables in the data set. `Var5` and `Var1` have a high correlation(0.98) while `Var5` and `Var2` have a very low correlation value(-0.07)
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Load the same `airquality` inbuilt R data set. Create a scatter plot to show the relationship between `Wind` and `Temp` variable. Also plot a correlation heatmap for numeric data set(`Ozone`, `Solar.R`, `Wind` and `Temp`)
 
 ### Introduction to Regression Analysis
 Regression is a statistical method used to measure the strength and relationship of a target(dependent) with one or more independent variables. Correlation is very vital in determining regression. Linear regression is the most technique of regression, there are some more advanced forms of regression. 
@@ -426,7 +432,9 @@ summary(lin_reg)
 
 Coefficients, the value `B` and `c` represent the intercept and the **gradient(slope)** in the equation. The **R- Squared** value indicates how well the independent variable explains the dependent variable. The closer the R-square value to 1 the better the fit. Finally, the **p-value** is associated with the gradient and tells the statistician whether the relationship between the variables is statistically significant. 
 
-<--**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the `airquality` data set fit a linear regression model to find the relationship between `Wind` (independent variable) and `Temp` (dependent/target variable)
 
 - **Multiple Linear Regression**
 
@@ -475,15 +483,13 @@ model <- lm(weight ~ height + age, data = data)
 summary(model)
 ```
 
-<-**Interpret the results**->
+<span style="color: green;">**Practical exercise**</span>
 
-<-**Add a practical exercise**->
+Using the `airquality` data set, fit a multiple linear regression model whereby the Solar radiation(`Solar.R`), `Ozone` and `Wind` are the independent variables while the Temperature (`Temp`) is the dependent variable. Interpret and analyze the results
 
-- **Hands-on Exercises**
+### Hands-on Exercises
 
-Participants conduct correlation analysis and fit regression models on provided datasets.
-
-Interpretation and discussion of the statistical models and their implications.
+In this course, you will be required to download the Boston Housing data set from [here](https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data). Fit a multiple regression model to the data set. The goal is to predict the price of the houses in Boston. Interpret and discuss the multiple linear regression model and its implication
 
 
 ## Advanced Statistical Methods
@@ -709,3 +715,4 @@ You can see from the table, those students who never smoke lead in every exercis
 Bengaluru Restaurants dataset - https://www.kaggle.com/datasets/mrmars1010/restaurants-dataset-bengaluru
 Car Sales data set - https://github.com/balsaedi/R_programming/blob/main/data/car_sales.csv
 Furniture Sales Data set - https://www.kaggle.com/datasets/rajagrawal7089/furniture-sales-data
+Boston Housing Data set - https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data
