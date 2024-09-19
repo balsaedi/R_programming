@@ -334,7 +334,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb580-2"><a href="time-series-analysis.html#cb580-2" tabindex="-1"></a>decomposed_ts <span class="ot">&lt;-</span> <span class="fu">decompose</span>(AirPassengers)</span>
 <span id="cb580-3"><a href="time-series-analysis.html#cb580-3" tabindex="-1"></a><span class="co"># Plotting will be done later</span></span>
 <span id="cb580-4"><a href="time-series-analysis.html#cb580-4" tabindex="-1"></a><span class="co"># decomposed_ts # uncomment to show the data</span></span></code></pre></div>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>In this course, you will be required to download the amazon stock prices prediction data set from <a href="https://www.kaggle.com/datasets/aenes95/amazon-stock-price-prediction">here</a></p>
+<p>Decompose the time series data set into trend, seasonal and residual components.</p>
 <ul>
 <li><strong>Visualization of Time Series Data</strong></li>
 </ul>
@@ -414,7 +416,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 11 1949-12-01      104 129.0000 -53.59343  28.593434
 ## 12 1949-12-31      118 129.7500 -28.61995  16.869949</code></pre>
 <p><strong>Check</strong>______<strong>it</strong>____<strong>later</strong></p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the amazon stock prices prediction data set, plot the data to identify time series patterns and trends</p>
 </div>
 <div id="basic-time-series-forecasting" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Basic Time Series Forecasting<a href="time-series-analysis.html#basic-time-series-forecasting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -499,7 +502,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><em>The green line represents the simple moving average over a 12-month sliding window</em></li>
 </ul>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Apply moving averages to smooth and forecast the amazon stock prices prediction data for the next one year</p>
 </div>
 <div id="arima-model" class="section level3 hasAnchor" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> ARIMA model<a href="time-series-analysis.html#arima-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -611,11 +615,14 @@ The <code>forecast</code> library can be installed by;</p>
 <span id="cb606-5"><a href="time-series-analysis.html#cb606-5" tabindex="-1"></a><span class="fu">plot</span>(forecast_arima, <span class="at">main =</span> <span class="st">&quot;ARIMA Forecast for AirPassengers&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Log(Passengers)&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
 <p>The blue part of the plot represents the forecasted values.</p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Fit the ARIMA model to the Amazon Stock Prices Prediction data and interpret the results.</p>
 </div>
 </div>
 <div id="hands-on-exercises-6" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Hands-On Exercises<a href="time-series-analysis.html#hands-on-exercises-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You will be required to download the Electricity Price &amp; Demand 2018-2023 data set from <a href="https://www.kaggle.com/datasets/joebeachcapital/nsw-australia-electricity-demand-2018-2023/data">here</a></p>
+<p>Perform time series on the total demand on one of the csv files provided from visualization to forecasting</p>
 
 </div>
 </div>

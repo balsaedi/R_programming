@@ -42,7 +42,11 @@ decomposed_ts <- decompose(AirPassengers)
 # decomposed_ts # uncomment to show the data
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+In this course, you will be required to download the amazon stock prices prediction data set from [here](https://www.kaggle.com/datasets/aenes95/amazon-stock-price-prediction)
+
+Decompose the time series data set into trend, seasonal and residual components. 
 
 - **Visualization of Time Series Data**
 
@@ -115,7 +119,9 @@ head(df_decomposed)
 
 
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the amazon stock prices prediction data set, plot the data to identify time series patterns and trends
 
 ## Basic Time Series Forecasting 
 ### Moving Averages
@@ -192,7 +198,9 @@ ggplot(df_airpassengers, aes(x = Month)) +
 
 * *The green line represents the simple moving average over a 12-month sliding window*
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Apply moving averages to smooth and forecast the amazon stock prices prediction data for the next one year
 
 ### ARIMA model 
 **ARIMA** stands for *AutoRegressive Integrated Moving Average* that is defined in three parameters namely; p, d and q where;
@@ -298,7 +306,13 @@ plot(forecast_arima, main = "ARIMA Forecast for AirPassengers", xlab = "Time", y
 
 The blue part of the plot represents the forecasted values. 
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Fit the ARIMA model to the Amazon Stock Prices Prediction data and interpret the results. 
 
 
 ## Hands-On Exercises 
+
+You will be required to download the Electricity Price & Demand 2018-2023 data set from [here](https://www.kaggle.com/datasets/joebeachcapital/nsw-australia-electricity-demand-2018-2023/data)
+
+Perform time series on the total demand on one of the csv files provided from visualization to forecasting
