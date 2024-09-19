@@ -567,8 +567,12 @@ t_test_result <- t.test(student_marks, mu = 70)
 # Display the t-test result
 print(t_test_result)
 ```
+<span style="color: green;">**Practical exercise**</span>
 
--*Two-Sample t-test*
+Conduct one sample t-test on the sepal length of the setosa iris. The pre-assumed mean is 5.84 units.
+
+- *Two-Sample t-test*
+
 Unlike one sample t-test where a sample population is tested against a pre-assumed mean, the Tow-sample t-test determines if there is a significant difference between the means of two independent populations. 
 
 The practical application of two-sample t-test can be when comparing the test scores of two classes. This helps the statistician to understand if one class did better than the other one or it's just a matter of luck. 
@@ -614,7 +618,9 @@ ttest_result
 
 <-**Make a conclusion of the observations**->
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the iris data set, compare the petal length of the *versicolor* and *virginica* species using two-sample t-test. Interpret the results
 
 #### ANOVA (Analysis of Variance)
 ANOVA is a statistical test used to analyze the difference between the means of more than two groups. This is different from the ttest that analyzes one or two groups, it uses F test to find the statistical significance. Multiple means are compared at once and if one mean is different the hypothesis is rejected. 
@@ -645,7 +651,9 @@ anova
 
 <-**Interpret and report the ANOVA results**[here](https://www.scribbr.com/statistics/one-way-anova/#:~:text=ANOVA%2C%20which%20stands%20for%20Analysis,ANOVA%20uses%20two%20independent%20variables.)->
 
-<-**Add a practical example**->
+<span style="color: green;">**Practical exercise**</span>
+
+Perform ANOVA on the sepal width of the three species in the iris data set and interpret the results. 
 
 #### Chi-Square Test
 This is a statistical test that determines the difference between the observed and the expected data. It determines if the relationship between two categorical variables is due to chance or a relationship between them. 
@@ -701,9 +709,10 @@ legend("center", legend = rownames(stu_data), fill = c("lightblue", "lightgreen"
 
 You can see from the table, those students who never smoke lead in every exercise level while the heavy smokers are the least in every group. 
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
 
 ### Hands-on Exercises
+
 
 ## Datasets 
 - tweets Dataset from the rtweet Package
