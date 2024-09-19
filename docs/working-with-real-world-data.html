@@ -242,7 +242,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
 <li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#datasets"><i class="fa fa-check"></i><b>7.4</b> Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
 <ul>
@@ -270,6 +269,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="time-series-analysis.html"><a href="time-series-analysis.html#hands-on-exercises-6"><i class="fa fa-check"></i><b>9.4</b> Hands-On Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="capstone-project.html"><a href="capstone-project.html"><i class="fa fa-check"></i><b>10</b> Capstone Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="capstone-project.html"><a href="capstone-project.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="capstone-project.html"><a href="capstone-project.html#project-overview-and-objectives"><i class="fa fa-check"></i><b>10.1.1</b> Project Overview and Objectives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="capstone-project.html"><a href="capstone-project.html#group-formation"><i class="fa fa-check"></i><b>10.1.2</b> Group Formation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="capstone-project.html"><a href="capstone-project.html#project-planning"><i class="fa fa-check"></i><b>10.2</b> Project Planning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="capstone-project.html"><a href="capstone-project.html#defining-the-problem-statement"><i class="fa fa-check"></i><b>10.2.1</b> Defining the problem statement</a></li>
+<li class="chapter" data-level="10.2.2" data-path="capstone-project.html"><a href="capstone-project.html#planning-the-analysis-workflow"><i class="fa fa-check"></i><b>10.2.2</b> Planning the Analysis WorkFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="capstone-project.html"><a href="capstone-project.html#project-execution"><i class="fa fa-check"></i><b>10.3</b> Project Execution</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1"><i class="fa fa-check"></i><b>10.3.1</b> Part 1</a></li>
+<li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -441,41 +460,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb523-12"><a href="working-with-real-world-data.html#cb523-12" tabindex="-1"></a><span class="fu">summaryRprof</span>()</span></code></pre></div>
 <pre><code>## $by.self
 ##         self.time self.pct total.time total.pct
-## &quot;rnorm&quot;      0.36      100       0.36       100
+## &quot;rnorm&quot;      0.32      100       0.32       100
 ## 
 ## $by.total
 ##                           total.time total.pct self.time self.pct
-## &quot;rnorm&quot;                         0.36       100      0.36      100
-## &quot;block_exec&quot;                    0.36       100      0.00        0
-## &quot;call_block&quot;                    0.36       100      0.00        0
-## &quot;eng_r&quot;                         0.36       100      0.00        0
-## &quot;eval_with_user_handlers&quot;       0.36       100      0.00        0
-## &quot;eval&quot;                          0.36       100      0.00        0
-## &quot;evaluate_call&quot;                 0.36       100      0.00        0
-## &quot;evaluate::evaluate&quot;            0.36       100      0.00        0
-## &quot;evaluate&quot;                      0.36       100      0.00        0
-## &quot;generator$render&quot;              0.36       100      0.00        0
-## &quot;handle&quot;                        0.36       100      0.00        0
-## &quot;in_dir&quot;                        0.36       100      0.00        0
-## &quot;in_input_dir&quot;                  0.36       100      0.00        0
-## &quot;knitr::knit&quot;                   0.36       100      0.00        0
-## &quot;process_file&quot;                  0.36       100      0.00        0
-## &quot;process_group&quot;                 0.36       100      0.00        0
-## &quot;render_book_script&quot;            0.36       100      0.00        0
-## &quot;render_book&quot;                   0.36       100      0.00        0
-## &quot;render_cur_session&quot;            0.36       100      0.00        0
-## &quot;rmarkdown::render_site&quot;        0.36       100      0.00        0
-## &quot;rmarkdown::render&quot;             0.36       100      0.00        0
-## &quot;timing_fn&quot;                     0.36       100      0.00        0
-## &quot;withCallingHandlers&quot;           0.36       100      0.00        0
-## &quot;withVisible&quot;                   0.36       100      0.00        0
-## &quot;xfun:::handle_error&quot;           0.36       100      0.00        0
+## &quot;rnorm&quot;                         0.32       100      0.32      100
+## &quot;block_exec&quot;                    0.32       100      0.00        0
+## &quot;call_block&quot;                    0.32       100      0.00        0
+## &quot;eng_r&quot;                         0.32       100      0.00        0
+## &quot;eval_with_user_handlers&quot;       0.32       100      0.00        0
+## &quot;eval&quot;                          0.32       100      0.00        0
+## &quot;evaluate_call&quot;                 0.32       100      0.00        0
+## &quot;evaluate::evaluate&quot;            0.32       100      0.00        0
+## &quot;evaluate&quot;                      0.32       100      0.00        0
+## &quot;generator$render&quot;              0.32       100      0.00        0
+## &quot;handle&quot;                        0.32       100      0.00        0
+## &quot;in_dir&quot;                        0.32       100      0.00        0
+## &quot;in_input_dir&quot;                  0.32       100      0.00        0
+## &quot;knitr::knit&quot;                   0.32       100      0.00        0
+## &quot;process_file&quot;                  0.32       100      0.00        0
+## &quot;process_group&quot;                 0.32       100      0.00        0
+## &quot;render_book_script&quot;            0.32       100      0.00        0
+## &quot;render_book&quot;                   0.32       100      0.00        0
+## &quot;render_cur_session&quot;            0.32       100      0.00        0
+## &quot;rmarkdown::render_site&quot;        0.32       100      0.00        0
+## &quot;rmarkdown::render&quot;             0.32       100      0.00        0
+## &quot;timing_fn&quot;                     0.32       100      0.00        0
+## &quot;withCallingHandlers&quot;           0.32       100      0.00        0
+## &quot;withVisible&quot;                   0.32       100      0.00        0
+## &quot;xfun:::handle_error&quot;           0.32       100      0.00        0
 ## 
 ## $sample.interval
 ## [1] 0.02
 ## 
 ## $sampling.time
-## [1] 0.36</code></pre>
+## [1] 0.32</code></pre>
 <p>Additionally, the <code>pryr</code> package goes further to come up with additional functions to monitor memory usage. It can be installed by;</p>
 <pre><code>install.packages(&quot;pryr&quot;)</code></pre>
 <p>Below is a demonstration of how <code>pryr</code> library works</p>

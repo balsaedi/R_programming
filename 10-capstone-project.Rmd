@@ -1,0 +1,29 @@
+# Capstone Project
+## Introduction
+### Project Overview and Objectives 
+
+### Group Formation
+
+## Project Planning
+### Defining the problem statement
+
+### Planning the Analysis WorkFlow 
+
+
+## Project Execution
+### Part 1
+#### Data Cleaning and Preprocessing 
+
+
+#### Explanatory Data Analysis(EDA)
+
+
+
+### Part 2
+#### Model Building and Analysis 
+
+
+#### Evaluation and Insights
+
+## Project Presentations and Feedback
+

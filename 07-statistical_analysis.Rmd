@@ -714,21 +714,3 @@ You can see from the table, those students who never smoke lead in every exercis
 ### Hands-on Exercises
 
 
-## Datasets 
-- tweets Dataset from the rtweet Package
-- "Credit Card Fraud" dataset ifrom R package  creditcard
-- The "Groceries" from the R package  comes  arules
-- "pima" from MASS package
-- airquality (find the package)
-
-Bengaluru Restaurants dataset - https://www.kaggle.com/datasets/mrmars1010/restaurants-dataset-bengaluru
-
-Car Sales data set - https://github.com/balsaedi/R_programming/blob/main/data/car_sales.csv
-
-Furniture Sales Data set - https://www.kaggle.com/datasets/rajagrawal7089/furniture-sales-data
-
-Boston Housing Data set - https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data
-
-Amazon Stock Price Prediction - https://www.kaggle.com/datasets/aenes95/amazon-stock-price-prediction
-
-Electricity Price & Demand 2018-2023 - https://www.kaggle.com/datasets/joebeachcapital/nsw-australia-electricity-demand-2018-2023/data

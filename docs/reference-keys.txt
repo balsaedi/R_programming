@@ -77,7 +77,6 @@ t-tests
 anova-analysis-of-variance
 chi-square-test
 hands-on-exercises-3
-datasets
 working-with-real-world-data
 handling-large-datasets
 challenges-of-large-data-sets
@@ -102,3 +101,19 @@ basic-time-series-forecasting
 moving-averages
 arima-model
 hands-on-exercises-6
+capstone-project
+introduction
+project-overview-and-objectives
+group-formation
+project-planning
+defining-the-problem-statement
+planning-the-analysis-workflow
+project-execution
+part-1
+data-cleaning-and-preprocessing
+explanatory-data-analysiseda
+part-2
+model-building-and-analysis
+evaluation-and-insights
+project-presentations-and-feedback
+datasets
