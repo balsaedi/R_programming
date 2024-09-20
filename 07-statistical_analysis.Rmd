@@ -714,3 +714,35 @@ You can see from the table, those students who never smoke lead in every exercis
 ### Hands-on Exercises
 
 
+## Project: Applying Statistical Analysis 
+### Project Overview
+
+The primary goal of this project is to give you an opportunity to apply and integrate all the statistical concepts techniques learned so far using R. The project will guide you through the complete statistical modeling workflow. 
+
+You are therefore required to choose a data set from the list below;
+
+- MBA Admission dataset, Class 2025 - [download here](https://www.kaggle.com/datasets/taweilo/mba-admission-dataset)
+- Global Black Money Transactions Dataset - [download here](https://www.kaggle.com/datasets/waqi786/global-black-money-transactions-dataset)
+- Crop Yield Prediction Dataset - [download here](https://www.kaggle.com/datasets/mrigaankjaswal/crop-yield-prediction-dataset)
+- ChickWeight inbuilt R dataset - load from the command `data("ChickWeight")`
+- Seatbelts data set - load from the command `data("Seatbelts")`
+- The "Groceries" from the R package  comes  `arules`- Load the data by first importing arules(`library(arules)`) then the data by `data("Groceries")`
+- `"CreditCard"` data from package `AER`- Load the data by first importing AER (`library(AER)`) then the data by `data("CreditCard")`
+
+You will use the selected data set to; 
+
+- Identify the research questions that will help focus on what you want to investigate. 
+- Determine the key variables in your research questions like the independent and dependent variables.
+- Formulate the null and alternate hypothesis 
+
+### Conducting Statistical Analysis
+
+You will use the statistical techniques learned for instance descriptive statistics, correlation, regression and hypothesis testing to analyze this data set 
+
+**Note:** Emphasize on interpreting the results and understanding their implications 
+
+### Presenting Statistical Findings
+
+You will finally prepare a brief presentation that will summarize the statistical analysis and research
+
+Dicuss in groups the insights obtained, challenges faced and any potential improvements

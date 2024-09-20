@@ -242,6 +242,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.1</b> Introduction to Hypothesis Testing</a></li>
 <li class="chapter" data-level="7.3.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#hands-on-exercises-3"><i class="fa fa-check"></i><b>7.3.2</b> Hands-on Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-applying-statistical-analysis"><i class="fa fa-check"></i><b>7.4</b> Project: Applying Statistical Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statistical-analysis.html"><a href="statistical-analysis.html#project-overview"><i class="fa fa-check"></i><b>7.4.1</b> Project Overview</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statistical-analysis.html"><a href="statistical-analysis.html#conducting-statistical-analysis"><i class="fa fa-check"></i><b>7.4.2</b> Conducting Statistical Analysis</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statistical-analysis.html"><a href="statistical-analysis.html#presenting-statistical-findings"><i class="fa fa-check"></i><b>7.4.3</b> Presenting Statistical Findings</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="working-with-real-world-data.html"><a href="working-with-real-world-data.html"><i class="fa fa-check"></i><b>8</b> Working with Real-World Data</a>
 <ul>
@@ -459,9 +465,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb523-11"><a href="working-with-real-world-data.html#cb523-11" tabindex="-1"></a><span class="co"># Summary of memory usage</span></span>
 <span id="cb523-12"><a href="working-with-real-world-data.html#cb523-12" tabindex="-1"></a><span class="fu">summaryRprof</span>()</span></code></pre></div>
 <pre><code>## $by.self
-##             self.time self.pct total.time total.pct
-## &quot;rnorm&quot;          0.10    83.33       0.10     83.33
-## &quot;match.fun&quot;      0.02    16.67       0.02     16.67
+##         self.time self.pct total.time total.pct
+## &quot;rnorm&quot;      0.10    83.33       0.10     83.33
+## &quot;par&quot;        0.02    16.67       0.02     16.67
 ## 
 ## $by.total
 ##                           total.time total.pct self.time self.pct
@@ -490,11 +496,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &quot;handle&quot;                        0.10     83.33      0.00     0.00
 ## &quot;timing_fn&quot;                     0.10     83.33      0.00     0.00
 ## &quot;withVisible&quot;                   0.10     83.33      0.00     0.00
-## &quot;match.fun&quot;                     0.02     16.67      0.02    16.67
+## &quot;par&quot;                           0.02     16.67      0.02    16.67
 ## &quot;handle_output&quot;                 0.02     16.67      0.00     0.00
-## &quot;is_par_change&quot;                 0.02     16.67      0.00     0.00
-## &quot;lapply&quot;                        0.02     16.67      0.00     0.00
-## &quot;plot_calls&quot;                    0.02     16.67      0.00     0.00
 ## &quot;plot_snapshot&quot;                 0.02     16.67      0.00     0.00
 ## &quot;w$get_new&quot;                     0.02     16.67      0.00     0.00
 ## 

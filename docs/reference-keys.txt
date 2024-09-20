@@ -76,6 +76,10 @@ t-tests
 anova-analysis-of-variance
 chi-square-test
 hands-on-exercises-3
+project-applying-statistical-analysis
+project-overview
+conducting-statistical-analysis
+presenting-statistical-findings
 working-with-real-world-data
 handling-large-datasets
 challenges-of-large-data-sets
