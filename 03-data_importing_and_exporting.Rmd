@@ -76,8 +76,6 @@ head(df_sheet1)
 
 A detail documentation of the `read_excel()` function can be found [here](https://www.rdocumentation.org/packages/readxl/versions/1.4.1/topics/read_excel)
 
-<- **Add more methods**->
-
 ## Introduction to Data Exporting
 After data wrangling, manipulation and processing, the end product(processed data) can be saved for further use. The data can also be share to others. R has several functions to write the processed data locally into either CSV, Excel, text or other file formats. 
 

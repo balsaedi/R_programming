@@ -268,7 +268,31 @@ From the graphs above, histograms provide a bar-chart-like representation of the
 Load the `airquality`, an inbuilt R data set. Plot a density plot and histogram separately to visualize the distribution of the speed of wind in mph(`Wind`)
 
 ### Hands On Exercise
+In this exercise you will use the `"Pima.te"` data set from the MASS package. Follow the steps below to get the data ready and started;
 
+i. Install the `MASS` package by;
+```
+install.packages("MASS")
+```
+ii. Import the library
+```
+library(MASS)
+```
+iii. Load the pima dataset
+```
+# Load the data set 
+data("Pima.te")
+
+# Show the first few rows of the data 
+head(Pima.te)
+```
+
+After getting the data ready, apply the skills learnt to;
+
+1. Calculate the destcriptive statistics (mean, mode and median etc)
+2. Find the relationship between the plasma glucose concentration in an oral glucose tolerance test(`glu`) and the diastolic blood pressure(`bp`) using a scatter plot
+3. Compare the average age of the patients that had diabetes('type`) using a bar chart
+4. Find the distribution of age of the patients using a histogram. Explain the distribution. 
 
 
 ## Correlation and Regression Analysis
@@ -543,7 +567,7 @@ Before conducting t-test, there is a need to establish the null(H0) and alternat
 - *Null Hypothesis(H0)*: There is no significant difference between the sample mean and the population(hypothesized) mean.
 - *ALternate Hypothesis(Ha)*: There is a significant difference between the sample mean and the population mean. 
 
-P-value is the **Add some content**
+P-value is the probability value that tells you how likely is that your data could have occurred under null hypothesis. In our case a p-value of below  0.05 is considered to be statistically significant and the null value is rejected. The vice versa is true
 
 Lets perform a t-test using R;
 
@@ -584,9 +608,7 @@ ii. The two populations have a normal(typical bell-curve) distribution.
 iii. The two sample populations have a similar variations
 
 The two sample t-test is calculated by;
-$$t={\overline{x_1}-\overline{x_2}}\over{\sqrt{s_{1}^{2}}\over{n_1}-}$$
-
-<--**Remember to complete the formula of ....**-->
+![](images/two-sample-ttest.jpg)
 
 Where;
 
@@ -616,7 +638,14 @@ ttest_result = t.test(group_A_scores, group_B_scores,
 ttest_result
 ```
 
-<-**Make a conclusion of the observations**->
+* **t-value = -2.6403**: This indicates the difference between the means of the two groups, in terms of standard errors. A higher absolute value suggests a larger difference.
+* **Degrees of freedom (df) = 46.312**: This reflects the sample size and variability in the data.
+* **p-value = 0.01125**: Since the p-value is less than 0.05, we reject the null hypothesis. This suggests that the difference in means between Group A and Group B is statistically significant.
+* **95% confidence interval: (-11.08, -1.50)**: This indicates that we are 95% confident that the true difference in means lies between -11.08 and -1.50.
+* **Mean of x (Group A) = 74.73, Mean of y (Group B) = 81.02**: The average score of Group B is higher than Group A.
+
+In summary, the test shows a significant difference between the means of the two groups, with Group B having higher scores
+
 
 <span style="color: green;">**Practical exercise**</span>
 
@@ -635,9 +664,6 @@ i. **Independence of observations**: the data was collected using statistically 
 ii. **Normal distribution**: the dependent variable should follow a normal distribution.
 iii. **Homogeinity of variance**: All the groups being tested should have similar variations. 
 
-
-<-**Formula for ANOVA**->
-
 Lets calculate the ANOVA using the the crop yield data set. The fertilizer are in three categories; 1, 2 and 3
 ```{r}
 # Load the data set 
@@ -648,8 +674,21 @@ head(crop_df) # view the first few rows of the data set
 anova <- aov(yield ~ fertilizer, data = crop_df)
 anova
 ```
+The ANOVA output provides insights into the variation in crop yield explained by the fertilizer type. Here’s a detailed breakdown of the results:
 
-<-**Interpret and report the ANOVA results**[here](https://www.scribbr.com/statistics/one-way-anova/#:~:text=ANOVA%2C%20which%20stands%20for%20Analysis,ANOVA%20uses%20two%20independent%20variables.)->
+* **Sum of Squares (fertilizer) = 5.74322**: This value represents the variation in crop yield that can be attributed to the different types of fertilizers used in the experiment. In this case, 5.74322 units of the total variation are explained by fertilizer differences.
+
+* **Sum of Squares (Residuals) = 36.21101**: This is the unexplained variation in crop yield, also known as the error term. This shows how much of the variation is due to factors not accounted for in the model, such as environmental factors or random error.
+
+* **Degrees of Freedom (fertilizer) = 1**: There is only 1 degree of freedom for the fertilizer factor, which means there was a comparison between two groups (likely two fertilizer types or one fertilizer versus a control).
+
+* **Degrees of Freedom (Residuals) = 94**: There are 94 degrees of freedom associated with the residuals. This is related to the total number of observations minus the number of groups being compared. In this case, the large degrees of freedom indicate a sizable data set.
+
+* **Residual Standard Error = 0.6206638**: This value represents the typical deviation of the observed yield values from the predicted values, given the current model. A lower residual standard error suggests a better fit of the model to the data, though this value needs to be interpreted in context.
+
+The results show that the fertilizer type explains some of the variation in crop yield (Sum of Squares = 5.74322), while a larger portion remains unexplained (Sum of Squares of Residuals = 36.21101). To fully interpret the significance of this effect, a p-value and F-statistic would typically be calculated, but these are not provided here. Additionally, the residual standard error (0.6206638) gives an indication of the spread of the data around the predicted values, but more information would be needed to assess the strength of the model’s fit.
+
+In conclusion, while the fertilizer has some effect on crop yield, the overall variability and potential unbalanced data need further exploration for a complete understanding.
 
 <span style="color: green;">**Practical exercise**</span>
 
@@ -711,8 +750,27 @@ You can see from the table, those students who never smoke lead in every exercis
 
 <span style="color: green;">**Practical exercise**</span>
 
+Using the Iris dataset, perform a Chi-square test to determine if there is a relationship between two categorical variables: the species (Species) and a new categorical variable that classifies sepal length (Sepal.Length) into categories (e.g., "Short", "Medium", "Long").
+
+- "Short": below 3.0
+- "Medium": above 3.0 to 3.8
+- "Long": above 3.8
+
+Follow the steps below;
+
+1. Create a new variable `sepal.Length.Category` in the data set by categorizing the Sepal.Length variable into 3 categories: `"Short"`, `"Medium"`, and `"Long"` (as per the defined ranges).
+2. Perform a Chi-square test to see if there's an association between the new `sepal.Length.Category` categories and the `Species` column.
+3. Interpret the results of the Chi-square test
+
 ### Hands-on Exercises
 
+You are required to download the Groundhog Day Forecasts and Temperatures data set from [here](https://www.kaggle.com/datasets/groundhogclub/groundhog-day).
+
+- Perform one sample t-test on February Average temperature. The pre-assumed mean is 35
+- Conduct two sample t-test between the North East average temperature for March and the overall March daily temperature 
+- Perform ANOVA between the presence of Punxsutawney Phil and the February average temperature
+
+Interpret the results
 
 ## Project: Applying Statistical Analysis 
 ### Project Overview
