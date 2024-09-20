@@ -57,7 +57,6 @@ creating-complex-visualizations
 combining-multiple-plots
 explanatory-data-analysis
 introduction-to-eda
-eda-in-practice
 choosing-a-data-set
 conducting-eda
 present-findings

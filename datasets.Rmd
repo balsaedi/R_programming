@@ -1,6 +1,6 @@
 # Datasets 
 - tweets Dataset from the rtweet Package
-- "Credit Card Fraud" dataset ifrom R package  creditcard
+- "Credit Card Fraud" dataset from R package  creditcard
 - The "Groceries" from the R package  comes  arules
 - "pima" from MASS package
 - airquality (find the package)

@@ -19,14 +19,27 @@ Here are the common techniques involved in EDA;-
 
 There are more EDA techniques like univariate, bivariate and multivariate analysis, and inferential statistics. 
 
-### EDA in practice
-#### Choosing a data set 
+## Choosing a data set 
+You are required to select a data set from the list below and perform EDA;
 
+- MBA Admission dataset, Class 2025 - [download here](https://www.kaggle.com/datasets/taweilo/mba-admission-dataset)
+- Global Black Money Transactions Dataset - [download here](https://www.kaggle.com/datasets/waqi786/global-black-money-transactions-dataset)
+- Crop Yield Prediction Dataset - [download here](https://www.kaggle.com/datasets/mrigaankjaswal/crop-yield-prediction-dataset)
+- ChickWeight inbuilt R dataset - load from the command `data("ChickWeight")`
+- Seatbelts data set - load from the command `data("Seatbelts")`
+- The "Groceries" from the R package  comes  `arules`- Load the data by first importing arules(`library(arules)`) then the data by `data("Groceries")`
+- `"CreditCard"` data from package `AER`- Load the data by first importing AER (`library(AER)`) then the data by `data("CreditCard")`
 
-#### Conducting EDA
+Outline the questions to explore during EDA based on the Data set you have chosen
 
+## Conducting EDA
+You will use the skills acquired in this camp(especially `dplyr` and `ggplot2`) to;
 
-#### Present Findings 
+- Explore the data set structure 
+- Visualize the relationship between variables 
+- Summarize key findings 
 
+## Present Findings 
+Finally, you will prepare a brief presentation of your findings ,and discuss on the insights obtained and the techniques used. 
 
 
