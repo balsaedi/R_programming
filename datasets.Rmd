@@ -18,3 +18,5 @@ Amazon Stock Price Prediction - https://www.kaggle.com/datasets/aenes95/amazon-s
 Electricity Price & Demand 2018-2023 - https://www.kaggle.com/datasets/joebeachcapital/nsw-australia-electricity-demand-2018-2023/data
 
 Groundhog Day Forecasts and Temperatures - https://www.kaggle.com/datasets/groundhogclub/groundhog-day
+
+Amazon Fine Food Reviews data - https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews

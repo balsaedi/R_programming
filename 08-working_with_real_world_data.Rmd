@@ -60,9 +60,75 @@ They almost look similar but they are more different in operations. Here are som
 |`setDF(dt)` function is used to convert it to a data.frame where argument `dt` is the data.table| `setDT(df)` function is used to convert it to data.table where argument `df` is the data.frame|
 | Syntax: `data.table()`     | Syntax: `data.frame()`         |
 
-<-**Demonstrate basic data operations(check the guide)**->
+There are varieties of data.table operations that can be applied on large data sets. Let's explore a few of them
 
-<-**Add a practical exercise**->
+* **Filtering rows**
+
+Rows in a data.table can be filtered using conditions in data.table. For instance, lets filter the data above to find the ones above the age of 40
+```{r}
+# Get the ones above 40 years
+dtb1 <- student_df[age > 40]
+print(dtb1)
+```
+
+* **Selecting Specific Columns**
+
+You can select specific columns in a data.table. Lets select the age column 
+```{r}
+# Select the age column 
+age_dt <- student_df[, .(age)]
+print(age_dt)
+```
+
+* **Aggregating data**
+
+Aggregation can be done with the help of functions like `mean()`, `sum()` ...
+
+```{r}
+# Create a sample data.table
+dt <- data.table(
+  ID = 1:10,
+  Name = c("Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hannah", "Isaac", "Jack"),
+  Age = c(25, 30, 35, 40, 28, 32, 30, 29, 33, 36),
+  Score = c(85, 90, 88, 92, 76, 95, 89, 78, 82, 91)
+)
+
+# Print the data.table
+dt
+
+# Calculate the average score by Age
+aggregated_dt <- dt[, .(Average_Score = mean(Score)), by = Age]
+print(aggregated_dt)
+```
+
+* **Chaining**
+
+Multiple opeerations can be chained together for efficiency. In this case, we are;
+
+- filtering to get the student with score of above 85
+- aggregate the average score by mean 
+
+```{r}
+# Chain operations: Filter and aggregate
+result_dt <- dt[Score > 85, .(Average_Score = mean(Score)), by = Age]
+print(result_dt)
+```
+
+Alternatively, we can filter to get the records with a score of above 85 and select the `Name` and `Score` column.
+```{r}
+# Filter and select columns
+filtered_selected_dt <- dt[Score > 85, .(Name, Score)]
+print(filtered_selected_dt)
+```
+
+<span style="color: green;">**Practical exercise**</span>
+
+In this course, you will be required to use the US Accidents (2016 - 2023) data set which will be downloaded from [here](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents). Download the data and extract it to a specified destination path. Use the `data.table` package to;
+
+- read the data set into R using a `fread("filepath")` function.
+- filter to get the rows with `Severity` of more than 2
+- select the `Source`, `Severity` and the `Distance(mi)` columns 
+- Aggregate to find the distance of each source
 
 
 #### Memory Management in R
@@ -142,16 +208,96 @@ gc()
 The `gc()` function will accelerate the process of garbage collection rather than waiting for R to automatically free up the memory. 
 
 
-<-**Remember a practical exercise** find the exercises [here](http://adv-r.had.co.nz/memory.html)->
+<span style="color: green;">**Practical exercise**</span>
+
+After working on the previous practical exercise, you  will manage the memory by; 
+
+- Finding the  objects that fill up the memory and list them. 
+- Deleting the variables not required 
+- Using `gc` to accelerate the process of garbage collection
 
 ### Reading and Writing Large Files 
 #### Optimized File I/O
+The `data.table` package offers highly optimized functions like `fread()` and `fwrite()` that are much faster for reading and writing large files. They provide significant speedups due to efficient file handling and parallel processing. The I/O processes can be optimized by; 
 
+1. Efficient reading 
+2. Efficient writing 
+3. Parallel Processing for faster import/export
 
-<<--**Here is a good guide**[here](https://csgillespie.github.io/efficientR/input-output.html)-->>
+1. **Efficient Reading**
 
+The `fread()` function is designed to read large CSV files much faster than the `read.csv()` by using multiple threads and optimized parsing. Here is how you can read the file 
+```
+# Load the library
+library(data.table)
+
+# Read large csv file 
+data <- fread("GlobalLandTemperaturesByCity.csv")
+```
+Download the csv file from [here](https://www.kaggle.com/datasets/berkeleyearth/climate-change-earth-surface-temperature-data). Extract the downloaded file and read the first csv file.
+
+These are the perks of reading data using `fread()` function;
+- Parallel Reading: Uses multiple threads to read files faster.
+- Automatic Type Detection: Automatically detects column types without needing to pre-specify them.
+- Handling Big Data: Efficient for reading gigabytes of data.
+
+2. **Efficient Writing**
+
+A large data.table can saved locally using the `fwrite()` function. It can handle large data volumes efficiently and supports various formats.
+
+```
+# Writing a data frame to a CSV file using fwrite()
+fwrite(data, "output_file.csv")
+```
+
+The `"output_file"` is the destination path where the data.table is written.
+
+These are the features of `fwrite()`;
+
+- Fast Export: Writes data using optimized I/O to speed up the process.
+- Compression: Supports compression for efficient storage.
+- Parallel Writing: Uses multiple threads to write files faster.
+
+3. **Parallel Processing for faster Import/Export**
+
+The `fread()` and `fwrite()` use parallel processing by default however you can configure the number of threads used for reading and writing. The `setDTthreads()` is used to achieve this. Lets now read and write the data using 4 threads
+```
+# Set the number of threads to use for parallel processing
+setDTthreads(4)
+
+# Now fread() and fwrite() will use 4 threads
+data <- fread("large_dataset.csv")
+fwrite(data, "output_file.csv")
+```
+
+<span style="color: green;">**Practical exercise**</span>
+
+In this exercise, you are required to use the US Accidents (2016 - 2023) data set and solve the problems below;
+
+i. Read the data set using `fread()`
+ii. Time the `fread()` when reading the file. **Hint**: replace the `"large_dataset.csv"` by the file path of the downloaded file
+```
+# Timing fread() for a large file
+system.time(data <- fread("large_dataset.csv"))
+```
+iii. Add a new column into the data set. Just the convert the temperature from $^oC$(degrees Celcius) to $^oF$(degrees Farenheit)
+iv. Write the file locally and check the time taken to write the file. **Hint**: Here is how you can achieve step iii abd iv
+```
+# Do the Calculations
+
+# Timing fwrite() for a large file
+data[, new_column := rnorm(nrow(data))]  # Add a new column
+system.time(fwrite(data, "large_output.csv"))
+```
 
 ### Hands-On Exercises
+Download the Amazon Fine Food Reviews data set from [here](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews) and work on the following problems; 
+
+i. Remove any unwanted objects in the file system. Use `gc` to view any garbage collection statistics
+ii. Read the data set using `read.csv` and `fread` and time each method. Compare the time taken for each function to read the file. 
+iii. Remove the data set from the memory using `rm()` and call `gc()` again 
+iv. Reread the data set however control the threads. Set different thread value (e.g 1, 2, 3, 4 and 5) the compare the time taken for processing. 
+v. Write the file locally(use a different file name) and use `gc()` for garbage collection
 
 
 
