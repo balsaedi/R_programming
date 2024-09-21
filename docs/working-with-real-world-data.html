@@ -727,6 +727,7 @@ system.time(fwrite(data, &quot;large_output.csv&quot;))</code></pre>
 <li>Reread the data set however control the threads. Set different thread value (e.g 1, 2, 3, 4 and 5) the compare the time taken for processing.</li>
 <li>Write the file locally(use a different file name) and use <code>gc()</code> for garbage collection</li>
 </ol>
+<p>Finally, discuss on the importance of scalability when dealing with real-world data.</p>
 </div>
 </div>
 <div id="data-cleaning-and-transformation" class="section level2 hasAnchor" number="8.2">
@@ -755,7 +756,7 @@ system.time(fwrite(data, &quot;large_output.csv&quot;))</code></pre>
 <h4><span class="header-section-number">8.2.1.2</span> Data Cleaning techniques<a href="working-with-real-world-data.html#data-cleaning-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div id="handling-missing-data" class="section level5 hasAnchor" number="8.2.1.2.1">
 <h5><span class="header-section-number">8.2.1.2.1</span> Handling Missing Data<a href="working-with-real-world-data.html#handling-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Having missing data values is inevitable especially when integrating data from different sources. While there is no specific set method(one-time solution) to handle the missing data points in R, researchers have come up with different methodologies to tackle this issue. Here are some of them;</p>
+<p>The presence of missing data values is inevitable especially when integrating data from different sources. While there is no specific set method(one-time solution) to handle the missing data points in R, researchers have come up with different methodologies to tackle this issue. Here are some of them;</p>
 <ul>
 <li><em>Deletion</em>; this is a simple method that involves deleting all the records/rows that have null values. Otherwise, all rows that have null values in important columns can be deleted. <code>na.omit()</code> is one of the method.</li>
 <li><em>Imputation</em>: There are packages in R that can fill the null values by imputation. They use the remaining values in the data to create a model that will find a value for the missing one. These packages include <code>imputeR</code>, <code>Amelia</code> and <code>MissForest</code> that use the automated variable selection, bootstrap multiple imputation and single imputation to handle null values.</li>
@@ -867,7 +868,14 @@ install.packages(&quot;tidyr&quot;)</code></pre>
 ## 5          5     &lt;NA&gt;  27     Tennis   Kenya  65.0
 ## 6          5 Athlete6  35    Running Germany  99.0</code></pre>
 <p>You can see the target columns(<code>age</code>, <code>athlete_id</code> and <code>sport</code>) are filled and have zero null values. In the <code>fill()</code> function, there is an argument, <code>.direction</code> that specify the direction in which to fill the missing value. In this case the value of the argument is <code>"down"</code> because we are filling based on the previous value. It can be either <code>"up"</code>, <code>"downup"</code>(based on previous the later) or <code>"updown"</code>(based on later then previous).</p>
-<p>&lt;–<strong>Add a practical exercise</strong>–&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Download the Detailed NFL Play-by-Play Data 2009-2018 data from <a href="https://www.kaggle.com/datasets/maxhorowitz/nflplaybyplay2009to2016">here</a>. Read the data set and subset to have <code>Date , Drive, time, TimeUnder, TimeSecs</code> columns. Name the data resultant data frame <code>subset_df1</code>. Perform the following operations on <code>subset_df1</code>.</p>
+<ol style="list-style-type: lower-roman">
+<li>Count the total null values</li>
+<li>Create a copy of the data set and rename it <code>subset_df1_copy</code>. Drop rows that contain any null value.</li>
+<li>Create another copy, <code>subset_df1_copy2</code> and impute the missing values based on the previous value. <code>.direction=down</code>.</li>
+<li>Count the null values on the copy data set</li>
+</ol>
 </div>
 <div id="dealing-with-outliers" class="section level5 hasAnchor" number="8.2.1.2.2">
 <h5><span class="header-section-number">8.2.1.2.2</span> Dealing with Outliers<a href="working-with-real-world-data.html#dealing-with-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -956,7 +964,8 @@ Any values larger than <span class="math inline">\(1.5xIQR\)</span> added to the
 ## 98           98       173.7436
 ## 99           99       176.9442
 ## 100         100       174.0726</code></pre>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Download the Brazil’s House of Deputies Reimbursements from <a href="https://www.kaggle.com/datasets/epattaro/brazils-house-of-deputies-reimbursements">here</a>. Read the data set, identify numerical columns that contain the outliers and remove them</p>
 </div>
 <div id="data-transformation-techniques" class="section level5 hasAnchor" number="8.2.1.2.3">
 <h5><span class="header-section-number">8.2.1.2.3</span> Data Transformation Techniques<a href="working-with-real-world-data.html#data-transformation-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -1029,7 +1038,6 @@ Any values larger than <span class="math inline">\(1.5xIQR\)</span> added to the
 ## 5  8.147867
 ## 6  6.892642
 ## 7  7.099202</code></pre>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
 <ul>
 <li><strong>Encoding Categorical Variables</strong></li>
 </ul>
@@ -1095,12 +1103,35 @@ One hot encoding represents each category as a separate column and converts the 
 ## 4   Red             3
 ## 5  Blue             1</code></pre>
 <p>Label encoding is preferred where the categories are ordinal for instance education levels, living standards, age groups etc. Categories that have a natural order</p>
-<p>&lt;-<strong>Add a practical exercise</strong>-&gt;</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the same Brazil’s House of Deputies data set, encode the <code>deputy_state</code> and the <code>political_party</code> to have numerical values.</p>
 </div>
 </div>
 </div>
 <div id="hands-on-exercises-5" class="section level3 hasAnchor" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> Hands-On Exercises<a href="working-with-real-world-data.html#hands-on-exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this course you will be required to use the NHANES data set from the <code>NHANES</code> package. Install the NHANES package by;</p>
+<pre><code>install.packages(&quot;NHANES&quot;)</code></pre>
+<p>then import the library and the data set</p>
+<pre><code># Load the library 
+library(NHANES)
+
+# Load the data set
+data(&quot;NHANES&quot;)</code></pre>
+<p>thereafter you are required to answer the following questions;</p>
+<ol style="list-style-type: lower-roman">
+<li>Count the total number of missing values in each column in the data set and find which column has the most null values</li>
+</ol>
+<pre><code>sapply(NHANES, function(x) sum(is.na(x)))</code></pre>
+<ol start="2" style="list-style-type: lower-roman">
+<li>Remove the rows that have any missing values and store the results in a new data set</li>
+<li>For columns with numeric data, impute missing values by replacing them with the mean or median of the column</li>
+<li>For categorical columns (such as <code>Gender</code> or <code>SmokeNow</code>), impute missing values using the mode.</li>
+<li>For the <code>BMI</code> and <code>Pulse</code> columns, calculate the Interquartile Range (IQR) and dentify any data points that fall outside the 1.5 * IQR range (both lower and upper bounds) as outliers</li>
+<li>Remove rows where outliers are found in the <code>BMI</code> and <code>Pulse</code> columns</li>
+<li>Apply Min-Max normalization to the <code>BMI</code> and <code>Pulse</code> columns, rescaling the data between 0 and 1</li>
+<li>Use one-hot encoding to convert the Gender column into a numerical format (i.e., create separate columns for male and female)</li>
+</ol>
 
 </div>
 </div>

@@ -299,7 +299,7 @@ iii. Remove the data set from the memory using `rm()` and call `gc()` again
 iv. Reread the data set however control the threads. Set different thread value (e.g 1, 2, 3, 4 and 5) the compare the time taken for processing. 
 v. Write the file locally(use a different file name) and use `gc()` for garbage collection
 
-
+Finally, discuss on the importance of scalability when dealing with real-world data.
 
 ## Data Cleaning and Transformation
 ### Introduction to Data Cleaning 
@@ -321,7 +321,7 @@ Data integrity is crucial in data analysis and can hinder the organizations' ope
 
 #### Data Cleaning techniques 
 ##### Handling Missing Data 
-Having missing data values is inevitable especially when integrating data from different sources. While there is no specific set method(one-time solution) to handle the missing data points in R, researchers have come up with different methodologies to tackle this issue. Here are some of them; 
+The presence of missing data values is inevitable especially when integrating data from different sources. While there is no specific set method(one-time solution) to handle the missing data points in R, researchers have come up with different methodologies to tackle this issue. Here are some of them; 
 
 - *Deletion*; this is a simple method that involves deleting all the records/rows that have null values. Otherwise, all rows that have null values in important columns can be deleted. `na.omit()` is one of the method. 
 - *Imputation*: There are packages in R that can fill the null values by imputation. They use the remaining values in the data to create a model that will find a value for the missing one. These packages include `imputeR`, `Amelia` and `MissForest` that use the automated variable selection, bootstrap multiple imputation and single imputation to handle null values. 
@@ -433,7 +433,14 @@ head(athlete_data_filled)
 
 You can see the target columns(`age`, `athlete_id` and `sport`) are filled and have zero null values. In the `fill()` function, there is an argument, `.direction` that specify the direction in which to fill the missing value. In this case the value of the argument is `"down"` because we are filling based on the previous value. It can be either `"up"`, `"downup"`(based on previous the later) or `"updown"`(based on later then previous). 
 
-<--**Add a practical exercise**-->
+<span style="color: green;">**Practical exercise**</span>
+
+Download the Detailed NFL Play-by-Play Data 2009-2018 data from [here](https://www.kaggle.com/datasets/maxhorowitz/nflplaybyplay2009to2016). Read the data set and subset to have `Date , Drive, time, TimeUnder, TimeSecs` columns. Name the data resultant data frame `subset_df1`. Perform the following operations on `subset_df1`.
+
+i. Count the total null values
+ii. Create a copy of the data set and rename it `subset_df1_copy`. Drop rows that contain any null value. 
+iii. Create another copy, `subset_df1_copy2` and impute the missing values based on the previous value. `.direction=down`. 
+iv. Count the null values on the copy data set
 
 
 ##### Dealing with Outliers
@@ -511,7 +518,9 @@ health_data$outlier_cholesterol_zscore <- identify_outliers_zscore(health_data$c
 health_data[health_data$outlier_blood_pressure_zscore, c("villager_id", "blood_pressure")]
 ```
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Download the Brazil's House of Deputies Reimbursements from [here](https://www.kaggle.com/datasets/epattaro/brazils-house-of-deputies-reimbursements). Read the data set, identify numerical columns that contain the outliers and remove them
 
 ##### Data Transformation Techniques 
 - **Normalization and Standardization**
@@ -563,8 +572,6 @@ log_scaled_v1 <- log(as.data.frame(v1))
 log_scaled_v1
 ```
 
-<-**Add a practical exercise**->
-
 - **Encoding Categorical Variables**
 
 Encoding is the process of converting categorical variables to numerical variables in data preprocessing. Machine learning models only understand numerical values, therefore encoding is a crucial step in data preprocessing. The most common methods are **one-hot encoding** and **label encoding**. We will discuss how to perform them in R 
@@ -615,6 +622,35 @@ color_df
 
 Label encoding is preferred where the categories are ordinal for instance education levels, living standards, age groups etc. Categories that have a natural order
 
-<-**Add a practical exercise**->
+<span style="color: green;">**Practical exercise**</span>
+
+Using the same Brazil's House of Deputies data set, encode the `deputy_state` and the `political_party` to have numerical values. 
 
 ### Hands-On Exercises
+In this course you will be required to use the NHANES data set from the `NHANES` package. Install the NHANES package by;
+```
+install.packages("NHANES")
+```
+
+then import the library and the data set 
+```
+# Load the library 
+library(NHANES)
+
+# Load the data set
+data("NHANES")
+```
+
+thereafter you are required to answer the following questions;
+
+i. Count the total number of missing values in each column in the data set and find which column has the most null values 
+```
+sapply(NHANES, function(x) sum(is.na(x)))
+```
+ii. Remove the rows that have any missing values and store the results in a new data set
+iii. For columns with numeric data, impute missing values by replacing them with the mean or median of the column
+iv. For categorical columns (such as `Gender` or `SmokeNow`), impute missing values using the mode.
+v. For the `BMI` and `Pulse` columns, calculate the Interquartile Range (IQR) and dentify any data points that fall outside the 1.5 * IQR range (both lower and upper bounds) as outliers
+vi. Remove rows where outliers are found in the `BMI` and `Pulse` columns
+vii. Apply Min-Max normalization to the `BMI` and `Pulse` columns, rescaling the data between 0 and 1
+viii. Use one-hot encoding to convert the Gender column into a numerical format (i.e., create separate columns for male and female)

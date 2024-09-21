@@ -114,11 +114,6 @@ df_decomposed <- na.omit(df_decomposed)
 head(df_decomposed)
 ```
 
-
-**Check**______**it**____**later**
-
-
-
 <span style="color: green;">**Practical exercise**</span>
 
 Using the amazon stock prices prediction data set, plot the data to identify time series patterns and trends
@@ -126,7 +121,7 @@ Using the amazon stock prices prediction data set, plot the data to identify tim
 ## Basic Time Series Forecasting 
 ### Moving Averages
 
-Moving average is a statistical calculations used to analyze values over a specific period of time. Its main focus is to smooth out the short term fluctuations that makes it easier to identify the underlying trends in the data. It smoothens the time series data by avering the the values over a sliding window. 
+Moving average is a statistical calculations used to analyze values over a specific period of time. Its main focus is to smooth out the short term fluctuations that makes it easier to identify the underlying trends in the data. It smoothens the time series data by averaging the the values over a sliding window. 
 
 There are two types of Moving Averages, namely;
 
