@@ -750,7 +750,7 @@ You can see from the table, those students who never smoke lead in every exercis
 
 <span style="color: green;">**Practical exercise**</span>
 
-Using the Iris dataset, perform a Chi-square test to determine if there is a relationship between two categorical variables: the species (Species) and a new categorical variable that classifies sepal length (Sepal.Length) into categories (e.g., "Short", "Medium", "Long").
+Using the Iris dataset, perform a Chi-square test to determine if there is a relationship between two categorical variables: the species (Species) and a new categorical variable that classifies sepal width (Sepal.Width) into categories (e.g., "Short", "Medium", "Long").
 
 - "Short": below 3.0
 - "Medium": above 3.0 to 3.8
@@ -758,8 +758,8 @@ Using the Iris dataset, perform a Chi-square test to determine if there is a rel
 
 Follow the steps below;
 
-1. Create a new variable `sepal.Length.Category` in the data set by categorizing the Sepal.Length variable into 3 categories: `"Short"`, `"Medium"`, and `"Long"` (as per the defined ranges).
-2. Perform a Chi-square test to see if there's an association between the new `sepal.Length.Category` categories and the `Species` column.
+1. Create a new variable `sepal.Width.Category` in the data set by categorizing the `Sepal.Width` variable into 3 categories: `"Short"`, `"Medium"`, and `"Long"` (as per the defined ranges).
+2. Perform a Chi-square test to see if there's an association between the new `sepal.Width.Category` categories and the `Species` column.
 3. Interpret the results of the Chi-square test
 
 ### Hands-on Exercises
@@ -803,4 +803,4 @@ You will use the statistical techniques learned for instance descriptive statist
 
 You will finally prepare a brief presentation that will summarize the statistical analysis and research
 
-Dicuss in groups the insights obtained, challenges faced and any potential improvements
+Discuss in groups the insights obtained, challenges faced and any potential improvements
