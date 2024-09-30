@@ -195,7 +195,7 @@ ggplot(df_airpassengers, aes(x = Month)) +
 
 <span style="color: green;">**Practical exercise**</span>
 
-Apply moving averages to smooth and forecast the amazon stock prices prediction data for the next one year
+Apply 30-day moving averages on the amazon stock.
 
 ### ARIMA model 
 **ARIMA** stands for *AutoRegressive Integrated Moving Average* that is defined in three parameters namely; p, d and q where;
