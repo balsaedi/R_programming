@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-09-30" />
+<meta name="date" content="2024-10-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -831,7 +831,6 @@ Lets create a vector <code>myvector</code> will null values, identify the null v
 <ol style="list-style-type: lower-roman">
 <li>Delete all the records that have any null value</li>
 <li>Remove duplicated observations</li>
-<li>Remove outliers</li>
 </ol>
 </div>
 <div id="hands-on-exercises" class="section level3 hasAnchor" number="4.1.5">
@@ -842,27 +841,20 @@ Lets create a vector <code>myvector</code> will null values, identify the null v
 </ol>
 <ul>
 <li>Subset the data set to include only restaurants with a rating of 4.0 and above.</li>
-<li>Filter the data set to include restaurants in specific locations: “Koramangala”, “Indiranagar”, and “MG Road”.</li>
-<li>Create a subset that includes only restaurants serving both “North Indian” and “Chinese” cuisine.</li>
-<li>Filter out restaurants that have no reviews or ratings.</li>
+<li>Filter out restaurants that have zero reviews or null ratings.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Sorting</strong></li>
 </ol>
 <ul>
 <li>Sort the data set by restaurant ratings in descending order.</li>
-<li>Sort the data set first by location and then by average cost for two people in ascending order.</li>
-<li>Sort the data set by the number of votes a restaurant received, with the highest votes appearing first.</li>
+<li>Sort the data set by the number of reviews a restaurant received, with the highest reviews appearing last</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Data Cleaning</strong></li>
 </ol>
 <ul>
 <li>Identify and remove rows with missing or null values in any key columns (e.g., ratings, cost, cuisine type).</li>
-<li>Correct inconsistent data types: Ensure that numeric columns (such as “cost for two”) are in the correct numeric format.</li>
-<li>Remove any duplicate restaurant entries based on the restaurant name and location.</li>
-<li>Ensure consistency in categorical data, such as correcting case sensitivity or spelling issues (e.g., “North Indian” vs. “north indian”).</li>
-<li>Identify and handle any outliers in the “cost for two” column.</li>
 </ul>
 </div>
 </div>

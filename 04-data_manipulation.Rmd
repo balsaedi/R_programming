@@ -373,7 +373,6 @@ You will use the car sales data set found [here](https://github.com/balsaedi/R_p
 
 i. Delete all the records that have any null value
 ii. Remove duplicated observations
-iii. Remove outliers
 
 ### Hands-on Exercises
 Download the Bengaluru Restaurants Dataset from [here](https://www.kaggle.com/datasets/mrmars1010/restaurants-dataset-bengaluru) and use it to for the activities below. 
@@ -381,23 +380,16 @@ Download the Bengaluru Restaurants Dataset from [here](https://www.kaggle.com/da
 1. **Subsetting and Filtering**
 
 - Subset the data set to include only restaurants with a rating of 4.0 and above.
-- Filter the data set to include restaurants in specific locations: "Koramangala", "Indiranagar", and "MG Road".
-- Create a subset that includes only restaurants serving both "North Indian" and "Chinese" cuisine.
-- Filter out restaurants that have no reviews or ratings.
+- Filter out restaurants that have zero reviews or null ratings.
 
 2. **Sorting**
 
 - Sort the data set by restaurant ratings in descending order.
-- Sort the data set first by location and then by average cost for two people in ascending order.
-- Sort the data set by the number of votes a restaurant received, with the highest votes appearing first.
+- Sort the data set by the number of reviews a restaurant received, with the highest reviews appearing last
 
 3. **Data Cleaning**
 
 - Identify and remove rows with missing or null values in any key columns (e.g., ratings, cost, cuisine type).
-- Correct inconsistent data types: Ensure that numeric columns (such as "cost for two") are in the correct numeric format.
-- Remove any duplicate restaurant entries based on the restaurant name and location.
-- Ensure consistency in categorical data, such as correcting case sensitivity or spelling issues (e.g., "North Indian" vs. "north indian").
-- Identify and handle any outliers in the "cost for two" column.
 
 ## Data Manipulation with Dplyr
 ### Introduction to Dplyr package 
