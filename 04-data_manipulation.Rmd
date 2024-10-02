@@ -741,58 +741,6 @@ mutated_car_sales = mutate(car_sales,
 head(mutated_car_sales)
 ```
 
-### group_by 
-The `group_by()` is a function used to group records in a data frame by one or more variables. It allows the analyst to create a group based on a certain criteria. 
-
-Lets group the iris data based on the Species variable;
-```{r}
-# Load the required libraries 
-library(dplyr)
-
-# Load the iris data 
-data(iris)
-
-# Group the iris based on their Species 
-iris_groups = group_by(iris, Species)
-head(iris_groups)
-```
-
-This groupings allow the analyst to retrieve insights at more base level and uncover more insights that could not have been possible when analyzing the entire data set
-
-<span style="color: green;">**Practical exercise**</span>
-
-Use the `car_sales` data set provided before to work on this activity. Load the data and group the sales by `model` to get the sum of every quantitative feature/variable. Name the resultant data frame, `car_sales_by_model`. Display the resultant data frame. 
-
-```{r ex="actvity-5e", type="sample-code"}
-# Load the dplyr library
-# CODE HERE 
-
-# Load the car sales data 
-# CODE HERE 
-
-# Group the sales by model
-# CODE HERE 
-
-# Print out the dataframe 
-# CODE HERE 
-```
-
-```{r ex="actvity-5e", type="solution", include=FALSE}
-# Load the dplyr library
-library(dplyr)
-
-# Load the car sales data 
-data_path = "data/car_sales.csv"
-car_sales = read.csv(data_path)
-
-# Group the sales by model
-car_sales_by_model = group_by(car_sales, model)
-
-# Print out the dataframe 
-car_sales_by_model
-```
-
-
 ### Summarise
 To calculate summary statistics such as average, median and maximum the `summarise()` is used. This function collapses multiple rows into a summary row. For instance calculating the mean Petal width;
 ```{r}
@@ -851,6 +799,30 @@ car_sales = read.csv(data_path)
 # Calculate the summary statistics
 summarise(car_sales)
 ```
+
+
+### group_by 
+The `group_by()` is a function used to group records in a data frame by one or more variables. It allows the analyst to create a group based on a certain criteria. It is always chained together with `summarise()`. 
+
+Lets group the iris data based on the Species variable and find the mean of each variable;
+```{r}
+# Load the required libraries 
+library(dplyr)
+
+# Load the iris data 
+data(iris)
+
+# Group the iris based on their Species 
+iris_groups = group_by(iris, Species) %>%
+  summarise(across(everything(), mean, na.rm = TRUE))
+head(iris_groups)
+```
+
+This groupings allow the analyst to retrieve insights at more base level and uncover more insights that could not have been possible when analyzing the entire data set
+
+<span style="color: green;">**Practical exercise**</span>
+
+Use the `car_sales` data set provided before to work on this activity. Load the data and group the sales by `model` to get the sum of every quantitative feature/variable. Name the resultant data frame, `car_sales_by_model`. Display the resultant data frame. **Hint**: Use `across(where(is.numeric), sum)` as an argument to summarise instead of `across(everything(), mean, na.rm = TRUE)` to find the sum of quantitative variables. 
 
 ## Chaining
 Chaining is the process of combining several operations together using the `%>%` or forward pipe operator. The chained workflow succeeds each other until the whole process is done. To understand chaining, the mtcars(Motor Trend cars) data set will be used. Mtcars is also a well-known data set containing several attributes of 32 different cars from 1974. Here's a brief explanation of the variables in the mtcars data set:

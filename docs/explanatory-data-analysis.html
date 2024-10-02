@@ -196,8 +196,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#filter"><i class="fa fa-check"></i><b>4.2.4</b> filter</a></li>
 <li class="chapter" data-level="4.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>4.2.5</b> arrange</a></li>
 <li class="chapter" data-level="4.2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>4.2.6</b> mutate</a></li>
-<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.7</b> group_by</a></li>
-<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.8</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>4.2.7</b> Summarise</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation.html"><a href="data-manipulation.html#group_by"><i class="fa fa-check"></i><b>4.2.8</b> group_by</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#chaining"><i class="fa fa-check"></i><b>4.3</b> Chaining</a>
 <ul>
@@ -380,14 +380,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-assessment-and-cleaning" class="section level3 hasAnchor" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> <span style="color: brown;">Data Assessment and Cleaning</span><a href="explanatory-data-analysis.html#data-assessment-and-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Load the necessary data sets and libraries</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="explanatory-data-analysis.html#cb450-1" tabindex="-1"></a><span class="co"># Load the libraries </span></span>
-<span id="cb450-2"><a href="explanatory-data-analysis.html#cb450-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb450-3"><a href="explanatory-data-analysis.html#cb450-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb450-4"><a href="explanatory-data-analysis.html#cb450-4" tabindex="-1"></a></span>
-<span id="cb450-5"><a href="explanatory-data-analysis.html#cb450-5" tabindex="-1"></a><span class="co"># Load the data </span></span>
-<span id="cb450-6"><a href="explanatory-data-analysis.html#cb450-6" tabindex="-1"></a>ecommerce <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ecommerce.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="explanatory-data-analysis.html#cb451-1" tabindex="-1"></a><span class="co"># Load the libraries </span></span>
+<span id="cb451-2"><a href="explanatory-data-analysis.html#cb451-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb451-3"><a href="explanatory-data-analysis.html#cb451-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb451-4"><a href="explanatory-data-analysis.html#cb451-4" tabindex="-1"></a></span>
+<span id="cb451-5"><a href="explanatory-data-analysis.html#cb451-5" tabindex="-1"></a><span class="co"># Load the data </span></span>
+<span id="cb451-6"><a href="explanatory-data-analysis.html#cb451-6" tabindex="-1"></a>ecommerce <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ecommerce.csv&quot;</span>)</span></code></pre></div>
 <p>Show the first five rows</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="explanatory-data-analysis.html#cb451-1" tabindex="-1"></a><span class="fu">head</span>(ecommerce)</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="explanatory-data-analysis.html#cb452-1" tabindex="-1"></a><span class="fu">head</span>(ecommerce)</span></code></pre></div>
 <pre><code>##      CID        TID Gender    Age.Group       Purchase.Date Product.Category
 ## 1 943146 5876328741 Female        25-45 30/08/2023 20:27:08      Electronics
 ## 2 180079 1018503182   Male        25-45 23/02/2024 09:33:46      Electronics
@@ -410,30 +410,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5   1852.731     Credit Card     Delhi
 ## 6   3522.387     Credit Card     Delhi</code></pre>
 <p>The data set features/columns and the shape of the data set</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="explanatory-data-analysis.html#cb453-1" tabindex="-1"></a><span class="fu">colnames</span>(ecommerce) <span class="co">#the data set features </span></span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="explanatory-data-analysis.html#cb454-1" tabindex="-1"></a><span class="fu">colnames</span>(ecommerce) <span class="co">#the data set features </span></span></code></pre></div>
 <pre><code>##  [1] &quot;CID&quot;                   &quot;TID&quot;                   &quot;Gender&quot;               
 ##  [4] &quot;Age.Group&quot;             &quot;Purchase.Date&quot;         &quot;Product.Category&quot;     
 ##  [7] &quot;Discount.Availed&quot;      &quot;Discount.Name&quot;         &quot;Discount.Amount..INR.&quot;
 ## [10] &quot;Gross.Amount&quot;          &quot;Net.Amount&quot;            &quot;Purchase.Method&quot;      
 ## [13] &quot;Location&quot;</code></pre>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="explanatory-data-analysis.html#cb455-1" tabindex="-1"></a><span class="fu">dim</span>(ecommerce) <span class="co"># the shape of the data</span></span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="explanatory-data-analysis.html#cb456-1" tabindex="-1"></a><span class="fu">dim</span>(ecommerce) <span class="co"># the shape of the data</span></span></code></pre></div>
 <pre><code>## [1] 55000    13</code></pre>
 <p>There are 55000 observations and 13 features/columns in the data set. Lets now find the data types of the columns’</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="explanatory-data-analysis.html#cb457-1" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="explanatory-data-analysis.html#cb458-1" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    300 obs. of  3 variables:
 ##  $ category    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ sub_category: chr  &quot;X&quot; &quot;X&quot; &quot;X&quot; &quot;X&quot; ...
 ##  $ value       : num  8.85 6.14 11.33 6.79 7.29 ...</code></pre>
 <p>There are 5 numeric columns and 8 non numeric columns.</p>
 <p>Find and count the null values in the data set</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="explanatory-data-analysis.html#cb459-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(ecommerce))</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="explanatory-data-analysis.html#cb460-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(ecommerce))</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>The data set is complete with no missing values. Lets now find if there are any duplicated records</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="explanatory-data-analysis.html#cb461-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(ecommerce))</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="explanatory-data-analysis.html#cb462-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(ecommerce))</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>There are no duplicated records</p>
 <p>Calculate the summary statistics</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="explanatory-data-analysis.html#cb463-1" tabindex="-1"></a><span class="fu">summary</span>(ecommerce)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="explanatory-data-analysis.html#cb464-1" tabindex="-1"></a><span class="fu">summary</span>(ecommerce)</span></code></pre></div>
 <pre><code>##       CID              TID               Gender           Age.Group        
 ##  Min.   :100009   Min.   :1.000e+09   Length:55000       Length:55000      
 ##  1st Qu.:323717   1st Qu.:3.253e+09   Class :character   Class :character  
@@ -466,24 +466,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-visualization-1" class="section level3 hasAnchor" number="6.5.3">
 <h3><span class="header-section-number">6.5.3</span> <span style="color: brown;">Data Visualization</span><a href="explanatory-data-analysis.html#data-visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The relationship between the discount amount and the gross amount using a scatter plot</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="explanatory-data-analysis.html#cb465-1" tabindex="-1"></a><span class="co"># Create a scatter plot </span></span>
-<span id="cb465-2"><a href="explanatory-data-analysis.html#cb465-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce, <span class="co"># data</span></span>
-<span id="cb465-3"><a href="explanatory-data-analysis.html#cb465-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Gross.Amount, <span class="at">y =</span> Discount.Amount..INR.)) <span class="sc">+</span> <span class="co"># aesthetics</span></span>
-<span id="cb465-4"><a href="explanatory-data-analysis.html#cb465-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb465-5"><a href="explanatory-data-analysis.html#cb465-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb465-6"><a href="explanatory-data-analysis.html#cb465-6" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;The relationship between Gross Amount and Discount&quot;</span>,</span>
-<span id="cb465-7"><a href="explanatory-data-analysis.html#cb465-7" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Discount Amount&quot;</span>,</span>
-<span id="cb465-8"><a href="explanatory-data-analysis.html#cb465-8" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Gross Amount&quot;</span></span>
-<span id="cb465-9"><a href="explanatory-data-analysis.html#cb465-9" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="explanatory-data-analysis.html#cb466-1" tabindex="-1"></a><span class="co"># Create a scatter plot </span></span>
+<span id="cb466-2"><a href="explanatory-data-analysis.html#cb466-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce, <span class="co"># data</span></span>
+<span id="cb466-3"><a href="explanatory-data-analysis.html#cb466-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Gross.Amount, <span class="at">y =</span> Discount.Amount..INR.)) <span class="sc">+</span> <span class="co"># aesthetics</span></span>
+<span id="cb466-4"><a href="explanatory-data-analysis.html#cb466-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb466-5"><a href="explanatory-data-analysis.html#cb466-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb466-6"><a href="explanatory-data-analysis.html#cb466-6" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;The relationship between Gross Amount and Discount&quot;</span>,</span>
+<span id="cb466-7"><a href="explanatory-data-analysis.html#cb466-7" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Discount Amount&quot;</span>,</span>
+<span id="cb466-8"><a href="explanatory-data-analysis.html#cb466-8" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Gross Amount&quot;</span></span>
+<span id="cb466-9"><a href="explanatory-data-analysis.html#cb466-9" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
 <p>There is no clear relationship between the discount amount and the gross amount</p>
 <p>The average discount per product category</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="explanatory-data-analysis.html#cb466-1" tabindex="-1"></a>discount_per_category <span class="ot">&lt;-</span> ecommerce <span class="sc">%&gt;%</span></span>
-<span id="cb466-2"><a href="explanatory-data-analysis.html#cb466-2" tabindex="-1"></a>  <span class="fu">select</span>(Product.Category, Discount.Amount..INR.) <span class="sc">%&gt;%</span></span>
-<span id="cb466-3"><a href="explanatory-data-analysis.html#cb466-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Product.Category) <span class="sc">%&gt;%</span></span>
-<span id="cb466-4"><a href="explanatory-data-analysis.html#cb466-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Average.Discount=</span><span class="fu">mean</span>(Discount.Amount..INR.))</span>
-<span id="cb466-5"><a href="explanatory-data-analysis.html#cb466-5" tabindex="-1"></a></span>
-<span id="cb466-6"><a href="explanatory-data-analysis.html#cb466-6" tabindex="-1"></a>discount_per_category</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="explanatory-data-analysis.html#cb467-1" tabindex="-1"></a>discount_per_category <span class="ot">&lt;-</span> ecommerce <span class="sc">%&gt;%</span></span>
+<span id="cb467-2"><a href="explanatory-data-analysis.html#cb467-2" tabindex="-1"></a>  <span class="fu">select</span>(Product.Category, Discount.Amount..INR.) <span class="sc">%&gt;%</span></span>
+<span id="cb467-3"><a href="explanatory-data-analysis.html#cb467-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Product.Category) <span class="sc">%&gt;%</span></span>
+<span id="cb467-4"><a href="explanatory-data-analysis.html#cb467-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Average.Discount=</span><span class="fu">mean</span>(Discount.Amount..INR.))</span>
+<span id="cb467-5"><a href="explanatory-data-analysis.html#cb467-5" tabindex="-1"></a></span>
+<span id="cb467-6"><a href="explanatory-data-analysis.html#cb467-6" tabindex="-1"></a>discount_per_category</span></code></pre></div>
 <pre><code>## # A tibble: 9 × 2
 ##   Product.Category  Average.Discount
 ##   &lt;chr&gt;                        &lt;dbl&gt;
@@ -497,21 +497,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8 Sports &amp; Fitness              136.
 ## 9 Toys &amp; Games                  139.</code></pre>
 <p>Plot the data on a bar chart</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="explanatory-data-analysis.html#cb468-1" tabindex="-1"></a><span class="co"># Create a bar chart </span></span>
-<span id="cb468-2"><a href="explanatory-data-analysis.html#cb468-2" tabindex="-1"></a><span class="fu">ggplot</span>(discount_per_category, <span class="fu">aes</span>(<span class="at">x =</span> Product.Category, <span class="at">y =</span> Average.Discount)) <span class="sc">+</span></span>
-<span id="cb468-3"><a href="explanatory-data-analysis.html#cb468-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb468-4"><a href="explanatory-data-analysis.html#cb468-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average discount per the product category&quot;</span>, </span>
-<span id="cb468-5"><a href="explanatory-data-analysis.html#cb468-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Product Category&quot;</span>, </span>
-<span id="cb468-6"><a href="explanatory-data-analysis.html#cb468-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average Discount&quot;</span>) <span class="sc">+</span></span>
-<span id="cb468-7"><a href="explanatory-data-analysis.html#cb468-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="explanatory-data-analysis.html#cb469-1" tabindex="-1"></a><span class="co"># Create a bar chart </span></span>
+<span id="cb469-2"><a href="explanatory-data-analysis.html#cb469-2" tabindex="-1"></a><span class="fu">ggplot</span>(discount_per_category, <span class="fu">aes</span>(<span class="at">x =</span> Product.Category, <span class="at">y =</span> Average.Discount)) <span class="sc">+</span></span>
+<span id="cb469-3"><a href="explanatory-data-analysis.html#cb469-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb469-4"><a href="explanatory-data-analysis.html#cb469-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average discount per the product category&quot;</span>, </span>
+<span id="cb469-5"><a href="explanatory-data-analysis.html#cb469-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Product Category&quot;</span>, </span>
+<span id="cb469-6"><a href="explanatory-data-analysis.html#cb469-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average Discount&quot;</span>) <span class="sc">+</span></span>
+<span id="cb469-7"><a href="explanatory-data-analysis.html#cb469-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
 <p>The average discount was almost equal for all the categories</p>
 <p>Count the purchases by purchase method</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="explanatory-data-analysis.html#cb469-1" tabindex="-1"></a>purchase_method_count <span class="ot">&lt;-</span> ecommerce <span class="sc">%&gt;%</span> </span>
-<span id="cb469-2"><a href="explanatory-data-analysis.html#cb469-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Purchase.Method)<span class="sc">%&gt;%</span></span>
-<span id="cb469-3"><a href="explanatory-data-analysis.html#cb469-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Count=</span><span class="fu">n</span>())</span>
-<span id="cb469-4"><a href="explanatory-data-analysis.html#cb469-4" tabindex="-1"></a></span>
-<span id="cb469-5"><a href="explanatory-data-analysis.html#cb469-5" tabindex="-1"></a>purchase_method_count</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="explanatory-data-analysis.html#cb470-1" tabindex="-1"></a>purchase_method_count <span class="ot">&lt;-</span> ecommerce <span class="sc">%&gt;%</span> </span>
+<span id="cb470-2"><a href="explanatory-data-analysis.html#cb470-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Purchase.Method)<span class="sc">%&gt;%</span></span>
+<span id="cb470-3"><a href="explanatory-data-analysis.html#cb470-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Count=</span><span class="fu">n</span>())</span>
+<span id="cb470-4"><a href="explanatory-data-analysis.html#cb470-4" tabindex="-1"></a></span>
+<span id="cb470-5"><a href="explanatory-data-analysis.html#cb470-5" tabindex="-1"></a>purchase_method_count</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 2
 ##   Purchase.Method    Count
 ##   &lt;chr&gt;              &lt;int&gt;
@@ -524,38 +524,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 7 Paytm UPI           2674
 ## 8 PhonePe UPI         2683</code></pre>
 <p>Display on a bar chart</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="explanatory-data-analysis.html#cb471-1" tabindex="-1"></a><span class="co"># Create a bar chart </span></span>
-<span id="cb471-2"><a href="explanatory-data-analysis.html#cb471-2" tabindex="-1"></a><span class="fu">ggplot</span>(purchase_method_count, <span class="fu">aes</span>(<span class="at">x =</span> Purchase.Method, <span class="at">y =</span> Count)) <span class="sc">+</span></span>
-<span id="cb471-3"><a href="explanatory-data-analysis.html#cb471-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb471-4"><a href="explanatory-data-analysis.html#cb471-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Count of purchases by purchase method&quot;</span>, </span>
-<span id="cb471-5"><a href="explanatory-data-analysis.html#cb471-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Purchase Method&quot;</span>, </span>
-<span id="cb471-6"><a href="explanatory-data-analysis.html#cb471-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb471-7"><a href="explanatory-data-analysis.html#cb471-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="explanatory-data-analysis.html#cb472-1" tabindex="-1"></a><span class="co"># Create a bar chart </span></span>
+<span id="cb472-2"><a href="explanatory-data-analysis.html#cb472-2" tabindex="-1"></a><span class="fu">ggplot</span>(purchase_method_count, <span class="fu">aes</span>(<span class="at">x =</span> Purchase.Method, <span class="at">y =</span> Count)) <span class="sc">+</span></span>
+<span id="cb472-3"><a href="explanatory-data-analysis.html#cb472-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb472-4"><a href="explanatory-data-analysis.html#cb472-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Count of purchases by purchase method&quot;</span>, </span>
+<span id="cb472-5"><a href="explanatory-data-analysis.html#cb472-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Purchase Method&quot;</span>, </span>
+<span id="cb472-6"><a href="explanatory-data-analysis.html#cb472-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb472-7"><a href="explanatory-data-analysis.html#cb472-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
 <p>Most customers purchased goods by credit and debit cards.</p>
 <p>Show the net amount distribution by histogram</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="explanatory-data-analysis.html#cb472-1" tabindex="-1"></a><span class="co"># Create a histogram</span></span>
-<span id="cb472-2"><a href="explanatory-data-analysis.html#cb472-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce, <span class="fu">aes</span>(<span class="at">x =</span> Net.Amount)) <span class="sc">+</span></span>
-<span id="cb472-3"><a href="explanatory-data-analysis.html#cb472-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb472-4"><a href="explanatory-data-analysis.html#cb472-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribution of Net Amount&quot;</span>, </span>
-<span id="cb472-5"><a href="explanatory-data-analysis.html#cb472-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Net Amount&quot;</span>, </span>
-<span id="cb472-6"><a href="explanatory-data-analysis.html#cb472-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;frequency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb472-7"><a href="explanatory-data-analysis.html#cb472-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-223-1.png" width="672" />
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="explanatory-data-analysis.html#cb473-1" tabindex="-1"></a><span class="co"># Create a histogram</span></span>
+<span id="cb473-2"><a href="explanatory-data-analysis.html#cb473-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce, <span class="fu">aes</span>(<span class="at">x =</span> Net.Amount)) <span class="sc">+</span></span>
+<span id="cb473-3"><a href="explanatory-data-analysis.html#cb473-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb473-4"><a href="explanatory-data-analysis.html#cb473-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribution of Net Amount&quot;</span>, </span>
+<span id="cb473-5"><a href="explanatory-data-analysis.html#cb473-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Net Amount&quot;</span>, </span>
+<span id="cb473-6"><a href="explanatory-data-analysis.html#cb473-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb473-7"><a href="explanatory-data-analysis.html#cb473-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-221-1.png" width="672" />
 Most products range from 1000 to 4000 Indian Rupees</p>
 <p>Find out the different age groups</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="explanatory-data-analysis.html#cb473-1" tabindex="-1"></a><span class="fu">unique</span>(ecommerce<span class="sc">$</span>Age.Group)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="explanatory-data-analysis.html#cb474-1" tabindex="-1"></a><span class="fu">unique</span>(ecommerce<span class="sc">$</span>Age.Group)</span></code></pre></div>
 <pre><code>## [1] &quot;25-45&quot;        &quot;60 and above&quot; &quot;18-25&quot;        &quot;45-60&quot;        &quot;under 18&quot;</code></pre>
 <p>There are five different age groups, lets inspect their spending characteristics on the eCommerce site using box plots</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="explanatory-data-analysis.html#cb475-1" tabindex="-1"></a><span class="co"># Plot a box plot </span></span>
-<span id="cb475-2"><a href="explanatory-data-analysis.html#cb475-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce, </span>
-<span id="cb475-3"><a href="explanatory-data-analysis.html#cb475-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>Age.Group, <span class="at">y=</span>Gross.Amount, <span class="at">fill =</span> Age.Group))<span class="sc">+</span></span>
-<span id="cb475-4"><a href="explanatory-data-analysis.html#cb475-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb475-5"><a href="explanatory-data-analysis.html#cb475-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Spending based on different age groups&quot;</span>,</span>
-<span id="cb475-6"><a href="explanatory-data-analysis.html#cb475-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age groups&quot;</span>,</span>
-<span id="cb475-7"><a href="explanatory-data-analysis.html#cb475-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gross Amount&quot;</span>) <span class="sc">+</span></span>
-<span id="cb475-8"><a href="explanatory-data-analysis.html#cb475-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="explanatory-data-analysis.html#cb476-1" tabindex="-1"></a><span class="co"># Plot a box plot </span></span>
+<span id="cb476-2"><a href="explanatory-data-analysis.html#cb476-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce, </span>
+<span id="cb476-3"><a href="explanatory-data-analysis.html#cb476-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>Age.Group, <span class="at">y=</span>Gross.Amount, <span class="at">fill =</span> Age.Group))<span class="sc">+</span></span>
+<span id="cb476-4"><a href="explanatory-data-analysis.html#cb476-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb476-5"><a href="explanatory-data-analysis.html#cb476-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Spending based on different age groups&quot;</span>,</span>
+<span id="cb476-6"><a href="explanatory-data-analysis.html#cb476-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age groups&quot;</span>,</span>
+<span id="cb476-7"><a href="explanatory-data-analysis.html#cb476-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Gross Amount&quot;</span>) <span class="sc">+</span></span>
+<span id="cb476-8"><a href="explanatory-data-analysis.html#cb476-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
 <p>There was no clear difference between the spending patterns based on the age groups</p>
 </div>
 <div id="key-findings" class="section level3 hasAnchor" number="6.5.4">
