@@ -513,7 +513,7 @@ Using the `airquality` data set, fit a multiple linear regression model whereby 
 
 ### Hands-on Exercises
 
-In this course, you will be required to download the Boston Housing data set from [here](https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data). Fit a multiple regression model to the data set. The goal is to predict the price of the houses in Boston. Interpret and discuss the multiple linear regression model and its implication
+In this course, you will be required to download the Boston Housing data set from [here](https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data). Fit a multiple regression model to the data set. The goal is to predict the price of the houses in Boston, the `MEDV` variable. Interpret and discuss the multiple linear regression model and its implication
 
 
 ## Advanced Statistical Methods

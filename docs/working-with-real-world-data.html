@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-10-02" />
+<meta name="date" content="2024-10-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -666,10 +666,12 @@ gc()</code></pre>
 <h4><span class="header-section-number">8.1.3.1</span> Optimized File I/O<a href="working-with-real-world-data.html#optimized-file-io" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>data.table</code> package offers highly optimized functions like <code>fread()</code> and <code>fwrite()</code> that are much faster for reading and writing large files. They provide significant speedups due to efficient file handling and parallel processing. The I/O processes can be optimized by;</p>
 <ol style="list-style-type: decimal">
-<li><p>Efficient reading</p></li>
-<li><p>Efficient writing</p></li>
-<li><p>Parallel Processing for faster import/export</p></li>
-<li><p><strong>Efficient Reading</strong></p></li>
+<li>Efficient reading</li>
+<li>Efficient writing</li>
+<li>Parallel Processing for faster import/export</li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li><strong>Efficient Reading</strong></li>
 </ol>
 <p>The <code>fread()</code> function is designed to read large CSV files much faster than the <code>read.csv()</code> by using multiple threads and optimized parsing. Here is how you can read the file</p>
 <pre><code># Load the library
@@ -678,11 +680,13 @@ library(data.table)
 # Read large csv file 
 data &lt;- fread(&quot;GlobalLandTemperaturesByCity.csv&quot;)</code></pre>
 <p>Download the csv file from <a href="https://www.kaggle.com/datasets/berkeleyearth/climate-change-earth-surface-temperature-data">here</a>. Extract the downloaded file and read the first csv file.</p>
-<p>These are the perks of reading data using <code>fread()</code> function;
-- Parallel Reading: Uses multiple threads to read files faster.
-- Automatic Type Detection: Automatically detects column types without needing to pre-specify them.
-- Handling Big Data: Efficient for reading gigabytes of data.</p>
-<ol start="2" style="list-style-type: decimal">
+<p>These are the perks of reading data using <code>fread()</code> function;</p>
+<ul>
+<li>Parallel Reading: Uses multiple threads to read files faster.</li>
+<li>Automatic Type Detection: Automatically detects column types without needing to pre-specify them.</li>
+<li>Handling Big Data: Efficient for reading gigabytes of data.</li>
+</ul>
+<ol start="2" style="list-style-type: lower-roman">
 <li><strong>Efficient Writing</strong></li>
 </ol>
 <p>A large data.table can saved locally using the <code>fwrite()</code> function. It can handle large data volumes efficiently and supports various formats.</p>
@@ -695,7 +699,7 @@ fwrite(data, &quot;output_file.csv&quot;)</code></pre>
 <li>Compression: Supports compression for efficient storage.</li>
 <li>Parallel Writing: Uses multiple threads to write files faster.</li>
 </ul>
-<ol start="3" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: lower-roman">
 <li><strong>Parallel Processing for faster Import/Export</strong></li>
 </ol>
 <p>The <code>fread()</code> and <code>fwrite()</code> use parallel processing by default however you can configure the number of threads used for reading and writing. The <code>setDTthreads()</code> is used to achieve this. Lets now read and write the data using 4 threads</p>
@@ -714,8 +718,8 @@ fwrite(data, &quot;output_file.csv&quot;)</code></pre>
 <pre><code># Timing fread() for a large file
 system.time(data &lt;- fread(&quot;large_dataset.csv&quot;))</code></pre>
 <ol start="3" style="list-style-type: lower-roman">
-<li>Add a new column into the data set. Just the convert the temperature from <span class="math inline">\(^oC\)</span>(degrees Celcius) to <span class="math inline">\(^oF\)</span>(degrees Farenheit)</li>
-<li>Write the file locally and check the time taken to write the file. <strong>Hint</strong>: Here is how you can achieve step iii abd iv</li>
+<li>Add a new column into the data set. Just the convert the temperature from <span class="math inline">\(^oF\)</span>(degrees Farenheit) to <span class="math inline">\(^oC\)</span>(degrees Celcius).</li>
+<li>Write the file locally and check the time taken to write the file. <strong>Hint</strong>: Here is how you can achieve step iii and iv</li>
 </ol>
 <pre><code># Do the Calculations
 
@@ -731,7 +735,7 @@ system.time(fwrite(data, &quot;large_output.csv&quot;))</code></pre>
 <li>Remove any unwanted objects in the file system. Use <code>gc</code> to view any garbage collection statistics</li>
 <li>Read the data set using <code>read.csv</code> and <code>fread</code> and time each method. Compare the time taken for each function to read the file.</li>
 <li>Remove the data set from the memory using <code>rm()</code> and call <code>gc()</code> again</li>
-<li>Reread the data set however control the threads. Set different thread value (e.g 1, 2, 3, 4 and 5) the compare the time taken for processing.</li>
+<li>Reread the data set using <code>fread()</code> however control the threads. Set different thread value (e.g 1, 2, 3, 4 and 5) the compare the time taken for processing.</li>
 <li>Write the file locally(use a different file name) and use <code>gc()</code> for garbage collection</li>
 </ol>
 <p>Finally, discuss on the importance of scalability when dealing with real-world data.</p>
@@ -876,11 +880,11 @@ install.packages(&quot;tidyr&quot;)</code></pre>
 ## 6          5 Athlete6  35    Running Germany  99.0</code></pre>
 <p>You can see the target columns(<code>age</code>, <code>athlete_id</code> and <code>sport</code>) are filled and have zero null values. In the <code>fill()</code> function, there is an argument, <code>.direction</code> that specify the direction in which to fill the missing value. In this case the value of the argument is <code>"down"</code> because we are filling based on the previous value. It can be either <code>"up"</code>, <code>"downup"</code>(based on previous the later) or <code>"updown"</code>(based on later then previous).</p>
 <p><span style="color: green;"><strong>Practical exercise</strong></span></p>
-<p>Download the Detailed NFL Play-by-Play Data 2009-2018 data from <a href="https://www.kaggle.com/datasets/maxhorowitz/nflplaybyplay2009to2016">here</a>. Read the data set and subset to have <code>Date , Drive, time, TimeUnder, TimeSecs</code> columns. Name the data resultant data frame <code>subset_df1</code>. Perform the following operations on <code>subset_df1</code>.</p>
+<p>Download the Detailed NFL Play-by-Play Data 2009-2018 data from <a href="https://www.kaggle.com/datasets/maxhorowitz/nflplaybyplay2009to2016">here</a>. Read the data set using <code>fread()</code> and subset to have <code>game_date , drive, home_timeouts_remaining, defteam</code> columns. Name the data resultant data table <code>subset_dT1</code>. Perform the following operations on <code>subset_df1</code>.</p>
 <ol style="list-style-type: lower-roman">
 <li>Count the total null values</li>
-<li>Create a copy of the data set and rename it <code>subset_df1_copy</code>. Drop rows that contain any null value.</li>
-<li>Create another copy, <code>subset_df1_copy2</code> and impute the missing values based on the previous value. <code>.direction=down</code>.</li>
+<li>Create a copy of the data set and rename it <code>subset_dT1_copy</code>. Drop rows that contain any null value.</li>
+<li>Create another copy, <code>subset_dT1_copy2</code> and impute the missing values based on the previous value. <code>.direction=down</code>.</li>
 <li>Count the null values on the copy data set</li>
 </ol>
 </div>

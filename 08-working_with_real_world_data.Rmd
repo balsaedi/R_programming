@@ -224,7 +224,8 @@ The `data.table` package offers highly optimized functions like `fread()` and `f
 2. Efficient writing 
 3. Parallel Processing for faster import/export
 
-1. **Efficient Reading**
+
+i. **Efficient Reading**
 
 The `fread()` function is designed to read large CSV files much faster than the `read.csv()` by using multiple threads and optimized parsing. Here is how you can read the file 
 ```
@@ -237,11 +238,12 @@ data <- fread("GlobalLandTemperaturesByCity.csv")
 Download the csv file from [here](https://www.kaggle.com/datasets/berkeleyearth/climate-change-earth-surface-temperature-data). Extract the downloaded file and read the first csv file.
 
 These are the perks of reading data using `fread()` function;
+
 - Parallel Reading: Uses multiple threads to read files faster.
 - Automatic Type Detection: Automatically detects column types without needing to pre-specify them.
 - Handling Big Data: Efficient for reading gigabytes of data.
 
-2. **Efficient Writing**
+ii. **Efficient Writing**
 
 A large data.table can saved locally using the `fwrite()` function. It can handle large data volumes efficiently and supports various formats.
 
@@ -258,7 +260,7 @@ These are the features of `fwrite()`;
 - Compression: Supports compression for efficient storage.
 - Parallel Writing: Uses multiple threads to write files faster.
 
-3. **Parallel Processing for faster Import/Export**
+iii. **Parallel Processing for faster Import/Export**
 
 The `fread()` and `fwrite()` use parallel processing by default however you can configure the number of threads used for reading and writing. The `setDTthreads()` is used to achieve this. Lets now read and write the data using 4 threads
 ```
@@ -280,8 +282,8 @@ ii. Time the `fread()` when reading the file. **Hint**: replace the `"large_data
 # Timing fread() for a large file
 system.time(data <- fread("large_dataset.csv"))
 ```
-iii. Add a new column into the data set. Just the convert the temperature from $^oC$(degrees Celcius) to $^oF$(degrees Farenheit)
-iv. Write the file locally and check the time taken to write the file. **Hint**: Here is how you can achieve step iii abd iv
+iii. Add a new column into the data set. Just the convert the temperature from $^oF$(degrees Farenheit) to $^oC$(degrees Celcius).
+iv. Write the file locally and check the time taken to write the file. **Hint**: Here is how you can achieve step iii and iv
 ```
 # Do the Calculations
 
@@ -296,7 +298,7 @@ Download the Amazon Fine Food Reviews data set from [here](https://www.kaggle.co
 i. Remove any unwanted objects in the file system. Use `gc` to view any garbage collection statistics
 ii. Read the data set using `read.csv` and `fread` and time each method. Compare the time taken for each function to read the file. 
 iii. Remove the data set from the memory using `rm()` and call `gc()` again 
-iv. Reread the data set however control the threads. Set different thread value (e.g 1, 2, 3, 4 and 5) the compare the time taken for processing. 
+iv. Reread the data set using `fread()` however control the threads. Set different thread value (e.g 1, 2, 3, 4 and 5) the compare the time taken for processing. 
 v. Write the file locally(use a different file name) and use `gc()` for garbage collection
 
 Finally, discuss on the importance of scalability when dealing with real-world data.
@@ -435,11 +437,11 @@ You can see the target columns(`age`, `athlete_id` and `sport`) are filled and h
 
 <span style="color: green;">**Practical exercise**</span>
 
-Download the Detailed NFL Play-by-Play Data 2009-2018 data from [here](https://www.kaggle.com/datasets/maxhorowitz/nflplaybyplay2009to2016). Read the data set and subset to have `Date , Drive, time, TimeUnder, TimeSecs` columns. Name the data resultant data frame `subset_df1`. Perform the following operations on `subset_df1`.
+Download the Detailed NFL Play-by-Play Data 2009-2018 data from [here](https://www.kaggle.com/datasets/maxhorowitz/nflplaybyplay2009to2016). Read the data set using `fread()` and subset to have `game_date , drive, home_timeouts_remaining, defteam` columns. Name the data resultant data table `subset_dT1`. Perform the following operations on `subset_df1`.
 
 i. Count the total null values
-ii. Create a copy of the data set and rename it `subset_df1_copy`. Drop rows that contain any null value. 
-iii. Create another copy, `subset_df1_copy2` and impute the missing values based on the previous value. `.direction=down`. 
+ii. Create a copy of the data set and rename it `subset_dT1_copy`. Drop rows that contain any null value. 
+iii. Create another copy, `subset_dT1_copy2` and impute the missing values based on the previous value. `.direction=down`. 
 iv. Count the null values on the copy data set
 
 
