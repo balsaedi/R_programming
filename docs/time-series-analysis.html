@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-10-06" />
+<meta name="date" content="2024-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -416,12 +416,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb635-5"><a href="time-series-analysis.html#cb635-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Month&quot;</span>,                              <span class="co"># X-axis label</span></span>
 <span id="cb635-6"><a href="time-series-analysis.html#cb635-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Passengers&quot;</span>) <span class="sc">+</span>                           <span class="co"># Y-axis label</span></span>
 <span id="cb635-7"><a href="time-series-analysis.html#cb635-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                               <span class="co"># Apply a minimal theme</span></span></code></pre></div>
-<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in
-## ggplot2 3.4.0.
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see
-## where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
 <p>Now lets visualize the decomposed time series (<code>AirPassengers</code>) data using the <code>ggplot2</code> library;</p>
 <ul>
@@ -508,8 +506,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb642-5"><a href="time-series-analysis.html#cb642-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;AirPassengers - Moving Average (12 months)&quot;</span>,</span>
 <span id="cb642-6"><a href="time-series-analysis.html#cb642-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of Passengers&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
 <span id="cb642-7"><a href="time-series-analysis.html#cb642-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<pre><code>## Warning: Removed 11 rows containing missing values or values
-## outside the scale range (`geom_line()`).</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values or values outside the scale
+## range (`geom_line()`).</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-280-1.png" width="672" /></p>
 <ul>
 <li><p><em>The blue line represents the original time series data</em></p></li>

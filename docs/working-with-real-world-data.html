@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-10-06" />
+<meta name="date" content="2024-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -925,7 +925,7 @@ install.packages(&quot;tidyr&quot;)</code></pre>
 ## 6           6        100.31506       119.5497   66.19002    209.9354</code></pre>
 <ul>
 <li>Find outliers using <strong>IQR(Interquartile Range)</strong>
-Any values larger than <span class="math inline">\(1.5xIQR\)</span> added to the upper quartile or smaller than the <span class="math inline">\(1.5xIQR\)</span> subtracted to the lower quartile.</li>
+Any values larger than <span class="math inline">\(1.5xIQR\)</span> added to the upper quartile or smaller than the <span class="math inline">\(1.5xIQR\)</span> subtracted to the lower quartile is considered an outlier.</li>
 </ul>
 <div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="working-with-real-world-data.html#cb605-1" tabindex="-1"></a><span class="co"># Function to identify outliers using IQR</span></span>
 <span id="cb605-2"><a href="working-with-real-world-data.html#cb605-2" tabindex="-1"></a>identify_outliers_iqr <span class="ot">&lt;-</span> <span class="cf">function</span>(data_column) {</span>
@@ -1138,7 +1138,7 @@ data(&quot;NHANES&quot;)</code></pre>
 <li>Remove the rows that have any missing values and store the results in a new data set</li>
 <li>For columns with numeric data, impute missing values by replacing them with the mean or median of the column</li>
 <li>For categorical columns (such as <code>Gender</code> or <code>SmokeNow</code>), impute missing values using the mode.</li>
-<li>For the <code>BMI</code> and <code>Pulse</code> columns, calculate the Interquartile Range (IQR) and dentify any data points that fall outside the 1.5 * IQR range (both lower and upper bounds) as outliers</li>
+<li>For the <code>BMI</code> and <code>Pulse</code> columns, calculate the Interquartile Range (IQR) and identify any data points that fall outside the 1.5 * IQR range (both lower and upper bounds) as outliers</li>
 <li>Remove rows where outliers are found in the <code>BMI</code> and <code>Pulse</code> columns</li>
 <li>Apply Min-Max normalization to the <code>BMI</code> and <code>Pulse</code> columns, rescaling the data between 0 and 1</li>
 <li>Use one-hot encoding to convert the Gender column into a numerical format (i.e., create separate columns for male and female)</li>

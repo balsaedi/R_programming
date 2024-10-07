@@ -477,7 +477,7 @@ head(health_data)
 ```
 
 - Find outliers using **IQR(Interquartile Range)**
-Any values larger than $1.5xIQR$ added to the upper quartile or smaller than the $1.5xIQR$ subtracted to the lower quartile. 
+Any values larger than $1.5xIQR$ added to the upper quartile or smaller than the $1.5xIQR$ subtracted to the lower quartile is considered an outlier.
 ```{r}
 # Function to identify outliers using IQR
 identify_outliers_iqr <- function(data_column) {
@@ -652,7 +652,7 @@ sapply(NHANES, function(x) sum(is.na(x)))
 ii. Remove the rows that have any missing values and store the results in a new data set
 iii. For columns with numeric data, impute missing values by replacing them with the mean or median of the column
 iv. For categorical columns (such as `Gender` or `SmokeNow`), impute missing values using the mode.
-v. For the `BMI` and `Pulse` columns, calculate the Interquartile Range (IQR) and dentify any data points that fall outside the 1.5 * IQR range (both lower and upper bounds) as outliers
+v. For the `BMI` and `Pulse` columns, calculate the Interquartile Range (IQR) and identify any data points that fall outside the 1.5 * IQR range (both lower and upper bounds) as outliers
 vi. Remove rows where outliers are found in the `BMI` and `Pulse` columns
 vii. Apply Min-Max normalization to the `BMI` and `Pulse` columns, rescaling the data between 0 and 1
 viii. Use one-hot encoding to convert the Gender column into a numerical format (i.e., create separate columns for male and female)
