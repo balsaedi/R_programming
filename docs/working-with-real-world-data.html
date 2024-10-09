@@ -23,7 +23,7 @@
 <meta name="author" content="YOUR NAME HERE" />
 
 
-<meta name="date" content="2024-10-08" />
+<meta name="date" content="2024-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -302,6 +302,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2"><i class="fa fa-check"></i><b>10.3.2</b> Part 2</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="capstone-project.html"><a href="capstone-project.html#project-presentations-and-feedback"><i class="fa fa-check"></i><b>10.4</b> Project Presentations and Feedback</a></li>
+<li class="chapter" data-level="10.5" data-path="capstone-project.html"><a href="capstone-project.html#example-ecommerce-project"><i class="fa fa-check"></i><b>10.5</b> <span style="color: brown;">Example: Ecommerce Project</span></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="capstone-project.html"><a href="capstone-project.html#part-1-1"><i class="fa fa-check"></i><b>10.5.1</b> <span style="color: brown;">Part 1</span></a></li>
+<li class="chapter" data-level="10.5.2" data-path="capstone-project.html"><a href="capstone-project.html#part-2-1"><i class="fa fa-check"></i><b>10.5.2</b> <span style="color: brown;">Part 2</span></a></li>
+<li class="chapter" data-level="10.5.3" data-path="capstone-project.html"><a href="capstone-project.html#presentation-and-feedback"><i class="fa fa-check"></i><b>10.5.3</b> <span style="color: brown;">Presentation and Feedback</span></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>11</b> Datasets</a></li>
 <li class="divider"></li>
@@ -585,42 +591,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb564-11"><a href="working-with-real-world-data.html#cb564-11" tabindex="-1"></a><span class="co"># Summary of memory usage</span></span>
 <span id="cb564-12"><a href="working-with-real-world-data.html#cb564-12" tabindex="-1"></a><span class="fu">summaryRprof</span>()</span></code></pre></div>
 <pre><code>## $by.self
-##         self.time self.pct total.time total.pct
-## &quot;rnorm&quot;      0.32      100       0.32       100
+##                self.time self.pct total.time total.pct
+## &quot;rnorm&quot;             0.32    94.12       0.32     94.12
+## &quot;sys.function&quot;      0.02     5.88       0.02      5.88
 ## 
 ## $by.total
 ##                           total.time total.pct self.time self.pct
-## &quot;rnorm&quot;                         0.32       100      0.32      100
-## &quot;block_exec&quot;                    0.32       100      0.00        0
-## &quot;call_block&quot;                    0.32       100      0.00        0
-## &quot;eng_r&quot;                         0.32       100      0.00        0
-## &quot;eval_with_user_handlers&quot;       0.32       100      0.00        0
-## &quot;eval&quot;                          0.32       100      0.00        0
-## &quot;evaluate_call&quot;                 0.32       100      0.00        0
-## &quot;evaluate::evaluate&quot;            0.32       100      0.00        0
-## &quot;evaluate&quot;                      0.32       100      0.00        0
-## &quot;generator$render&quot;              0.32       100      0.00        0
-## &quot;handle&quot;                        0.32       100      0.00        0
-## &quot;in_dir&quot;                        0.32       100      0.00        0
-## &quot;in_input_dir&quot;                  0.32       100      0.00        0
-## &quot;knitr::knit&quot;                   0.32       100      0.00        0
-## &quot;process_file&quot;                  0.32       100      0.00        0
-## &quot;process_group&quot;                 0.32       100      0.00        0
-## &quot;render_book_script&quot;            0.32       100      0.00        0
-## &quot;render_book&quot;                   0.32       100      0.00        0
-## &quot;render_cur_session&quot;            0.32       100      0.00        0
-## &quot;rmarkdown::render_site&quot;        0.32       100      0.00        0
-## &quot;rmarkdown::render&quot;             0.32       100      0.00        0
-## &quot;timing_fn&quot;                     0.32       100      0.00        0
-## &quot;withCallingHandlers&quot;           0.32       100      0.00        0
-## &quot;withVisible&quot;                   0.32       100      0.00        0
-## &quot;xfun:::handle_error&quot;           0.32       100      0.00        0
+## &quot;block_exec&quot;                    0.34    100.00      0.00     0.00
+## &quot;call_block&quot;                    0.34    100.00      0.00     0.00
+## &quot;eng_r&quot;                         0.34    100.00      0.00     0.00
+## &quot;evaluate_call&quot;                 0.34    100.00      0.00     0.00
+## &quot;evaluate::evaluate&quot;            0.34    100.00      0.00     0.00
+## &quot;evaluate&quot;                      0.34    100.00      0.00     0.00
+## &quot;generator$render&quot;              0.34    100.00      0.00     0.00
+## &quot;in_dir&quot;                        0.34    100.00      0.00     0.00
+## &quot;in_input_dir&quot;                  0.34    100.00      0.00     0.00
+## &quot;knitr::knit&quot;                   0.34    100.00      0.00     0.00
+## &quot;process_file&quot;                  0.34    100.00      0.00     0.00
+## &quot;process_group&quot;                 0.34    100.00      0.00     0.00
+## &quot;render_book_script&quot;            0.34    100.00      0.00     0.00
+## &quot;render_book&quot;                   0.34    100.00      0.00     0.00
+## &quot;render_cur_session&quot;            0.34    100.00      0.00     0.00
+## &quot;rmarkdown::render_site&quot;        0.34    100.00      0.00     0.00
+## &quot;rmarkdown::render&quot;             0.34    100.00      0.00     0.00
+## &quot;withCallingHandlers&quot;           0.34    100.00      0.00     0.00
+## &quot;xfun:::handle_error&quot;           0.34    100.00      0.00     0.00
+## &quot;rnorm&quot;                         0.32     94.12      0.32    94.12
+## &quot;eval_with_user_handlers&quot;       0.32     94.12      0.00     0.00
+## &quot;eval&quot;                          0.32     94.12      0.00     0.00
+## &quot;handle&quot;                        0.32     94.12      0.00     0.00
+## &quot;timing_fn&quot;                     0.32     94.12      0.00     0.00
+## &quot;withVisible&quot;                   0.32     94.12      0.00     0.00
+## &quot;sys.function&quot;                  0.02      5.88      0.02     5.88
+## &quot;match.call&quot;                    0.02      5.88      0.00     0.00
+## &quot;remove_hooks&quot;                  0.02      5.88      0.00     0.00
+## &quot;remove&quot;                        0.02      5.88      0.00     0.00
+## &quot;setHook&quot;                       0.02      5.88      0.00     0.00
 ## 
 ## $sample.interval
 ## [1] 0.02
 ## 
 ## $sampling.time
-## [1] 0.32</code></pre>
+## [1] 0.34</code></pre>
 <p>Additionally, the <code>pryr</code> package goes further to come up with additional functions to monitor memory usage. It can be installed by;</p>
 <pre><code>install.packages(&quot;pryr&quot;)</code></pre>
 <p>Below is a demonstration of how <code>pryr</code> library works</p>
