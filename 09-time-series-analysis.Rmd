@@ -248,12 +248,28 @@ par(mfrow = c(1, 2))  # Set up for side-by-side plots
 acf(diff_passengers, main = "ACF of Differenced AirPassengers")
 
 ```
+
+The ACF (Autocorrelation Function) plot for the `AirPassengers` data set typically shows significant positive autocorrelations for several lags, which indicates that the series has a strong trend and seasonal patterns.
+
+Key points to interpret from the ACF plot:
+
+- **High autocorrelation at early lags**: The first few lags (e.g., 1 to 12) likely show high autocorrelation, which suggests a strong seasonal pattern in the data (monthly seasonality in this case).
+- **Gradual decline**: The ACF values decrease slowly, indicating the presence of a long-term trend in the data.
+- **Seasonality**: Peaks in the autocorrelations at lags of multiples of 12 (e.g., 12, 24) indicate the annual cycle in the data, which is typical for monthly time series with yearly seasonality.
+
+Overall, this suggests that the `AirPassengers` data exhibits both trend and seasonality, which is important for selecting an appropriate time series model
 ```{r}
 # PACF plot
 pacf(diff_passengers, main = "PACF of Differenced AirPassengers")
 ```
 
-<-**Interpret the plots**->
+The PACF (Partial Autocorrelation Function) plot for the differenced `AirPassengers` data set indicates the following:
+
+- **Significant PACF at Lag 1**: There is a strong spike at lag 1, which suggests that after differencing, the time series still has a significant short-term autocorrelation at this lag. This can imply that an AR(1) model might be suitable.
+- **Seasonal Pattern**: The spike at lag 12 suggests the presence of a seasonal component in the data with a yearly cycle. This is consistent with the monthly nature of the `AirPassengers` data set and the yearly repeating patterns in air travel.
+- **Dampening beyond Lag 1**: After the significant spike at lag 1, the PACF values quickly decline, with some negative values at higher lags, indicating that the differenced series has removed much of the autocorrelation present in the original data.
+
+In summary, this plot suggests a time series with strong short-term (lag 1) autocorrelation and seasonal effects that are likely at yearly intervals (lag 12). Based on this, you could consider using an ARIMA model with seasonal components to better model the behavior of the data.
 
 The `AirPassengers` data set is not stationary, therefore the data will be transformed by log-transform before applying differencing
 ```{r}
